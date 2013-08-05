@@ -1,0 +1,34 @@
+<div id="question-87"><div id="question-87-info" class="question-info" qid="87" style="display:none;"></div><div id="question-87-number" class="question-number">74</div><div id="question-87-text" class="question-text">
+					What is the best approach for converting this string:<p></p><p class="ceresIndent"><code>$string = "a=10&amp;b[]=20&amp;c=30&amp;d=40+50";</code></p><p class="ceresIndent">Into this array?</p><pre class="code"><br>array(4) {<br>  ["a"]=&gt;<br>  string(2) "10"<br>  ["b"]=&gt;<br>  array(1) {<br>    [0]=&gt;<br>    string(2) "20"<br>  }<br>  ["c"]=&gt;<br>  string(2) "30"<br>  ["d"]=&gt;<br>  string(5) "40 50"<br>}<br></pre>
+				</div><div id="question-87-answer" class="question-answer">
+                <form id="question-87-form" onsubmit="return false;">
+                    
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="1" id="87_1"/>
+								<label for="87_1">Write a parser completely by hand, it's the only way to make sure it's 100% accurate</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="2" id="87_2" correct="1"/>
+								<label for="87_2">Use the parse_str() function to translate it to an array()</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="3" id="87_3"/>
+								<label for="87_3">Pass the variable to another PHP script via an HTTP GET request and return the array as a serialized variable</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="4" id="87_4"/>
+								<label for="87_4">Just call unserialize() to translate it to an array()</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="5" id="87_5"/>
+								<label for="87_5">Write a string parser using strtok() and unserialize() to convert it to an array</label>
+							</li>
+							
+						
+                </form>
+            </div><div id="question-87-answer-note" class="question-answer-note">Choose 1 answer</div></div>

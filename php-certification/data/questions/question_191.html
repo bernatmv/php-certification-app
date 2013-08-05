@@ -1,0 +1,36 @@
+<div id="question-191"><div id="question-191-info" class="question-info" qid="191" style="display:none;"></div><div id="question-191-number" class="question-number">138</div><div id="question-191-text" class="question-text">
+					Consider the following script:<p></p><pre class="code"><br>&lt;?php<br>$dom = new DOMDOcument();<br>$dom-&gt;load("myxmlfile.xml");<br><br>foreach($dom-&gt;documentElement-&gt;childNodes as $child)<br>{<br>  if(($child-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp;<br>      $child-&gt;nodeName == "item")<br>  {<br>    foreach($child-&gt;childNodes as $item)<br>    {<br>      if(($item-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp;<br>         ($item-&gt;nodeName == "title"))<br>      {<br>        print "$item-&gt;firstChild-&gt;data\n";<br>      }<br>    }<br>  }<br>}<br>?&gt;<br></pre>Assuming
+the referenced XML document exists and matches the parsing logic, what
+should be displayed when this script is executed?<p></p>
+				</div><div id="question-191-answer" class="question-answer">
+                <form id="question-191-form" onsubmit="return false;">
+                    
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="1" id="191_1"/>
+								<label for="191_1">None of the above</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="2" id="191_2"/>
+								<label for="191_2">The XML of each 'title' node</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="3" id="191_3"/>
+								<label for="191_3">The XML of each 'item' node</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="4" id="191_4" correct="1"/>
+								<label for="191_4">"Title" for every title node in the document</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="5" id="191_5"/>
+								<label for="191_5">The contents of every 'title' node which exists under an 'item' node</label>
+							</li>
+							
+						
+                </form>
+            </div><div id="question-191-answer-note" class="question-answer-note">Choose 1 answer</div></div>

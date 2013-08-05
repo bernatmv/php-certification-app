@@ -1,0 +1,112 @@
+
+<p>
+I think that the key word of question is "pattern". explode doesn't work with reg. expr. patterns, preg_split does. By the way "-=-" is a valid pattern. It splits string 'a=b' with array('a' => 'b'). So my answer is 3.
+<br/>
+<small><b>ignat</b> on <i>17 October 2012, at 06:10:29</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+ALL FALSE ... so It must be 4 (missing comma is not part of the test apparently)
+<br/>
+<small><b>anonymous</b> on <i>14 September 2012, at 01:09:58</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+if missing comma in the 4th answer is not a misprint, than #2 is ok, otherwise #4 is better answer
+<br/>
+<small><b>anonymous</b> on <i>6 September 2012, at 06:09:01</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+#4 is right asumming the missing comma is a typo. #3 can never be right because the '-' on each side is the delimiter, so won't be matched. 
+<br/>
+<small><b>anonymous</b> on <i>13 July 2012, at 09:07:09</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+#3 is correct answer, and #4 will never be correct because it misses "comma" between the pattern and string
+<br/>
+<small><b>babs</b> on <i>9 July 2012, at 09:07:18</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Correct is 4. In the number 3, the regular expression is wrong. In the number 2, lenght of string is unknown and it maybe have more than "-=-" pattern.
+<br/>
+<small><b>Rafael M. Salvioni</b> on <i>25 January 2012, at 02:01:11</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+The lenght of the string is unknown. Let take 'abcde-=-qwerty'<br/>2: Array ([0] => abcde [1] => -=-qw [2] => erty) -> WRONG.<br/>3: Array ([0] => abcde- [1] => -qwerty) -> much better than 2, but also WRONG.<br/>4: syntax error. But if there will be a comma it is the best answer.<br/>So there is a mistake in answers. The correct answer is 3 or 4, but never 1 and 2.
+<br/>
+<small><b>anonymous</b> on <i>9 August 2011, at 02:08:25</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Typo in answer #4, but it is the correct one. #2 does not remove the "-=-" pattern and #3 leaves both "-" since they are used as regex delimiter.
+<br/>
+<small><b>Martini</b> on <i>29 September 2010, at 02:09:43</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+i think 4
+<br/>
+<small><b>anonymous</b> on <i>16 August 2010, at 05:08:25</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+answer 2 is correct<br/>results:<br/>$string = 'abc-=-def';<br/>2 => Array ( [0] => abc [1] => -=- [2] => def )<br/>3 => Array ( [0] => abc- [1] => -def ) <br/>4 => syntax error missing ','
+<br/>
+<small><b>anonymous</b> on <i>29 July 2010, at 11:07:51</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+explode("-=-" $string); is the right answer as preg_split here misses the delimiter(or will mis-interpret '-' as delimiter)
+<br/>
+<small><b>Liju P M</b> on <i>20 July 2010, at 08:07:39</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+2. does not return the first element due to the strpos -> WRONG<br/>3. lacks the "/" delimiter on both sides of the regex and thus splits just on "=" -> WRONG<br/>4. there is a comma missing before $string, else it would be the correct answer -> MAYBE?
+<br/>
+<small><b>lathspell</b> on <i>11 July 2010, at 10:07:22</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+coorect answer is number "2"
+<br/>
+<small><b>amine ismaili alaoui</b> on <i>30 June 2010, at 07:06:05</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+The answer is 4. just test the code in PHP file
+<br/>
+<small><b>anonymous</b> on <i>29 May 2010, at 02:05:53</i></small>
+<br/>
+. . .
+</p>

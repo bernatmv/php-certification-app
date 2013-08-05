@@ -1,0 +1,80 @@
+
+<p>
+Since we define FOO with 10. so the answer would be 10. no matter what.
+<br/>
+<small><b>anonymous</b> on <i>9 May 2013, at 02:05:47</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+I solved this task like that:<br/>$array[FOO] --> $array[10] --> FOO --> 10<br/>$array[$array[FOO]] --> $array[10] --> FOO --> 10<br/>$array["FOO"] --> 20<br/>10 * 20 = 200
+<br/>
+<small><b>Lina</b> on <i>26 February 2013, at 03:02:54</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+the best explanation is  $array[$array[FOO]] * $array["FOO"];<br/>$array[10] * $array[20] = 200 result, same as 10 multiply 20 = 200
+<br/>
+<small><b>anonymous</b> on <i>13 September 2012, at 10:09:17</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Tricky. First the left operand. $array[$array[FOO]] <br/>= $array[$array[10]]<br/>= $array[FOO]<br/>= $array[10]<br/>= FOO<br/>= 10<br/><br/>Then the right operand is much easier, evaluates to 20. So the answer is 200.
+<br/>
+<small><b>anonymous</b> on <i>10 July 2012, at 08:07:42</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Aswer 3 is right, the value is 200. $array[$array[FOO]] = 10, because FOO is constant with value 10.
+<br/>
+<small><b>Alex</b> on <i>28 August 2011, at 04:08:56</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+I agree and would like to add what SunSparc said.<br/><br/>$array[$array[10]] * $array["FOO"];
+<br/>
+<small><b>seal</b> on <i>16 May 2011, at 12:05:19</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+I check this code ans:200
+<br/>
+<small><b>Nur Ahmed</b> on <i>22 March 2011, at 02:03:57</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+This is tricky, as usual.  Watch the uses of the global constant FOO.  Array key 10 is not assigned the string "FOO" but the constant FOO with is 10.
+<br/>
+<small><b>SunSparc</b> on <i>11 January 2011, at 11:01:53</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+200 is correct option
+<br/>
+<small><b>grethz</b> on <i>4 November 2010, at 07:11:38</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+200
+<br/>
+<small><b>anonymous</b> on <i>23 April 2010, at 05:04:15</i></small>
+<br/>
+. . .
+</p>

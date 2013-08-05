@@ -1,0 +1,36 @@
+<div id="question-136"><div id="question-136-info" class="question-info" qid="136" style="display:none;"></div><div id="question-136-number" class="question-number">105</div><div id="question-136-text" class="question-text">
+					Consider the following script:<p></p><pre class="code"><br>&lt;?php<br>function func(&amp;$arraykey) {<br>  return $arraykey; // function returns by value!<br>}<br><br>$array = array('a', 'b', 'c');<br>foreach (array_keys($array) as $key) {<br>  $y = &amp;func($array[$key]);<br>  $z[] =&amp; $y;<br>}<br><br>var_dump($z);<br>?&gt;<br></pre>This
+code has changed behavior in PHP 5. Identify the output of this script
+as it would have been in PHP 4, as well as the new behavior in PHP 5.<p></p>
+				</div><div id="question-136-answer" class="question-answer">
+                <form id="question-136-form" onsubmit="return false;">
+                    
+							
+							<li class="answer">
+								<input name="answer[]" type="checkbox" value="1" id="136_1"/>
+								<label for="136_1">array('a', 'a', 'b')</label>
+							</li>
+							
+							<li class="answer">
+								<input name="answer[]" type="checkbox" value="2" id="136_2" correct="1"/>
+								<label for="136_2">array('a', 'b', 'c')</label>
+							</li>
+							
+							<li class="answer">
+								<input name="answer[]" type="checkbox" value="3" id="136_3"/>
+								<label for="136_3">array('c', 'b', 'a')</label>
+							</li>
+							
+							<li class="answer">
+								<input name="answer[]" type="checkbox" value="4" id="136_4" correct="1"/>
+								<label for="136_4">array('c', 'c', 'c')</label>
+							</li>
+							
+							<li class="answer">
+								<input name="answer[]" type="checkbox" value="5" id="136_5"/>
+								<label for="136_5">array('b', 'b', 'b')</label>
+							</li>
+							
+						
+                </form>
+            </div><div id="question-136-answer-note" class="question-answer-note">Choose 2 answers</div></div>

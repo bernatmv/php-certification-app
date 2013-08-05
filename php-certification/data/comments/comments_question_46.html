@@ -1,0 +1,136 @@
+
+<p>
+5 is the final solution!
+<br/>
+<small><b>Adolf</b> on <i>8 July 2012, at 03:07:06</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+5 is correct
+<br/>
+<small><b>kri</b> on <i>22 June 2012, at 07:06:01</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+The potential security Hole is Cross-Site Request Forgery then correct answer is 5
+<br/>
+<small><b>babs</b> on <i>21 June 2012, at 11:06:55</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+alert('Maybe a CSRF');
+<br/>
+<small><b>anonymous</b> on <i>25 January 2012, at 12:01:08</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+...having said that, better to use $_POST anyway!
+<br/>
+<small><b>anonymous</b> on <i>25 January 2012, at 11:01:32</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+...It completely depends what the user functions scrub_id() and scrub_quantity() actually do. If they correctly filter/sanitize the incoming data, the CSRF attack is neutralized. I'm calling 'trick question' and goinf with 2...this code provides no security hole, resulting code might!
+<br/>
+<small><b>anonymous</b> on <i>25 January 2012, at 11:01:50</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+5 is right answer.....
+<br/>
+<small><b>anonymous</b> on <i>10 December 2011, at 07:12:13</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+5 for god sake, it's writen with $_REQUEST ;___; it has to have security hole
+<br/>
+<small><b>anonymous</b> on <i>13 August 2011, at 12:08:38</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+answer 5 is "final"
+<br/>
+<small><b>anonymous</b> on <i>6 June 2011, at 12:06:31</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+The Answer is: 5. The use of $_REQUEST gives a HINT as to the answer, but EVEN if $_POST was specified, it is STILL subject to an XSRF attack... because there is NO $_SESSION["token"] == $_POST["form_token"] check in the code to verify the request is being made by an actual browser (w/ active Session) using site form with (same) non-expired token held as hidden var. 
+<br/>
+<small><b>FireSunAndAlsoPuppies</b> on <i>31 March 2011, at 05:03:41</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+This is weird, provided the scrub functions sanitize input data, there should not be any except the case when id and quantity do not contain VALID data, valid is different that FILTERED data ... so even after scrubbing your data (what the hell is scrub?!) you might still have incorrect data into your shopping cart. I incline to think is 2 ... bloody scrubbs
+<br/>
+<small><b>iongion</b> on <i>19 January 2011, at 08:01:05</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+answer 2 is totally wrong there is a security hole, and its called XSRF!! answer 5
+<br/>
+<small><b>anonymous</b> on <i>14 November 2010, at 10:11:22</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+There is no security hole in this code, presumably the functions scrub_id() and scrub_quantity() will clean up the user inputs. 
+<br/>
+<small><b>Liju P M</b> on <i>15 July 2010, at 06:07:41</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+la bonne reponse est numero 5, parcequ'il utilise la variable superglobal $_REQUEST....
+<br/>
+<small><b>amine ismaili alaoui</b> on <i>29 June 2010, at 08:06:49</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+so you're saying that $_GET, $_POST or $_COOKIE are not forge-able?
+<br/>
+<small><b>anonymous</b> on <i>19 May 2010, at 12:05:03</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Indeed, you should not just use $_REQUEST but the more specific $_GET or $_POST (or $_COOKIE) so you are certain of the origin of the data...
+<br/>
+<small><b>anonymous</b> on <i>17 March 2010, at 07:03:17</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+answer 2 is wrong, answer 5 is wright
+<br/>
+<small><b>anonymous</b> on <i>15 March 2010, at 02:03:50</i></small>
+<br/>
+. . .
+</p>

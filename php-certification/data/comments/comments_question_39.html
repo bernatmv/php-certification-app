@@ -1,0 +1,40 @@
+
+<p>
+The first catch...<br/><br/>} catch(AnotherException $e) {<br/>    $a->somethingElse();	<br/>}<br/><br/>...will throw the exception to the outer try / catch block, and not the second nested catch.
+<br/>
+<small><b>anonymous</b> on <i>18 September 2011, at 06:09:10</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+"$a->somethingElse();" will trigger an exception that will not get caught by the second catch, those two catch are for $a->something() in the situation $a->something might throw two types of exceptions, either AnotherException or MyException, so controll will go to the first try ... catch block and will display "Didn't catch the Exception!"
+<br/>
+<small><b>gion</b> on <i>19 January 2011, at 08:01:23</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Please some one explain in english.
+<br/>
+<small><b>Faisal</b> on <i>22 October 2010, at 10:10:05</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+la bonne reponse est numero 3, puisque l'exception sera interpreter par le bloc try/catch parent et pas le fils.
+<br/>
+<small><b>amine ismaili alaoui</b> on <i>29 June 2010, at 11:06:11</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+la bonne reponse est numero 3, puisque l'exception sera interpreter par le bloc try/catch parent et pas le fils.
+<br/>
+<small><b>amine ismaili alaoui</b> on <i>29 June 2010, at 11:06:57</i></small>
+<br/>
+. . .
+</p>

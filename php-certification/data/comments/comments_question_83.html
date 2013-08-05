@@ -1,0 +1,152 @@
+
+<p>
+I think #1 also!
+<br/>
+<small><b>anonymous</b> on <i>13 May 2013, at 02:05:41</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+tested on cli answer is 1
+<br/>
+<small><b>mohit garg</b> on <i>15 April 2013, at 05:04:35</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Agree with Ryan, answer should be 1, php 5.3
+<br/>
+<small><b>Stephan</b> on <i>20 March 2013, at 07:03:32</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Answer shud b 1.. run the code and check the page source.. 
+<br/>
+<small><b>Ryan</b> on <i>18 February 2013, at 07:02:29</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Sorry. This website has incorrect special chars escaping
+<br/>
+<small><b>nymous</b> on <i>7 October 2012, at 08:10:57</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Real output:<br/>string(78) "bI like PHP  I think it is cool/b"<br/>bI like 'PHP'  I think it is cool/bint(1)
+<br/>
+<small><b>nymous</b> on <i>7 October 2012, at 08:10:12</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+var_dump(htmlentities($string, ENT_QUOTES)) produce *** string(78) "I like 'PHP' & I think it is "cool"  ***<br/>var_dump(print htmlspecialchars($string)) produce *** I like 'PHP' & I think it is "cool"int(1) ***<br/><br/>Again that question is not right, and contains a error;<br/><br/>If there was no "print" function in the second vardump, then answer will be 4 since the htmlentities does not convert quotes thanks to the ENT_QUOTES parameter ...
+<br/>
+<small><b>anonymous</b> on <i>14 September 2012, at 01:09:47</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+#1, test it in php. ;)
+<br/>
+<small><b>When the Sofa met the Coach</b> on <i>15 July 2012, at 06:07:43</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+If #1 were reworded to say the htmlentities() call will translate the single quotes, while the htmlspecialchars() call will not, then #1 would be the correct answer. Otherwise, all answers are wrong. 
+<br/>
+<small><b>anonymous</b> on <i>9 July 2012, at 06:07:52</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+It mustn't have a print in "var_dump(print htmlspecialchars($string))", then without this print "var_dump(htmlspecialchars($string),ENT_QUOTES)" produces the same result so the right answer is "4"
+<br/>
+<small><b>babs</b> on <i>27 June 2012, at 08:06:56</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+#1, htmlspecialchars() does not translate the quotes. 
+<br/>
+<small><b>anonymous</b> on <i>12 June 2012, at 09:06:04</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+I guess the difference in string length is dur to print in htmlspecialchars, if it is removed both strings give 78 as length.so ans is 4
+<br/>
+<small><b>anonymous</b> on <i>2 June 2012, at 05:06:32</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+output:<br/><br/>string(78) "bI like PHP  I think it is cool/b"<br/><br/>and<br/><br/>bI like 'PHP'  I think it is cool/bint(1)<br/><br/>as you can see it's not the same. Answer is 1 quotes are not translated by htmlspecialchars()
+<br/>
+<small><b>anonymous</b> on <i>19 February 2012, at 11:02:02</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+did test, and as human being the result seems to be the same, therefore answer 4.but I do not understand why the string length is not the same:<br/>I like 'PHP' & I think it is "cool" length:78I like 'PHP' & I think it is "cool" length:68<br/>78 vs 68?<br/>Can anyone tell me this secret
+<br/>
+<small><b>anonymous</b> on <i>16 October 2011, at 09:10:12</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Answer is 1, see the example code source
+<br/>
+<small><b>vachtang</b> on <i>17 August 2010, at 08:08:23</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+1. *is* the correct answer:<br/>string(78) "bI like PHP  I think it is cool/b"<br/><br/>string(68) "bI like 'PHP'  I think it is cool/b"<br/><br/>(the print inside the var_dump is wrong but that probably does not matter here)
+<br/>
+<small><b>lathspell</b> on <i>14 July 2010, at 07:07:00</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+i agree with 4.
+<br/>
+<small><b>anonymous</b> on <i>29 May 2010, at 07:05:08</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+i think the answer is 4
+<br/>
+<small><b>jo</b> on <i>23 April 2010, at 07:04:08</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+1 is the correct answer, htmlspecialchars() needs ENT_QUOTES too for translating the '' quotes. 
+<br/>
+<small><b>shakedko</b> on <i>5 April 2010, at 05:04:05</i></small>
+<br/>
+. . .
+</p>

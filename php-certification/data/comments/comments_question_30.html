@@ -1,0 +1,144 @@
+
+<p>
+static methods can be accessed by $this in php 5.3 from inside the class using another method.. and it can also be accessed by an object.. but we cannot call any other method or property from inside the static method using $this
+<br/>
+<small><b>anonymous</b> on <i>18 February 2013, at 06:02:01</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+answer 2 is correct, why should 5 be correct? this php mockup test is full of traps..
+<br/>
+<small><b>anonymous</b> on <i>8 July 2012, at 12:07:21</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+if a static method had access to $this, then you wouldn't be able to call it statically, since $this refers to an instance.
+<br/>
+<small><b>infowars.com</b> on <i>6 July 2012, at 08:07:57</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+are you sure?
+<br/>
+<small><b>anonymous</b> on <i>24 June 2012, at 02:06:36</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+actually dont bother, what a stupid comment.Please ignore it
+<br/>
+<small><b>anonymous</b> on <i>1 March 2012, at 04:03:15</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+...explain this then...<br/><br/>class myClass<br/>{<br/>	public static $var = 'var';<br/>	static function a()<br/>	{<br/>		echo 'a';	<br/>	}<br/>	public function b()<br/>	{<br/>		echo 'b';	<br/>	}<br/>	function callStatic()<br/>	{<br/>		$this->a();<br/>	}<br/>}<br/><br/>$a = new myClass();<br/>$a->callStatic();
+<br/>
+<small><b>anonymous</b> on <i>1 March 2012, at 04:03:56</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+static methods are callable without an instance of the object created, the pseudo-variable $this is not available inside the method declared as static
+<br/>
+<small><b>venki</b> on <i>2 February 2012, at 10:02:30</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+#2 
+<br/>
+<small><b>anonymous</b> on <i>5 June 2011, at 11:06:06</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+2 is correct
+<br/>
+<small><b>anonymous</b> on <i>28 April 2011, at 11:04:55</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+the pseudo-variable $this is not available inside the method declared as static. So correct answer is 2
+<br/>
+<small><b>Gagan Charaya</b> on <i>21 January 2011, at 09:01:08</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Answer is 2. read.....<br/> http://php.net/manual/en/language.oop5.static.php
+<br/>
+<small><b>Faisal</b> on <i>20 October 2010, at 10:10:20</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+It is 2. Read the manual on php.net.<br/>Because static methods are callable without an instance of the object created, the pseudo-variable $this is not available inside the method declared as static.<br/>http://php.net/manual/en/language.oop5.static.php<br/>
+<br/>
+<small><b>Diz</b> on <i>28 September 2010, at 07:09:46</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Number 2("Static methods do not provide a reference to $this") is the correct answer. 
+<br/>
+<small><b>Liju P M</b> on <i>14 July 2010, at 06:07:17</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+la bonne reponse est 2
+<br/>
+<small><b>amine ismaili alaoui</b> on <i>28 June 2010, at 06:06:08</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Correct answer is 2. Static methods CAN be called from within an instance so 1 is wrong.
+<br/>
+<small><b>MeerDanGek</b> on <i>1 June 2010, at 10:06:21</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Have no idea, but i support with 1.
+<br/>
+<small><b>anonymous</b> on <i>28 May 2010, at 03:05:01</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+NUMBER 2 IS THE CORRECT ANSWER
+<br/>
+<small><b>anonymous</b> on <i>31 March 2010, at 12:03:21</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+imho 1 is the correct answer
+<br/>
+<small><b>anonymous</b> on <i>27 January 2010, at 01:01:38</i></small>
+<br/>
+. . .
+</p>

@@ -1,0 +1,24 @@
+
+<p>
+Right order (tested): <br/><br/>1. $dbh->beginTransaction();<br/>2. $stmt->execute();<br/>3. $dbh->rollback(); <br/>4. $dbh->commit();<br/><br/><br/>You MUST include at end the commit and include the rollback into the Exception.  If the transaction fails you must leave the table blank.<br/><br/>Test code (include at end to test):<br/><br/>$sel = $dbh->prepare("SELECT * FROM foo");<br/>$sel->execute();<br/>$result = $sel->fetchAll();<br/>echo '';<br/>var_dump($result);<br/>echo '';
+<br/>
+<small><b>oscargascon</b> on <i>2 January 2013, at 03:01:55</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+right order would be : $dbh->beginTransaction();<br/>$stmt->execute();<br/>$dbh->commit();<br/>$dbh->rollback(); 
+<br/>
+<small><b>anonymous</b> on <i>17 September 2012, at 11:09:26</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+ $dbh->beginTransaction();<br/> $dbh->commit();<br/> $stmt->execute();<br/> $dbh->rollback();
+<br/>
+<small><b>samsami2um@gmail.com</b> on <i>21 April 2010, at 07:04:02</i></small>
+<br/>
+. . .
+</p>

@@ -1,0 +1,88 @@
+
+<p>
+..and it will be throw a warning, because $newstring is not defined before :)
+<br/>
+<small><b>anonymous</b> on <i>19 June 2013, at 11:06:51</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+strlen($string) = 6 so, the for will loop 6 times.<br/>$current = $string[0] = 1;<br/>$count = 1;<br/>while will loop 2 times so $count = 3<br/>$newstring .= "$count{$current}"; = "31"<br/>and from here you see that the only answer is the first (1)
+<br/>
+<small><b>Marius</b> on <i>5 February 2013, at 09:02:49</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+1 is correct answer
+<br/>
+<small><b>anonymous</b> on <i>3 January 2013, at 09:01:02</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Never mind! After scouring through PHP's string section I noted the complex/curly braces. Obviously the curly braces are delimiting the $count variable and just evaluating the $current variable.
+<br/>
+<small><b>Marc</b> on <i>20 September 2012, at 05:09:47</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Can someone explain why "$count{$current}" is evaluated to '31'? In the first loop $count == 3 & $current == 1. I presume $count is casted to a string value using the double quotes around it... however I do not understand why the one is appended... if anything I would assume its trying to retrieve the index character in the string using the curly braces..?
+<br/>
+<small><b>Marc</b> on <i>20 September 2012, at 05:09:16</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Good way to show that often you can exclude answers pretty fast: strlen($string) is 6, so 1 or 4 can be correct, all others must be false. So now you just have to check if the first number is 3 or 2 => finished.
+<br/>
+<small><b>mdix</b> on <i>14 July 2012, at 07:07:53</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+I check ans is 1
+<br/>
+<small><b>Nur Ahmed</b> on <i>22 March 2011, at 03:03:45</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Я допер, надо смотреть сразу цикл while и считать какое значение будет у $count после выхода из while. В первый раз это будет 3, а в строку пишется значения $count и $current строкового типа.<br/>То есть в первую итерацию всего цикла запись будет 3 и 1, то есть 31. Надеюсь, русскоязычным будет понятно, как решить
+<br/>
+<small><b>ldanmer</b> on <i>23 February 2011, at 04:02:30</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Just executing while loop once you will get the answer 1
+<br/>
+<small><b>Gagan Charaya</b> on <i>21 January 2011, at 05:01:29</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+the correct answer is 1
+<br/>
+<small><b>amine ismaili alaoui</b> on <i>27 June 2010, at 06:06:09</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+The answer: D
+<br/>
+<small><b>davidhhuan</b> on <i>28 May 2010, at 03:05:12</i></small>
+<br/>
+. . .
+</p>

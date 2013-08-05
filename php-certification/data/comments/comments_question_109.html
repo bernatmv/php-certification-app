@@ -1,0 +1,48 @@
+
+<p>
+correct answer is 3 .see the details in :http://php.net/manual/en/function.header.php 
+<br/>
+<small><b>mohit garg</b> on <i>15 April 2013, at 06:04:36</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+#3 is correct. the function is ob_start
+<br/>
+<small><b>anonymous</b> on <i>9 July 2012, at 06:07:27</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+to comment posted on 29 May 2010: the link you provide does have the answer. But the answer given is output buffering, not header buffering. 
+<br/>
+<small><b>anonymous</b> on <i>14 June 2012, at 03:06:28</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+correct answer is 3. You can use output buffering to get around this problem, with the overhead of all of your output to the browser being buffered in the server until you send it. You can do this by calling ob_start() and ob_end_flush() in your script, or setting the output_buffering configuration directive on in your php.ini or server configuration files.
+<br/>
+<small><b>anonymous</b> on <i>2 December 2010, at 04:12:47</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+so, i think that 1. is right, see the details in :http://php.net/manual/en/function.header.php
+<br/>
+<small><b>anonymous</b> on <i>29 May 2010, at 08:05:49</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+While output buffering is active no output is sent from the script (other than headers), instead the output is stored in an internal buffer.<br/><br/>from here:http://php.net/manual/en/function.ob-start.php
+<br/>
+<small><b>anonymous</b> on <i>29 May 2010, at 08:05:25</i></small>
+<br/>
+. . .
+</p>

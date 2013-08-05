@@ -1,0 +1,34 @@
+<div id="question-218"><div id="question-218-info" class="question-info" qid="218" style="display:none;"></div><div id="question-218-number" class="question-number">153</div><div id="question-218-text" class="question-text">
+					What should go in the ??????? assignment below to create a Zlib-compressed file <code>foo.gz</code> with a compression level of <code>9</code>?<p></p><pre class="code"><br>&lt;?php<br><br>$file = '????????';<br><br>$fr = fopen($file, 'wb9');<br>fwrite($fr, $data);<br>fclose($fr);<br><br>?&gt;<br></pre>
+				</div><div id="question-218-answer" class="question-answer">
+                <form id="question-218-form" onsubmit="return false;">
+                    
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="1" id="218_1"/>
+								<label for="218_1">gzip://foo.gz?level=9</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="2" id="218_2"/>
+								<label for="218_2">compress.zip://foo.gz?level=9</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="3" id="218_3"/>
+								<label for="218_3">compress.zlib://foo.gz</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="4" id="218_4"/>
+								<label for="218_4">compress.gzip://foo.gz?level=9</label>
+							</li>
+							
+							<li class="answer">
+								<input type="radio" name="answer" value="5" id="218_5"/>
+								<label for="218_5">zlib://foo.gz</label>
+							</li>
+							
+						
+                </form>
+            </div><div id="question-218-answer-note" class="question-answer-note">Choose 1 answer</div></div>

@@ -1,0 +1,64 @@
+
+<p>
+this question is not worth studying if you ask me
+<br/>
+<small><b>anonymous</b> on <i>13 July 2012, at 10:07:17</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Answer 4, C,C,C - because the $y is referenced to $z
+<br/>
+<small><b>anonymous</b> on <i>9 July 2012, at 07:07:46</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+i got this result<br/><br/>Strict Standards: Only variables should be assigned by reference in C:\xampp\htdocs\OOP\content\dump.php on line 9<br/><br/>Strict Standards: Only variables should be assigned by reference in C:\xampp\htdocs\OOP\content\dump.php on line 9<br/><br/>Strict Standards: Only variables should be assigned by reference in C:\xampp\htdocs\OOP\content\dump.php on line 9<br/>array(3) { [0]=> (1) "c" [1]=> (1) "c" [2]=> (1) "c" }
+<br/>
+<small><b>anonymous</b> on <i>3 June 2012, at 01:06:11</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+no no, it's the same result in PHP 4.4.X and PHP 5. So 4 only.
+<br/>
+<small><b>anonymous</b> on <i>22 January 2012, at 10:01:50</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+2 and 4.  The difference in PHP 5 is that the foreach construct now supports by-reference declaration of the value element.  The $z[] =& $y; statement will not pass by reference in PHP 4, and thus, the array will remain unchanged.
+<br/>
+<small><b>anonymous</b> on <i>19 September 2011, at 12:09:15</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+I have checked on php 4.4.9 and php 5.2.11 and result was the same: array('c', 'c', 'c')
+<br/>
+<small><b>anonymous</b> on <i>23 March 2011, at 02:03:58</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+Correct Answer: 2 and 4.
+<br/>
+<small><b>anonymous</b> on <i>15 November 2010, at 02:11:24</i></small>
+<br/>
+. . .
+</p>
+
+<p>
+imho 2,4 ... but didn't check it 
+<br/>
+<small><b>Loo</b> on <i>5 April 2010, at 06:04:16</i></small>
+<br/>
+. . .
+</p>
