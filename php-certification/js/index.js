@@ -194,7 +194,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-//        document.addEventListener('DOMContentLoaded', this.onDeviceReady, false);
+        document.addEventListener('DOMContentLoaded', this.onDeviceReady, false);
     },
 
     onDeviceReady: function() {
@@ -262,12 +262,15 @@ var app = {
     },
 
     buildQuestions: function() {
-        var html = '';
+        var html, q;
         var num = 1;
 
+        $("#questions-list").html('');
         for (var question in app.questions) {
-            html = '<li class="arrow"><a href="#question" data-question-number="'+question+'" class="slide question-token">Question '+num+'<small class="counter">DONE</small></a> </li>';
+            q = app.questions[question];
+            html = '<li class="arrow"><a href="#question" data-question-number="'+q+'" class="slide question-token">Question '+num+'<small class="counter">DONE</small></a> </li>';
             num++;
+            $("#questions-list").append(html);
         }
     }
     
