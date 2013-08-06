@@ -30,3 +30,7 @@ div.bookmark {
 #jqt ul.individual li.pagination.active {
     background: #dce1eb;
 }
+
+span.no-bookmark {
+    color: #d5d5d5;
+}

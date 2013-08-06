@@ -2,6 +2,7 @@
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
 var OFFLINE_MODE = localStorage.getItem("PHPEXAM_OFFLINE_MODE") != 'false';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
+var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
 
 // jqTouch
 $.jQTouch({
@@ -213,6 +214,8 @@ var app = {
         app.buildQuestions(BOOKMARK);
         // build questions pagination
         app.buildQuestionsPagination();
+        // set bookmark
+        app.buildBookmarkQuestion();
 
         // write loading, show and load question
         $('.question-token').on('touchstart', function (e) {
@@ -233,7 +236,7 @@ var app = {
                 $.ajax({
                     url: BASE_URL + 'questions/question_' + questionNumber + '.html',
                     dataType: "html",
-                    timeoute: 10000,
+                    timeout: 6000,
                     success: function (data, status, xhr) {
                         $('#question .loading').hide();
                         app.setQuestionTitle('Question ' + questionNumber)
@@ -261,6 +264,11 @@ var app = {
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
+        });
+
+        // go to bookmark
+        $("#bookmark-question").on('touchstart', function (e) {
+            // go to appropiate question
         });
     },
 
@@ -309,6 +317,16 @@ var app = {
             html = '<li class="pagination" data-page="'+i+'">'+(i+1)+'</li>';
             $("#questions-pagination").append(html);
         }
+    },
+
+    buildBookmarkQuestion: function() {
+        var html = '<span class="no-bookmark">Without bookmark</span>';
+
+        if (BOOKMARK) {
+            var q = app.questions[BOOKMARK_ID];
+            html = '<a href="#question" data-question-number="'+q+'" class="slide question-token">Last bookmark: <span id="bookmark-question">question '+BOOKMARK+'</span></a>';
+        }
+
+        $("#bookmark-question").html(html);
     }
-    
 };
