@@ -69,3 +69,34 @@ span.no-bookmark {
 #bookmark-button div {
     float: right;
 }
+
+#page-bookmark {
+    float:right;
+    background: url(../img/bookmark_v5.png) no-repeat;
+    width: 30px;
+    height: 35px;
+    margin-top: -12px;
+}
+
+#question-comments {
+    width: 100%;
+    clear:both;
+    float: none;
+    background: white;
+    margin-top: 65px;
+    padding: 10px 10px 10px 20px;
+    border: 1px solid #f2f2f2;
+    text-align: left;
+}
+
+#question-comments small {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: .7em;
+}
+
+#question-comments p {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 1.3em;
+}

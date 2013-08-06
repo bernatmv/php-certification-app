@@ -221,38 +221,9 @@ var app = {
 
         // write loading, show and load question
         $('.question-token').on('click', function (e) {
-            // start loading and show
-            app.setQuestionTitle('Loading...');
-            $('#question-content').hide();
-            $('#question .loading').show();
-
             var questionNumber = this.getAttribute('data-question-number');
-            // show question
-            if (OFFLINE_MODE) {
-                $('#question .loading').hide();
-                app.setQuestionTitle('Question ' + questionNumber)
-                app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
-                $('#question-content').show();
-            }
-            else {
-                $.ajax({
-                    url: BASE_URL + 'questions/question_' + questionNumber + '.html',
-                    dataType: "html",
-                    timeout: 6000,
-                    success: function (data, status, xhr) {
-                        $('#question .loading').hide();
-                        app.setQuestionTitle('Question ' + questionNumber)
-                        app.setQuestionContent(data);
-                        $('#question-content').show();
-                    },
-                    error: function (xhr, errorType, error) {
-                        $('#question .loading').hide();
-                        app.setQuestionTitle('Question ' + questionNumber)
-                        app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
-                        $('#question-content').show();
-                    }
-                });
-            }
+
+            app.goToQuestion(questionNumber);
         });
 
         // hide question and re-write loading
@@ -270,7 +241,7 @@ var app = {
 
         // button to resolve question
         $('#resolve-question').on('click', function (e) {
-            app.resolveQuestion($(this));
+            app.resolveQuestion();
         });
 
         // bind bookmark button
@@ -279,15 +250,34 @@ var app = {
         });
 
         // go to bookmark
-        $("#bookmark-question").on('click', function (e) {
-            // go to appropiate question
+        $("#bookmark-question a").on('click', function (e) {
+            var questionNumber = this.getAttribute('data-question-number');
+
+            app.goToQuestion(questionNumber);
         });
 
+        // show comments
+        $('#show-comments').on('click', function (e) {
+            var questionId = $(".question-info").attr('qid');
+
+            app.buildComments(questionId);
+        });
 
     },
 
-    setQuestionTitle: function(title) {
+    setQuestionTitle: function(title, qId) {
         $('#question .toolbar h1').html(title);
+
+        if ( qId ) {
+            if ( qId == BOOKMARK ) {
+                $('#question .toolbar').append('<div id="page-bookmark"></div>');
+            }
+            else {
+                if ( !$('#question .toolbar #bookmark-button').length ) {
+                    $('#question .toolbar').append('<a class="button" id="bookmark-button" href="#"><img src="img/bookmark_v5.png" /><div>Bookmark</div></a>');
+                }
+            }
+        }
     },
 
     setQuestionContent: function(content) {
@@ -336,8 +326,8 @@ var app = {
         var html = '<span class="no-bookmark">Without bookmark</span>';
 
         if (BOOKMARK) {
-            var q = app.questions[BOOKMARK_ID];
-            html = '<a href="#question" data-question-number="'+q+'" class="slide question-token">Last bookmark: <span id="bookmark-question">question '+BOOKMARK+'</span></a>';
+            var q = app.questionIdFromPosition(BOOKMARK);
+            html = '<a href="#question" data-question-number="'+q+'" class="slide question-token">Last bookmark: <span id="bookmark-question">Question '+BOOKMARK+'</span></a>';
         }
 
         $("#bookmark-question").html(html);
@@ -352,7 +342,7 @@ var app = {
         localStorage.setItem('PHPEXAM_BOOKMARK_ID', questionId);
 
         el.remove();
-        $('#question .toolbar').append('');
+        $('#question-test .toolbar').append('<div id="page-bookmark"></div>');
     },
 
     questionNumberFromId: function (id) {
@@ -364,31 +354,107 @@ var app = {
         return 0;
     },
 
-    resolveQuestion: function (el) {
+    questionIdFromPosition: function (pos) {
+        var num = 1;
+        for ( var q in app.questions ) {
+            if ( num == pos ) return app.questions[q];
+            num++;
+        }
+        return 0;
+    },
+
+    resolveQuestion: function () {
         var error = false;
         var questionId = $(".question-info").attr('qid');
         $.each($('.question-answer input'), function () {
-            if ( el.is(':checked')) {
-                if ( el.attr('correct') == 1 ) {
-                    el.parent().css('background-color', '#CCFFDD');
+            if ( $(this).is(':checked')) {
+                if ( $(this).attr('correct') == 1 ) {
+                    $(this).parent().css('background-color', '#CCFFDD');
                 }
                 else {
-                    el.parent().css('background-color', '#FFCCDD');
+                    $(this).parent().css('background-color', '#FFCCDD');
                     error = true;
                 }
             }
             else {
-                if ( el.attr('correct') == 1 ) {
-                    el.parent().css('background-color', '#FFCCDD');
+                if ( $(this).attr('correct') == 1 ) {
+                    $(this).parent().css('background-color', '#FFCCDD');
                     error = true;
                 }
                 else {
-                    el.parent().css('background-color', '#FFFFFF');
+                    $(this).parent().css('background-color', '#FFFFFF');
                 }
             }
         });
         if (!error) {
             localStorage.setItem("PHPEXAM_QUESTION_"+questionId, "OK");
+        }
+    },
+
+    goToQuestion: function (questionNumber) {
+        // start loading and show
+        app.setQuestionTitle('Loading...');
+        $('#question-content').hide();
+        $('#question .loading').show();
+
+        // show question
+        if (OFFLINE_MODE) {
+            $('#question .loading').hide();
+            app.setQuestionTitle('Question ' + questionNumber, questionNumber)
+            app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
+            $('#question-content').show();
+        }
+        else {
+            $.ajax({
+                url: BASE_URL + 'questions/question_' + questionNumber + '.html',
+                dataType: "html",
+                timeout: 6000,
+                success: function (data, status, xhr) {
+                    $('#question .loading').hide();
+                    app.setQuestionTitle('Question ' + questionNumber, setQuestionTitle)
+                    app.setQuestionContent(data);
+                    $('#question-content').show();
+                },
+                error: function (xhr, errorType, error) {
+                    $('#question .loading').hide();
+                    app.setQuestionTitle('Question ' + questionNumber, setQuestionTitle)
+                    app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
+                    $('#question-content').show();
+                }
+            });
+        }
+
+        if ( !$('#question-content #question-buttons').length ) {
+            $('#question-content').append('<div id="question-buttons">' +
+                '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
+                '<a href="#" class="whiteButton" id="show-comments">Comments</a>' +
+                '</div><div id="question-comments"></div>');
+        }
+    },
+
+    buildComments: function (qId) {
+        var layer = $('#question-comments');
+
+        // start loading and show
+        layer.html('Loading...');
+        layer.show();
+
+        // show question
+        if (OFFLINE_MODE) {
+            layer.html('<iframe src="data/comments/comments_question_'+qId+'.html" width="100%" height="600" seamless></iframe>');
+        }
+        else {
+            $.ajax({
+                url: BASE_URL + 'comments/comments_question_' + qId + '.html',
+                dataType: "html",
+                timeout: 6000,
+                success: function (data, status, xhr) {
+                    layer.html(data);
+                },
+                error: function (xhr, errorType, error) {
+                    layer.html('ERROR RETRIEVING THE COMMENTS');
+                }
+            });
         }
     }
 
