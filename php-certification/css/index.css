@@ -9,3 +9,24 @@ div.loading {
     background: url(../img/loading_v1.gif) 50% 50% transparent no-repeat;
     display: block;
 }
+
+div.bookmark {
+    float:right;
+    background: url(../img/bookmark_v5.png) no-repeat;
+    width: 30px;
+    height: 35px;
+    margin-right: 20px;
+    margin-top: -14px;
+}
+
+#jqt ul.individual li.pagination {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#jqt ul.individual li.pagination.active {
+    background: #dce1eb;
+}

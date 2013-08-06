@@ -1,6 +1,7 @@
 // config data
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
-var OFFLINE_MODE = localStorage.getItem("OFFLINE_MODE") != 'false';
+var OFFLINE_MODE = localStorage.getItem("PHPEXAM_OFFLINE_MODE") != 'false';
+var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 
 // jqTouch
 $.jQTouch({
@@ -184,6 +185,7 @@ var app = {
         q241: 241,
         q242: 242
     },
+    numQuestions: 171,
 
     // Application Constructor
     initialize: function() {
@@ -203,15 +205,17 @@ var app = {
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
             OFFLINE_MODE = !OFFLINE_MODE;
-            if (OFFLINE_MODE) localStorage.setItem("OFFLINE_MODE", 'true');
-            else localStorage.setItem("OFFLINE_MODE", 'false');
+            if (OFFLINE_MODE) localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'true');
+            else localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'false');
         });
 
         // build questions links
-        app.buildQuestions();
+        app.buildQuestions(BOOKMARK);
+        // build questions pagination
+        app.buildQuestionsPagination();
 
         // write loading, show and load question
-        $('.question-token').on('click', function (e) {
+        $('.question-token').on('touchstart', function (e) {
             // start loading and show
             app.setQuestionTitle('Loading...');
             $('#question-content').hide();
@@ -247,9 +251,16 @@ var app = {
         });
 
         // hide question and re-write loading
-        $('.question-out').on('click', function (e) {
+        $('.question-out').on('touchstart', function (e) {
             app.setQuestionTitle('Loading...');
             $('#question .loading').show();
+        });
+
+        // pagination
+        $("#questions-pagination .pagination").on('touchstart', function (e) {
+            var page = this.getAttribute('data-page');
+
+            app.buildQuestions( (page*10)+1, 0, 9 );
         });
     },
 
@@ -261,16 +272,42 @@ var app = {
         $('#question-content').html(content);
     },
 
-    buildQuestions: function() {
+    buildQuestions: function(from, stepBack, stepForward) {
+        from = from || 1;
         var html, q;
         var num = 1;
+        stepBack = typeof stepBack !== "undefined" ? stepBack : 4;
+        stepForward = typeof stepForward !== "undefined" ? stepForward : 5;
+        var prev = ( ( from - stepBack ) > 0 ) ? (from - stepBack) : 1;
+        var next = ( ( prev + stepBack + stepForward ) >= app.numQuestions ) ? app.numQuestions : ( prev + stepBack + stepForward );
 
+        // build questions
         $("#questions-list").html('');
         for (var question in app.questions) {
-            q = app.questions[question];
-            html = '<li class="arrow"><a href="#question" data-question-number="'+q+'" class="slide question-token">Question '+num+'<small class="counter">DONE</small></a> </li>';
+            if ( ( num >= prev ) && ( num <= next) ) {
+                q = app.questions[question];
+                html = '<li class="arrow">' +
+                    '<a href="#question" data-question-number="'+q+'" class="slide question-token">' +
+                    'Question '+num+
+                    (num == BOOKMARK ? '<div class="bookmark"></div>' : '') +
+                    (localStorage.getItem("PHPEXAM_QUESTION_"+num) ? '<small class="counter">DONE</small>' : '') +
+                    '</a></li>';
+                $("#questions-list").append(html);
+            }
             num++;
-            $("#questions-list").append(html);
+        }
+    },
+
+    buildQuestionsPagination: function() {
+        var itemsPerPage = 10;
+        var numQuestions = app.numQuestions;
+        var numPages = Math.ceil(numQuestions / 10);
+        var html = '';
+
+        $("#questions-pagination").html('');
+        for (var i = 0; i < numPages; i++) {
+            html = '<li class="pagination" data-page="'+i+'">'+(i+1)+'</li>';
+            $("#questions-pagination").append(html);
         }
     }
     
