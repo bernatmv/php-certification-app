@@ -270,24 +270,12 @@ var app = {
 
         // button to resolve question
         $('#resolve-question').on('click', function (e) {
-            $.each($('.question-answer input'), function () {
-                if ( $(this).is(':checked')) {
-                    if ( $(this).attr('correct') == 1 ) {
-                        $(this).parent().css('background-color', '#CCFFDD');
-                    }
-                    else {
-                        $(this).parent().css('background-color', '#FFCCDD');
-                    }
-                }
-                else {
-                    if ( $(this).attr('correct') == 1 ) {
-                        $(this).parent().css('background-color', '#FFCCDD');
-                    }
-                    else {
-                        $(this).parent().css('background-color', '#FFFFFF');
-                    }
-                }
-            });
+            app.resolveQuestion($(this));
+        });
+
+        // bind bookmark button
+        $('#bookmark-button').on('click', function () {
+            app.setBookmark($(this));
         });
 
         // go to bookmark
@@ -355,8 +343,53 @@ var app = {
         $("#bookmark-question").html(html);
     },
 
-    resolveQuestion: function () {
+    setBookmark: function (el) {
+        var questionId = $(".question-info").attr('qid');
 
+        BOOKMARK = app.questionNumberFromId(questionId);
+        BOOKMARK_ID = questionId;
+        localStorage.setItem('PHPEXAM_BOOKMARK', app.questionNumberFromId(questionId));
+        localStorage.setItem('PHPEXAM_BOOKMARK_ID', questionId);
+
+        el.remove();
+        $('#question .toolbar').append('');
+    },
+
+    questionNumberFromId: function (id) {
+        var num = 1;
+        for ( var q in app.questions ) {
+            if ( app.questions[q] == id ) return num;
+            num++;
+        }
+        return 0;
+    },
+
+    resolveQuestion: function (el) {
+        var error = false;
+        var questionId = $(".question-info").attr('qid');
+        $.each($('.question-answer input'), function () {
+            if ( el.is(':checked')) {
+                if ( el.attr('correct') == 1 ) {
+                    el.parent().css('background-color', '#CCFFDD');
+                }
+                else {
+                    el.parent().css('background-color', '#FFCCDD');
+                    error = true;
+                }
+            }
+            else {
+                if ( el.attr('correct') == 1 ) {
+                    el.parent().css('background-color', '#FFCCDD');
+                    error = true;
+                }
+                else {
+                    el.parent().css('background-color', '#FFFFFF');
+                }
+            }
+        });
+        if (!error) {
+            localStorage.setItem("PHPEXAM_QUESTION_"+questionId, "OK");
+        }
     }
 
 };

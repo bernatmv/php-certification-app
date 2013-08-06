@@ -58,3 +58,14 @@ span.no-bookmark {
     float: left;
     margin-right: 10px;
 }
+
+#bookmark-button img {
+    width: 16px;
+    height: 26px;
+    margin-right: 8px;
+    float: left;
+}
+
+#bookmark-button div {
+    float: right;
+}
