@@ -2,33 +2,21 @@
 					What is the output of the following code?<p></p><pre class="code"><br>&lt;?php<br><br>$string = "111221";<br><br>for($i = 0; $i &lt; strlen($string); $i++) {<br>	<br>	$current = $string[$i];<br>	$count = 1;<br>	<br>	while(isset($string[$i + $count]) &amp;&amp; ($string[$i + $count] == $current)) $count++;<br>	<br>	$newstring .= "$count{$current}";<br>	<br>	$i += $count-1;<br>}<br><br>print $newstring;<br>?&gt;<br></pre>
 				</div><div id="question-8-answer" class="question-answer">
                 <form id="question-8-form" onsubmit="return false;">
-                    
-							
-							<li class="answer">
+                    <ul><li class="question-answer">
 								<input type="radio" name="answer" value="1" id="8_1" correct="1"/>
 								<label for="8_1">312211</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="2" id="8_2"/>
 								<label for="8_2">3312212</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="3" id="8_3"/>
 								<label for="8_3">11221221</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="4" id="8_4"/>
 								<label for="8_4">221131</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="5" id="8_5"/>
 								<label for="8_5">3211122</label>
-							</li>
-							
-						
+							</li></ul>
                 </form>
             </div><div id="question-8-answer-note" class="question-answer-note">Choose 1 answer</div></div>

@@ -1,3 +1,5 @@
+// TODO: replace click with touchstart (include Hammer.js if need be)
+
 // config data
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
 var OFFLINE_MODE = localStorage.getItem("PHPEXAM_OFFLINE_MODE") != 'false';
@@ -218,7 +220,7 @@ var app = {
         app.buildBookmarkQuestion();
 
         // write loading, show and load question
-        $('.question-token').on('touchstart', function (e) {
+        $('.question-token').on('click', function (e) {
             // start loading and show
             app.setQuestionTitle('Loading...');
             $('#question-content').hide();
@@ -254,22 +256,46 @@ var app = {
         });
 
         // hide question and re-write loading
-        $('.question-out').on('touchstart', function (e) {
+        $('.question-out').on('click', function (e) {
             app.setQuestionTitle('Loading...');
             $('#question .loading').show();
         });
 
         // pagination
-        $("#questions-pagination .pagination").on('touchstart', function (e) {
+        $("#questions-pagination .pagination").on('click', function (e) {
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
+        // button to resolve question
+        $('#resolve-question').on('click', function (e) {
+            $.each($('.question-answer input'), function () {
+                if ( $(this).is(':checked')) {
+                    if ( $(this).attr('correct') == 1 ) {
+                        $(this).parent().css('background-color', '#CCFFDD');
+                    }
+                    else {
+                        $(this).parent().css('background-color', '#FFCCDD');
+                    }
+                }
+                else {
+                    if ( $(this).attr('correct') == 1 ) {
+                        $(this).parent().css('background-color', '#FFCCDD');
+                    }
+                    else {
+                        $(this).parent().css('background-color', '#FFFFFF');
+                    }
+                }
+            });
+        });
+
         // go to bookmark
-        $("#bookmark-question").on('touchstart', function (e) {
+        $("#bookmark-question").on('click', function (e) {
             // go to appropiate question
         });
+
+
     },
 
     setQuestionTitle: function(title) {
@@ -327,5 +353,10 @@ var app = {
         }
 
         $("#bookmark-question").html(html);
+    },
+
+    resolveQuestion: function () {
+
     }
+
 };

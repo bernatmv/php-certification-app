@@ -2,33 +2,21 @@
 					What is the output of the following code?<p></p><pre class="code"><br>&lt;?php<br><br>class MyException extends Exception {}<br>class AnotherException extends MyException {}<br><br>class Foo {<br>  public function something() {<br>    throw new AnotherException();<br>  }<br>  public function somethingElse() {<br>    throw new MyException();<br>  }<br>}<br><br>$a = new Foo();<br><br>try {<br>  try {<br>    $a-&gt;something();	<br>  } catch(AnotherException $e) {<br>    $a-&gt;somethingElse();	<br>  } catch(MyException $e) {<br>    print "Caught Exception";<br>  }<br>} catch(Exception $e) {<br>  print "Didn't catch the Exception!";<br>}<br><br>?&gt;<br></pre>
 				</div><div id="question-39-answer" class="question-answer">
                 <form id="question-39-form" onsubmit="return false;">
-                    
-							
-							<li class="answer">
+                    <ul><li class="question-answer">
 								<input type="radio" name="answer" value="1" id="39_1"/>
 								<label for="39_1">"Caught Exception" followed by "Didn't catch the Exception!"</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="2" id="39_2"/>
 								<label for="39_2">A fatal error for an uncaught exception</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="3" id="39_3" correct="1"/>
 								<label for="39_3">"Didn't catch the Exception!"</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="4" id="39_4"/>
 								<label for="39_4">"Didn't catch the Exception!" followed by a fatal error</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="5" id="39_5"/>
 								<label for="39_5">"Caught Exception"</label>
-							</li>
-							
-						
+							</li></ul>
                 </form>
             </div><div id="question-39-answer-note" class="question-answer-note">Choose 1 answer</div></div>

@@ -2,33 +2,21 @@
 					Given the following PHP script:<p></p><pre class="code"><br>&lt;?php <br><br>$xmldata = &lt;&lt;&lt; XML<br>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;<br>&lt;!DOCTYPE html<br>     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"<br>     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br>&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;<br>  &lt;head&gt;<br>    &lt;title&gt;XML Example&lt;/title&gt;<br>  &lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;p&gt;<br>      &lt;b&gt;Hello, World!&lt;/b&gt;<br>    &lt;/p&gt;<br>  &lt;/body&gt;<br>&lt;/html&gt;<br>XML;<br><br>$sxe = simplexml_load_string($xmldata);<br><br>$p = $sxe-&gt;body-&gt;p;<br><br>$string = ????????<br><br>print $string;<br>?&gt;<br></pre>What should go in place of <code>?????</code> above to print the string <code>Hello, World!</code> (with no leading/trailing whitespace or markup)?<p></p>
 				</div><div id="question-181-answer" class="question-answer">
                 <form id="question-181-form" onsubmit="return false;">
-                    
-							
-							<li class="answer">
+                    <ul><li class="question-answer">
 								<input type="radio" name="answer" value="1" id="181_1" correct="1"/>
 								<label for="181_1">trim(($p[1]));</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="2" id="181_2"/>
 								<label for="181_2">trim(strip_tags(($p-&gt;asText())));</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="3" id="181_3"/>
 								<label for="181_3">trim(strip_tags(($p-&gt;asXML())));</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="4" id="181_4"/>
 								<label for="181_4">trim(($p-&gt;asXML()));</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="5" id="181_5"/>
 								<label for="181_5">strip_tags(($p-&gt;asXML()));</label>
-							</li>
-							
-						
+							</li></ul>
                 </form>
             </div><div id="question-181-answer-note" class="question-answer-note">Choose 1 answer</div></div>

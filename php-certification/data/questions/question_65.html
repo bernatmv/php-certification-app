@@ -2,33 +2,21 @@
 					What should go in the missing line <code>?????</code> below to produce the output shown?<p></p><pre class="code"><br>&lt;?php<br>$array_one = array(1,2,3,4,5);<br>$array_two = array('A', 'B', 'C', 'D', 'E');<br><br>???????<br><br>print_r($array_three);<br>?&gt;<br></pre>Result:<p></p><pre class="code"><br>Array<br>(<br>    [5] =&gt; A<br>    [4] =&gt; B<br>    [3] =&gt; C<br>    [2] =&gt; D<br>    [1] =&gt; E<br>)<br></pre>
 				</div><div id="question-65-answer" class="question-answer">
                 <form id="question-65-form" onsubmit="return false;">
-                    
-							
-							<li class="answer">
+                    <ul><li class="question-answer">
 								<input type="radio" name="answer" value="1" id="65_1"/>
 								<label for="65_1">$array_three = array_merge(array_reverse($array_one), $array_two);</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="2" id="65_2"/>
 								<label for="65_2">$array_three = array_combine($array_one, $array_two);</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="3" id="65_3" correct="1"/>
 								<label for="65_3">$array_three = array_combine(array_reverse($array_one), $array_two);</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="4" id="65_4"/>
 								<label for="65_4">$array_three = array_merge($array_one, $array_two);</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="5" id="65_5"/>
 								<label for="65_5">$array_three = array_reverse($array_one) + $array_two;</label>
-							</li>
-							
-						
+							</li></ul>
                 </form>
             </div><div id="question-65-answer-note" class="question-answer-note">Choose 1 answer</div></div>

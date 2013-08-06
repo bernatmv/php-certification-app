@@ -24,6 +24,7 @@ div.bookmark {
     height: 40px;
     float: left;
     margin-right: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
 
@@ -33,4 +34,27 @@ div.bookmark {
 
 span.no-bookmark {
     color: #d5d5d5;
+}
+
+.question-number {
+    width: 5%;
+    float: left;
+}
+
+.question-text {
+    width: 95%;
+    float: left;
+    text-align: left;
+}
+
+.question-answer {
+    text-align: left;
+    padding-top: 5px;
+    font-size: 11pt;
+}
+
+#question-buttons a {
+    width: 150px;
+    float: left;
+    margin-right: 10px;
 }

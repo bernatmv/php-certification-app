@@ -2,33 +2,21 @@
 					Consider the following simple PHP script:<p></p><pre class="code"><br>&lt;?php<br>$dom = new DomDocument();<br>$dom-&gt;load('test.xml');<br>$xpath = new DomXPath($dom);<br>$nodes = $xpath-&gt;query(???????, $dom-&gt;documentElement);<br>echo $nodes-&gt;item(0)-&gt;getAttributeNode('bgcolor')-&gt;value<br>  . "\n";<br>?&gt;<br></pre>What XPath query should go in the <code>?????? above</code> to display the "bgcolor" attribute of the first "body" node in the XML document?<p></p>
 				</div><div id="question-174-answer" class="question-answer">
                 <form id="question-174-form" onsubmit="return false;">
-                    
-							
-							<li class="answer">
+                    <ul><li class="question-answer">
 								<input type="radio" name="answer" value="1" id="174_1"/>
 								<label for="174_1">"*[local-name()='body']"</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="2" id="174_2"/>
 								<label for="174_2">"/body[0]/text"</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="3" id="174_3"/>
 								<label for="174_3">"/body/body[0]"</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="4" id="174_4"/>
 								<label for="174_4">"name='body'"</label>
-							</li>
-							
-							<li class="answer">
+							</li><li class="question-answer">
 								<input type="radio" name="answer" value="5" id="174_5" correct="1"/>
 								<label for="174_5">"*[lname()='body']"</label>
-							</li>
-							
-						
+							</li></ul>
                 </form>
             </div><div id="question-174-answer-note" class="question-answer-note">Choose 1 answer</div></div>
