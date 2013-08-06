@@ -1,4 +1,4 @@
-// TODO: replace click with touchstart (include Hammer.js if need be)
+// TODO: replace click with click (include Hammer.js if need be)
 
 // config data
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
@@ -220,44 +220,44 @@ var app = {
         app.buildBookmarkQuestion();
 
         // write loading, show and load question
-        $('.question-token').on('touchstart', function (e) {
+        $('.question-token').on('click', function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
         });
 
         // hide question and re-write loading
-        $('.question-out').on('touchstart', function (e) {
+        $('.question-out').on('click', function (e) {
             app.setQuestionTitle('Loading...');
             $('#question .loading').show();
         });
 
         // pagination
-        $("#questions-pagination .pagination").on('touchstart', function (e) {
+        $("#questions-pagination .pagination").on('click', function (e) {
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
         // button to resolve question
-        $('#resolve-question').on('touchstart', function (e) {
+        $('#resolve-question').on('click', function (e) {
             app.resolveQuestion();
         });
 
         // bind bookmark button
-        $('#bookmark-button').on('touchstart', function () {
+        $('#bookmark-button').on('click', function () {
             app.setBookmark($(this));
         });
 
         // go to bookmark
-        $("#bookmark-question a").on('touchstart', function (e) {
+        $("#bookmark-question a").on('click', function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
         });
 
         // show comments
-        $('#show-comments').on('touchstart', function (e) {
+        $('#show-comments').on('click', function (e) {
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
@@ -398,11 +398,12 @@ var app = {
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
         $('#question .loading').show();
+        var title = questionNumber;
 
         // show question
         if (OFFLINE_MODE) {
             $('#question .loading').hide();
-            app.setQuestionTitle('Question ' + questionNumber, questionNumber)
+            app.setQuestionTitle(title, questionNumber)
             app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
             $('#question-content').show();
         }
@@ -413,13 +414,13 @@ var app = {
                 timeout: 6000,
                 success: function (data, status, xhr) {
                     $('#question .loading').hide();
-                    app.setQuestionTitle('Question ' + questionNumber, setQuestionTitle)
+                    app.setQuestionTitle(title, setQuestionTitle)
                     app.setQuestionContent(data);
                     $('#question-content').show();
                 },
                 error: function (xhr, errorType, error) {
                     $('#question .loading').hide();
-                    app.setQuestionTitle('Question ' + questionNumber, setQuestionTitle)
+                    app.setQuestionTitle(title, setQuestionTitle)
                     app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
                     $('#question-content').show();
                 }
@@ -430,7 +431,11 @@ var app = {
             $('#question-content').append('<div id="question-buttons">' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
                 '<a href="#" class="whiteButton" id="show-comments">Comments</a>' +
-                '</div><div id="question-comments"></div>');
+                '</div><div id="question-comments" style="display:none;"></div>');
+            $('#question-content').append('<ul class="individual">' +
+                '<li><a target="_blank" href="http://www.stackoverflow.com" class="question-help">StackOverflow</a></li>'+
+                '<li><a target="_blank" href="http://www.php.net" class="question-help">PHP Manual</a></li>'+
+                '<li><a target="_blank" href="http://www.google.com" class="question-help">Google</a></li>');
         }
     },
 
