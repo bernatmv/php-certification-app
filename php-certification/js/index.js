@@ -220,44 +220,44 @@ var app = {
         app.buildBookmarkQuestion();
 
         // write loading, show and load question
-        $('.question-token').on('click', function (e) {
+        $('.question-token').on('touchstart', function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
         });
 
         // hide question and re-write loading
-        $('.question-out').on('click', function (e) {
+        $('.question-out').on('touchstart', function (e) {
             app.setQuestionTitle('Loading...');
             $('#question .loading').show();
         });
 
         // pagination
-        $("#questions-pagination .pagination").on('click', function (e) {
+        $("#questions-pagination .pagination").on('touchstart', function (e) {
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
         // button to resolve question
-        $('#resolve-question').on('click', function (e) {
+        $('#resolve-question').on('touchstart', function (e) {
             app.resolveQuestion();
         });
 
         // bind bookmark button
-        $('#bookmark-button').on('click', function () {
+        $('#bookmark-button').on('touchstart', function () {
             app.setBookmark($(this));
         });
 
         // go to bookmark
-        $("#bookmark-question a").on('click', function (e) {
+        $("#bookmark-question a").on('touchstart', function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
         });
 
         // show comments
-        $('#show-comments').on('click', function (e) {
+        $('#show-comments').on('touchstart', function (e) {
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
