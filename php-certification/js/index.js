@@ -261,6 +261,8 @@ var app = {
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
+
+            $(this).remove();
         });
 
     },
