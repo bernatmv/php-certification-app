@@ -289,7 +289,6 @@ var app = {
         var prev = ( ( from - stepBack ) > 0 ) ? (from - stepBack) : 1;
         var next = ( ( prev + stepBack + stepForward ) >= app.numQuestions ) ? app.numQuestions : ( prev + stepBack + stepForward );
 
-        // build questions
         $("#questions-list").html('');
         for (var question in app.questions) {
             if ( ( num >= prev ) && ( num <= next) ) {
