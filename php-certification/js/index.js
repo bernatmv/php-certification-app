@@ -232,59 +232,25 @@ var app = {
         // set bookmark
         app.buildBookmarkQuestion();
 
-        // write loading, show and load question
-        $('.question-token').on('click', function (e) {
-            console.debug(e);
-            var questionNumber = this.getAttribute('data-question-number');
-
-            app.goToQuestion(questionNumber);
-        });
-
         // hide question and re-write loading
         $('.question-out').on('click', function (e) {
-            console.debug(e);
             app.setQuestionTitle('Loading...');
             $('#question .loading').show();
         });
 
         // pagination
         $("#questions-pagination .pagination").on('click', function (e) {
-            console.debug(e);
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
-        // button to resolve question
-        $('#resolve-question').on('click', function (e) {
-            console.debug(e);
-            app.resolveQuestion();
-        });
-
-        // bind bookmark button
-        $('#bookmark-button').on('click', function () {
-            console.debug(e);
-            app.setBookmark($(this));
-        });
-
         // go to bookmark
         $("#bookmark-question a").on('click', function (e) {
-            console.debug(e);
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
         });
-
-        // show comments
-        $('#show-comments').on('click', function (e) {
-            console.debug(e);
-            var questionId = $(".question-info").attr('qid');
-
-            app.buildComments(questionId);
-
-            $(this).remove();
-        });
-
     },
 
     setQuestionTitle: function(title, qId) {
@@ -331,6 +297,14 @@ var app = {
             }
             num++;
         }
+
+        // write loading, show and load question
+        $('.question-token').on('click', function (e) {
+            var questionNumber = this.getAttribute('data-question-number');
+
+            app.goToQuestion(questionNumber);
+        });
+
     },
 
     buildQuestionsPagination: function() {
@@ -358,16 +332,15 @@ var app = {
     },
 
     setBookmark: function (el) {
-        console.debug('in');
         var questionId = $(".question-info").attr('qid');
-console.debug(questionId);
+
         BOOKMARK = app.questionNumberFromId(questionId);
         BOOKMARK_ID = questionId;
         localStorage.setItem('PHPEXAM_BOOKMARK', app.questionNumberFromId(questionId));
         localStorage.setItem('PHPEXAM_BOOKMARK_ID', questionId);
 
         el.remove();
-        $('#question-test .toolbar').append('<div id="page-bookmark"></div>');
+        $('#question .toolbar').append('<div id="page-bookmark"></div>');
     },
 
     questionNumberFromId: function (id) {
@@ -486,10 +459,29 @@ console.debug(questionId);
                 '<li><a target="_blank" href="http://www.php.net" class="question-help">PHP Manual</a></li>'+
                 '<li><a target="_blank" href="http://www.google.com" class="question-help">Google</a></li>');
         }
+
+        // button to resolve question
+        $('#resolve-question').on('click', function (e) {
+            app.resolveQuestion();
+        });
+
+        // bind bookmark button
+        $('#bookmark-button').on('click', function (e) {
+            app.setBookmark($(this));
+        });
+
+        // show comments
+        $('#show-comments').on('click', function (e) {
+            var questionId = $(".question-info").attr('qid');
+
+            app.buildComments(questionId);
+
+            $(this).remove();
+        });
+
     },
 
     buildComments: function (qId) {
-        console.debug(qId);
         var layer = $('#question-comments');
 
         // start loading and show
