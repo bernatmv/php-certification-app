@@ -1,8 +1,17 @@
-// TODO: replace click with click (include Hammer.js if need be)
+// TODO: replace click with ontouchstart (include Hammer.js if need be)
+/*
+// If offline, add in index.html:
+<script type="text/javascript" src="js/questions.db.js"></script>
+<script type="text/javascript" src="js/comments.db.js"></script>
+// and
+window.location = 'index.html';
+// set OFFLINE_MODE to true
+ var OFFLINE_MODE = true;
+// also change toolbar to reflect offline
+*/
 
 // config data
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
-var OFFLINE_MODE = localStorage.getItem("PHPEXAM_OFFLINE_MODE") != 'false';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
 
@@ -203,13 +212,17 @@ var app = {
     },
 
     onDeviceReady: function() {
-        if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked')
+        if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked');
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
+/*
             OFFLINE_MODE = !OFFLINE_MODE;
             if (OFFLINE_MODE) localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'true');
             else localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'false');
+ */
+            if (OFFLINE_MODE) window.location = 'index.html';
+            else window.location = 'index_offline.html';
         });
 
         // build questions links
@@ -218,13 +231,6 @@ var app = {
         app.buildQuestionsPagination();
         // set bookmark
         app.buildBookmarkQuestion();
-
-        // write loading, show and load question
-        $('.question-token').on('click', function (e) {
-            var questionNumber = this.getAttribute('data-question-number');
-
-            app.goToQuestion(questionNumber);
-        });
 
         // hide question and re-write loading
         $('.question-out').on('click', function (e) {
@@ -239,35 +245,17 @@ var app = {
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
-        // button to resolve question
-        $('#resolve-question').on('click', function (e) {
-            app.resolveQuestion();
-        });
-
-        // bind bookmark button
-        $('#bookmark-button').on('click', function () {
-            app.setBookmark($(this));
-        });
-
         // go to bookmark
         $("#bookmark-question a").on('click', function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
         });
-
-        // show comments
-        $('#show-comments').on('click', function (e) {
-            var questionId = $(".question-info").attr('qid');
-
-            app.buildComments(questionId);
-
-            $(this).remove();
-        });
-
     },
 
     setQuestionTitle: function(title, qId) {
+        $("#page-bookmark").remove();
+        $("#bookmark-button").remove();
         $('#question .toolbar h1').html(title);
 
         if ( qId ) {
@@ -309,6 +297,14 @@ var app = {
             }
             num++;
         }
+
+        // write loading, show and load question
+        $('.question-token').on('click', function (e) {
+            var questionNumber = this.getAttribute('data-question-number');
+
+            app.goToQuestion(questionNumber);
+        });
+
     },
 
     buildQuestionsPagination: function() {
@@ -344,7 +340,7 @@ var app = {
         localStorage.setItem('PHPEXAM_BOOKMARK_ID', questionId);
 
         el.remove();
-        $('#question-test .toolbar').append('<div id="page-bookmark"></div>');
+        $('#question .toolbar').append('<div id="page-bookmark"></div>');
     },
 
     questionNumberFromId: function (id) {
@@ -360,6 +356,24 @@ var app = {
         var num = 1;
         for ( var q in app.questions ) {
             if ( num == pos ) return app.questions[q];
+            num++;
+        }
+        return 0;
+    },
+
+    questionIndexFromPosition: function (pos) {
+        var num = 1;
+        for ( var q in app.questions ) {
+            if ( num == pos ) return q;
+            num++;
+        }
+        return 0;
+    },
+
+    questionIndexFromId: function (id) {
+        var num = 1;
+        for ( var q in app.questions ) {
+            if ( app.questions[q] == id ) return q;
             num++;
         }
         return 0;
@@ -398,29 +412,37 @@ var app = {
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
         $('#question .loading').show();
-        var title = questionNumber;
+        var title = app.questionNumberFromId(questionNumber);
+        var questionIndex = app.questionNumberFromId(questionNumber);
+        var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
 
         // show question
         if (OFFLINE_MODE) {
+/*
             $('#question .loading').hide();
-            app.setQuestionTitle(title, questionNumber)
+            app.setQuestionTitle(title, questionNumber);
             app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
+            $('#question-content').show();
+*/
+            $('#question .loading').hide();
+            app.setQuestionTitle(title, questionIndex);
+            app.setQuestionContent(questionContent);
             $('#question-content').show();
         }
         else {
             $.ajax({
-                url: BASE_URL + 'questions/question_' + questionNumber + '.html',
+                url: BASE_URL + 'questions/question_' + questionIndex + '.html',
                 dataType: "html",
                 timeout: 6000,
                 success: function (data, status, xhr) {
                     $('#question .loading').hide();
-                    app.setQuestionTitle(title, setQuestionTitle)
+                    app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent(data);
                     $('#question-content').show();
                 },
                 error: function (xhr, errorType, error) {
                     $('#question .loading').hide();
-                    app.setQuestionTitle(title, setQuestionTitle)
+                    app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
                     $('#question-content').show();
                 }
@@ -437,6 +459,26 @@ var app = {
                 '<li><a target="_blank" href="http://www.php.net" class="question-help">PHP Manual</a></li>'+
                 '<li><a target="_blank" href="http://www.google.com" class="question-help">Google</a></li>');
         }
+
+        // button to resolve question
+        $('#resolve-question').on('click', function (e) {
+            app.resolveQuestion();
+        });
+
+        // bind bookmark button
+        $('#bookmark-button').on('click', function (e) {
+            app.setBookmark($(this));
+        });
+
+        // show comments
+        $('#show-comments').on('click', function (e) {
+            var questionId = $(".question-info").attr('qid');
+
+            app.buildComments(questionId);
+
+            $(this).remove();
+        });
+
     },
 
     buildComments: function (qId) {
@@ -448,7 +490,10 @@ var app = {
 
         // show question
         if (OFFLINE_MODE) {
+/*
             layer.html('<iframe src="data/comments/comments_question_'+qId+'.html" width="100%" height="600" seamless></iframe>');
+*/
+            layer.html(commentsDataBase['c'+qId]);
         }
         else {
             $.ajax({
