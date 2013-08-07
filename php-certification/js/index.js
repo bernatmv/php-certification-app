@@ -1,8 +1,17 @@
 // TODO: replace click with click (include Hammer.js if need be)
+/*
+// If offline, add in index.html:
+<script type="text/javascript" src="js/questions.db.js"></script>
+<script type="text/javascript" src="js/comments.db.js"></script>
+// and
+window.location = 'index.html';
+// set OFFLINE_MODE to true
+ var OFFLINE_MODE = true;
+// also change toolbar to reflect offline
+*/
 
 // config data
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
-var OFFLINE_MODE = localStorage.getItem("PHPEXAM_OFFLINE_MODE") != 'false';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
 
@@ -207,9 +216,13 @@ var app = {
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
+/*
             OFFLINE_MODE = !OFFLINE_MODE;
             if (OFFLINE_MODE) localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'true');
             else localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'false');
+ */
+            if (OFFLINE_MODE) window.location = 'index.html';
+            else window.location = 'index_offline.html';
         });
 
         // build questions links
@@ -365,6 +378,24 @@ var app = {
         return 0;
     },
 
+    questionIndexFromPosition: function (pos) {
+        var num = 1;
+        for ( var q in app.questions ) {
+            if ( num == pos ) return q;
+            num++;
+        }
+        return 0;
+    },
+
+    questionIndexFromId: function (id) {
+        var num = 1;
+        for ( var q in app.questions ) {
+            if ( app.questions[q] == id ) return q;
+            num++;
+        }
+        return 0;
+    },
+
     resolveQuestion: function () {
         var error = false;
         var questionId = $(".question-info").attr('qid');
@@ -398,29 +429,37 @@ var app = {
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
         $('#question .loading').show();
-        var title = questionNumber;
+        var title = app.questionNumberFromId(questionNumber);
+        var questionIndex = questionNumber;
+        var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
 
         // show question
         if (OFFLINE_MODE) {
+/*
             $('#question .loading').hide();
-            app.setQuestionTitle(title, questionNumber)
+            app.setQuestionTitle(title, questionNumber);
             app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
+            $('#question-content').show();
+*/
+            $('#question .loading').hide();
+            app.setQuestionTitle(title, questionIndex);
+            app.setQuestionContent(questionContent);
             $('#question-content').show();
         }
         else {
             $.ajax({
-                url: BASE_URL + 'questions/question_' + questionNumber + '.html',
+                url: BASE_URL + 'questions/question_' + questionIndex + '.html',
                 dataType: "html",
                 timeout: 6000,
                 success: function (data, status, xhr) {
                     $('#question .loading').hide();
-                    app.setQuestionTitle(title, setQuestionTitle)
+                    app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent(data);
                     $('#question-content').show();
                 },
                 error: function (xhr, errorType, error) {
                     $('#question .loading').hide();
-                    app.setQuestionTitle(title, setQuestionTitle)
+                    app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
                     $('#question-content').show();
                 }
