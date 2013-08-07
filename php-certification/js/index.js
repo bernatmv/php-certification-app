@@ -1,4 +1,4 @@
-// TODO: replace click with click (include Hammer.js if need be)
+// TODO: replace click with ontouchstart (include Hammer.js if need be)
 /*
 // If offline, add in index.html:
 <script type="text/javascript" src="js/questions.db.js"></script>
@@ -212,7 +212,7 @@ var app = {
     },
 
     onDeviceReady: function() {
-        if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked')
+        if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked');
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
@@ -234,6 +234,7 @@ var app = {
 
         // write loading, show and load question
         $('.question-token').on('click', function (e) {
+            console.debug(e);
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -241,12 +242,14 @@ var app = {
 
         // hide question and re-write loading
         $('.question-out').on('click', function (e) {
+            console.debug(e);
             app.setQuestionTitle('Loading...');
             $('#question .loading').show();
         });
 
         // pagination
         $("#questions-pagination .pagination").on('click', function (e) {
+            console.debug(e);
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
@@ -254,16 +257,19 @@ var app = {
 
         // button to resolve question
         $('#resolve-question').on('click', function (e) {
+            console.debug(e);
             app.resolveQuestion();
         });
 
         // bind bookmark button
         $('#bookmark-button').on('click', function () {
+            console.debug(e);
             app.setBookmark($(this));
         });
 
         // go to bookmark
         $("#bookmark-question a").on('click', function (e) {
+            console.debug(e);
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -271,6 +277,7 @@ var app = {
 
         // show comments
         $('#show-comments').on('click', function (e) {
+            console.debug(e);
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
@@ -281,6 +288,8 @@ var app = {
     },
 
     setQuestionTitle: function(title, qId) {
+        $("#page-bookmark").remove();
+        $("#bookmark-button").remove();
         $('#question .toolbar h1').html(title);
 
         if ( qId ) {
@@ -349,8 +358,9 @@ var app = {
     },
 
     setBookmark: function (el) {
+        console.debug('in');
         var questionId = $(".question-info").attr('qid');
-
+console.debug(questionId);
         BOOKMARK = app.questionNumberFromId(questionId);
         BOOKMARK_ID = questionId;
         localStorage.setItem('PHPEXAM_BOOKMARK', app.questionNumberFromId(questionId));
@@ -430,7 +440,7 @@ var app = {
         $('#question-content').hide();
         $('#question .loading').show();
         var title = app.questionNumberFromId(questionNumber);
-        var questionIndex = questionNumber;
+        var questionIndex = app.questionNumberFromId(questionNumber);
         var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
 
         // show question
@@ -479,6 +489,7 @@ var app = {
     },
 
     buildComments: function (qId) {
+        console.debug(qId);
         var layer = $('#question-comments');
 
         // start loading and show
@@ -487,7 +498,10 @@ var app = {
 
         // show question
         if (OFFLINE_MODE) {
+/*
             layer.html('<iframe src="data/comments/comments_question_'+qId+'.html" width="100%" height="600" seamless></iframe>');
+*/
+            layer.html(commentsDataBase['c'+qId]);
         }
         else {
             $.ajax({
