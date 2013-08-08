@@ -235,6 +235,11 @@ var app = {
         // hide question and re-write loading
         $('.question-out').on('click', function (e) {
             app.setQuestionTitle('Loading...');
+
+            var qId = $(".question-info").attr('qid');
+            var qNum = app.questionNumberFromId(qId);
+            app.buildQuestions(qNum);
+            
             $('#question .loading').show();
         });
 
@@ -291,7 +296,7 @@ var app = {
                     '<a href="#question" data-question-number="'+q+'" class="slide question-token">' +
                     'Question '+num+
                     (num == BOOKMARK ? '<div class="bookmark"></div>' : '') +
-                    (localStorage.getItem("PHPEXAM_QUESTION_"+num) ? '<small class="counter">DONE</small>' : '') +
+                    (localStorage.getItem("PHPEXAM_QUESTION_"+app.questionIdFromPosition(num)) ? '<small class="counter">DONE</small>' : '') +
                     '</a></li>';
                 $("#questions-list").append(html);
             }
@@ -414,7 +419,6 @@ var app = {
         $('#question .loading').show();
         var title = app.questionNumberFromId(questionNumber);
         var questionIndex = app.questionNumberFromId(questionNumber);
-        var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
 
         // show question
         if (OFFLINE_MODE) {
@@ -424,6 +428,7 @@ var app = {
             app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
             $('#question-content').show();
 */
+            var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
             $('#question .loading').hide();
             app.setQuestionTitle(title, questionIndex);
             app.setQuestionContent(questionContent);

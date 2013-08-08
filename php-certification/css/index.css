@@ -52,11 +52,13 @@ span.no-bookmark {
     font-size: 11pt;
 }
 
+#question-buttons {
+    text-align: center !important;
+}
+
 #question-buttons a {
-    width: 90%;
-    float: left;
-    clear: both;
-    margin-right: 10px;
+    width: 70% !important;
+    margin: 20px auto !important;
 }
 
 #bookmark-button img {
@@ -79,11 +81,11 @@ span.no-bookmark {
 }
 
 #question-comments {
-    width: 100%;
+    width: 80%;
     clear:both;
     float: none;
     background: white;
-    margin-top: 65px;
+    margin: 40px auto;
     padding: 10px 10px 10px 20px;
     border: 1px solid #f2f2f2;
     text-align: left;
@@ -92,15 +94,35 @@ span.no-bookmark {
 #question-comments small {
     margin-top: 10px;
     font-weight: 400;
-    font-size: .7em;
+    font-size: .8em;
+    line-height: 1.2em;
 }
 
 #question-comments p {
     margin-top: 10px;
     font-weight: 400;
-    font-size: 1.3em;
+    font-size: 1.2em;
+    line-height: 1.3em;
 }
 
 .question-help {
     width:90%;
+}
+
+#question ul.individual > li {
+    width: 70% !important;
+    float: none !important;
+    display: block !important;
+    margin: 5px auto !important;
+}
+
+#question ul.individual > li > a {
+    margin: 0 auto !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+#about .about-content {
+    padding: 40px;
+    text-align: center;
 }
