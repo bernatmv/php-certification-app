@@ -218,11 +218,6 @@ var app = {
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
-/*
-            OFFLINE_MODE = !OFFLINE_MODE;
-            if (OFFLINE_MODE) localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'true');
-            else localStorage.setItem("PHPEXAM_OFFLINE_MODE", 'false');
- */
             if (OFFLINE_MODE) window.location = 'index.html';
             else window.location = 'index_offline.html';
         });
@@ -235,7 +230,7 @@ var app = {
         app.buildBookmarkQuestion();
 
         // hide question and re-write loading
-        $('.question-out').on(bindAction, function (e) {
+        $('.question-out').hammer().on("tap", function (e) {
             app.setQuestionTitle('Loading...');
 
             // rebuild questions list
@@ -247,14 +242,14 @@ var app = {
         });
 
         // pagination
-        $("#questions-pagination .pagination").on(bindAction, function (e) {
+        $("#questions-pagination .pagination").hammer().on("tap", function (e) {
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
         // go to bookmark
-        $("#bookmark-question a").on(bindAction, function (e) {
+        $("#bookmark-question a").hammer().on("tap", function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -307,7 +302,7 @@ var app = {
         }
 
         // write loading, show and load question
-        $('.question-token').on(bindAction, function (e) {
+        $('.question-token').hammer().on("tap", function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -424,11 +419,6 @@ var app = {
 
         // show question
         if (OFFLINE_MODE) {
-/*
-            app.setQuestionTitle(title, questionNumber);
-            app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
-            $('#question-content').show();
-*/
             var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
             app.setQuestionTitle(title, questionIndex);
             app.setQuestionContent(questionContent);
@@ -464,17 +454,17 @@ var app = {
         }
 
         // button to resolve question
-        $('#resolve-question').on(bindAction, function (e) {
+        $('#resolve-question').hammer().on("tap", function (e) {
             app.resolveQuestion();
         });
 
         // bind bookmark button
-        $('#bookmark-button').on(bindAction, function (e) {
+        $('#bookmark-button').hammer().on("tap", function (e) {
             app.setBookmark($(this));
         });
 
         // show comments
-        $('#show-comments').on(bindAction, function (e) {
+        $('#show-comments').hammer().on("tap", function (e) {
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
@@ -493,9 +483,6 @@ var app = {
 
         // show question
         if (OFFLINE_MODE) {
-/*
-            layer.html('<iframe src="data/comments/comments_question_'+qId+'.html" width="100%" height="600" seamless></iframe>');
-*/
             layer.html(commentsDataBase['c'+qId]);
         }
         else {
