@@ -14,6 +14,8 @@ window.location = 'index.html';
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
+var isTouchSupported = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch;
+var bindAction = isTouchSupported ? 'touchstart' : 'click';
 
 // jqTouch
 $.jQTouch({
@@ -233,7 +235,7 @@ var app = {
         app.buildBookmarkQuestion();
 
         // hide question and re-write loading
-        $('.question-out').on('touchstart', function (e) {
+        $('.question-out').on(bindAction, function (e) {
             app.setQuestionTitle('Loading...');
 
             // rebuild questions list
@@ -245,14 +247,14 @@ var app = {
         });
 
         // pagination
-        $("#questions-pagination .pagination").on('touchstart', function (e) {
+        $("#questions-pagination .pagination").on(bindAction, function (e) {
             var page = this.getAttribute('data-page');
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
         // go to bookmark
-        $("#bookmark-question a").on('touchstart', function (e) {
+        $("#bookmark-question a").on(bindAction, function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -305,7 +307,7 @@ var app = {
         }
 
         // write loading, show and load question
-        $('.question-token').on('touchstart', function (e) {
+        $('.question-token').on(bindAction, function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -462,17 +464,17 @@ var app = {
         }
 
         // button to resolve question
-        $('#resolve-question').on('touchstart', function (e) {
+        $('#resolve-question').on(bindAction, function (e) {
             app.resolveQuestion();
         });
 
         // bind bookmark button
-        $('#bookmark-button').on('touchstart', function (e) {
+        $('#bookmark-button').on(bindAction, function (e) {
             app.setBookmark($(this));
         });
 
         // show comments
-        $('#show-comments').on('touchstart', function (e) {
+        $('#show-comments').on(bindAction, function (e) {
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
