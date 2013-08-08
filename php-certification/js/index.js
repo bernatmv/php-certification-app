@@ -246,6 +246,11 @@ var app = {
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
+
+        // about button
+        $("#infoButton").hammer().on("tap", function (e) {
+            jQT.goTo($('#about'), 'slideup');
+        });
     },
 
     setQuestionTitle: function(title, qId) {
