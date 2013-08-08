@@ -14,7 +14,7 @@
     <AndroidHardwareAcceleration>True</AndroidHardwareAcceleration>
     <BundleVersion>1.1</BundleVersion>
     <iOSDisplayName>PHP Exam</iOSDisplayName>
-    <AndroidVersionCode>2</AndroidVersionCode>
+    <AndroidVersionCode>3</AndroidVersionCode>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>
