@@ -246,14 +246,6 @@ var app = {
 
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
-
-        // go to bookmark
-        $("#bookmark-question a").hammer().on("tap", function (e) {
-            alert(1);
-            var questionNumber = this.getAttribute('data-question-number');
-
-            app.goToQuestion(questionNumber);
-        });
     },
 
     setQuestionTitle: function(title, qId) {
@@ -330,8 +322,13 @@ var app = {
             var q = app.questionIdFromPosition(BOOKMARK);
             html = '<a href="#question" data-question-number="'+q+'" class="slide question-token">Last bookmark: <span id="bookmark-question">Question '+BOOKMARK+'</span></a>';
         }
-
         $("#bookmark-question").html(html);
+
+        // go to bookmark
+        $("#bookmark-question a").hammer().on("tap", function (e) {
+            var questionNumber = this.getAttribute('data-question-number');
+            app.goToQuestion(questionNumber);
+        });
     },
 
     setBookmark: function (el) {
