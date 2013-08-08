@@ -242,8 +242,6 @@ var app = {
             app.buildQuestions(qNum);
             // rebuild bookmark question
             app.buildBookmarkQuestion();
-            
-            $('#question .loading').show();
         });
 
         // pagination
@@ -419,20 +417,17 @@ var app = {
         // start loading and show
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
-        $('#question .loading').show();
         var title = app.questionNumberFromId(questionNumber);
         var questionIndex = app.questionNumberFromId(questionNumber);
 
         // show question
         if (OFFLINE_MODE) {
 /*
-            $('#question .loading').hide();
             app.setQuestionTitle(title, questionNumber);
             app.setQuestionContent('<iframe src="data/questions/question_'+questionNumber+'.html" width="100%" height="600" seamless></iframe>');
             $('#question-content').show();
 */
             var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
-            $('#question .loading').hide();
             app.setQuestionTitle(title, questionIndex);
             app.setQuestionContent(questionContent);
             $('#question-content').show();
@@ -443,13 +438,11 @@ var app = {
                 dataType: "html",
                 timeout: 6000,
                 success: function (data, status, xhr) {
-                    $('#question .loading').hide();
                     app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent(data);
                     $('#question-content').show();
                 },
                 error: function (xhr, errorType, error) {
-                    $('#question .loading').hide();
                     app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
                     $('#question-content').show();
