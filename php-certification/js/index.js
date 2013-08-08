@@ -251,6 +251,10 @@ var app = {
         $("#infoButton").hammer().on("tap", function (e) {
             jQT.goTo($('#about'), 'slideup');
         });
+
+        $("#aboutClose").hammer().on("tap", function (e) {
+            jQT.goBack('#home');
+        });
     },
 
     setQuestionTitle: function(title, qId) {
