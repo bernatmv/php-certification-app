@@ -9,8 +9,14 @@
         <title>PHP Certification Study App</title>
 
         <style type="text/css" media="screen">@import "css/index.css";</style>
-        <style type="text/css" media="screen">@import "css/themes/css/apple.css";</style>
+        <link type="text/css" media="screen" href="css/themes/css/apple.css" id="appTheme" rel="stylesheet">
 
+        <script type="text/javascript">
+            var isIOS = /like Mac OS/i.test(window.navigator.userAgent);
+            if (!isIOS) {
+                document.getElementById('appTheme').href = 'css/themes/css/jqtouch.css';
+            }
+        </script>
     </head>
     <body>
 
