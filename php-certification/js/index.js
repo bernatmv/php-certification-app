@@ -236,9 +236,12 @@ var app = {
         $('.question-out').on('touchstart', function (e) {
             app.setQuestionTitle('Loading...');
 
+            // rebuild questions list
             var qId = $(".question-info").attr('qid');
             var qNum = app.questionNumberFromId(qId);
             app.buildQuestions(qNum);
+            // rebuild bookmark question
+            app.buildBookmarkQuestion();
             
             $('#question .loading').show();
         });
