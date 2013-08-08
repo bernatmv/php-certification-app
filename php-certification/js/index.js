@@ -1,4 +1,3 @@
-// TODO: replace click with ontouchstart (include Hammer.js if need be)
 /*
 // If offline, add in index.html:
 <script type="text/javascript" src="js/questions.db.js"></script>
@@ -250,6 +249,7 @@ var app = {
 
         // go to bookmark
         $("#bookmark-question a").hammer().on("tap", function (e) {
+            alert(1);
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -407,6 +407,7 @@ var app = {
         });
         if (!error) {
             localStorage.setItem("PHPEXAM_QUESTION_"+questionId, "OK");
+            $('#resolve-question').remove();
         }
     },
 
@@ -423,16 +424,18 @@ var app = {
             app.setQuestionTitle(title, questionIndex);
             app.setQuestionContent(questionContent);
             $('#question-content').show();
+            app.buildQuestionButtons();
         }
         else {
             $.ajax({
-                url: BASE_URL + 'questions/question_' + questionIndex + '.html',
+                url: BASE_URL + 'questions/question_' + questionNumber + '.html',
                 dataType: "html",
                 timeout: 6000,
                 success: function (data, status, xhr) {
                     app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent(data);
                     $('#question-content').show();
+                    app.buildQuestionButtons();
                 },
                 error: function (xhr, errorType, error) {
                     app.setQuestionTitle(title, questionIndex);
@@ -441,7 +444,9 @@ var app = {
                 }
             });
         }
+    },
 
+    buildQuestionButtons: function() {
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
@@ -468,10 +473,8 @@ var app = {
             var questionId = $(".question-info").attr('qid');
 
             app.buildComments(questionId);
-
             $(this).remove();
         });
-
     },
 
     buildComments: function (qId) {
