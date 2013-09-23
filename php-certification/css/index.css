@@ -3,6 +3,15 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+.none {
+    display: none;
+}
+
+#jqt .toolbar h1 {
+    width: 350px;
+    margin: 1px 0 0 -175px
+}
+
 div.bookmark {
     float:right;
     background: url(../img/bookmark_v5.png) no-repeat;
@@ -100,6 +109,7 @@ span.no-bookmark {
 
 .question-help {
     width:90%;
+    font-size: .8em;
 }
 
 #question ul.individual > li {
@@ -118,4 +128,17 @@ span.no-bookmark {
 #about .about-content {
     padding: 40px;
     text-align: center;
+}
+
+.syntaxhighlighter {
+    padding: 5px !important;
+    border: 1px solid #333 !important;
+}
+
+.app-credits {
+    font-size: .9em;
+}
+
+#jqt .info {
+    text-shadow: none;
 }

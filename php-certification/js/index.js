@@ -6,7 +6,14 @@
 window.location = 'index.html';
 // set OFFLINE_MODE to true
  var OFFLINE_MODE = true;
-// also change toolbar to reflect offline
+// web references
+http://zend-php.appspot.com/questions_list
+http://wmdn.ru/php/zend-php5-certification-mock-exam-sample-questions-1/
+// Change CSS
+iphone.css <> android.css
+// SyntaxHighlighter
+Android css: <link type="text/css" rel="Stylesheet" href="js/syntax/styles/shThemeRDark.css"/>
+IOS css: <link rel='stylesheet' type='text/css' href='js/syntax/styles/shThemeDefault.css'>
 */
 
 // config data
@@ -25,179 +32,6 @@ $.jQTouch({
 // app Object
 var app = {
 
-    questions: {
-        q2: 2,
-        q3: 3,
-        q4: 4,
-        q5: 5,
-        q6: 6,
-        q7: 7,
-        q8: 8,
-        q10: 10,
-        q11: 11,
-        q15: 15,
-        q16: 16,
-        q17: 17,
-        q18: 18,
-        q19: 19,
-        q20: 20,
-        q21: 21,
-        q22: 22,
-        q23: 23,
-        q25: 25,
-        q26: 26,
-        q27: 27,
-        q28: 28,
-        q30: 30,
-        q31: 31,
-        q32: 32,
-        q33: 33,
-        q34: 34,
-        q35: 35,
-        q36: 36,
-        q37: 37,
-        q38: 38,
-        q39: 39,
-        q40: 40,
-        q41: 41,
-        q42: 42,
-        q43: 43,
-        q44: 44,
-        q45: 45,
-        q46: 46,
-        q47: 47,
-        q48: 48,
-        q49: 49,
-        q50: 50,
-        q53: 53,
-        q54: 54,
-        q55: 55,
-        q57: 57,
-        q59: 59,
-        q60: 60,
-        q61: 61,
-        q62: 62,
-        q63: 63,
-        q64: 64,
-        q65: 65,
-        q66: 66,
-        q67: 67,
-        q68: 68,
-        q69: 69,
-        q71: 71,
-        q72: 72,
-        q73: 73,
-        q74: 74,
-        q75: 75,
-        q76: 76,
-        q77: 77,
-        q78: 78,
-        q79: 79,
-        q80: 80,
-        q81: 81,
-        q82: 82,
-        q83: 83,
-        q85: 85,
-        q86: 86,
-        q87: 87,
-        q88: 88,
-        q89: 89,
-        q90: 90,
-        q91: 91,
-        q92: 92,
-        q93: 93,
-        q94: 94,
-        q95: 95,
-        q97: 97,
-        q99: 99,
-        q100: 100,
-        q102: 102,
-        q104: 104,
-        q107: 107,
-        q108: 108,
-        q109: 109,
-        q111: 111,
-        q113: 113,
-        q114: 114,
-        q115: 115,
-        q116: 116,
-        q117: 117,
-        q118: 118,
-        q119: 119,
-        q126: 126,
-        q127: 127,
-        q131: 131,
-        q132: 132,
-        q134: 134,
-        q135: 135,
-        q136: 136,
-        q137: 137,
-        q143: 143,
-        q144: 144,
-        q147: 147,
-        q150: 150,
-        q152: 152,
-        q153: 153,
-        q155: 155,
-        q158: 158,
-        q159: 159,
-        q160: 160,
-        q161: 161,
-        q162: 162,
-        q163: 163,
-        q164: 164,
-        q165: 165,
-        q166: 166,
-        q167: 167,
-        q168: 168,
-        q169: 169,
-        q170: 170,
-        q171: 171,
-        q172: 172,
-        q173: 173,
-        q174: 174,
-        q177: 177,
-        q178: 178,
-        q179: 179,
-        q180: 180,
-        q181: 181,
-        q183: 183,
-        q185: 185,
-        q191: 191,
-        q192: 192,
-        q194: 194,
-        q195: 195,
-        q196: 196,
-        q197: 197,
-        q199: 199,
-        q200: 200,
-        q205: 205,
-        q206: 206,
-        q207: 207,
-        q209: 209,
-        q214: 214,
-        q215: 215,
-        q217: 217,
-        q218: 218,
-        q220: 220,
-        q221: 221,
-        q224: 224,
-        q226: 226,
-        q227: 227,
-        q228: 228,
-        q229: 229,
-        q230: 230,
-        q231: 231,
-        q232: 232,
-        q233: 233,
-        q234: 234,
-        q236: 236,
-        q238: 238,
-        q239: 239,
-        q240: 240,
-        q241: 241,
-        q242: 242
-    },
     numQuestions: 171,
 
     // Application Constructor
@@ -217,8 +51,8 @@ var app = {
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
-            if (OFFLINE_MODE) window.location = 'index.html';
-            else window.location = 'index_offline.html';
+            if (OFFLINE_MODE) window.location = 'index_online.html';
+            else window.location = 'index.html';
         });
 
         // build questions links
@@ -288,9 +122,9 @@ var app = {
         var next = ( ( prev + stepBack + stepForward ) >= app.numQuestions ) ? app.numQuestions : ( prev + stepBack + stepForward );
 
         $("#questions-list").html('');
-        for (var question in app.questions) {
+        for (var question in questions) {
             if ( ( num >= prev ) && ( num <= next) ) {
-                q = app.questions[question];
+                q = questions[question].id;
                 html = '<li class="arrow">' +
                     '<a href="#question" data-question-number="'+q+'" class="slide question-token">' +
                     'Question '+num+
@@ -353,61 +187,80 @@ var app = {
     },
 
     questionNumberFromId: function (id) {
-        var num = 1;
-        for ( var q in app.questions ) {
-            if ( app.questions[q] == id ) return num;
-            num++;
-        }
-        return 0;
+        return questions['q'+id].num || 0;
     },
 
     questionIdFromPosition: function (pos) {
-        var num = 1;
-        for ( var q in app.questions ) {
-            if ( num == pos ) return app.questions[q];
-            num++;
+        for ( var q in questions ) {
+            if ( questions[q].num == pos ) return questions[q].id;
         }
         return 0;
     },
 
     questionIndexFromPosition: function (pos) {
-        var num = 1;
-        for ( var q in app.questions ) {
-            if ( num == pos ) return q;
-            num++;
+        var index = app.questionIdFromPosition(pos);
+
+        if (index) return 'q'+index;
+        else return 0;
+    },
+
+    questionIndexFromId: function (id) {
+        if (id) return 'q'+id;
+        else return 0;
+    },
+
+    answerIdFromQuestionId: function (qid) {
+        if (qid) {
+            var qnum = questions['q'+qid].num;
+            if (qnum) {
+                return 'a'+qnum;
+            }
         }
         return 0;
     },
 
-    questionIndexFromId: function (id) {
-        var num = 1;
-        for ( var q in app.questions ) {
-            if ( app.questions[q] == id ) return q;
-            num++;
-        }
-        return 0;
+    isInArray: function(value, array) {
+        return (array.indexOf(parseInt(value)) !== -1);
     },
 
     resolveQuestion: function () {
         var error = false;
         var questionId = $(".question-info").attr('qid');
+        var answerId = app.answerIdFromQuestionId(questionId);
+        console.debug(questionId);
+        console.debug(answerId);
         $.each($('.question-answer input'), function () {
+            var parent = $(this).parent();
+            console.debug($(this).val());
+            console.debug(answersDataBase[answerId].correct);
+            console.debug(app.isInArray($(this).val(), answersDataBase[answerId].correct ));
             if ( $(this).is(':checked')) {
-                if ( $(this).attr('correct') == 1 ) {
-                    $(this).parent().css('background-color', '#CCFFDD');
+                if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+                    if (parent.hasClass('answer-incorrect')) {
+                        parent.removeClass('answer-incorrect');
+                    }
+                    parent.addClass('answer-correct');
                 }
                 else {
-                    $(this).parent().css('background-color', '#FFCCDD');
+                    if (parent.hasClass('answer-correct')) {
+                        parent.removeClass('answer-correct');
+                    }
+                    parent.addClass('answer-incorrect');
                     error = true;
                 }
             }
             else {
-                if ( $(this).attr('correct') == 1 ) {
-                    $(this).parent().css('background-color', '#FFCCDD');
+                if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+                    if (parent.hasClass('answer-correct')) {
+                        parent.removeClass('answer-correct');
+                    }
+                    parent.addClass('answer-correct');
                     error = true;
                 }
                 else {
-                    $(this).parent().css('background-color', '#FFFFFF');
+                    if (parent.hasClass('answer-incorrect')) {
+                        parent.removeClass('answer-incorrect');
+                    }
                 }
             }
         });
@@ -421,7 +274,7 @@ var app = {
         // start loading and show
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
-        var title = app.questionNumberFromId(questionNumber);
+        var title = 'Question ' + app.questionNumberFromId(questionNumber);
         var questionIndex = app.questionNumberFromId(questionNumber);
 
         // show question
@@ -429,6 +282,7 @@ var app = {
             var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
             app.setQuestionTitle(title, questionIndex);
             app.setQuestionContent(questionContent);
+            SyntaxHighlighter.highlight();
             $('#question-content').show();
             app.buildQuestionButtons();
         }
@@ -440,6 +294,7 @@ var app = {
                 success: function (data, status, xhr) {
                     app.setQuestionTitle(title, questionIndex);
                     app.setQuestionContent(data);
+                    SyntaxHighlighter.highlight();
                     $('#question-content').show();
                     app.buildQuestionButtons();
                 },
@@ -456,12 +311,9 @@ var app = {
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
-                '<a href="#" class="whiteButton" id="show-comments">Comments</a>' +
+                '<a href="#" class="whiteButton" id="show-comments">Show comments</a>' +
                 '</div><div id="question-comments" style="display:none;"></div>');
-            $('#question-content').append('<ul class="individual">' +
-                '<li><a target="_blank" href="http://www.stackoverflow.com" class="question-help">StackOverflow</a></li>'+
-                '<li><a target="_blank" href="http://www.php.net" class="question-help">PHP Manual</a></li>'+
-                '<li><a target="_blank" href="http://www.google.com" class="question-help">Google</a></li>');
+            $('#question-content').append(app.buildHelpLink());
         }
 
         // button to resolve question
@@ -507,6 +359,17 @@ var app = {
                 }
             });
         }
+    },
+
+    buildHelpLink: function () {
+        var questionId = $(".question-info").attr('qid');
+        var answerId = app.answerIdFromQuestionId(questionId);
+        var links = answersDataBase[answerId].link;
+        var html = '<ul class="individual">';
+        for (var i = 0, j = links.length; i < j; i++) {
+            html += '<li><a href="#" onclick="var ref = window.open(\''+links[i]+'\', \'_system\'); return false;" class="question-help">'+links[i]+'</a></li>';
+        }
+        return html + '</ul>';
     }
 
 };
