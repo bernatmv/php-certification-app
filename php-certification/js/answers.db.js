@@ -683,6 +683,14 @@ var questions = {
     q242: {
         num: 171,
         id: 242
+    },
+    q1000: {
+        num: 172,
+        id: 1000
+    },
+    q1001: {
+        num: 173,
+        id: 1001
     }
 };
 
@@ -1363,5 +1371,15 @@ var answersDataBase = {
     a171: {
         correct: [1],
         link: ['http://www.php.net/manual/en/functions.returning-values.php']
+    },
+    a172: {
+        correct: ['Observer'],
+        link: []
+    },
+    a173: {
+        correct: ['LAST_INSERT_ID'],
+        link: []
     }
+
 };
+

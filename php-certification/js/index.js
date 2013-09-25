@@ -32,7 +32,7 @@ $.jQTouch({
 // app Object
 var app = {
 
-    numQuestions: 171,
+    numQuestions: 173,
 
     // Application Constructor
     initialize: function() {
@@ -227,19 +227,17 @@ var app = {
         var error = false;
         var questionId = $(".question-info").attr('qid');
         var answerId = app.answerIdFromQuestionId(questionId);
-        console.debug(questionId);
-        console.debug(answerId);
         $.each($('.question-answer input'), function () {
             var parent = $(this).parent();
-            console.debug($(this).val());
-            console.debug(answersDataBase[answerId].correct);
-            console.debug(app.isInArray($(this).val(), answersDataBase[answerId].correct ));
-            if ( $(this).is(':checked')) {
-                if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+            // check if the answer is a "TEXT" one
+            if (answersDataBase[answerId].correct[0] && (typeof answersDataBase[answerId].correct[0] == "string")) {
+                $(this).addClass('noborder');
+                if ( $(this).val().toUpperCase() == answersDataBase[answerId].correct[0].toUpperCase() ) {
                     if (parent.hasClass('answer-incorrect')) {
                         parent.removeClass('answer-incorrect');
                     }
                     parent.addClass('answer-correct');
+                    $('#free_form_answer_text').html('Correct!');
                 }
                 else {
                     if (parent.hasClass('answer-correct')) {
@@ -247,19 +245,38 @@ var app = {
                     }
                     parent.addClass('answer-incorrect');
                     error = true;
+                    $('#free_form_answer_text').html('Incorrect, correct answer is: '+answersDataBase[answerId].correct[0]);
                 }
             }
+            // answer is radio or checkbox
             else {
-                if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
-                    if (parent.hasClass('answer-correct')) {
-                        parent.removeClass('answer-correct');
+                if ( $(this).is(':checked')) {
+                    if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+                        if (parent.hasClass('answer-incorrect')) {
+                            parent.removeClass('answer-incorrect');
+                        }
+                        parent.addClass('answer-correct');
                     }
-                    parent.addClass('answer-correct');
-                    error = true;
+                    else {
+                        if (parent.hasClass('answer-correct')) {
+                            parent.removeClass('answer-correct');
+                        }
+                        parent.addClass('answer-incorrect');
+                        error = true;
+                    }
                 }
                 else {
-                    if (parent.hasClass('answer-incorrect')) {
-                        parent.removeClass('answer-incorrect');
+                    if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+                        if (parent.hasClass('answer-correct')) {
+                            parent.removeClass('answer-correct');
+                        }
+                        parent.addClass('answer-correct');
+                        error = true;
+                    }
+                    else {
+                        if (parent.hasClass('answer-incorrect')) {
+                            parent.removeClass('answer-incorrect');
+                        }
                     }
                 }
             }
@@ -284,7 +301,7 @@ var app = {
             app.setQuestionContent(questionContent);
             SyntaxHighlighter.highlight();
             $('#question-content').show();
-            app.buildQuestionButtons();
+            app.buildQuestionButtons(questionNumber, questionIndex);
         }
         else {
             $.ajax({
@@ -296,7 +313,7 @@ var app = {
                     app.setQuestionContent(data);
                     SyntaxHighlighter.highlight();
                     $('#question-content').show();
-                    app.buildQuestionButtons();
+                    app.buildQuestionButtons(questionNumber, questionIndex);
                 },
                 error: function (xhr, errorType, error) {
                     app.setQuestionTitle(title, questionIndex);
@@ -307,11 +324,13 @@ var app = {
         }
     },
 
-    buildQuestionButtons: function() {
+    buildQuestionButtons: function(qId, qNum) {
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
-                '<a href="#" class="whiteButton" id="show-comments">Show comments</a>' +
+                ((qNum == 1) ? '' : '<a href="#" class="whiteButton" id="prev-question">Previous</a>') +
+                ((qNum == app.numQuestions) ? '' : '<a href="#" class="whiteButton" id="next-question">Next</a>') +
+                ((commentsDataBase['c'+qId] == '') ? '' : '<a href="#" class="whiteButton" id="show-comments">Show comments</a>') +
                 '</div><div id="question-comments" style="display:none;"></div>');
             $('#question-content').append(app.buildHelpLink());
         }
@@ -332,6 +351,16 @@ var app = {
 
             app.buildComments(questionId);
             $(this).remove();
+        });
+
+        // button to previous question
+        $('#prev-question').hammer().on("tap", function (e) {
+            app.goToQuestion(app.questionIdFromPosition(qNum - 1));
+        });
+
+        // button to next question
+        $('#next-question').hammer().on("tap", function (e) {
+            app.goToQuestion(app.questionIdFromPosition(qNum + 1));
         });
     },
 
@@ -365,11 +394,17 @@ var app = {
         var questionId = $(".question-info").attr('qid');
         var answerId = app.answerIdFromQuestionId(questionId);
         var links = answersDataBase[answerId].link;
-        var html = '<ul class="individual">';
-        for (var i = 0, j = links.length; i < j; i++) {
-            html += '<li><a href="#" onclick="var ref = window.open(\''+links[i]+'\', \'_system\'); return false;" class="question-help">'+links[i]+'</a></li>';
+        if (links.length > 0) {
+            var html = '<ul class="individual">';
+            for (var i = 0, j = links.length; i < j; i++) {
+                html += '<li><a href="#" onclick="var ref = window.open(\''+links[i]+'\', \'_system\'); return false;" class="question-help">'+links[i]+'</a></li>';
+            }
+            html += '</ul>';
         }
-        return html + '</ul>';
+        else {
+            html = '';
+        }
+        return html;
     }
 
 };

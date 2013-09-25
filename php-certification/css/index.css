@@ -142,3 +142,20 @@ span.no-bookmark {
 #jqt .info {
     text-shadow: none;
 }
+
+#jqt .question-answer input[type="text"] {
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #ddd;
+}
+
+#jqt .question-answer input[type="text"].noborder {
+    border-bottom: none;
+}
+
+#jqt .whiteButton#prev-question {
+
+}
+
+#jqt .whiteButton#next-question {
+
+}
