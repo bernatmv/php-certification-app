@@ -691,6 +691,286 @@ var questions = {
     q1001: {
         num: 173,
         id: 1001
+    },
+    q1100: {
+        num: 174,
+        id: 1100
+    },
+    q1101: {
+        num: 175,
+        id: 1101
+    },
+    q1102: {
+        num: 176,
+        id: 1102
+    },
+    q1103: {
+        num: 177,
+        id: 1103
+    },
+    q1104: {
+        num: 178,
+        id: 1104
+    },
+    q1105: {
+        num: 179,
+        id: 1105
+    },
+    q1106: {
+        num: 180,
+        id: 1106
+    },
+    q1107: {
+        num: 181,
+        id: 1107
+    },
+    q1108: {
+        num: 182,
+        id: 1108
+    },
+    q1109: {
+        num: 183,
+        id: 1109
+    },
+    q1110: {
+        num: 184,
+        id: 1110
+    },
+    q1111: {
+        num: 185,
+        id: 1111
+    },
+    q1112: {
+        num: 186,
+        id: 1112
+    },
+    q1113: {
+        num: 187,
+        id: 1113
+    },
+    q1114: {
+        num: 188,
+        id: 1114
+    },
+    q1115: {
+        num: 189,
+        id: 1115
+    },
+    q1116: {
+        num: 190,
+        id: 1116
+    },
+    q1117: {
+        num: 191,
+        id: 1117
+    },
+    q1118: {
+        num: 192,
+        id: 1118
+    },
+    q1119: {
+        num: 193,
+        id: 1119
+    },
+    q1120: {
+        num: 194,
+        id: 1120
+    },
+    q1121: {
+        num: 195,
+        id: 1121
+    },
+    q1122: {
+        num: 196,
+        id: 1122
+    },
+    q1123: {
+        num: 197,
+        id: 1123
+    },
+    q1124: {
+        num: 198,
+        id: 1124
+    },
+    q1125: {
+        num: 199,
+        id: 1125
+    },
+    q1126: {
+        num: 200,
+        id: 1126
+    },
+    q1127: {
+        num: 201,
+        id: 1127
+    },
+    q1128: {
+        num: 202,
+        id: 1128
+    },
+    q1129: {
+        num: 203,
+        id: 1129
+    },
+    q1130: {
+        num: 204,
+        id: 1130
+    },
+    q1131: {
+        num: 205,
+        id: 1131
+    },
+    q1132: {
+        num: 206,
+        id: 1132
+    },
+    q1133: {
+        num: 207,
+        id: 1133
+    },
+    q1134: {
+        num: 208,
+        id: 1134
+    },
+    q1135: {
+        num: 209,
+        id: 1135
+    },
+    q1136: {
+        num: 210,
+        id: 1136
+    },
+    q1137: {
+        num: 211,
+        id: 1137
+    },
+    q1138: {
+        num: 212,
+        id: 1138
+    },
+    q1139: {
+        num: 213,
+        id: 1139
+    },
+    q1140: {
+        num: 214,
+        id: 1140
+    },
+    q1141: {
+        num: 215,
+        id: 1141
+    },
+    q1142: {
+        num: 216,
+        id: 1142
+    },
+    q1143: {
+        num: 217,
+        id: 1143
+    },
+    q1144: {
+        num: 218,
+        id: 1144
+    },
+    q1145: {
+        num: 219,
+        id: 1145
+    },
+    q1146: {
+        num: 220,
+        id: 1146
+    },
+    q1147: {
+        num: 221,
+        id: 1147
+    },
+    q1148: {
+        num: 222,
+        id: 1148
+    },
+    q1149: {
+        num: 223,
+        id: 1149
+    },
+    q1150: {
+        num: 224,
+        id: 1150
+    },
+    q1151: {
+        num: 225,
+        id: 1151
+    },
+    q1152: {
+        num: 226,
+        id: 1152
+    },
+    q1153: {
+        num: 227,
+        id: 1153
+    },
+    q1154: {
+        num: 228,
+        id: 1154
+    },
+    q1155: {
+        num: 229,
+        id: 1155
+    },
+    q1156: {
+        num: 230,
+        id: 1156
+    },
+    q1157: {
+        num: 231,
+        id: 1157
+    },
+    q1158: {
+        num: 232,
+        id: 1158
+    },
+    q1159: {
+        num: 233,
+        id: 1159
+    },
+    q1160: {
+        num: 234,
+        id: 1160
+    },
+    q1161: {
+        num: 235,
+        id: 1161
+    },
+    q1162: {
+        num: 236,
+        id: 1162
+    },
+    q1163: {
+        num: 237,
+        id: 1163
+    },
+    q1164: {
+        num: 238,
+        id: 1164
+    },
+    q1165: {
+        num: 239,
+        id: 1165
+    },
+    q1166: {
+        num: 240,
+        id: 1166
+    },
+    q1167: {
+        num: 241,
+        id: 1167
+    },
+    q1168: {
+        num: 242,
+        id: 1168
+    },
+    q1169: {
+        num: 243,
+        id: 1169
     }
 };
 
@@ -1379,7 +1659,356 @@ var answersDataBase = {
     a173: {
         correct: ['LAST_INSERT_ID'],
         link: []
+    },
+    a174: {
+        correct: [4],
+        link: [],
+        explanation: ["Look out for PHP function names; they are not case sensitive, so both l() and L() will call the same method.  The function doesn't have any declared parameters so the inside version of the function gets ignored."]
+    },
+    a175: {
+        correct: ['MM'],
+        link: [],
+        explanation: ["A trap!  The function construct() isn't a constructor, that would need to be __construct() instead, so the function M::m() gets called twice. ZCE-style question set.  Prepared by Lorna Mitchell ©Lornajane Ltd v1.1"]
+    },
+    a176: {
+        correct: [4],
+        link: [],
+        explanation: []
+    },
+    a177: {
+        correct: [5],
+        link: ['http://www.php.net/manual/en/language.operators.precedence.php'],
+        explanation: []
+    },
+    a178: {
+        correct: [1, 4, 5],
+        link: ['http://php.net/manual/en/language.types.callable.php'],
+        explanation: []
+    },
+    a179: {
+        correct: [5],
+        link: ['http://php.net/manual/en/domdocument.loadhtml.php'],
+        explanation: []
+    },
+    a180: {
+        correct: [1],
+        link: [],
+        explanation: ["From php.net, the function prototype is: array array_merge ( array $array1 [, array $... ] )"]
+    },
+    a181: {
+        correct: [2],
+        link: ['http://php.net/manual/en/pdostatement.fetch.php'],
+        explanation: ["The other answers are all things you could obtain using different fetch modes in PHP, but the default is PDO_FETCH_BOTH. You can pass the fetch mode, but it isn't required."]
+    },
+    a182: {
+        correct: ["1"],
+        link: ['http://uk1.php.net/preg_match'],
+        explanation: ["Tricky question, because preg_match() returns an integer – 1 if there were matches and 0 otherwise.  To capture the matches, you pass a third parameter for them to be placed into.  The pattern requires four lower case letters followed by a space, but doesn't anchor on to anthing so 'ttle ' does match."]
+    },
+    a183: {
+        correct: [5],
+        link: [],
+        explanation: ["We usually use this when we don't have any parameters to pass in, for example fetching the contents of a lookup table."]
+    },
+    a184: {
+        correct: [3],
+        link: [],
+        explanation: ["The 401 status code means 'Not Authorised', so the user will be asked to identify themselves."]
+    },
+    a185: {
+        correct: [2],
+        link: [],
+        explanation: ["There are a few things to spot here – first of all, don't be alarmed by all the punctuation in the regex, we'll get to that.  First the delimiters are # characters (you may know this as a pound or a hash, depending where your English is from).  These are valid delimiters, the only requirement is that whatever you pick to put at the start must be matched at the end. \nThe delimiters have spaces inside them, so there must be spaces at the start and end of any matches.  Then we must have any number of word characters – the ? after the * means that the match isn't greedy (this happens again towards the end of the pattern) – followed by any two vowels, then any more word characters.\nThe first match is \" moose \" but this uses up the space before \"loose\", so that can't match, but \" about \" does, but \"house\" which looks like it should match is missing the trailing space.\nStill with me?  preg_match_all returns results in a nested array – the first element contains an array of all matches."]
+    },
+    a186: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a187: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a188: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a189: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a190: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a191: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a192: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a193: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a194: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a195: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a196: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a197: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a198: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a199: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a200: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a201: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a202: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a203: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a204: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a205: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a206: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a207: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a208: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a209: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a210: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a211: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a212: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a213: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a214: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a215: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a216: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a217: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a218: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a219: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a220: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a221: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a222: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a223: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a224: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a225: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a226: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a227: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a228: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a229: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a230: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a231: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a232: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a233: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a234: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a235: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a236: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a237: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a238: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a239: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a240: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a241: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a242: {
+        correct: [],
+        link: [],
+        explanation: []
+    },
+    a243: {
+        correct: [],
+        link: [],
+        explanation: []
     }
-
 };
 
