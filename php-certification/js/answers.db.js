@@ -1015,7 +1015,7 @@ var answersDataBase = {
     },
     a11: {
         correct: [2, 4, 5],
-        link: ['http://ru.php.net/manual/en/function.die.php', 'http://php.net/manual/en/function.halt-compiler.php', 'http://ru.php.net/manual/en/function.exit.php']
+        link: ['http://www.php.net/manual/en/function.die.php', 'http://php.net/manual/en/function.halt-compiler.php', 'http://www.php.net/manual/en/function.exit.php']
     },
     a12: {
         correct: [1],
@@ -1027,7 +1027,7 @@ var answersDataBase = {
     },
     a14: {
         correct: [4],
-        link: ['http://ru.php.net/manual/en/function.func-get-args.php']
+        link: ['http://www.php.net/manual/en/function.func-get-args.php']
     },
     a15: {
         correct: [5],
@@ -1161,31 +1161,31 @@ var answersDataBase = {
     },
     a48: {
         correct: [2, 4, 5],
-        link: ['http://ru.php.net/manual/en/function.split.php', 'http://ru.php.net/manual/en/function.preg-match-all.php', 'http://ru.php.net/manual/en/function.explode.php']
+        link: ['http://www.php.net/manual/en/function.split.php', 'http://www.php.net/manual/en/function.preg-match-all.php', 'http://www.php.net/manual/en/function.explode.php']
     },
     a49: {
         correct: [1, 2, 3],
-        link: ['http://ru.php.net/manual/en/function.range.php', 'http://ru.php.net/manual/en/function.explode.php']
+        link: ['http://www.php.net/manual/en/function.range.php', 'http://www.php.net/manual/en/function.explode.php']
     },
     a50: {
         correct: [3],
-        link: ['http://ru.php.net/manual/en/function.array-slice.php', 'http://ru.php.net/manual/en/function.array-merge.php', 'http://ru.php.net/manual/en/function.array-splice.php']
+        link: ['http://www.php.net/manual/en/function.array-slice.php', 'http://www.php.net/manual/en/function.array-merge.php', 'http://www.php.net/manual/en/function.array-splice.php']
     },
     a51: {
         correct: [4],
-        link: ['http://ru.php.net/manual/en/function.array-unshift.php']
+        link: ['http://www.php.net/manual/en/function.array-unshift.php']
     },
     a52: {
         correct: [2],
-        link: ['http://ru.php.net/manual/en/function.array-walk-recursive.php']
+        link: ['http://www.php.net/manual/en/function.array-walk-recursive.php']
     },
     a53: {
         correct: [1],
-        link: ['http://ru.php.net/manual/en/function.extract.php']
+        link: ['http://www.php.net/manual/en/function.extract.php']
     },
     a54: {
         correct: [3],
-        link: ['http://ru.php.net/manual/en/function.array-combine.php', 'http://ru.php.net/manual/en/function.array-reverse.php']
+        link: ['http://www.php.net/manual/en/function.array-combine.php', 'http://www.php.net/manual/en/function.array-reverse.php']
     },
     a55: {
         correct: [1, 3, 4, 5],
@@ -1193,15 +1193,15 @@ var answersDataBase = {
     },
     a56: {
         correct: [2],
-        link: ['http://ru.php.net/manual/en/function.array-count-values.php']
+        link: ['http://www.php.net/manual/en/function.array-count-values.php']
     },
     a57: {
         correct: [5],
-        link: ['http://ru.php.net/manual/en/function.list.php']
+        link: ['http://www.php.net/manual/en/function.list.php']
     },
     a58: {
         correct: [5],
-        link: ['http://ru.php.net/manual/en/function.array-intersect.php']
+        link: ['http://www.php.net/manual/en/function.array-intersect.php']
     },
     a59: {
         correct: [1, 3],
@@ -1209,27 +1209,27 @@ var answersDataBase = {
     },
     a60: {
         correct: [1],
-        link: ['http://ru.php.net/manual/en/function.isset.php']
+        link: ['http://www.php.net/manual/en/function.isset.php']
     },
     a61: {
         correct: [2, 3],
-        link: ['http://php.net/manual/en/language.operators.string.php', ' http://ru.php.net/manual/en/function.implode.php']
+        link: ['http://php.net/manual/en/language.operators.string.php', ' http://www.php.net/manual/en/function.implode.php']
     },
     a62: {
         correct: [5],
-        link: ['http://ru.php.net/manual/en/function.substr.php', ' http://ru.php.net/manual/en/function.strpos.php']
+        link: ['http://www.php.net/manual/en/function.substr.php', ' http://www.php.net/manual/en/function.strpos.php']
     },
     a63: {
         correct: [1, 2, 3, 4],
-        link: ['http://ru.php.net/manual/en/function.strcasecmp.php', ' http://ru.php.net/manual/en/function.strcmp.php']
+        link: ['http://www.php.net/manual/en/function.strcasecmp.php', ' http://www.php.net/manual/en/function.strcmp.php']
     },
     a64: {
         correct: [1],
-        link: ['http://ru.php.net/manual/en/function.md5.php']
+        link: ['http://www.php.net/manual/en/function.md5.php']
     },
     a65: {
         correct: [4],
-        link: ['http://ru.php.net/manual/en/function.str-split.php', ' http://ru.php.net/manual/en/function.preg-split.php', 'http://ru.php.net/manual/en/function.explode.php']
+        link: ['http://www.php.net/manual/en/function.str-split.php', ' http://www.php.net/manual/en/function.preg-split.php', 'http://www.php.net/manual/en/function.explode.php']
     },
     a66: {
         correct: [2]
@@ -1244,27 +1244,27 @@ var answersDataBase = {
     },
     a69: {
         correct: [1],
-        link: ['http://ru2.php.net/manual/en/function.strcmp.php', ' http://php.net/manual/en/language.operators.comparison.php']
+        link: ['http://www.php.net/manual/en/function.strcmp.php', ' http://php.net/manual/en/language.operators.comparison.php']
     },
     a70: {
         correct: [5],
-        link: ['http://ru.php.net/manual/en/function.sprintf.php']
+        link: ['http://www.php.net/manual/en/function.sprintf.php']
     },
     a71: {
         correct: [1],
-        link: ['http://ru.php.net/manual/en/function.htmlentities.php', 'http://ru.php.net/manual/en/function.htmlspecialchars.php']
+        link: ['http://www.php.net/manual/en/function.htmlentities.php', 'http://www.php.net/manual/en/function.htmlspecialchars.php']
     },
     a72: {
         correct: [2],
-        link: ['http://ru.php.net/manual/en/function.strtok.php']
+        link: ['http://www.php.net/manual/en/function.strtok.php']
     },
     a73: {
         correct: [2, 5],
-        link: ['http://ru.php.net/manual/en/function.strtoupper.php', 'http://ru.php.net/manual/en/function.strrev.php']
+        link: ['http://www.php.net/manual/en/function.strtoupper.php', 'http://www.php.net/manual/en/function.strrev.php']
     },
     a74: {
         correct: [2],
-        link: ['http://ru.php.net/manual/en/function.parse-str.php']
+        link: ['http://www.php.net/manual/en/function.parse-str.php']
     },
     a75: {
         correct: [3, 4],
@@ -1276,7 +1276,7 @@ var answersDataBase = {
     },
     a77: {
         correct: [2],
-        link: ['http://ru.php.net/manual/en/function.ereg.php']
+        link: ['http://www.php.net/manual/en/function.ereg.php']
     },
     a78: {
         correct: [4],
@@ -1284,15 +1284,15 @@ var answersDataBase = {
     },
     a79: {
         correct: [3],
-        link: ['http://ru.php.net/manual/en/function.session-set-save-handler.php']
+        link: ['http://www.php.net/manual/en/function.session-set-save-handler.php']
     },
     a80: {
         correct: [2, 5],
-        link: ['http://ru.php.net/manual/en/function.session-destroy.php']
+        link: ['http://www.php.net/manual/en/function.session-destroy.php']
     },
     a81: {
         correct: [3],
-        link: ['http://ru2.php.net/manual/en/function.session-id.php']
+        link: ['http://www.php.net/manual/en/function.session-id.php']
     },
     a82: {
         correct: [2],
@@ -1308,7 +1308,7 @@ var answersDataBase = {
     },
     a85: {
         correct: [2],
-        link: ['http://ru.php.net/manual/en/function.setcookie.php']
+        link: ['http://www.php.net/manual/en/function.setcookie.php']
     },
     a86: {
         correct: [3],
@@ -1316,7 +1316,7 @@ var answersDataBase = {
     },
     a87: {
         correct: [1],
-        link: ['http://ru.php.net/manual/en/function.setrawcookie.php']
+        link: ['http://www.php.net/manual/en/function.setrawcookie.php']
     },
     a88: {
         correct: [4],
@@ -1324,7 +1324,7 @@ var answersDataBase = {
     },
     a89: {
         correct: [1],
-        link: ['http://ru.php.net/manual/en/function.headers-list.php']
+        link: ['http://www.php.net/manual/en/function.headers-list.php']
     },
     a90: {
         correct: [3],
@@ -1336,11 +1336,11 @@ var answersDataBase = {
     },
     a92: {
         correct: [1],
-        link: ['http://ru2.php.net/manual/en/function.strip-tags.php']
+        link: ['http://www.php.net/manual/en/function.strip-tags.php']
     },
     a93: {
         correct: [3],
-        link: ['http://ru2.php.net/manual/en/function.strip-tags.php']
+        link: ['http://www.php.net/manual/en/function.strip-tags.php']
     },
     a94: {
         correct: [3],
@@ -1356,7 +1356,7 @@ var answersDataBase = {
     },
     a97: {
         correct: [2, 3, 4],
-        link: ['http://ru.php.net/manual/en/function.exec.php']
+        link: ['http://www.php.net/manual/en/function.exec.php']
     },
     a98: {
         correct: [4, 5],
@@ -1380,11 +1380,11 @@ var answersDataBase = {
     },
     a103: {
         correct: [3, 5],
-        link: ['http://ru.php.net/manual/en/intro.w32api.php', 'http://ru.php.net/manual/en/intro.dio.php']
+        link: ['http://www.php.net/manual/en/intro.w32api.php', 'http://www.php.net/manual/en/intro.dio.php']
     },
     a104: {
         correct: [1, 3],
-        link: ['http://ru.php.net/manual/en/function.array-intersect-key.php', 'http://ru.php.net/manual/en/function.array-diff-key.php']
+        link: ['http://www.php.net/manual/en/function.array-intersect-key.php', 'http://www.php.net/manual/en/function.array-diff-key.php']
     },
     a105: {
         correct: [2, 4],
@@ -1427,7 +1427,7 @@ var answersDataBase = {
     },
     a115: {
         correct: [3],
-        link: ['http://ru.php.net/manual/en/mysqli-stmt.bind-result.php']
+        link: ['http://www.php.net/manual/en/mysqli-stmt.bind-result.php']
     },
     a116: {
         correct: [5],
@@ -1479,7 +1479,7 @@ var answersDataBase = {
     },
     a128: {
         correct: [2],
-        link: ['http://ru2.php.net/manual/en/function.domdocument-get-elements-by-tagname.php']
+        link: ['http://www.php.net/manual/en/function.domdocument-get-elements-by-tagname.php']
     },
     a129: {
         correct: [3, 4],
@@ -1554,7 +1554,7 @@ var answersDataBase = {
     },
     a147: {
         correct: [1, 4],
-        link: ['http://www.php.net/manual/en/streamwrapper.stream-seek.php', 'http://ru.php.net/manual/en/function.stream-get-meta-data.php', 'http://php.net/manual/ru/function.popen.php']
+        link: ['http://www.php.net/manual/en/streamwrapper.stream-seek.php', 'http://www.php.net/manual/en/function.stream-get-meta-data.php', 'http://php.net/manual/ru/function.popen.php']
     },
     a148: {
         correct: [2],
@@ -1702,7 +1702,7 @@ var answersDataBase = {
     },
     a182: {
         correct: ["1"],
-        link: ['http://uk1.php.net/preg_match'],
+        link: ['http://www.php.net/preg_match'],
         explanation: ["Tricky question, because preg_match() returns an integer – 1 if there were matches and 0 otherwise.  To capture the matches, you pass a third parameter for them to be placed into.  The pattern requires four lower case letters followed by a space, but doesn't anchor on to anthing so 'ttle ' does match."]
     },
     a183: {
