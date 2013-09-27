@@ -1721,294 +1721,294 @@ var answersDataBase = {
         explanation: ["There are a few things to spot here – first of all, don't be alarmed by all the punctuation in the regex, we'll get to that.  First the delimiters are # characters (you may know this as a pound or a hash, depending where your English is from).  These are valid delimiters, the only requirement is that whatever you pick to put at the start must be matched at the end. \nThe delimiters have spaces inside them, so there must be spaces at the start and end of any matches.  Then we must have any number of word characters – the ? after the * means that the match isn't greedy (this happens again towards the end of the pattern) – followed by any two vowels, then any more word characters.\nThe first match is \" moose \" but this uses up the space before \"loose\", so that can't match, but \" about \" does, but \"house\" which looks like it should match is missing the trailing space.\nStill with me?  preg_match_all returns results in a nested array – the first element contains an array of all matches."]
     },
     a186: {
-        correct: [],
+        correct: ['dreaming8'],
         link: [],
-        explanation: []
+        explanation: ["We turn on output buffering, put 'dreaming' into it, then grab the contents of the output buffer – but we haven't destroyed it.  So when we echo strlen('dreaming'), an 8 goes into the output buffer as well, and then we flush it."]
     },
     a187: {
-        correct: [],
+        correct: [1],
         link: [],
-        explanation: []
+        explanation: ["Status code 403 means 'Forbidden' – the user has provided credentials but still is not allowed to have acecss to this resource."]
     },
     a188: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["The explode function splits a string into an array, but the split is ', ' (note the space after the comma).  $a therefore has ', ' in it four times, making five pieces ('b,c' and 'ef' are two of the pieces.  Then we add two more elements on the end (array_merge doesn't mind duplicate entries) , making 7 in total."]
     },
     a189: {
-        correct: [],
+        correct: [3],
         link: [],
-        explanation: []
+        explanation: ["Hopefully you spotted that 0x8 is hexadecimal 8 ... which is the same as decimal 8. 0x80 is 8x16 (we use base 16 rather than base 10) which is 128.  So 8+8+80+128 = 224"]
     },
     a190: {
-        correct: [],
+        correct: [1],
         link: [],
-        explanation: []
+        explanation: ["The others are all valid array functions but don't do what we need"]
     },
     a191: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["There are octal numbers in here, look for the leading zero on 05 and 011.  octal 5 is the same as decimal 5, our string '4' will convert to a number when we try to add it to any other number, and 011 in octabl is (8 + 1) = 9.  Hopefuly you knew that ord('a') was 97 and got 115 (or ('A') is 65, in case you're interested)"]
     },
     a192: {
-        correct: [],
+        correct: [5],
         link: [],
-        explanation: []
+        explanation: ["The function is never called."]
     },
     a193: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [4, 7],
+        link: ["http://www.php.net/manual/en/ini.list.php"],
+        explanation: ["None of the others are valid configuration directives for PHP"]
     },
     a194: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["Those <php> style tags aren't valid for PHP."]
     },
     a195: {
-        correct: [],
+        correct: [1],
         link: [],
-        explanation: []
+        explanation: ["Strlen($a) is 1, then empty($a) is true, so we hit the first leg of the ternary and echo $a, which is zero.  The third digit comes from the final line, $a is evaluated as false so we echo 5."]
     },
     a196: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["We define a constant but they are case-sensitive in PHP, so tree is an undefined constant.  This is assumed to be a string in PHP (for historical reasons) but causes a notice to be emitted."]
     },
     a197: {
-        correct: [],
+        correct: [1, 4, 6],
         link: [],
-        explanation: []
+        explanation: ["Valid constant names in PHP can be uppercase or lowercase, and contain numbers or underscores, but can't start with a number."]
     },
     a198: {
-        correct: [],
+        correct: [3],
         link: [],
-        explanation: []
+        explanation: ["Did you spot the octal 5? It's irrelevant, because five is the same in base eight or base ten.  The operator precedence means we do 17 + 5 = 22 first, then we do 42 & 22 ... & is a binary operation, so we need those numbers in binary first.\n22 in binary: 10110.\n42 in binary: 101010. \nThe only column where both numbers have a 1, is in the 2 place."]
     },
     a199: {
-        correct: [],
+        correct: [3],
         link: [],
-        explanation: []
+        explanation: ["The range(3,9) gives us an array containing all integers from 3 to 9.  When we foreach over them, we can't change the values in the array, so the contents of $a remain unchanged (you need to use the array and the key to update a value during foreach)"]
     },
     a200: {
-        correct: [],
+        correct: [1],
         link: [],
-        explanation: []
+        explanation: ["The other answers are only partial.  We start with 2 and 1 from the strlen and count of $a.  Then we hit the do/while loop.  This executes, but $a is NOT <=1 so the loop ends immediately."]
     },
     a201: {
-        correct: [],
+        correct: ["0"],
         link: [],
-        explanation: []
+        explanation: ["First we call c() with three zero arguments, then we return those in a strange order (but they are all still zero).  These get assigned into variables $a, $b and $c by the list() function and $b is zero."]
     },
     a202: {
-        correct: [],
+        correct: [5],
         link: [],
-        explanation: []
+        explanation: ["This is a sharp question! We have $a as a string (containing symbols to make things more fun) and $b as a pointer to $a.  We call b($b) which outputs "-!" and then we pass the result of that into a() ... but b() doesn't return anything so null gets passed into a() and only the & is echoed."]
     },
     a203: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [2, 4, 7],
+        link: ["http://www.php.net/manual/en/language.variables.predefined.php"],
+        explanation: ["Familiarity with PHP will help you on this one."]
     },
     a204: {
-        correct: [],
+        correct: [1, 3],
         link: [],
-        explanation: []
+        explanation: ["Applications will use a registry (or one of each of a number of related registry classes) to store values to be used multiple times in an application."]
     },
     a205: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["It's safe to call static methods dynamically, and you can do so – but the opposite is nottrue so you can only call non-static methods non-statically."]
     },
     a206: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [3],
+        link: ["http://www.php.net/sort"],
+        explanation: ["Look out for sort(), it (and its sister functions) return true!"]
     },
     a207: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [2],
+        link: ["http://www.php.net/arrayaccess"],
+        explanation: ["The ArrayAccess interface is part of the SPL."]
     },
     a208: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["The scope resolution operator (the two colons ::) indicates this is a class property, and self means it's the property of the current class."]
     },
     a209: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [1],
+        link: ["http://www.php.net/namespaces"],
+        explanation: ["We use the backslash as the namespace operator in PHP."]
     },
     a210: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["The $x outside the function has no link with $x inside the function.  $x inside the function is a static variable so it retains its value between function calls. \nThe first time we call print_conditional(), $x is static but undefined.  The $x++ post increment operator returns the old value, then increments the variable, so on the first pass, the if() returns false and then $x is 1.  Look very closely at that if! \nThere are no {} brackets so only the 'many' line is conditional, the 'good' and 'things' lines will run regardless (this is why indentation should follow program flow).  On the second call, $x is 1 so the if() evaluates to true and we get the 'many' line as well."]
     },
     a211: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["The html_errors setting enables hyperlinks and formatting in any error output; other libraries (for example Xdebug) may also observe this setting."]
     },
     a212: {
-        correct: [],
+        correct: [5],
         link: [],
-        explanation: []
+        explanation: ["The function is never called."]
     },
     a213: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["This is the sort() function returning true, which makes no sense with array notation so PHP doesn't return us anything at all."]
     },
     a214: {
-        correct: [],
+        correct: [3],
         link: [],
-        explanation: []
+        explanation: ["We have a class Content and another class Article which extends Content.  When we instantiate a new Article() the function article() becomes our constructor because the method name meets the class name (this is from PHP 4 days but is still true) so we echo '<i>Post:</i>'.  Then we call publish() on our object, which calls Article::article() again (NOT Content::article()), and returns true.  We echoed the output of our call and the boolean becomes a 1 when we echo it."]
     },
     a215: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["Look closely at that parent object – it already defines the method we need to satisfy the interface.  Therefore we can implement it in the child class without needing to redeclare the method – everything will work fine."]
     },
     a216: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [4],
+        link: ["http://www.php.net/strcmp"],
+        explanation: ["The key here is knowing that strcmp is case-sensitive but that it returns zero if things match.  For anything that isn't zero, the 'if' will evaluate to true."]
     },
     a217: {
-        correct: [],
+        correct: [3],
         link: [],
-        explanation: []
+        explanation: ["This data is PHP's serialized format so you wamt to unserialize it – it does look a bit like JSON, but the clue is that the example here includes information about the data type, which JSON does not."]
     },
     a218: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [1, 3, 6],
+        link: ["http://www.php.net/manual/en/functions.anonymous.php"],
+        explanation: ["Anonymous functions were new in PHP 5.3, however hopefully either experience or study means you were able to pick your way through this question."]
     },
     a219: {
-        correct: [],
+        correct: ["Q"],
         link: [],
-        explanation: []
+        explanation: ["Take the time to work this one out – it looks tiny but it still needs some attention. \nFirst we take ord('a') = 97 and ord('A') = 65, add them together (162) and then divide by 2 to make 81. Now count forwards from 65 (B is 66, C is 67, and so on) until you reach 81.  The chr() function is the opposite of ord() and makes numbers back into letters."]
     },
     a220: {
-        correct: [],
+        correct: [3, 5],
         link: [],
-        explanation: []
+        explanation: ["Either of these solutions would work pretty well – for a very large file, loading it into memory  with file_get_contents or something similar would make PHP run out of memory (or at least use up a lot of it!) so it's better to use a file-pointer-based approach and do it a line at a time."]
     },
     a221: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [1, 5, 7],
+        link: ["http://www.php.net/manual/en/book.filter.php", "http://www.php.net/manual/en/book.ctype.php", "http://www.php.net/manual/en/ref.pcre.php"],
+        explanation: ["The key word in the question is 'validate' – some of the options to choose from are great ways to sanitize data, but not to validate it."]
     },
     a222: {
-        correct: [],
+        correct: [2, 4, 8],
         link: [],
-        explanation: []
+        explanation: ["Some of these other options were removed in PHP 5.4 but since this is PHP 5.3 certification, imagine that 5.4 never happened!"]
     },
     a223: {
-        correct: [],
+        correct: [1],
         link: [],
-        explanation: []
+        explanation: ["There are three steps here.  First, take the hexadecimal numbers and convert them to decimal, which gives you (242 + 9) = 251.  Next, write 251 in binary (it's 255 less 4 if you like shortcuts) which is 11111011. \nNow shift that number to the right three steps, ignoring the digits which get shifted away to the right of the 1 column.  This should give you 11111 – which is 31 when you turn it back into decimal."]
     },
     a224: {
-        correct: [],
+        correct: [5],
         link: [],
-        explanation: []
+        explanation: ["It is possible to make all kinds of requests and set any headers you like by setting the context on a stream.  Here, we're setting the method option inside the http element of the context."]
     },
     a225: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: ["X"],
+        link: ["http://www.php.net/ksort"],
+        explanation: ["There are lots of ways of sorting arrays, by key or by value, keeping keys intact or not – this time you need ksort."]
     },
     a226: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [4],
+        link: ["http://www.php.net/chr"],
+        explanation: ["The chr() is the opposite of the ord() function."]
     },
     a227: {
-        correct: [],
+        correct: [2, 3, 5, 6],
         link: [],
-        explanation: []
+        explanation: ["This question is really about polymorphism.  Objects will claim to be instances of the classes they are actually instances of, but will also identify themselves as any of their ancestors or as any interface that their class, or any ancestor class, implements."]
     },
     a228: {
-        correct: [],
+        correct: [3, 4, 7],
         link: [],
-        explanation: []
+        explanation: ["PHP defaults to files, and many other options are available but providing you have memcache or sqlite, either of these can be use for session storage."]
     },
     a229: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["Made famous by ruby on rails, the active record pattern is common in model layers to handle the translation between the objects we use in applications and the way we store them."]
     },
     a230: {
-        correct: [],
+        correct: [3],
         link: [],
-        explanation: []
+        explanation: ["Here we see the contents of the $_COOKIE array, but setting another cookie will not make any difference until the next request.  The contents of $_COOKIE are output again, then we unset the array.  We haven't destroyed any of the cookies being exchanged, but we have removed them from that variable in our script. So we don't see the output (but there would be a notice if they were enabled)."]
     },
     a231: {
-        correct: [],
+        correct: [4],
         link: [],
-        explanation: []
+        explanation: ["In this script, we have an anonymous function.  We declare it and assign it to $i. Then we call it, and pass in $j which is set to 6. \nThe $i inside the scope of the function has no link with anything outside, so it's fine (although confusing!) to use the variable name there. \n6 +4 is 10, then we increment $i and make 11, then return it."]
     },
     a232: {
-        correct: [],
+        correct: [5],
         link: [],
-        explanation: []
+        explanation: ["Nothing is returned by swings() so there's no output echoed."]
     },
     a233: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["This is really similar to an earlier question but don't be fooled; there are some differences. \n$x is 1 and we call print_conditional, passing in $x. \nThe post increment means the if is evaluated to true and all three echo lines will be executed. \nThe function returns $x but it isn't assigned so $x is still 1. \nIn the last two lines we increment $x and pass it into the function again, but this time the if does not evaluate to true. \nThe absence of curly braces however means that we do still get the 'one' and second 'none' line."]
     },
     a234: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [4],
+        link: ["http://www.php.net/manual/en/language.oop5.magic.php"],
+        explanation: ["This question is about magic methods; these are a key element of OOP theory in PHP."]
     },
     a235: {
-        correct: [],
+        correct: [1],
         link: [],
-        explanation: []
+        explanation: ["We start off with the range statement which produces an array containing the values: 5,6,7,8, used only for count() purposes, and another array with letters in. \nThe for loop has a foreach inside it, but with a break statement, so the for loop operates as normal but the foreach loop only gets run once before we break out of it, on each turn around the for loop."]
     },
     a236: {
-        correct: [],
+        correct: [2],
         link: [],
-        explanation: []
+        explanation: ["Applying ucfirst to $s makes no difference, but exploding on a space splits the sentence into an array with one word in each element.  We sort the words but look out because sort is case-sensitive and will sort the capital letter first, then the rest alphabetically."]
     },
     a237: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [4],
+        link: ["http://www.php.net/manual/en/soapserver.setclass.php"],
+        explanation: ["None of the other options exist or are valid; the missing line needs the setClass() call."]
     },
     a238: {
-        correct: [],
-        link: [],
+        correct: [2, 4, 7],
+        link: ["http://www.php.net/manual/en/language.oop5.magic.php"],
         explanation: []
     },
     a239: {
-        correct: [],
+        correct: ["X"],
         link: [],
-        explanation: []
+        explanation: ["This method will make the first letter of every word into an upper case letter, regardless of its previous case."]
     },
     a240: {
-        correct: [],
+        correct: [1, 4],
         link: [],
-        explanation: []
+        explanation: ["One of the answers here isn't a real PHP function (option B, mysql_true_escape_string) and the others aren't effective against SQL attacks (although they're great in other security-related uses)"]
     },
     a241: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [3],
+        link: ["http://php.net/manual/en/language.oop5.late-static-bindings.php"],
+        explanation: ["What happens is that we instantiate an N (confusingly stored in $m, and then call m() on it which, after passing the typehint successfully, calls the identify() method in the N class. \nThis is inherited from M, but PHP will use M where we put 'self' instead of using N. \nLate static binding means we could use 'static' instead of 'self' and get 'November' as the output."]
     },
     a242: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [5],
+        link: ["http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.nowdoc"],
+        explanation: ["This question shows a NOWDOC rather than a HEREDOC, so the variables won't be interpreted."]
     },
     a243: {
-        correct: [],
-        link: [],
-        explanation: []
+        correct: [3],
+        link: ["http://www.php.net/manual/en/function.dom-import-simplexml.php"],
+        explanation: ["If you didn't remember the name of the function, perhaps you can eliminate some of the other options.  Options B, D and E are nonsense and don't exist in PHP (although DOMDocument has a saveXML() method).  Option A looks plausible but you don't create DOMElement from XML – you create a DOMDocument."]
     }
 };
 
