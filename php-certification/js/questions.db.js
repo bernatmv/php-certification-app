@@ -872,7 +872,7 @@ var questionsDataBase = {
         answer: {
             options: ['Unset the variable in $HTTP_SESSION_VARS', 'Use the session_destroy() function', 'Use the session_unset() function', 'unset the variable in $_SESSION using unset()', 'Any of the above are acceptable in PHP 5'],
             correct: [4],
-            link: ["http://docs.php.net/manual/ru/session.examples.basic.php"],
+            link: ["http://docs.php.net/manual/en/session.examples.basic.php"],
             explanation: []
         }
     },
@@ -1257,7 +1257,7 @@ var questionsDataBase = {
         answer: {
             options: ['mysqli_connect_error();', 'mysqli_connect_error($link);', 'mysqli_error();', '$_MySQL[\'connect_error\']', 'mysqli_get_connect_error();'],
             correct: [1],
-            link: ["http://php.net/manual/ru/mysqli.connect-error.php"],
+            link: ["http://php.net/manual/en/mysqli.connect-error.php"],
             explanation: []
         }
     },
@@ -1268,7 +1268,7 @@ var questionsDataBase = {
         answer: {
             options: ['A transaction must be begun and the variables must be assigned', 'Each value must be assigned prior to calling mysqli_bind_param(), and thus nothing should be done', 'Use mysqli_bind_value() to assign each of the values', 'Assign $myinteger, $mydouble, $myblob, $myvarchar the proper values'],
             correct: [4],
-            link: ["http://www.php.net/manual/en/mysqli-stmt.bind-param.php", "http://php.net/manual/ru/mysqli.prepare.php"],
+            link: ["http://www.php.net/manual/en/mysqli-stmt.bind-param.php", "http://php.net/manual/en/mysqli.prepare.php"],
             explanation: []
         }
     },
@@ -1455,7 +1455,7 @@ var questionsDataBase = {
         answer: {
             options: ['$dom-&gt;createTextNode("Hello, World");', '$dom-&gt;appendElement($title, "text", "Hello, world!");', '$dom-&gt;appendTextNode($title, "Hello, World!");', '$dom-&gt;createElement(\'text\', "Hello, World");', 'None of the above'],
             correct: [5],
-            link: ["http://php.net/manual/ru/domdocument.createtextnode.php", "http://php.net/manual/ru/domdocument.createelement.php"],
+            link: ["http://php.net/manual/en/domdocument.createtextnode.php", "http://php.net/manual/en/domdocument.createelement.php"],
             explanation: []
         }
     },
@@ -1499,7 +1499,7 @@ var questionsDataBase = {
         answer: {
             options: ['trim(($p[1]));', 'trim(strip_tags(($p-&gt;asText())));', 'trim(strip_tags(($p-&gt;asXML())));', 'trim(($p-&gt;asXML()));', 'strip_tags(($p-&gt;asXML()));'],
             correct: [3],
-            link: ["http://php.net/manual/ru/simplexmlelement.asxml.php"],
+            link: ["http://php.net/manual/en/simplexmlelement.asxml.php"],
             explanation: []
         }
     },
@@ -1631,7 +1631,7 @@ var questionsDataBase = {
         answer: {
             options: ['They are always seekable', 'When used properly they significantly reduce memory consumption', 'They can be applied to any data source', 'They are always bi-directional', 'They can be filtered'],
             correct: [1, 4],
-            link: ["http://www.php.net/manual/en/streamwrapper.stream-seek.php", "http://www.php.net/manual/en/function.stream-get-meta-data.php", "http://php.net/manual/ru/function.popen.php"],
+            link: ["http://www.php.net/manual/en/streamwrapper.stream-seek.php", "http://www.php.net/manual/en/function.stream-get-meta-data.php", "http://php.net/manual/en/function.popen.php"],
             explanation: []
         }
     },
@@ -1697,7 +1697,7 @@ var questionsDataBase = {
         answer: {
             options: ['gzip://foo.gz?level=9', 'compress.zip://foo.gz?level=9', 'compress.zlib://foo.gz', 'compress.gzip://foo.gz?level=9', 'zlib://foo.gz'],
             correct: [3],
-            link: ["http://php.net/manual/ru/wrappers.compression.php"],
+            link: ["http://php.net/manual/en/wrappers.compression.php"],
             explanation: []
         }
     },
@@ -1730,7 +1730,7 @@ var questionsDataBase = {
         answer: {
             options: ['stream_get_blocking', 'stream_get_meta_data', 'stream_is_blocking', 'stream_get_blocking_mode'],
             correct: [2],
-            link: ["http://php.net/manual/ru/function.stream-get-meta-data.php"],
+            link: ["http://php.net/manual/en/function.stream-get-meta-data.php"],
             explanation: []
         }
     },
@@ -2693,3 +2693,45 @@ var questionsDataBase = {
     }
 };
 
+/*
+ $answersHtml .= <<<ANSWER
+ <li class="question-answer">
+ <input type="text" name="answer" id="{$count}_{$key}"/>
+ <label for="{$count}_{$key}" id="free_form_answer_text"><i>Write response</i></label>
+ </li>
+ ANSWER;
+
+ $answersHtml .= <<<ANSWER
+ <li class="question-answer">
+ <input type="radio" name="answer" value="{$key}" id="{$count}_{$key}"/>
+ <label for="{$count}_{$key}">{$ansText}</label>
+ </li>
+ ANSWER;
+
+ $answersHtml .= <<<ANSWER
+ <li class="question-answer">
+ <input name="answer[]" type="checkbox" value="{$key}" id="{$count}_{$key}"/>
+ <label for="{$count}_{$key}">{$ansText}</label>
+ </li>
+ ANSWER;
+
+ $html .= <<<QUESTION
+ q{$count}: '<div id="question-{$count}">
+ <div id="question-{$count}-info" class="question-info" qid="{$count}" style="display:none;"></div>
+ <div id="question-{$count}-number" class="question-number">{$qcount}</div>
+ <div id="question-{$count}-text" class="question-text">
+ {$qhtml}
+ </div>
+ <div id="question-{$count}-answer" class="question-answer">
+ <form id="question-{$count}-form" onsubmit="return false;">
+ <ul>
+ $answersHtml
+ </ul>
+ </form>
+ </div>
+ <div id="question-{$count}-answer-note" class="question-answer-note"></div>
+ </div>',
+
+ QUESTION;
+
+*/

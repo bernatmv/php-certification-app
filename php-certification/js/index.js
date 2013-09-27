@@ -47,7 +47,7 @@ var app = {
     },
 
     onDeviceReady: function() {
-        if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked');
+        //if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked');
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
