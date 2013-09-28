@@ -1,8 +1,8 @@
 /*
     TYPE:
-    0 = Open Question
-    1 = Single answer
-    2 = multiple choice
+    1 = Open Question
+    2 = Single answer
+    3 = multiple choice
 
     CATEGORY:
     0 = PHP Basics
@@ -22,6 +22,7 @@ var questionsDataBase = {
         id: 1,
         text: 'Which of the following tags are an acceptable way to begin a PHP Code block?',
         type: 3,
+        category: 0,
         answer: {
             options: ['&lt;SCRIPT LANGUAGE="php"&gt;', '&lt;!', '&lt;%', '&lt;?php', '&lt;?'],
             correct: [1, 3, 4, 5],
@@ -33,94 +34,103 @@ var questionsDataBase = {
         id: 2,
         text: 'Which of the following are valid PHP variables?',
         type: 3,
+        category: 0,
         answer: {
             options: ['@$foo', '&amp;$variable', '${0x0}', '$variable', '$0x0'],
             correct: [1, 2, 3, 4],
             link: ["http://php.net/manual/en/language.variables.php"],
-            explanation: []
+            explanation: ["@$foo is a valid $foo variable with the @ error control operator attached to it. \n&amp;$variable is a valid $variable variable with the & reference operator attached to it. \n${0x0} uses a valid curly braces syntax, anything inside the braces will be interpolated. So 0x0 will be interpolated to 0 and stored as a variable with the name 0."]
         }
     },
     q3: {
         id: 3,
         text: 'What is the best way to iterate and modify every element of an array using PHP 5?',
         type: 2,
+        category: 8,
         answer: {
             options: ['You cannot modify an array during iteration', 'for($i = 0; $i &lt; count($array); $i++) { /* ... */ }', 'foreach($array as $key =&gt; &amp;$val) { /* ... */ }', 'foreach($array as $key =&gt; $val) { /* ... */ }', 'while(list($key, $val) = each($array)) { /* ... */'],
             correct: [3],
             link: ["http://php.net/manual/en/control-structures.foreach.php"],
-            explanation: []
+            explanation: ["As stated in PHP manual (see link): \"In order to be able to directly modify array elements within the loop precede $value with &. In that case the value will be assigned by reference.\""]
         }
     },
     q4: {
         id: 4,
         text: 'What is the output of the following PHP code? <pre class=\'brush: php; html-script: true\'>&lt;?phpdefine(\'FOO\', 10);$array = array(10 =&gt; FOO, "FOO" =&gt; 20);print $array[$array[FOO]] * $array["FOO"];?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['FOO', '100', '200', '20', '10'],
             correct: [3],
             link: ["http://www.php.net/manual/en/function.define.php", "http://php.net/manual/en/language.constants.php"],
-            explanation: []
+            explanation: ["Another tricky question. \n$array[\"FOO\"] = 20, but $array[FOO] = 10, because FOO has been defined as a constant."]
         }
     },
     q5: {
         id: 5,
         text: 'What is the output of the following PHP script? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 1;$b = 2.5;$c = 0xFF;$d = $b + $c;$e = $d * $b;$f = ($d + $e) % $a;print ($f + $e);?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['643.75', '432', '643', '257', '432.75'],
             correct: [1],
             link: ["http://en.wikipedia.org/wiki/Hexadecimal", "http://www.php.net/manual/en/language.operators.arithmetic.php"],
-            explanation: []
+            explanation: ["0xFF is the hexadecimal notation for 255 \n The operator % is the modulus, but it only takes into account the integer part of the number, so 643.75 % 1 = 0"]
         }
     },
     q6: {
         id: 6,
         text: 'What combination of boolean values for <code>$a</code>, <code>$b</code>, <code>$c</code>, and <code>$d</code> will result in the variable <code>$number</code> being equal to <code>3</code>? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = null;$b = null;$c = null;$d = null;if($a &amp;&amp; !$b) { if(!!$c &amp;&amp; !$d) { if($d &amp;&amp; ($a || $c)) { if(!$d &amp;&amp; $b) { $number = 1; } else { $number = 2; } } else { $number = 3; } } else { $number = 4; }} else { $number = 5;}?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['false, true, true, true', 'true, false, true, false', 'true, true, false, false', 'false, true, true, false', 'false, false, true, false'],
             correct: [2],
             link: ["http://www.php.net/manual/en/language.operators.logical.php"],
-            explanation: []
+            explanation: ["Fastest way to answer this question is to take a look at the first condition ($a &amp;&amp; !$b), so $a have to be TRUE and $b have to be FALSE. Only one answer provides this combination."]
         }
     },
     q7: {
         id: 7,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?php$string = "111221";for($i = 0; $i &lt; strlen($string); $i++) {$current = $string[$i];$count = 1;while(isset($string[$i + $count]) &amp;&amp; ($string[$i + $count] == $current)) $count++;$newstring .= "$count{$current}";$i += $count-1;}print $newstring;?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['312211', '3312212', '11221221', '221131', '3211122'],
             correct: [1],
-            link: [],
-            explanation: []
+            link: ["http://stackoverflow.com/questions/2596837/curly-braces-in-string-in-php", "http://php.net/manual/en/language.types.string.php"],
+            explanation: ["The only difficult part in this script are the curly braces. Anything inside of it will be evaluated individually."]
         }
     },
     q8: {
         id: 8,
         text: 'What is the best way to ensure that a user-defined function is always passed an object as its single parameter?',
         type: 2,
+        category: 0,
         answer: {
             options: ['function myfunction(stdClass $a)', 'function myfunciton($a = stdClass)', 'Use is_object() within the function', 'There is no way to ensure the parameter will be an object', 'function myfunction(Object $a)'],
-            correct: [3],
-            link: ["http://php.net/manual/en/function.is-object.php"],
-            explanation: []
+            correct: [1],
+            link: ["http://php.net/manual/en/language.oop5.typehinting.php"],
+            explanation: ["Check the type hinting section in php manual. The correct answer is 1 because the stdClass is the base class, 5 is not correct because you cant define an user-created object as the parameter."]
         }
     },
     q9: {
         id: 9,
         text: 'What does the following function do, when passed two integer values for <code>$p</code> and <code>$q</code>? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction magic($p, $q) { return ($q == 0) ? $p : magic($q, $p % $q);}?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['Loops infinitely', 'Switches the values of $p and $q', 'Determines if they are both even or odd', 'Determines the greatest common divisor between them', 'Calculates the modulus between the two'],
             correct: [4],
-            link: [],
-            explanation: []
+            link: ["http://en.wikipedia.org/wiki/Euclidean_algorithm", "http://php.net/manual/en/language.operators.comparison.php"],
+            explanation: ["A simple implementation of the Euclidian algorithm. \nIf you are wondering what the \"?\" does, it's the ternary operator (search it in the provided link to the PHP manual)"]
         }
     },
     q10: {
         id: 10,
         text: 'The <code>____</code> operator is used to test if two values are identical in every way.',
         type: 2,
+        category: 0,
         answer: {
             options: ['!==', 'instanceof', '=', '==', '==='],
             correct: [5],
@@ -132,110 +142,120 @@ var questionsDataBase = {
         id: 11,
         text: 'What would go in place of <code>??????</code> below to make this script execute without a fatal error? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 1;$b = 0;??????$c = $a / $b;?&gt;</pre>',
         type: 3,
+        category: 0,
         answer: {
             options: ['quit();', 'die();', 'stop();', '__halt_compiler();', 'exit();'],
             correct: [2, 4, 5],
             link: ["http://www.php.net/manual/en/function.die.php", "http://php.net/manual/en/function.halt-compiler.php", "http://www.php.net/manual/en/function.exit.php"],
-            explanation: []
+            explanation: ["die() and exit() terminates the execution, __halt_compiler() halts the execution of the compiler."]
         }
     },
     q12: {
         id: 12,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 010;$b = 0xA;$c = 2;print $a + $b + $c;?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['20', '22', '18', '$a is an invalid value', '2'],
             correct: [1],
             link: ["http://en.wikipedia.org/wiki/Octal", "http://en.wikipedia.org/wiki/Hexadecimal"],
-            explanation: []
+            explanation: ["$a is a number with octal notation, so $a = 010 = 8; \n$b is a number with hexadecimal notation, so $b = 0xA = 10; \nCheck the PHP manual for different notations."]
         }
     },
     q13: {
         id: 13,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 20;function myfunction($b) {$a = 30;global $a, $c;return $c = ($b + $a);}print myfunction(40) + $c;?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['120', 'Syntax Error', '60', '70'],
             correct: [1],
             link: ["http://php.net/manual/en/language.variables.scope.php"],
-            explanation: []
+            explanation: ["The variable $a equals to 20 because the by nature of it being defined outside the function it IS a global variable. \nThe global declaration within the function tells the function to use the global value, rather than the local value of 30."]
         }
     },
     q14: {
         id: 14,
         text: 'What would you replace <code>???????</code> with, below, to make the string <code>Hello, World!</code> be displayed? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction myfunction() { ???????print $string;}myfunction("Hello, World!");?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['There is no way to do this', '$string = $argv[1];', '$string = $_ARGV[0];', 'list($string) = func_get_args();', '$string = get_function_args()'],
             correct: [4],
-            link: ["http://www.php.net/manual/en/function.func-get-args.php"],
-            explanation: []
+            link: ["http://www.php.net/manual/en/function.func-get-args.php", "http://www.php.net/manual/en/function.list.php"],
+            explanation: ["func_get_args() returns the function parameters and list() assigns them as if it were an array."]
         }
     },
     q15: {
         id: 15,
         text: 'What is the output of the following function? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction &amp;find_variable(&amp;$one, &amp;$two, &amp;$three) {if($one &gt; 10 &amp;&amp; $one &lt; 20) return $one;if($two &gt; 10 &amp;&amp; $two &lt; 20) return $two;if($three &gt; 10 &amp;&amp; $three &lt; 20) return $three;}$one = 2;$two = 20;$three = 15;$var = &amp;find_variable($one, $two, $three);$var++;print "1: $one, 2: $two, 3: $three";?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['1: 2, 2: 20, 3: 15', '1: 3, 2:21, 3:16', '1: 2, 2:21, 3:15', '1: 3, 2: 20, 3: 15', '1: 2, 2: 20, 3: 16'],
             correct: [5],
             link: ["http://www.php.net/manual/en/functions.returning-values.php", "http://www.php.net/manual/en/language.references.return.php", "http://www.php.net/manual/en/language.references.pass.php"],
-            explanation: []
+            explanation: ["Function returns a reference to $three, therefore incrementing $var also increments $three."]
         }
     },
     q16: {
         id: 16,
         text: 'For an arbitrary string <code>$mystring</code>, which of the following checks will correctly determine if the string <code>PHP</code> exists within it?',
         type: 2,
+        category: 6,
         answer: {
             options: ['if(strpos($mystring, "PHP") !== false)', 'if(!strpos($mystring,"PHP"))', 'if(strpos($mystring, "PHP") === true)', 'if(strloc($mystring, "PHP") == true)', 'if(strloc($mystring, "PHP") === false)'],
             correct: [1],
             link: ["http://php.net/manual/en/function.strpos.php", "http://www.php.net/manual/en/language.types.boolean.php", "http://www.php.net/manual/en/language.operators.comparison.php"],
-            explanation: []
+            explanation: ["strpos() will look for the desired value (PHP in this case) in $string. If found then it will return the position of the first match, otherwise it will return FALSE. \nThe operator !== is used so that if \"PHP\" is found in the 0 position, it'll be not converted to FALSE by means of type juggling."]
         }
     },
     q17: {
         id: 17,
         text: 'What are the values of <code>$a</code> in <code>$obj_one</code> and <code>$obj_two</code> when this script is executed? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass myClass { private $a; public function __construct() { $this-&gt;a = 10; } public function printValue() { print "The Value is: {$this-&gt;a}"; } public function changeValue($val, $obj = null) { if(is_null($obj)) { $this-&gt;a = $val; } else { $obj-&gt;a = $val; } } public function getValue() { return $this-&gt;a; }}$obj_one = new myClass();$obj_two = new myClass();$obj_one-&gt;changeValue(20, $obj_two);$obj_two-&gt;changeValue($obj_two-&gt;getValue(), $obj_one);$obj_two-&gt;printValue();$obj_one-&gt;printValue();?&gt;</pre>',
         type: 2,
+        category: 2,
         answer: {
             options: ['10,20', 'You cannot modify private member variables of a different class', '20,20', '10,10', '20,10'],
             correct: [3],
             link: ["http://php.net/manual/en/language.oop5.visibility.php", "http://php.net/manual/en/language.oop5.references.php"],
-            explanation: []
+            explanation: ["For the PHP 5.3 certification, the correct answer is be 20, 20 (objects pointers as passed by copy, but it's as if objects themselves are always \"passed\" by reference). \nIn PHP4, objects are passed by value and as such the correct answer would be 10, 10"]
         }
     },
     q18: {
         id: 18,
         text: 'What are the three access modifiers that you can use in PHP objects?',
         type: 3,
+        category: 2,
         answer: {
             options: ['protected', 'public', 'static', 'private', 'final'],
             correct: [1, 2, 4],
             link: ["http://php.net/manual/en/language.oop5.visibility.php"],
-            explanation: []
+            explanation: ["The keywords static and final are not considered access modifiers."]
         }
     },
     q19: {
         id: 19,
         text: 'When checking to see if two variables contain the same instance of an object, which of the following comparisons should be used?',
         type: 2,
+        category: 2,
         answer: {
             options: ['if($obj1-&gt;equals($obj2) &amp;&amp; ($obj1 instanceof $obj2))', 'if($obj1-&gt;equals($obj2))', 'if($obj1 === $obj2)', 'if($obj1 instanceof $obj2)', 'if($obj1 == $obj2)'],
-            correct: [4],
-            link: ["http://php.net/manual/en/internals2.opcodes.instanceof.php", "http://php.net/manual/en/language.operators.type.php"],
-            explanation: []
+            correct: [3],
+            link: ["http://www.php.net/manual/en/language.oop5.object-comparison.php", "http://php.net/manual/en/internals2.opcodes.instanceof.php"],
+            explanation: ["For the PHP 5.3 certification: \n($obj1 == $obj2) is TRUE if they have the same same values \n($obj1 === $obj2) is TRUE only if they are the same instance"]
         }
     },
     q20: {
         id: 20,
         text: 'In PHP 5 you can use the <code>______</code> operator to ensure that an object is of a particular type. You can also use <code>_______</code> in the function declaration.',
         type: 2,
+        category: 0,
         answer: {
             options: ['instanceof, is_a', 'instanceof, type-hinting', 'type, instanceof', '===, type-hinting', '===, is_a'],
             correct: [2],
             link: ["http://php.net/manual/en/internals2.opcodes.instanceof.php", "http://php.net/manual/en/language.oop5.typehinting.php"],
-            explanation: []
+            explanation: ["instanceof will check for the object type, while === will check if two comparing objects are the same instance"]
         }
     },
     q21: {
@@ -1967,8 +1987,8 @@ var questionsDataBase = {
     },
     q178: {
         id: 178,
-        text: 'Which of the following is a valid way to pass the $callback parameter expected by array_walk()? (choose three)',
-        type: 2,
+        text: 'Which of the following is a valid way to pass the $callback parameter expected by array_walk()?',
+        type: 3,
         answer: {
             options: ['An anonymous function', 'An array containing the name of the function as the first element, and an array of arguments as the second element', 'An instantiated object followed by the object operator and the method to call', 'An array containing an instantiated object as the first element, and the method name as the second element', 'A string containing the function name', 'An array containing the function name as the first element'],
             correct: [1, 4, 5],
@@ -2132,8 +2152,8 @@ var questionsDataBase = {
     },
     q193: {
         id: 193,
-        text: 'Which of the following are configuration settings for PHP? (choose two)',
-        type: 2,
+        text: 'Which of the following are configuration settings for PHP?',
+        type: 3,
         answer: {
             options: ['url_fopen_allow', 'url_include_allow', 'allow_open_url', 'allow_url_include', 'include_fopen_dir', 'open_url_dir', 'open_basedir'],
             correct: [4, 7],
@@ -2176,8 +2196,8 @@ var questionsDataBase = {
     },
     q197: {
         id: 197,
-        text: 'Which of the following are valid constant names? (Choose three)',
-        type: 2,
+        text: 'Which of the following are valid constant names?',
+        type: 3,
         answer: {
             options: ['R7yu', '9tur8UH4', '8rutil', 'AEN', '111', 'ablwesc_99', 'YU-8'],
             correct: [1, 4, 6],
@@ -2242,8 +2262,8 @@ var questionsDataBase = {
     },
     q203: {
         id: 203,
-        text: 'Which of the following are superglobals in PHP? (choose three)',
-        type: 2,
+        text: 'Which of the following are superglobals in PHP?',
+        type: 3,
         answer: {
             options: ['$_FORMS', '$_COOKIE', '$_COOKIES', '$_REQUEST', '$_DATA', '$_ENVIRONMENT', '$_SERVER', '$_GLOBAL'],
             correct: [2, 4, 7],
@@ -2253,8 +2273,8 @@ var questionsDataBase = {
     },
     q204: {
         id: 204,
-        text: 'Which of the following statements are true when applied to a Registry pattern? (choose two)',
-        type: 2,
+        text: 'Which of the following statements are true when applied to a Registry pattern?',
+        type: 3,
         answer: {
             options: ['Only one instance of the class can exist', 'It implements ArrayAccess', 'It is designed to store values of various types', 'It uses static methods', 'It takes responsibility for instantiating objects'],
             correct: [1, 3],
@@ -2408,7 +2428,7 @@ var questionsDataBase = {
     q218: {
         id: 218,
         text: 'Which of the following are true (choose three)?',
-        type: 2,
+        type: 3,
         answer: {
             options: ['Anonymous functions can accept variables passed into them at call time', 'Anonymous functions cannot be called recursively', 'Closures are a kind of anonymous function', 'Anonymous functions can have function names', 'It is possible to return multiple values from an anonymous function', 'Closures can have variable values "baked" in at declare time', 'Anonymous functions are always created in the global scope'],
             correct: [1, 3, 6],
@@ -2430,7 +2450,7 @@ var questionsDataBase = {
     q220: {
         id: 220,
         text: 'How would you efficiently extract data from a csv file which is several gigabytes in size?',
-        type: 2,
+        type: 3,
         answer: {
             options: ['Use a custom stream wrapper', 'file_get_contents() and explode()', 'fopen() and fgetcsv()', 'file() and explode()', 'fopen(), fgets() and explode()'],
             correct: [3, 5],
@@ -2440,8 +2460,8 @@ var questionsDataBase = {
     },
     q221: {
         id: 221,
-        text: 'Which of the following would you use to validate incoming data from a web form? (choose three)',
-        type: 2,
+        text: 'Which of the following would you use to validate incoming data from a web form?',
+        type: 3,
         answer: {
             options: ['filter_* functions', 'stripslashes()', 'htmlspecialchars()', 'database escape functions', 'ctype_* functions', 'strip_tags()', 'preg_* functions', 'url_decode()'],
             correct: [1, 5, 7],
@@ -2451,8 +2471,8 @@ var questionsDataBase = {
     },
     q222: {
         id: 222,
-        text: 'Which of the following php configuration directives were deprecated in PHP 5.3 (tick as many as apply)?',
-        type: 2,
+        text: 'Which of the following php configuration directives were deprecated in PHP 5.3 ?',
+        type: 3,
         answer: {
             options: ['y2k_compliance', 'safe_mode', 'disable_functions', 'register_globals', 'gpc_order', 'max_file_uploads', 'register_syslog', 'register_long_arrays'],
             correct: [2, 4, 8],
@@ -2506,8 +2526,8 @@ var questionsDataBase = {
     },
     q227: {
         id: 227,
-        text: 'Given this code sample: <pre class="brush: php"> &lt;?php interface A {} class C {} class B extends C {} class E extends C implements A {} class D extends E{} $b = new B(); $e = new E(); $c = new C(); $a = new B(); $d = new D(); Which of the following statements are true? (choose 4) ?&gt; </pre>',
-        type: 2,
+        text: 'Given this code sample: <pre class="brush: php"> &lt;?php interface A {} class C {} class B extends C {} class E extends C implements A {} class D extends E{} $b = new B(); $e = new E(); $c = new C(); $a = new B(); $d = new D(); Which of the following statements are true? ?&gt; </pre>',
+        type: 3,
         answer: {
             options: ['$c instanceof B', '$d instanceof A', '$d instanceof C', '$e instanceof B', '$e instanceof A', '$c instanceof C', '$a instanceof E'],
             correct: [2, 3, 5, 6],
@@ -2517,8 +2537,8 @@ var questionsDataBase = {
     },
     q228: {
         id: 228,
-        text: 'Which of the following session save handlers are available by default in PHP? (choose 3)',
-        type: 2,
+        text: 'Which of the following session save handlers are available by default in PHP?',
+        type: 3,
         answer: {
             options: ['redis', 'postgresql', 'files', 'memcache', 'AWS', 'foxpro', 'sqlite'],
             correct: [3, 4, 7],
@@ -2627,8 +2647,8 @@ var questionsDataBase = {
     },
     q238: {
         id: 238,
-        text: 'Which of the following is a magic method in PHP 5.3? (choose three)',
-        type: 2,
+        text: 'Which of the following is a magic method in PHP 5.3?',
+        type: 3,
         answer: {
             options: ['__walk()', '__sleep()', '__return()', '__call()', '__function()', '__add()', '__set()'],
             correct: [2, 4, 7],
@@ -2649,8 +2669,8 @@ var questionsDataBase = {
     },
     q240: {
         id: 240,
-        text: 'Which of the following would offer protection against an SQL injection attack? (choose two)',
-        type: 2,
+        text: 'Which of the following would offer protection against an SQL injection attack?',
+        type: 3,
         answer: {
             options: ['mysql_real_escape_string()', 'mysql_true_escape_string()', 'addslashes()', 'using PDO and prepared statements', 'htmlspecialchars()', 'strip_tags()'],
             correct: [1, 4],
