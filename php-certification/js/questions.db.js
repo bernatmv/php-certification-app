@@ -260,52 +260,57 @@ var questionsDataBase = {
     },
     q21: {
         id: 21,
-        text: 'What is wrong with the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction duplicate($obj) {$newObj = $obj;return $newObj;}$a = new MyClass();$a_copy = duplicate($a);$a-&gt;setValue(10);$a_copy-&gt;setValue(20);?&gt;</pre>',
+        text: 'Does the following code accomplish it\'s purpose? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction duplicate($obj) {$newObj = $obj;return $newObj;}$a = new MyClass();$a_copy = duplicate($a);$a-&gt;setValue(10);$a_copy-&gt;setValue(20);?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['You must use return &amp;$newObj instead', 'There is nothing wrong with this code', 'duplicate() must accept its parameter by reference', 'You must use the clone operator to make a copy of an object', 'duplicate() must return a reference'],
+            options: ['Return value have to be &amp;$newObj', 'Yes, it does', 'duplicate() must accept its parameter by reference (with &amp;)', 'You must use the clone operator to make a copy of an object', 'duplicate() must return a reference (with &amp; in fornt of the function name)'],
             correct: [4],
             link: ["http://php.net/manual/en/language.oop5.cloning.php"],
-            explanation: []
+            explanation: ["When assigning one object (variable) to another the object is not duplicated, just a reference to the object is copied. \nWhen you want to duplicated an object, this is called \"cloning\" an is achieved as follows: <pre>$objectA = clone $objectB;</pre>"]
         }
     },
     q22: {
         id: 22,
         text: 'How can you modify the copy of an object during a clone operation?',
         type: 2,
+        category: 0,
         answer: {
             options: ['Put the logic in the object\'s constructor to alter the values', 'Implment your own function to do object copying', 'Implement the object\'s __clone() method', 'Implement __get() and __set() methods with the correct logic', 'Implement the __copy() method with the correct logic'],
             correct: [3],
             link: ["http://php.net/manual/en/language.oop5.cloning.php"],
-            explanation: []
+            explanation: ["When an object is cloned, the method __clone is automatically called (see link to the manual section)"]
         }
     },
     q23: {
         id: 23,
         text: 'What is the primary difference between a method declared as static and a normal method?',
         type: 2,
+        category: 0,
         answer: {
             options: ['Static methods can only be called using the :: syntax and never from an instance', 'Static methods do not provide a reference to $this', 'Static methods cannot be called from within class instances', 'Static methods don\'t have access to the self keyword', 'There is no functional difference between a static and non-static method'],
-            correct: [1],
+            correct: [2],
             link: ["http://php.net/manual/en/language.oop5.static.php"],
-            explanation: []
+            explanation: ["$this is a reference to the object instance and, as such, static functions can not make use of it."]
         }
     },
     q24: {
         id: 24,
         text: 'What is the output of the following script? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass ClassOne { protected $a = 10; public function changeValue($b) { $this-&gt;a = $b; }}class ClassTwo extends ClassOne { protected $b = 10; public function changeValue($b) { $this-&gt;b = 10; parent::changeValue($this-&gt;a + $this-&gt;b); } public function displayValues() { print "a: {$this-&gt;a}, b: {$this-&gt;b}"; }}$obj = new ClassTwo();$obj-&gt;changeValue(20);$obj-&gt;changeValue(10);$obj-&gt;displayValues();?&gt;</pre>',
         type: 2,
+        category: 2,
         answer: {
             options: ['a: 30, b: 30', 'a: 30, b: 20', 'a: 30, b: 10', 'a: 20, b: 20', 'a: 10, b: 10'],
             correct: [3],
             link: ["http://php.net/manual/en/language.oop5.visibility.php"],
-            explanation: []
+            explanation: ["This is a tricky question, because ClassTwo::changeValue() never changes $this->b value."]
         }
     },
     q25: {
         id: 25,
         text: 'The <code>______</code>keyword is used to indicate an incomplete class or method, which mustbe further extended and/or implemented in order to be used.',
         type: 2,
+        category: 2,
         answer: {
             options: ['final', 'protected', 'incomplete', 'abstract', 'implements'],
             correct: [4],
@@ -317,6 +322,7 @@ var questionsDataBase = {
         id: 26,
         text: 'To ensure that a given object has a particular set of methods, you must provide a method list in the form of an <code>________</code> and then attach it as part of your class using the <code>________</code> keyword.',
         type: 2,
+        category: 2,
         answer: {
             options: ['array, interface', 'interface, implements', 'interface, extends', 'instance, implements', 'access-list, instance'],
             correct: [2],
@@ -326,8 +332,9 @@ var questionsDataBase = {
     },
     q27: {
         id: 27,
-        text: 'Type-hinting and the <code>instanceof</code> keyword can be used to check what types of things about variables?',
+        text: 'Type-hinting and the <code>instanceof</code> keyword can be used to check what types of things about object variables?',
         type: 3,
+        category: 2,
         answer: {
             options: ['If a particular child class extends from it', 'If they are an instance of a particular interface', 'If they are an abstract class', 'If they have a particular parent class', 'If they are an instance of a particular class'],
             correct: [2, 4, 5],
@@ -339,17 +346,19 @@ var questionsDataBase = {
         id: 28,
         text: 'In PHP 5\'s object model, a class can have multiple <code>______</code> but only a single direct <code>________</code>.',
         type: 2,
+        category: 2,
         answer: {
             options: ['None of the above', 'interfaces, child', 'children, interface', 'interfaces, parent', 'parents, interface'],
             correct: [4],
             link: ["http://php.net/manual/en/language.oop5.interfaces.php", "http://php.net/manual/en/keyword.extends.php"],
-            explanation: []
+            explanation: ["A class can have only one parent, can implement many interfaces and can have many childs that extends from it."]
         }
     },
     q29: {
         id: 29,
         text: 'Whatthree special methods can be used to perform special logic in the eventa particular accessed method or member variable is not found?',
         type: 3,
+        category: 2,
         answer: {
             options: ['__get($variable)', '__call($method, $params)', '__get($method)', '__set($variable, $value)', '__call($method)'],
             correct: [1, 2, 4],
@@ -361,22 +370,24 @@ var questionsDataBase = {
         id: 30,
         text: 'The <code>_______</code> method will be called automatically when an object is represented as a string.',
         type: 2,
+        category: 2,
         answer: {
             options: ['getString()', '__get()', '__value()', '__toString()', '__getString()'],
             correct: [4],
             link: ["http://www.php.net/manual/en/language.oop5.magic.php#language.oop5.magic.tostring"],
-            explanation: []
+            explanation: ["When representing as string, PHP will attempt to call the function __toString() to define the conversion."]
         }
     },
     q31: {
         id: 31,
         text: 'Whenan object is serialized, which method will be called, automatically,providing your object with an opportunity to close any resources orotherwise prepare to be serialized?',
         type: 2,
+        category: 2,
         answer: {
             options: ['__destroy()', '__serialize()', '__destruct()', '__shutdown()', '__sleep()'],
             correct: [5],
             link: ["http://php.net/manual/en/function.serialize.php"],
-            explanation: []
+            explanation: ["When serializing objects, PHP will attempt to call the function __sleep() prior to serialization."]
         }
     },
     q32: {
@@ -2702,13 +2713,14 @@ var questionsDataBase = {
     },
     q243: {
         id: 243,
-        text: 'How would you change a SimpleXMLElement object into a DOMElement?',
+        text: 'How would you transform a SimpleXMLElement object into a DOMElement object?',
         type: 2,
+        category: 4,
         answer: {
-            options: ['convert SimpleXMLElement to XML, then create a DOMElement from the XML', 'using simplexml_export_dom()', 'using dom_import_simplexml()', 'SimpleXMLElement::asDom()', 'SimpleXMLElement::saveXML()'],
-            correct: [3],
+            options: ['SimpleXMLElement::asXML()', 'simplexml_to_dom()', 'simplexml2dom()', 'dom_import_simplexml()', '$dom = new DOMElement($SimpleXMLElement)', 'SimpleXMLElement::asDom()', 'SimpleXMLElement::saveXML()'],
+            correct: [4],
             link: ["http://www.php.net/manual/en/function.dom-import-simplexml.php"],
-            explanation: ["If you didn't remember the name of the function, perhaps you can eliminate some of the other options.  Options B, D and E are nonsense and don't exist in PHP (although DOMDocument has a saveXML() method).  Option A looks plausible but you don't create DOMElement from XML – you create a DOMDocument."]
+            explanation: ["The only functions that exists and generate a DOMElement are DOMElement and dom_import_simplexml, but DOMElement does not accept a SimpleXMLElement as a parameter."]
         }
     }
 };
