@@ -380,7 +380,7 @@ var questionsDataBase = {
     },
     q31: {
         id: 31,
-        text: 'Whenan object is serialized, which method will be called, automatically,providing your object with an opportunity to close any resources orotherwise prepare to be serialized?',
+        text: 'When an object is serialized, which method will be called, automatically,providing your object with an opportunity to close any resources orotherwise prepare to be serialized?',
         type: 2,
         category: 2,
         answer: {
@@ -394,17 +394,19 @@ var questionsDataBase = {
         id: 32,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass MyException extends Exception {}class AnotherException extends MyException {}class Foo { public function something() { throw new AnotherException(); } public function somethingElse() { throw new MyException(); }}$a = new Foo();try { try { $a-&gt;something(); } catch(AnotherException $e) { $a-&gt;somethingElse(); } catch(MyException $e) { print "Caught Exception"; }} catch(Exception $e) { print "Didn\'t catch the Exception!";}?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['"Caught Exception" followed by "Didn\'t catch the Exception!"', 'A fatal error for an uncaught exception', '"Didn\'t catch the Exception!"', '"Didn\'t catch the Exception!" followed by a fatal error', '"Caught Exception"'],
             correct: [3],
             link: ["http://php.net/manual/en/language.exceptions.php", "http://stackoverflow.com/questions/2586608/confused-by-this-php-exception-try-catch-nesting"],
-            explanation: []
+            explanation: ["The second catch (the one who looks for MyException) will never catch the exception because it'll bubble to the outer try/catch."]
         }
     },
     q33: {
         id: 33,
         text: 'Which two internal PHP interfaces provide functionality which allow you to treat an object like an array?',
         type: 3,
+        category: 8,
         answer: {
             options: ['iteration', 'arrayaccess', 'objectarray', 'iterator', 'array'],
             correct: [2, 4],
@@ -416,50 +418,55 @@ var questionsDataBase = {
         id: 34,
         text: 'Which <code>php.ini</code> directive should be disabled to prevent the execution of a remote PHP script via an <code>include</code> or <code>require</code> construct?',
         type: 2,
+        category: 3,
         answer: {
             options: ['You cannot disable remote PHP script execution', 'curl.enabled', 'allow_remote_url', 'allow_url_fopen', 'allow_require'],
             correct: [4],
             link: ["http://www.php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen"],
-            explanation: []
+            explanation: ["allow_url_include would be a better answer, but it needs allow_url_fopen to work"]
         }
     },
     q35: {
         id: 35,
         text: 'When attempting to prevent a cross-site scripting attack, which of the following is most important?',
         type: 2,
+        category: 3,
         answer: {
             options: ['Not writing Javascript on the fly using PHP', 'Filtering Output used in form data', 'Filtering Output used in database transactions', 'Writing careful Javascript', 'Filtering all input'],
             correct: [5],
             link: [],
-            explanation: []
+            explanation: ["The 2nd option might seem the right choice, but output should be escaped not filtered."]
         }
     },
     q36: {
         id: 36,
         text: 'Which of the following <code>php.ini</code> directives should be disabled to improve the outward security of your application?',
         type: 3,
+        category: 3,
         answer: {
             options: ['safe_mode', 'magic_quotes_gpc', 'register_globals', 'display_errors', 'allow_url_fopen'],
             correct: [2, 3, 4, 5],
-            link: ["http://php.net/manual/en/features.safe-mode.php"],
-            explanation: []
+            link: ["http://php.net/manual/en/features.safe-mode.php", "http://www.php.net/manual/en/security.magicquotes.php"],
+            explanation: ["magic_quotes_gpc should be disabled to ensure proper using of native database escape string functions."]
         }
     },
     q37: {
         id: 37,
         text: 'Which of the following list of potential data sources should be considered trusted?',
         type: 2,
+        category: 3,
         answer: {
             options: ['None of the above', '$_ENV', '$_GET', '$_COOKIE', '$_SERVER'],
             correct: [1],
             link: [],
-            explanation: []
+            explanation: ["Only trusted superglobal should be $_SESSION. \n$_SERVER contains user input (GET / POST parameters, PHP_SELF and headers) which can be manipulated by the client."]
         }
     },
     q38: {
         id: 38,
         text: 'What is the best way to ensure the distinction between filtered / trusted and unfiltered / untrusted data?',
         type: 2,
+        category: 3,
         answer: {
             options: ['None of the above', 'Never trust any data from the user', 'Enable built-in security features such as magic_quotes_gpc and safe_mode', 'Always filter all incoming data', 'Use PHP 5\'s tainted mode'],
             correct: [4],
@@ -471,21 +478,23 @@ var questionsDataBase = {
         id: 39,
         text: 'Consider the following code: <pre class=\'brush: php; html-script: true\'>&lt;?phpsession_start();if(!empty($_REQUEST[\'id\']) &amp;&amp; !empty($_REQUEST[\'quantity\'])) { $id = scrub_id($_REQUEST[\'id\']); $quantity = scrub_quantity($_REQUEST[\'quantity\']) $_SESSION[\'cart\'][] = array(\'id\' =&gt; $id, \'quantity\' =&gt; $quantity)}/* .... */?&gt;</pre> What potential security hole would this code snippet produce?',
         type: 2,
+        category: 3,
         answer: {
             options: ['Cross-Site Scripting Attack', 'There is no security hole in this code', 'Code Injection', 'SQL Injection', 'Cross-Site Request Forgery'],
             correct: [5],
             link: ["http://en.wikipedia.org/wiki/Cross-site_request_forgery"],
-            explanation: []
+            explanation: ["Getting the id and quantity by $_REQUEST would allow to pass this parameters by GET or POST. \nAlso, there isn't a 'token' parameter specified to prevent XSRF attacks. If someone manages to get the session id of another user (we can see that the session id is not renewed in this code), the lack of a token means he could manipulate that users cart."]
         }
     },
     q40: {
         id: 40,
         text: 'What is the best measure one can take to prevent a cross-site request forgery?',
         type: 2,
+        category: 3,
         answer: {
             options: ['Disallow requests from outside hosts', 'Add a secret token to all form submissions', 'Turn off allow_url_fopen in php.ini', 'Filter all output', 'Filter all input'],
             correct: [2],
-            link: ["http://en.wikipedia.org/wiki/Cross-site_request_forgery#Prevention"],
+            link: ["http://en.wikipedia.org/wiki/Cross-site_request_forgery#Prevention", "http://shiflett.org/articles/cross-site-request-forgeries"],
             explanation: []
         }
     },
@@ -493,50 +502,55 @@ var questionsDataBase = {
         id: 41,
         text: 'Consider the following code: <pre class=\'brush: php; html-script: true\'>&lt;?phpheader("Location: {$_GET[\'url\']}");?&gt;</pre> Which of the following values of $_GET[\'url\'] would cause session fixation?',
         type: 2,
+        category: 3,
         answer: {
             options: ['Session Fixation is not possible with this code snippet', 'http://www.zend.com/?PHPSESSID=123', 'PHPSESSID%611243', 'Set-Cookie%3A+PHPSESSID%611234', 'http%3A%2F%2Fwww.zend.com%2F%0D%0ASet-Cookie%3A+PHPSESSID%611234'],
             correct: [2],
-            link: ["http://www.php.net/manual/en/session.idpassing.php"],
-            explanation: []
+            link: ["http://www.php.net/manual/en/session.idpassing.php", "https://www.owasp.org/index.php/Session_fixation"],
+            explanation: ["This will be only possible if session.use_only_cookies or session.use_cookies are NOT enabled in the php.ini, as we are not told otherwise we have to assume a worst case scenario."]
         }
     },
     q42: {
         id: 42,
         text: 'When implementing a permissions system for your Web site, what should always be done with regards to the session?',
         type: 2,
+        category: 3,
         answer: {
             options: ['None of the above', 'You should not implement permission systems using sessions', 'Sessions should be cleared of all data and re-populated', 'The session key should be regenerated', 'The session should be destroyed'],
             correct: [4],
-            link: ["http://www.php.net/manual/en/function.session-regenerate-id.php"],
-            explanation: []
+            link: ["http://www.php.net/manual/en/function.session-regenerate-id.php", "http://shiflett.org/articles/session-fixation"],
+            explanation: ["Always regenerate the session identifier on the receiving script, regardless of the user's state."]
         }
     },
     q43: {
         id: 43,
         text: 'Which of the following is not valid syntax for creating a new array key?',
         type: 2,
+        category: 8,
         answer: {
             options: ['$a[] = "value";', '$a{} = "value";', '$a[0] = "value";', '$a{0} = "value";', '$a[$b = 0] = "value";'],
             correct: [2],
             link: ["http://php.net/manual/en/language.types.array.php"],
-            explanation: []
+            explanation: ["Square brackets can be used to access array elements and to add a new element to the end of the array. Curly braces can be used to access array elements."]
         }
     },
     q44: {
         id: 44,
         text: 'Which of the following functions will sort an array in ascending order by value, while preserving key associations?',
         type: 2,
+        category: 8,
         answer: {
             options: ['asort()', 'usort()', 'krsort()', 'ksort()', 'sort()'],
             correct: [1],
-            link: ["http://php.net/manual/en/function.asort.php"],
-            explanation: []
+            link: ["http://www.php.net/manual/en/function.asort.php"],
+            explanation: ["asort() will sort the array [by value] in ascending order preserving key associations. \nsort() will sort the array in ascending order but will lose key associations. \nksort() and krsort() will sort the array by keys (not values) in ascending and descending order respectively. \nusort() will sort an array by its values using a user-supplied comparison function (but losing keys associations)."]
         }
     },
     q45: {
         id: 45,
         text: 'What is the output of the following code block? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = "The quick brown fox jumped over the lazy dog.";$b = array_map("strtoupper", explode(" ", $a));foreach($b as $value) {print "$value ";}?&gt;</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG.', 'A PHP Error', 'Array Array Array Array Array Array Array Array Array'],
             correct: [1],
@@ -548,61 +562,67 @@ var questionsDataBase = {
         id: 46,
         text: 'Which from the following list is not an approrpiate use of an array?',
         type: 2,
+        category: 8,
         answer: {
             options: ['As a list', 'All of these uses are valid', 'As a Lookup Table', 'A Stack', 'As a hash table'],
             correct: [2],
             link: ["http://php.net/manual/en/language.types.array.php"],
-            explanation: []
+            explanation: ["As a list: correct, using only values. \nAs a Look Up Table: correct, using keys and values. \nAs a stack: correct, using array_shift() and array_pop(). \nAs a hash table: correct, using keys and values."]
         }
     },
     q47: {
         id: 47,
         text: 'What is the output of this code snippet? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = array(0.001 =&gt; \'b\', .1 =&gt; \'c\');print_r($a);?&gt;</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['An empty array', '0.001 =&gt; \'b\', .1 =&gt; c', '0 =&gt; \'c\'', '\'0.001\' =&gt; \'b\', \'0.1\' =&gt; c\'', 'A Syntax Error'],
             correct: [3],
             link: ["http://php.net/manual/en/language.types.array.php"],
-            explanation: []
+            explanation: ["Array keys can not be floats: 0.001 gets interpoled to 0, and .1 also gets interpoled to 0, overwriting the first key."]
         }
     },
     q48: {
         id: 48,
         text: 'Which of the following functions could be used to break a string into an array?',
         type: 3,
+        category: 6,
         answer: {
-            options: ['array_split()', 'split()', 'string_split()', 'preg_match_all()', 'explode()'],
+            options: ['array_split()', 'preg_split()', 'string_split()', 'preg_match_all()', 'explode()'],
             correct: [2, 4, 5],
             link: ["http://www.php.net/manual/en/function.split.php", "http://www.php.net/manual/en/function.preg-match-all.php", "http://www.php.net/manual/en/function.explode.php"],
-            explanation: []
+            explanation: ["PHP 5.3 certification: string_split() and array_split() doesn't exist as functions."]
         }
     },
     q49: {
         id: 49,
         text: 'If you wanted a variable containing the letters <code>A</code> through <code>Z</code>, that allowed you to access each letter independently, which of the following approaches could you use?',
         type: 3,
+        category: 6,
         answer: {
-            options: ['$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";', 'range(\'A\', \'Z\');', 'explode("", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");', 'You would use the ALPHA_ARRAY constant', 'None of the above'],
+            options: ['$s = str_split("ABCDEFGHIJKLMNOPQRSTUVWXYZ");', '$s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";', '$s = range(\'A\', \'Z\');', '$s = explode("", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");', 'You would use the ALPHA_ARRAY constant', 'None of the above'],
             correct: [1, 2, 3],
             link: ["http://www.php.net/manual/en/function.range.php", "http://www.php.net/manual/en/function.explode.php"],
-            explanation: []
+            explanation: ["explode() does not accept an empty string as delimiter and ALPHA_ARRAY constant does not exist as of PHP 5.3"]
         }
     },
     q50: {
         id: 50,
         text: 'What is the output of the following code block? <pre class=\'brush: php; html-script: true\'>&lt;?php$array = array(1 =&gt; 0, 2, 3, 4);array_splice($array, 3, count($array), array_merge(array(\'x\'), array_slice($array, 3))); print_r($array);?&gt;</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['1 =&gt; 1, 2 =&gt; 2, 3 =&gt; x, 4=&gt; 4', '0 =&gt; 1, 2 =&gt; 2, 3 =&gt; 3, 4 =&gt; 4, x =&gt; 3', '0 =&gt; 0, 1=&gt; 2, 2 =&gt; 3, 3 =&gt; x, 4 =&gt; 4', '0 =&gt; x, 1 =&gt; 0, 2 =&gt; 1, 3=&gt; 2, 4=&gt;3', '1 =&gt; 1, 3 =&gt; x, 2 =&gt; 2, 4 =&gt; 4'],
             correct: [3],
             link: ["http://www.php.net/manual/en/function.array-slice.php", "http://www.php.net/manual/en/function.array-merge.php", "http://www.php.net/manual/en/function.array-splice.php"],
-            explanation: []
+            explanation: ["The trick to understand this question is knowing that array_splice doesn't preserve keys."]
         }
     },
     q51: {
         id: 51,
         text: 'Which function would you use to add an element to the beginning of an array?',
         type: 2,
+        category: 8,
         answer: {
             options: ['array_shift()', 'array_push();', '$array[0] = "value";', 'array_unshift()', 'array_pop();'],
             correct: [4],
@@ -614,17 +634,19 @@ var questionsDataBase = {
         id: 52,
         text: 'Which key will not be displayed from the following code block?  <pre class=\'brush: php; html-script: true\'>&lt;?php$array = array(\'a\' =&gt; \'John\', \'b\' =&gt; \'Coggeshall\', \'c\' =&gt; array(\'d\' =&gt; \'John\', \'e\' =&gt; \'Smith\')); function display($item, $key) {print "$key =&gt; $item";}array_walk_recursive($array, "display");?&gt;</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['d', 'c', 'b', 'a', 'They all will be displayed'],
             correct: [2],
             link: ["http://www.php.net/manual/en/function.array-walk-recursive.php"],
-            explanation: []
+            explanation: ["As stated in the manual: \"Any key that holds an array will not be passed to the function\"."]
         }
     },
     q53: {
         id: 53,
         text: 'What is the result of the following code snippet? <pre class=\'brush: php; html-script: true\'>&lt;?php$array = array(\'a\' =&gt; \'John\', \'b\' =&gt; \'Coggeshall\', \'c\' =&gt; array(\'d\' =&gt; \'John\', \'e\' =&gt; \'Smith\')); function something($array) {extract($array);return $c[\'e\'];}print something($array);?&gt;</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['Smith', 'A PHP Warning', 'Coggeshall', 'NULL', 'Array'],
             correct: [1],
@@ -636,6 +658,7 @@ var questionsDataBase = {
         id: 54,
         text: 'What should go in the missing line <code>?????</code> below to produce the output shown? <pre class=\'brush: php; html-script: true\'>Array( [5] =&gt; A [4] =&gt; B [3] =&gt; C [2] =&gt; D [1] =&gt; E)</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['$array_three = array_merge(array_reverse($array_one), $array_two);', '$array_three = array_combine($array_one, $array_two);', '$array_three = array_combine(array_reverse($array_one), $array_two);', '$array_three = array_merge($array_one, $array_two);', '$array_three = array_reverse($array_one) + $array_two;'],
             correct: [3],
@@ -647,17 +670,19 @@ var questionsDataBase = {
         id: 55,
         text: 'Which of the following functions are used with the internal array pointer to accomplish an action?',
         type: 3,
+        category: 8,
         answer: {
             options: ['key', 'forward', 'prev', 'current', 'next'],
             correct: [1, 3, 4, 5],
             link: ["http://php.net/manual/en/function.prev.php", "http://php.net/manual/en/function.current.php", "http://php.net/manual/en/function.next.php"],
-            explanation: []
+            explanation: ["The forward function does not exist as of PHP 5.3"]
         }
     },
     q56: {
         id: 56,
         text: 'Given the following array: <p class="ceresIndent"><code>$array = array(1,1,2,3,4,4,5,6,6,6,6,3,2,2,2);</code></p> <p class="ceresIndent">The fastest way to determine the total number a particular value appears in the array is to use which function?</p>',
         type: 2,
+        category: 8,
         answer: {
             options: ['array_total_values', 'array_count_values', 'A foreach loop', 'count', 'a for loop'],
             correct: [2],
@@ -669,6 +694,7 @@ var questionsDataBase = {
         id: 57,
         text: 'The ____ construct is particularly useful to assign your own variable names to values within an array.',
         type: 2,
+        category: 8,
         answer: {
             options: ['array_get_variables', 'current', 'each', 'import_variables', 'list'],
             correct: [5],
@@ -680,39 +706,43 @@ var questionsDataBase = {
         id: 58,
         text: 'The following code snippet displays what for the resultant array?  <pre class=\'brush: php; html-script: true\'>&lt;?php$a = array(1 =&gt; 0, 3 =&gt; 2, 4 =&gt; 6);$b = array(3 =&gt; 1, 4 =&gt; 3, 6 =&gt; 4);print_r(array_intersect($a, $b));?&gt;</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['1 =&gt; 0', '1 =&gt; 3, 3 =&gt; 1, 4 =&gt; 3', '3 =&gt; 1, 3=&gt; 2, 4 =&gt; 3, 4=&gt; 6', '1 =&gt; 0, 3 =&gt; 2, 4 =&gt; 6', 'An empty Array'],
             correct: [5],
             link: ["http://www.php.net/manual/en/function.array-intersect.php"],
-            explanation: []
+            explanation: ["There ara no coincidences by value, so it'll print an empty array."]
         }
     },
     q59: {
         id: 59,
         text: 'Which of the following are not valid ways to embed a variable into a string?',
         type: 3,
+        category: 6,
         answer: {
             options: ['$a = "Value: $value-&gt;getValue()";', '$a = "Value: {$value}";', '$a = \'Value: $value\';', '$a = "Value: $value";', '$a = "Value: {$value[\'val\']}";'],
             correct: [1, 3],
             link: ["http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double"],
-            explanation: []
+            explanation: ["The 1st option needs curly braces, the 3rd one uses single quotes and as such the variable will not be interpolated."]
         }
     },
     q60: {
         id: 60,
-        text: 'What variable reference would go in the spots indcated by <code>?????</code> in the code segment below? <pre class=\'brush: php; html-script: true\'>&lt;?php$msg = "The Quick Brown Foxed Jumped Over the Lazy Dog";$state = true;$retval = "";for($i = 0; (isset(??????)); $i++) {if($state) {$retval .= strtolower(?????);} else {$retval .= strtoupper(?????);}$state = !$state;}print $retval;?&gt;</pre>',
+        text: 'What would go in the spots indcated by <code>?????</code> in the code segment below for the script to work? <pre class=\'brush: php; html-script: true\'>&lt;?php$msg = "The Quick Brown Foxed Jumped Over the Lazy Dog";$state = true;$retval = "";for($i = 0; (isset(??????)); $i++) {if($state) {$retval .= strtolower(?????);} else {$retval .= strtoupper(?????);}$state = !$state;}print $retval;?&gt;</pre>',
         type: 2,
+        category: 6,
         answer: {
             options: ['$msg{$i}', 'ord($msg);', 'chr($msg);', 'substr($msg, $i, 2);'],
             correct: [1],
             link: ["http://www.php.net/manual/en/function.isset.php"],
-            explanation: []
+            explanation: ["Fastest way to resolve this question is to see that there is a <code>?????</code> inside an isset() function. The isset() method only accepts variables."]
         }
     },
     q61: {
         id: 61,
         text: 'Given the two values below, which of the following possiblities will print <code>10 foos20 bars</code>? <pre class=\'brush: php; html-script: true\'>&lt;?php$var1 = "10 foos";$var2 = "20 bars";print ???????;?&gt;</pre>',
         type: 3,
+        category: 6,
         answer: {
             options: ['None of the above', 'implode("", array($var1,$var2));', '$var1 . $var2', '$var1 + $var2', 'All of the above'],
             correct: [2, 3],
@@ -722,8 +752,9 @@ var questionsDataBase = {
     },
     q62: {
         id: 62,
-        text: 'Given the string: <p class="ceresIndent"><code>$var = "john@php.net";</code></p> <p class="ceresIndent">Which of the following will extract the TLD (top level domain) of ".net" from the string?</p>',
+        text: 'Given the string: <code>$var = "james@test.com";</code> Which of the following will extract the TLD (".com") from the string?',
         type: 2,
+        category: 6,
         answer: {
             options: ['strstr($var, strpos($var, "."));', 'substr($var, strpos($var, "@"));', 'substr($var, strstr($var, "."));', 'substr($var, strpos($var, ".") + 1);', 'substr($var, strpos($var, "."));'],
             correct: [5],
@@ -735,19 +766,21 @@ var questionsDataBase = {
         id: 63,
         text: 'When comparing two strings, which of the following is acceptable?',
         type: 3,
+        category: 6,
         answer: {
             options: ['$a === $b;', 'strcasecmp($a, $b);', 'strcmp($a, $b);', '$a == $b;', 'str_compare($a,$b);'],
             correct: [1, 2, 3, 4],
             link: ["http://www.php.net/manual/en/function.strcasecmp.php", "http://www.php.net/manual/en/function.strcmp.php"],
-            explanation: []
+            explanation: ["str_compare() does not exist as of PHP 5.3"]
         }
     },
     q64: {
         id: 64,
         text: 'A fingerprint of a string can be determined using which of the following?',
         type: 2,
+        category: 6,
         answer: {
-            options: ['md5()', 'hash()', 'fingerprint()', 'None of the above'],
+            options: ['md5()', 'str_hash()', 'fingerprint()', 'None of the above'],
             correct: [1],
             link: ["http://www.php.net/manual/en/function.md5.php"],
             explanation: []
@@ -757,17 +790,19 @@ var questionsDataBase = {
         id: 65,
         text: 'Which of the following is the best way to split a string on the "-=-" pattern?',
         type: 2,
+        category: 6,
         answer: {
             options: ['They all are equally proper methods', 'str_split($string, strpos($string, "-=-"))', 'preg_split("-=-", $string);', 'explode("-=-" $string);'],
-            correct: [4],
+            correct: [3],
             link: ["http://www.php.net/manual/en/function.str-split.php", "http://www.php.net/manual/en/function.preg-split.php", "http://www.php.net/manual/en/function.explode.php"],
-            explanation: []
+            explanation: ["The trick in this question is the pattern. \"-=-\" is a valid pattern splitting a string using \"=\" as the delimiter (\"-\" is the regex pattern delimiter). \nExplode is missing a comma."]
         }
     },
     q66: {
         id: 66,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?php $string = "14302"; $string[$string[2]] = "4"; print $string; ?&gt;</pre>',
         type: 2,
+        category: 6,
         answer: {
             options: ['14304', '14342', '44302', '14402', 'Array'],
             correct: [2],
@@ -779,17 +814,19 @@ var questionsDataBase = {
         id: 67,
         text: 'Which of the following comparisons will evaluate to <code>true</code>?',
         type: 3,
+        category: 6,
         answer: {
             options: ['\'t\' == t', '1 === "1time"', '"top" == 0', '"top" === 0', '1 == "1time"'],
             correct: [1, 3, 5],
             link: ["http://www.php.net/manual/en/language.types.type-juggling.php"],
-            explanation: []
+            explanation: ["The most surprising case is the 1st option. PHP will throw a notice an assume t as an undefined constant, then it will proceed to instantiate it as a constant with the value 't'. \nThe other cases are type-juggling comparisons between integers and strings."]
         }
     },
     q68: {
         id: 68,
         text: 'Which function is best suited for removing markup tags from a string?',
         type: 2,
+        category: 6,
         answer: {
             options: ['strip_markup', 'strip_tags', 'str_replace', 'preg_replace', 'preg_strip'],
             correct: [2],
@@ -801,6 +838,7 @@ var questionsDataBase = {
         id: 69,
         text: 'Identify the best approach to compare to variables in a binary-safe fashion',
         type: 2,
+        category: 6,
         answer: {
             options: ['Both strcmp() and $a === $b', '$a == $b', '$a === $b', 'str_compare()', 'strstr()'],
             correct: [1],
@@ -812,9 +850,10 @@ var questionsDataBase = {
         id: 70,
         text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?php$oranges = 10;$apples = 5;$string = "I have %d apples and %d oranges";????????&gt;</pre> What could be placed in place of <code>??????</code> to output the string: <p class="ceresIndent"><code>I have 5 apples and 10 oranges</code></p>',
         type: 3,
+        category: 6,
         answer: {
-            options: ['str_format($string, $apples, $oranges);', 'print($string, $apples, $oranges);', 'printf($string, $apples, $oranges);', 'print sprintf($apples, $oranges);', 'sprintf($string, $oranges, $apples);'],
-            correct: [5],
+            options: ['str_format($string, $apples, $oranges);', ' ($string, $apples, $oranges);', 'printf($string, $apples, $oranges);', 'print sprintf($apples, $oranges);', 'sprintf($string, $oranges, $apples);'],
+            correct: [3],
             link: ["http://www.php.net/manual/en/function.sprintf.php"],
             explanation: []
         }
@@ -823,28 +862,31 @@ var questionsDataBase = {
         id: 71,
         text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?php$string = "&lt;b&gt;I like \'PHP\' &amp; I think it is \"cool\"&lt;/b&gt;";var_dump(htmlentities($string, ENT_QUOTES));var_dump(print htmlspecialchars($string));?&gt;</pre> In this script, do the two <code>var_dump()</code> calls produce the same string? Why or Why Not?',
         type: 2,
+        category: 6,
         answer: {
-            options: ['No, the htmlentities() call will translate quotes while the htmlspecialchars() call will not', 'No, htmlentites() translates &lt; and &gt; symbols to their HTML entity equivalents while htmlspecialchars() only does quotes', 'No, the htmlentites() call won\'t translate quotes to HTML entities while the htmlspecialchars() call will', 'Yes, htmlspecialchars() and htmlentities() with the ENT_QUOTES constants produce the same result'],
-            correct: [1],
+            options: ['No, the htmlentities() call will translate quotes while the htmlspecialchars() call will not', 'No, htmlentites() translates &lt; and &gt; symbols to their HTML entity equivalents while htmlspecialchars() only does quotes', 'No, the htmlentites() call won\'t translate quotes to HTML entities while the htmlspecialchars() call will', 'No, the resulting strings will be completely different', 'Yes, htmlspecialchars() and htmlentities() with the ENT_QUOTES constants produce the same result'],
+            correct: [4],
             link: ["http://www.php.net/manual/en/function.htmlentities.php", "http://www.php.net/manual/en/function.htmlspecialchars.php"],
-            explanation: []
+            explanation: ["This is another tricky question. The second var_dump have a \"print\" in front of htmlspecialchars, so it will only dump the returning integer."]
         }
     },
     q72: {
         id: 72,
         text: 'Consider the following String: <p class="ceresIndent"><code>$string = "John\tMarkTed\tLarry";</code></p> <p class="ceresIndent">Which of the following functions would best parse the string above by the tab (\t) and newline () characters?</p>',
         type: 2,
+        category: 6,
         answer: {
             options: ['strsplit($string, "\t");', 'strtok($string, "\t");', 'strstr($string, "\t");', 'explode("\t", $string);', 'All of the above'],
             correct: [2],
             link: ["http://www.php.net/manual/en/function.strtok.php"],
-            explanation: []
+            explanation: ["strtok(), even if it will need various iterations."]
         }
     },
     q73: {
         id: 73,
         text: 'Which functions would be needed to translate the following string:  <p class="ceresIndent"><code>I love PHP 5</code></p> <p class="ceresIndent">to the following?</p> <p class="ceresIndent"><code>5 PHP EVOL I</code></p>',
         type: 3,
+        category: 6,
         answer: {
             options: ['mirror()', 'strtoupper()', 'toupper()', 'str_reverse()', 'strrev()'],
             correct: [2, 5],
@@ -856,6 +898,7 @@ var questionsDataBase = {
         id: 74,
         text: 'What is the best approach for converting this string: <p class="ceresIndent"><code>$string = "a=10&amp;b[]=20&amp;c=30&amp;d=40+50";</code></p> <p class="ceresIndent">Into this array?</p> <pre class=\'brush: php; html-script: true\'>array(4) { ["a"]=&gt; string(2) "10" ["b"]=&gt; array(1) { [0]=&gt; string(2) "20" } ["c"]=&gt; string(2) "30" ["d"]=&gt; string(5) "40 50"}</pre>',
         type: 2,
+        category: 6,
         answer: {
             options: ['Write a parser completely by hand, it\'s the only way to make sure it\'s 100% accurate', 'Use the parse_str() function to translate it to an array()', 'Pass the variable to another PHP script via an HTTP GET request and return the array as a serialized variable', 'Just call unserialize() to translate it to an array()', 'Write a string parser using strtok() and unserialize() to convert it to an array'],
             correct: [2],
@@ -867,6 +910,7 @@ var questionsDataBase = {
         id: 75,
         text: 'Which string does the following PCRE regular expression match?  <p class="ceresIndent"><code>$regex = "/^([a-z]{5})[1-5]+([a-z]+)/";</code></p>',
         type: 3,
+        category: 6,
         answer: {
             options: ['None of the above', 'Hello34262343goodbye', 'frank12345abc', 'hello34212343goodbye', 'abcdefghi12345abc'],
             correct: [3, 4],
@@ -878,11 +922,12 @@ var questionsDataBase = {
         id: 76,
         text: 'Which PCRE regular expression will match the string <code>PhP5-rocks</code>?',
         type: 2,
+        category: 6,
         answer: {
-            options: ['/^[hp1-5]*\-.*/i', '/[hp1-5]*\-.?/', '/[hp][1-5]*\-.*/', '/[PhP]{3}[1-5]{2,3}\-.*$/', '/[a-z1-5\-]*/'],
+            options: ['/^[hp1-5]*\\-.*/i', '/[hp1-5]*\\-.?/', '/[hp][1-5]*\\-.*/', '/[PhP]{3}[1-5]{2,3}\\-.*$/', '/[a-z1-5\\-]*/'],
             correct: [1],
             link: ["http://www.phpro.org/tutorials/Introduction-to-PHP-Regex.html#8"],
-            explanation: []
+            explanation: ["The \"i\" modifier at the end makes the pattern case-insensitive."]
         }
     },
     q77: {
