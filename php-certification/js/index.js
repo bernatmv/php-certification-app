@@ -32,7 +32,7 @@ $.jQTouch({
 // app Object
 var app = {
 
-    numQuestions: 243,
+    numQuestions: questionsDataBase.length,
 
     // Application Constructor
     initialize: function() {

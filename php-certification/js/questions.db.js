@@ -9,7 +9,7 @@
     1 = Web Features
     2 = Object Oriented Programming
     3 = Security
-    4 = Data Format & Types
+    4 = Data Format & Types (XML)
     5 = Input/Output
     6 = Strings & Patterns
     7 = Databases
@@ -1216,7 +1216,7 @@ var questionsDataBase = {
             options: ['Model', 'Schema', 'Validation', 'Controller', 'View'],
             correct: [1],
             link: ["http://en.wikipedia.org/wiki/Model–view–controller"],
-            explanation: []
+            explanation: ["Hello, my name Borat. Me gusta model."]
         }
     },
     q101: {
@@ -1354,29 +1354,32 @@ var questionsDataBase = {
     q112: {
         id: 112,
         text: 'Which of the following SQL statements will improve SQLite write performance?',
-        type: 3,
+        type: 2,
+        category: 7,
         answer: {
-            options: ['PRAGMA locking_mode = "Row";', 'PRAGMA count_changes = Off;', 'PRAGMA default_synchronous = Off;', 'PRAGMA default_synchronous = On;', 'PRAGMA locking_mode = "Table";'],
-            correct: [2, 3],
-            link: ["http://web.utk.edu/~jplyon/sqlite/SQLite_optimization_FAQ.html#pragmas"],
-            explanation: []
+            options: ['PRAGMA locking_mode = "Row";', 'PRAGMA count_table_changes = Off;', 'PRAGMA default_synchronous = Off;', 'PRAGMA default_synchronous = On;', 'PRAGMA locking_mode = "Table";'],
+            correct: [3],
+            link: ["http://web.utk.edu/~jplyon/sqlite/SQLite_optimization_FAQ.html#pragmas", "http://www.sqlite.org/pragma.html"],
+            explanation: ["Only the 3rd and 4th options exists (locking_mode accepts NORMAL or EXCLUSIVE values). The 2nd option can be confused with count_table_changes, a deprecated option that would have -previously- improved performance."]
         }
     },
     q113: {
         id: 113,
         text: 'Consider the following code snippet: <pre class=\'brush: php; html-script: true\'>&lt;?php$link = mysqli_connect("hostname", "username", "password");if(!$link){ $error = ?????? die("Could not connect to the database: $error");}?&gt;</pre> What would go in place of the ???? above for this script to function properly?',
         type: 2,
-        answer: {
+        category: 7,
+            answer: {
             options: ['mysqli_connect_error();', 'mysqli_connect_error($link);', 'mysqli_error();', '$_MySQL[\'connect_error\']', 'mysqli_get_connect_error();'],
             correct: [1],
             link: ["http://php.net/manual/en/mysqli.connect-error.php"],
-            explanation: []
+                explanation: ["The first option is the good one, the third one would also return the error but it would need the $link provided."]
         }
     },
     q114: {
         id: 114,
         text: 'Consider the following code snippet: <pre class=\'brush: php; html-script: true\'>&lt;?php$query = "INSERT INTO mytable (myinteger, mydouble, myblob, myvarchar) VALUES (?, ?, ?, ?)";$statement = mysqli_prepare($link, $query);if(!$statement){ die(mysqli_error($link));}/* The variables being bound to by MySQLi don\'t need to exist prior to binding */mysqli_bind_param($statement, "idbs", $myinteger, $mydouble, $myblob, $myvarchar);/* ???????????? */ /* execute the query, using the variables as defined. */if(!mysqli_execute($statement)){ die(mysqli_error($link));}?&gt;</pre> Assuming this snippet is a smaller part of a correctly written script, what actions must occur in place of the <code>?????</code> in the above code snippet to insert a row with the following values: <code>10</code>, <code>20.2</code>, <code>foo</code>, <code>string</code> ?',
         type: 2,
+        category: 7,
         answer: {
             options: ['A transaction must be begun and the variables must be assigned', 'Each value must be assigned prior to calling mysqli_bind_param(), and thus nothing should be done', 'Use mysqli_bind_value() to assign each of the values', 'Assign $myinteger, $mydouble, $myblob, $myvarchar the proper values'],
             correct: [4],
@@ -1388,6 +1391,7 @@ var questionsDataBase = {
         id: 115,
         text: 'Consider the following code snippet: <pre class=\'brush: php; html-script: true\'>&lt;?php$query = "SELECT first, last, phone FROM contacts WHERE first LIKE \'John%\'";$statement = mysqli_prepare($link, $query);mysqli_execute($statement);/* ???? */while(($result = mysqli_stmt_fetch($statement))){ print "Name: $first $last"; print "Phone: $phone";}?&gt;</pre> Assuming this code snippet is part of a larger correct application, what must be done in place of the <code>????</code> above for the correct output to be displayed?',
         type: 2,
+        category: 7,
         answer: {
             options: ['None of the above', 'mysqli_fetch_columns($first, $last, $phone);', 'mysqli_stmt_bind_result($statement, $first, $last, $phone);', 'A while loop, fetching the row and assigning $first, $last, and $phone the proper value'],
             correct: [3],
@@ -1399,6 +1403,7 @@ var questionsDataBase = {
         id: 116,
         text: 'Which of the following cases are cases when you should use transactions?',
         type: 3,
+        category: 7,
         answer: {
             options: ['Updating a single row in a table', 'Inserting a new row into a single table', 'Performing a stored procedure', 'Selecting rows from multiple different tables', 'Updating a single row in multiple different tables'],
             correct: [5],
@@ -1410,17 +1415,19 @@ var questionsDataBase = {
         id: 117,
         text: 'PHP 5 supports which of the following XML parsing methods?',
         type: 3,
+        category: 4,
         answer: {
             options: ['SAX', 'FastDOM', 'DOM', 'XPath', 'XML to Object mapping'],
             correct: [1, 3, 4, 5],
             link: ["http://pear.php.net/package/XML_HTMLSax", "http://php.net/manual/de/book.dom.php", "http://php.net/manual/de/simplexmlelement.xpath.php", "http://www.php.net/manual/en/function.simplexml-load-file.php"],
-            explanation: []
+            explanation: ["XML to Object mapping is another name for the more commonly know SimpleXML."]
         }
     },
     q118: {
         id: 118,
         text: 'Which of the following is not a valid PDO DSN?',
         type: 2,
+        category: 7,
         answer: {
             options: ['All of the above are valid', 'mysql:unix_socket=/tmp/mysql.sock;dbname=testdb', 'oci:dbname=//localhost:1521/mydb', 'mysql:host=localhost;port=3307;dbname=testdb', 'sqlite2:/opt/databases/mydb.sq2'],
             correct: [1],
@@ -1430,33 +1437,36 @@ var questionsDataBase = {
     },
     q119: {
         id: 119,
-        text: 'Whenconnecting to a database using PDO, what must be done to ensure thatdatabase credentials are not compromised if the connection were to fail?',
+        text: 'When connecting to a database using PDO, what must be done to ensure that database credentials are not compromised if the connection were to fail?',
         type: 2,
+        category: 7,
         answer: {
-            options: ['wrap the PDO DSN in a try/catch block to catch any connection exception', 'Use constants in the PDO DSN', 'Place the login credentials in the php.ini file', 'Disable E_STRICT and E_NOTICE error reporting levels'],
+            options: ['Wrap the PDO DSN in a try/catch block to catch any connection exception', 'Use constants in the PDO DSN', 'Place the login credentials in the php.ini file', 'Disable E_STRICT and E_NOTICE error reporting levels'],
             correct: [1],
             link: ["http://www.php.net/manual/en/pdo.connections.php"],
-            explanation: []
+            explanation: ["Without using a try/catch the DSN will be printed through the output."]
         }
     },
     q120: {
         id: 120,
         text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?phptry { $dbh = new PDO("sqlite::memory:");} catch(PDOException $e) { print $e-&gt;getMessage();}$dbh-&gt;query("CREATE TABLE foo(id INT)");$stmt = $dbh-&gt;prepare("INSERT INTO foo VALUES(:value)");$value = null;$data = array(1,2,3,4,5);$stmt-&gt;bindParam(":value", $value);/* ?????? */try { foreach($data as $value) { /* ????? */ }} catch(PDOException $e) { /* ??????? */}/* ?????? */?&gt;</pre> Whatlines of code need to go into the missing places above in order forthis script to function properly and insert the data into the databasesafely?',
         type: 3,
+        category: 7,
         answer: {
             options: ['$dbh-&gt;beginTransaction();', '$dbh-&gt;commit();', '$stmt-&gt;execute();', '$dbh-&gt;rollback();', '$dbh-&gt;query($stmt);'],
-            correct: [1, 3, 4, 2],
+            correct: [1, 2, 3, 4],
             link: ["http://www.php.net/manual/en/pdo.query.php"],
-            explanation: []
+            explanation: ["You have to include the commit at the end and the rollback inside the catch."]
         }
     },
     q121: {
         id: 121,
         text: 'Implementing your own PDO class requires which steps from the list below?',
         type: 3,
+        category: 7,
         answer: {
             options: ['Extending the PDOStatement Class', 'Set the PDO::ATTR_STATEMENT_CLASS parameter', 'Call the PDO::setStatementClass() method', 'Extend the PDO class', 'Set the PDO::ATTR_USE_CLASS paramater'],
-            correct: [4, 1, 2],
+            correct: [1, 2, 4],
             link: ["http://php.net/manual/en/book.pdo.php"],
             explanation: []
         }
