@@ -14,6 +14,7 @@
     6 = Strings & Patterns
     7 = Databases
     8 = Arrays
+    9 = PHP4 vs PHP5 (deprecated for PHP 5.3 certification, DO NOT USE FOR TESTS)
 */
 var index = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243];
 
@@ -932,8 +933,9 @@ var questionsDataBase = {
     },
     q77: {
         id: 77,
-        text: 'Ifregular expressions must be used, in general which type of regularexpression functions available to PHP is preferred for performancereasons?',
+        text: 'If regular expressions must be used, in general which type of regular expression functions available to PHP is preferred for performance reasons?',
         type: 2,
+        category: 6,
         answer: {
             options: ['strtok() using regular expressions', 'preg_* regular expression functions', 'parse_str() using regular expressions', 'strregex* regular expression functions', 'ereg* regular expression functions'],
             correct: [2],
@@ -945,28 +947,31 @@ var questionsDataBase = {
         id: 78,
         text: 'To destroy one variable within a PHP session you should use which method in PHP 5?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Unset the variable in $HTTP_SESSION_VARS', 'Use the session_destroy() function', 'Use the session_unset() function', 'unset the variable in $_SESSION using unset()', 'Any of the above are acceptable in PHP 5'],
             correct: [4],
             link: ["http://docs.php.net/manual/en/session.examples.basic.php"],
-            explanation: []
+            explanation: ["session_unset() does unset all session variables, session_destroy() destroys all session data, to unset a specific variable in $_SESSION, we should use unset()."]
         }
     },
     q79: {
         id: 79,
         text: 'If you would like to store your session in the database, you would do which of the following?',
         type: 2,
+        category: 1,
         answer: {
             options: ['It requires a custom PHP extension to change the session handler', 'Implement the session_set_save_handler() function', 'Create functions for each session handling step and use session_set_save_handler() to override PHP\'s internal settings', 'Configure the session.save_handler INI directive to your session class'],
             correct: [3],
             link: ["http://www.php.net/manual/en/function.session-set-save-handler.php"],
-            explanation: []
+            explanation: ["The 2nd option isn't wrong in a strict sense of the word, but 3rd is a more complete answers (check the manual)."]
         }
     },
     q80: {
         id: 80,
         text: 'To destroy a PHP session completely, one must which of the following?',
         type: 3,
+        category: 1,
         answer: {
             options: ['Regenerate the session ID using session_regenerate_id()', 'If cookies are used, destroy it', 'Use session_demolish() to completely destroy the session', 'Change the session name using session_name()', 'Destroy the session data using session_destroy()'],
             correct: [2, 5],
@@ -978,21 +983,23 @@ var questionsDataBase = {
         id: 81,
         text: 'If you would like to change the session ID generation function, which of the following is the best approach for PHP 5?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Set the session.hash_function INI configuration directive', 'Use the session_set_id_generator() function', 'Set the session id by force using the session_id() function', 'Use the session_regenerate_id() function', 'Implement a custom session handler'],
-            correct: [3],
-            link: ["http://www.php.net/manual/en/function.session-id.php"],
-            explanation: []
+            correct: [1],
+            link: ["http://www.php.net/manual/en/session.configuration.php#ini.session.hash-function"],
+            explanation: ["Read the question carefully, it is not asking which function to call to change/set the session_id. \nIt's asking how to change the function that generates the session_id."]
         }
     },
     q82: {
         id: 82,
         text: 'Consider the following HTML fragement: <pre class=\'brush: php; html-script: true\'>&lt;select name="?????" multiple&gt;&lt;option value="1"&gt;Item #1&lt;/option&gt;&lt;!-- ... more options ... --&gt;&lt;/select&gt;</pre> Which of the following <code>name</code> attributes should be used to capture all of the data from the user in PHP?',
         type: 2,
+        category: 1,
         answer: {
             options: ['myselectbox=array()', 'myselectbox[]', 'myselectbox[\'multiple\']', 'myselectbox{\'multiple\'}', 'myselectbox'],
             correct: [2],
-            link: ["http://onlamp.com/pub/a/php/2004/08/26/PHPformhandling.html"],
+            link: ["http://onlamp.com/pub/a/php/2004/08/26/PHPformhandling.html", "http://onlinetools.org/tricks/using_multiple_select.php"],
             explanation: []
         }
     },
@@ -1000,6 +1007,7 @@ var questionsDataBase = {
         id: 83,
         text: 'When uploading a file using HTTP, which variable can be used to locate the file on PHP\'s local filesystem?',
         type: 2,
+        category: 1,
         answer: {
             options: ['None of the above', '$_FILES[\'fieldname\'][\'tmp_name\']', '$_FILES[\'fieldname\']', '$_FILES[\'fieldname\'][0][\'filename\']', '$_FILES[\'fieldname\'][\'filename\']'],
             correct: [2],
@@ -1011,6 +1019,7 @@ var questionsDataBase = {
         id: 84,
         text: 'To force a user to redirect to a new URL from within a PHP 5 script, which of the following should be used?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Send a HTTP "Location:" header', 'Use the HTML &lt;redirect&gt; Tag', 'Send a HTTP "Forward:" header', 'Use the redirect() function'],
             correct: [1],
@@ -1022,6 +1031,7 @@ var questionsDataBase = {
         id: 85,
         text: 'Setting a cookie on the client in PHP 5 can be best accomplished by:',
         type: 2,
+        category: 1,
         answer: {
             options: ['Use the add_cookie() function', 'Use the setcookie() function', 'Use the the apache_send_header() function', 'Setting a variable in the $_COOKIE superglobal'],
             correct: [2],
@@ -1033,6 +1043,7 @@ var questionsDataBase = {
         id: 86,
         text: 'How does one create a cookie which will exist only until the browser session is terminated?',
         type: 2,
+        category: 1,
         answer: {
             options: ['You cannot create cookies that expire when the browser session is terminated', 'Setting the expiration time for a cookie to a time in the distant future', 'Do not provide a cookie expiration time', 'Enable Cookie Security', 'Set a cookie without a domain'],
             correct: [3],
@@ -1044,17 +1055,19 @@ var questionsDataBase = {
         id: 87,
         text: 'Setting a HTTP cookie on the client which is not URL-encoded is done how in PHP 5?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Use the setrawcookie() function', 'Set the cookies.urlencode INI directive to false', 'Use urldecode() on the return value of setcookie()', 'Setting the $no_encode parameter of setcookie() to a boolean \'true\'', 'All cookies must be URL encoded'],
             correct: [1],
             link: ["http://www.php.net/manual/en/function.setrawcookie.php"],
-            explanation: []
+            explanation: ["According to the manual: \"setrawcookie — Send a cookie without urlencoding the cookie value \""]
         }
     },
     q88: {
         id: 88,
         text: 'During an HTTP authentication, how does one determine the username and password provided by the browser?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Parse the HTTP headers manually using http_get_headers()', 'Use the get_http_username() and get_http_password() functions', 'Use the $_SERVER[\'HTTP_USER\'] and $_SERVER[\'HTTP_PASSWORD\'] variables', 'Use the $_SERVER[\'PHP_AUTH_USER\'] and $_SERVER[\'PHP_AUTH_PW\'] variables', 'Parse the $_SERVER[\'REQUEST_URI\'] variable'],
             correct: [4],
@@ -1066,39 +1079,43 @@ var questionsDataBase = {
         id: 89,
         text: 'Consider the following function: <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction redirect($url) { // Check to make sure we haven\'t already sent // the header: if(???????) { header("Location: $url"); }}?&gt;</pre> What conditional should replace the <code>?????</code> above?',
         type: 2,
+        category: 1,
         answer: {
             options: ['!in_array("Location: $url", headers_list())', '!header_exists("Location: $url")', '!header_location($url)', '$_SERVER[\'HTTP_LOCATION\'] != $url'],
             correct: [1],
             link: ["http://www.php.net/manual/en/function.headers-list.php"],
-            explanation: []
+            explanation: ["According to the manual: headers_list — Returns a list of response headers sent (or ready to send)"]
         }
     },
     q90: {
         id: 90,
         text: 'One can ensure that headers can always be sent from a PHP script by doing what?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Enable header buffering in PHP 5', 'Set the header.force INI directive to true', 'Enable output buffering in PHP 5', 'There is no way to ensure that headers can always be set, they must always be checked', 'None of the above'],
             correct: [3],
-            link: ["http://php.net/manual/en/function.ob-start.php"],
-            explanation: []
+            link: ["http://php.net/manual/en/function.ob-start.php", "http://php.net/manual/en/function.header.php"],
+            explanation: ["While output buffering is active no output is sent from the script (other than headers), instead the output is stored in an internal buffer."]
         }
     },
     q91: {
         id: 91,
         text: 'When is it acceptable to store sensitive information in an HTTP cookie?',
         type: 2,
+        category: 3,
         answer: {
             options: ['Only under extremely controlled situations', 'When the cookie is sent over a secure HTTP request', 'When it is encrypted', 'It is always acceptable'],
             correct: [3],
             link: ["http://php.net/manual/en/function.setcookie.php"],
-            explanation: []
+            explanation: ["The best option (besides never storing sensitive information in a cookie) is number 3"]
         }
     },
     q92: {
         id: 92,
         text: 'Removing undesired markup tags from input can best be done using which function?',
         type: 2,
+        category: 6,
         answer: {
             options: ['strip_tags()', 'tidy_strip_html()', 'str_replace()', 'strip_html()'],
             correct: [1],
@@ -1110,50 +1127,55 @@ var questionsDataBase = {
         id: 93,
         text: 'When using a function such as strip_tags, are markup-based attacks still possible?',
         type: 2,
+        category: 3,
         answer: {
             options: ['No, HTML does not pose any security risks', 'Yes, even a &lt;p&gt; HTML tag is a security risk', 'Yes, attributes of allowed tags are ignored', 'No, strip_tags will prevent any markup-based attack'],
             correct: [3],
             link: ["http://www.php.net/manual/en/function.strip-tags.php"],
-            explanation: []
+            explanation: ["Number 3 is the more complete answer."]
         }
     },
     q94: {
         id: 94,
         text: 'Consider the following PHP string representing an SQL statement:  <p class="ceresIndent"><code>$query = "UPDATE users SET password=\'$password\' WHERE username=\'$username\'";</code></p> <p class="ceresIndent">Which of the following values for <code>$username</code> or <code>$password</code> would change the behavior of this query when executed?</p>',
         type: 2,
+        category: 3,
         answer: {
             options: ['None of the above', '$username = "foobar\' WHERE username=\'admin\'";', '$password = "foobar\' WHERE username=\'admin\' --:";', '$password = "\"foobar\" WHERE username=\"admin\"";'],
             correct: [3],
             link: ["http://php.net/manual/en/security.database.sql-injection.php"],
-            explanation: []
+            explanation: ["The \"--\" is the SQL notation for a comment."]
         }
     },
     q95: {
         id: 95,
         text: 'SQL Injections can be best prevented using which of the following database technologies?',
         type: 2,
+        category: 3,
         answer: {
             options: ['All of the above', 'Prepared Statements', 'Persistent Connections', 'Unbuffered Queries', 'Query escaping'],
             correct: [2],
             link: ["http://php.net/manual/en/pdo.prepared-statements.php"],
-            explanation: []
+            explanation: ["the 5th option is also correct, but the 2nd is the right choice because we are asked for the \"best\" method."]
         }
     },
     q96: {
         id: 96,
         text: 'Where should indirectly executed PHP scripts (i.e. include files) be stored in the file system?',
         type: 2,
+        category: 3,
         answer: {
             options: ['Outside of the Document Root', 'In the document root', 'Anywhere you want', 'In the database'],
             correct: [1],
             link: ["http://phpsec.org/projects/guide/3.html"],
-            explanation: []
+            explanation: ["It's better to keep those files outside the document root in a private folder."]
         }
     },
     q97: {
         id: 97,
         text: 'When executing system commands from PHP, what should one do to keep applications secure?',
         type: 3,
+        category: 3,
         answer: {
             options: ['Remove all quote characters from variables used in a shell execution', 'Avoid using shell commands when PHP equivlents are available', 'Hard code all shell commands', 'Escape all shell arguments', 'Escape all shell commands executed'],
             correct: [2, 3, 4],
@@ -1163,8 +1185,9 @@ var questionsDataBase = {
     },
     q98: {
         id: 98,
-        text: 'Whyis it important from a security perspective to never display PHP errormessages directly to the end user, yet always log them?',
+        text: 'Whyis it important from a security perspective to never display PHP error messages directly to the end user, yet always log them?',
         type: 3,
+        category: 3,
         answer: {
             options: ['Error messages will contain sensitive session information', 'Error messages can contain cross site scripting attacks', 'Security risks involved in logging are handled by PHP', 'Error messages give the perception of insecurity to the user', 'Error messages can contain data useful to a potential attacker'],
             correct: [4, 5],
@@ -1176,17 +1199,19 @@ var questionsDataBase = {
         id: 99,
         text: 'The MVC pattern in Web development involves which of the following components?',
         type: 3,
+        category: 2,
         answer: {
             options: ['View', 'Controller', 'Validation', 'Model', 'Front Controller'],
-            correct: [4, 1, 2],
+            correct: [1, 2, 4],
             link: ["http://en.wikipedia.org/wiki/Model–view–controller"],
-            explanation: []
+            explanation: ["MVC = Model View Controller"]
         }
     },
     q100: {
         id: 100,
         text: 'Which of the following aspects of the MVC pattern is used in conjunction with the database?',
         type: 2,
+        category: 2,
         answer: {
             options: ['Model', 'Schema', 'Validation', 'Controller', 'View'],
             correct: [1],
@@ -1198,6 +1223,7 @@ var questionsDataBase = {
         id: 101,
         text: 'What are the primary benefits of object oriented programming?',
         type: 3,
+        category: 2,
         answer: {
             options: ['Maintainability', 'Execution Speed', 'Encapsulation', 'Code Reuse'],
             correct: [1, 3, 4],
@@ -1209,110 +1235,120 @@ var questionsDataBase = {
         id: 102,
         text: 'What consistutes a View in the MVC pattern for PHP 5, in the following list?',
         type: 3,
+        category: 2,
         answer: {
             options: ['Iterators', 'PDO', 'Classes', 'PHP', 'Smarty'],
             correct: [4, 5],
             link: ["http://en.wikipedia.org/wiki/Model–view–controller#Concepts"],
-            explanation: []
+            explanation: ["Smarty is a templating system, while PHP is also, in itself, a templating system."]
         }
     },
     q103: {
         id: 103,
         text: 'Which of the following extensions are no longer part of PHP 5 and have been moved to PECL?',
         type: 3,
+        category: 9,
         answer: {
             options: ['tidy', 'mysql', 'w32api', 'curl', 'dio'],
             correct: [3, 5],
             link: ["http://www.php.net/manual/en/intro.w32api.php", "http://www.php.net/manual/en/intro.dio.php"],
-            explanation: []
+            explanation: ["Tidy is also a part os PECL, but it is so since PHP4. \nThis question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q104: {
         id: 104,
         text: 'Which of the following functions were added to PHP 5 for dealing with arrays?',
         type: 3,
+        category: 9,
         answer: {
             options: ['array_intersect_key()', 'array_unshift()', 'array_diff_key()', 'array_merge()', 'array_slice()'],
             correct: [1, 3],
             link: ["http://www.php.net/manual/en/function.array-intersect-key.php", "http://www.php.net/manual/en/function.array-diff-key.php"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q105: {
         id: 105,
         text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction func(&amp;$arraykey) { return $arraykey; // function returns by value!}$array = array(\'a\', \'b\', \'c\');foreach (array_keys($array) as $key) { $y = &amp;func($array[$key]); $z[] =&amp; $y;}var_dump($z);?&gt;</pre> Thiscode has changed behavior in PHP 5. Identify the output of this scriptas it would have been in PHP 4, as well as the new behavior in PHP 5.',
         type: 3,
+        category: 9,
         answer: {
             options: ['array(\'a\', \'a\', \'b\')', 'array(\'a\', \'b\', \'c\')', 'array(\'c\', \'b\', \'a\')', 'array(\'c\', \'c\', \'c\')', 'array(\'b\', \'b\', \'b\')'],
             correct: [2, 4],
             link: ["http://www.php.net/manual/en/language.references.return.php", "http://php.net/manual/en/functions.returning-values.php"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q106: {
         id: 106,
         text: 'Consider the following code block: <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction &amp;myFunction() { $string = "MyString"; var_dump($string); return ($undefined);}for($i = 0; $i &lt; 10; $i++) { $retval = myFunction();}?&gt;</pre> This code block\'s behavior has changed between PHP 4 and PHP 5. Why?',
         type: 2,
+        category: 9,
         answer: {
             options: ['None of the above', 'This could would cause an automatic segmentation fault in PHP 4', 'This code would throw a syntax error in PHP 4', 'Returning an undefined variable by reference in PHP 4 would cause eventual memory corruption', 'You could not return undefined variables by reference in PHP 4'],
             correct: [1],
             link: ["http://php.net/manual/en/function.return.php"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q107: {
         id: 107,
         text: 'When migrating the following code from PHP 4 to PHP 5, what should be changed? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass MyClass {function MyClass($param) {/* Do something with $param */$this-&gt;_doSomething($param);}// Private method to MyClassfunction _doSomething($param) {/* Do something with $param */}}class AnotherClass extends MyClass {var $param = "foo";function AnotherClass() {parent::MyClass($this-&gt;param);}}?&gt;</pre>',
         type: 3,
+        category: 9,
         answer: {
             options: ['Access modifiers should be added to methods', 'The Constructors for the objects should both be renamed to __construct', 'The use of the parent keyword has changed to \'super\'', 'Constructors must have the same parameter lists'],
             correct: [1, 2],
             link: ["http://php.net/manual/en/language.oop5.decon.php", "http://devzone.zend.com/article/1714#Heading4"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q108: {
         id: 108,
         text: 'Assuming every method call below returns an instance of an object, how can the following be re-written in PHP 5? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = new MyClass();$b = $a-&gt;getInstance();$c = $b-&gt;doSomething();?&gt;</pre>',
         type: 2,
+        category: 9,
         answer: {
             options: ['$c = ((MyClass)$a-&gt;getInstance())-&gt;doSomething();', 'This cannot be re-written in PHP 5', '$c = $a-&gt;getInstance()-&gt;doSomething();', '$c = (MyClass)$a-&gt;getInstance();', '$c = (new MyClass())-&gt;getInstance()-&gt;doSomething();'],
-            correct: [3],
+            correct: [3, 5],
             link: [],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q109: {
         id: 109,
         text: 'How can the following code be re-written from PHP 4 to PHP 5?  <pre class=\'brush: php; html-script: true\'>&lt;?phpif(get_class($myObj) == "MyClass") {// Do something}?&gt;</pre>',
         type: 2,
+        category: 9,
         answer: {
             options: ['if(get_class($myObj) === "MyObject)', 'if(strtolower(get_class($myObj)) == "MyClass")', 'if($myObj implements MyClass)', 'if($myObj instanceof Object)', 'if($myObj instanceof MyClass)'],
             correct: [5],
             link: ["http://php.net/manual/en/internals2.opcodes.instanceof.php"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q110: {
         id: 110,
         text: 'Is this code valid only in PHP 4, in PHP 5, or both? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction myfunction(&amp;$myvalue = null) { /* ... */}?&gt;</pre>',
         type: 2,
+        category: 9,
         answer: {
             options: ['Both', 'PHP 5', 'PHP 4'],
             correct: [2],
             link: ["http://php.net/manual/en/functions.arguments.php"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q111: {
         id: 111,
         text: 'Unlikea database such as MySQL, SQLite columns are not explicitly typed.Instead, SQLite catagorizes data into which of the following catagories?',
         type: 3,
+        category: 7,
         answer: {
             options: ['textual', 'unicode', 'numeric', 'binary', 'constant'],
             correct: [1, 3],
             link: ["http://www.sqlite.org/datatype3.html"],
-            explanation: []
+            explanation: ["The database engine may convert values between numeric storage classes (INTEGER and REAL) and TEXT during query execution."]
         }
     },
     q112: {
