@@ -67,8 +67,8 @@ var app = {
             app.setQuestionTitle('Loading...');
 
             // rebuild questions list
-            var qId = $(".question-info").attr('qid');
-            var qNum = app.questionNumberFromId(qId);
+            var qid = $(".question-info").attr('qid');
+            var qNum = app.questionNumberFromId(qid);
             app.buildQuestions(qNum);
             // rebuild bookmark question
             app.buildBookmarkQuestion();
@@ -114,26 +114,24 @@ var app = {
 
     buildQuestions: function(from, stepBack, stepForward) {
         from = from || 1;
-        var html, q;
-        var num = 1;
+        var html, qid;
         stepBack = typeof stepBack !== "undefined" ? stepBack : 4;
         stepForward = typeof stepForward !== "undefined" ? stepForward : 5;
         var prev = ( ( from - stepBack ) > 0 ) ? (from - stepBack) : 1;
         var next = ( ( prev + stepBack + stepForward ) >= app.numQuestions ) ? app.numQuestions : ( prev + stepBack + stepForward );
 
         $("#questions-list").html('');
-        for (var question in questions) {
-            if ( ( num >= prev ) && ( num <= next) ) {
-                q = questions[question].id;
+        for (var i = 1; i < index.length; i++) {
+            if ( i && ( i >= prev ) && ( i <= next) ) {
+                qid = app.questionIdFromNumber(i);
                 html = '<li class="arrow">' +
-                    '<a href="#question" data-question-number="'+q+'" class="slide question-token">' +
-                    'Question '+num+
-                    (num == BOOKMARK ? '<div class="bookmark"></div>' : '') +
-                    (localStorage.getItem("PHPEXAM_QUESTION_"+app.questionIdFromPosition(num)) ? '<small class="counter">DONE</small>' : '') +
+                    '<a href="#question" data-question-number="'+i+'" class="slide question-token">' +
+                    'Question '+i+
+                    (qid == BOOKMARK ? '<div class="bookmark"></div>' : '') +
+                    (localStorage.getItem("PHPEXAM_QUESTION_"+qid) ? '<small class="counter">DONE</small>' : '') +
                     '</a></li>';
                 $("#questions-list").append(html);
             }
-            num++;
         }
 
         // write loading, show and load question
@@ -162,8 +160,7 @@ var app = {
         var html = '<span class="no-bookmark">Without bookmark</span>';
 
         if (BOOKMARK) {
-            var q = app.questionIdFromPosition(BOOKMARK);
-            html = '<a href="#question" data-question-number="'+q+'" class="slide question-token">Last bookmark: <span id="bookmark-question">Question '+BOOKMARK+'</span></a>';
+            html = '<a href="#question" data-question-number="'+BOOKMARK+'" class="slide question-token">Last bookmark: <span id="bookmark-question">Question '+BOOKMARK+'</span></a>';
         }
         $("#bookmark-question").html(html);
 
@@ -175,38 +172,41 @@ var app = {
     },
 
     setBookmark: function (el) {
-        var questionId = $(".question-info").attr('qid');
+        var qid = $(".question-info").attr('qid');
+        var qNum = app.questionNumberFromId(qid);
 
-        BOOKMARK = app.questionNumberFromId(questionId);
-        BOOKMARK_ID = questionId;
-        localStorage.setItem('PHPEXAM_BOOKMARK', app.questionNumberFromId(questionId));
-        localStorage.setItem('PHPEXAM_BOOKMARK_ID', questionId);
+        BOOKMARK = qNum;
+        BOOKMARK_ID = qid;
+        localStorage.setItem('PHPEXAM_BOOKMARK', qNum);
+        localStorage.setItem('PHPEXAM_BOOKMARK_ID', qid);
 
         el.remove();
         $('#question .toolbar').append('<div id="page-bookmark"></div>');
     },
 
     questionNumberFromId: function (id) {
-        return questions['q'+id].num || 0;
-    },
-
-    questionIdFromPosition: function (pos) {
-        for ( var q in questions ) {
-            if ( questions[q].num == pos ) return questions[q].id;
-        }
-        return 0;
-    },
-
-    questionIndexFromPosition: function (pos) {
-        var index = app.questionIdFromPosition(pos);
-
-        if (index) return 'q'+index;
-        else return 0;
+        return index.indexOf(parseInt(id));
     },
 
     questionIndexFromId: function (id) {
-        if (id) return 'q'+id;
-        else return 0;
+        return 'q'+id;
+    },
+
+    questionIdFromNumber: function (num) {
+        var index = app.questionIndexFromNumber(num);
+        return app.questionIdFromIndex(index);
+    },
+
+    questionIndexFromNumber: function (num) {
+        return 'q'+index[num];
+    },
+
+    questionIdFromIndex: function (index) {
+        return questionsDataBase[index].id;
+    },
+
+    questionNumberFromIndex: function (index) {
+        return app.questionNumberFromId(app.questionIdFromIndex(index));
     },
 
     answerIdFromQuestionId: function (qid) {
@@ -225,14 +225,16 @@ var app = {
 
     resolveQuestion: function () {
         var error = false;
-        var questionId = $(".question-info").attr('qid');
-        var answerId = app.answerIdFromQuestionId(questionId);
+        var qid = $(".question-info").attr('qid');
+        var qindex = app.questionIndexFromId(qid);
+        var answer = questionsDataBase[qindex].answer;
+
         $.each($('.question-answer input'), function () {
             var parent = $(this).parent();
             // check if the answer is a "TEXT" one
-            if (answersDataBase[answerId].correct[0] && (typeof answersDataBase[answerId].correct[0] == "string")) {
+            if (answer.correct[0] && (typeof answer.correct[0] == "string")) {
                 $(this).addClass('noborder');
-                if ( $(this).val().toUpperCase() == answersDataBase[answerId].correct[0].toUpperCase() ) {
+                if ( $(this).val().toUpperCase() == answer.correct[0].toUpperCase() ) {
                     if (parent.hasClass('answer-incorrect')) {
                         parent.removeClass('answer-incorrect');
                     }
@@ -245,13 +247,13 @@ var app = {
                     }
                     parent.addClass('answer-incorrect');
                     error = true;
-                    $('#free_form_answer_text').html('Incorrect, correct answer is: '+answersDataBase[answerId].correct[0]);
+                    $('#free_form_answer_text').html('Incorrect, correct answer is: '+answer.correct[0]);
                 }
             }
             // answer is radio or checkbox
             else {
                 if ( $(this).is(':checked')) {
-                    if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+                    if ( app.isInArray($(this).val(), answer.correct ) ) {
                         if (parent.hasClass('answer-incorrect')) {
                             parent.removeClass('answer-incorrect');
                         }
@@ -266,7 +268,7 @@ var app = {
                     }
                 }
                 else {
-                    if ( app.isInArray($(this).val(), answersDataBase[answerId].correct ) ) {
+                    if ( app.isInArray($(this).val(), answer.correct ) ) {
                         if (parent.hasClass('answer-correct')) {
                             parent.removeClass('answer-correct');
                         }
@@ -282,7 +284,7 @@ var app = {
             }
         });
         if (!error) {
-            localStorage.setItem("PHPEXAM_QUESTION_"+questionId, "OK");
+            localStorage.setItem("PHPEXAM_QUESTION_"+qid, "OK");
             $('#resolve-question').remove();
         }
     },
@@ -291,46 +293,50 @@ var app = {
         // start loading and show
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
-        var title = 'Question ' + app.questionNumberFromId(questionNumber);
-        var questionIndex = app.questionNumberFromId(questionNumber);
+        var title = 'Question ' + questionNumber;
+        var qid = app.questionIdFromNumber(questionNumber);
+        var qindex = app.questionIndexFromNumber(questionNumber);
 
         // show question
         if (OFFLINE_MODE) {
-            var questionContent = questionsDataBase[app.questionIndexFromId(questionNumber)];
-            app.setQuestionTitle(title, questionIndex);
+            var questionContent = app.buildQuestion(questionNumber);
+            app.setQuestionTitle(title, qid);
             app.setQuestionContent(questionContent);
             SyntaxHighlighter.highlight();
             $('#question-content').show();
-            app.buildQuestionButtons(questionNumber, questionIndex);
+            app.buildQuestionButtons(qindex, questionNumber);
         }
         else {
+            /*
             $.ajax({
                 url: BASE_URL + 'questions/question_' + questionNumber + '.html',
                 dataType: "html",
                 timeout: 6000,
                 success: function (data, status, xhr) {
-                    app.setQuestionTitle(title, questionIndex);
+                    app.setQuestionTitle(title, qindex);
                     app.setQuestionContent(data);
                     SyntaxHighlighter.highlight();
                     $('#question-content').show();
-                    app.buildQuestionButtons(questionNumber, questionIndex);
+                    app.buildQuestionButtons(qindex, questionNumber);
                 },
                 error: function (xhr, errorType, error) {
-                    app.setQuestionTitle(title, questionIndex);
+                    app.setQuestionTitle(title, qindex);
                     app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
                     $('#question-content').show();
                 }
             });
+            */
         }
     },
 
-    buildQuestionButtons: function(qId, qNum) {
+    buildQuestionButtons: function(qindex, qNum) {
+        var explanation = questionsDataBase[qindex].answer.explanation;
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
+                ((explanation.length) ? '' : '<a href="#" class="whiteButton" id="show-comments">Show explanation</a>') +
                 ((qNum == 1) ? '' : '<a href="#" class="whiteButton" id="prev-question">Previous</a>') +
                 ((qNum == app.numQuestions) ? '' : '<a href="#" class="whiteButton" id="next-question">Next</a>') +
-                ((commentsDataBase['c'+qId] == '') ? '' : '<a href="#" class="whiteButton" id="show-comments">Show comments</a>') +
                 '</div><div id="question-comments" style="display:none;"></div>');
             $('#question-content').append(app.buildHelpLink());
         }
@@ -347,25 +353,26 @@ var app = {
 
         // show comments
         $('#show-comments').hammer().on("tap", function (e) {
-            var questionId = $(".question-info").attr('qid');
+            var qid = $(".question-info").attr('qid');
 
-            app.buildComments(questionId);
+            app.buildComments(qid);
             $(this).remove();
         });
 
         // button to previous question
         $('#prev-question').hammer().on("tap", function (e) {
-            app.goToQuestion(app.questionIdFromPosition(qNum - 1));
+            app.goToQuestion(qNum - 1);
         });
 
         // button to next question
         $('#next-question').hammer().on("tap", function (e) {
-            app.goToQuestion(app.questionIdFromPosition(qNum + 1));
+            app.goToQuestion(qNum + 1);
         });
     },
 
-    buildComments: function (qId) {
+    buildComments: function (qid) {
         var layer = $('#question-comments');
+        var index = app.questionIndexFromId(qid);
 
         // start loading and show
         layer.html('Loading...');
@@ -373,11 +380,13 @@ var app = {
 
         // show question
         if (OFFLINE_MODE) {
-            layer.html(commentsDataBase['c'+qId]);
+            if (questionsDataBase[index].answer.explanation[0]) {
+                layer.html(questionsDataBase[index].answer.explanation[0].replace('\\n', '<br />'));
+            }
         }
         else {
             $.ajax({
-                url: BASE_URL + 'comments/comments_question_' + qId + '.html',
+                url: BASE_URL + 'comments/comments_question_' + qid + '.html',
                 dataType: "html",
                 timeout: 6000,
                 success: function (data, status, xhr) {
@@ -391,9 +400,10 @@ var app = {
     },
 
     buildHelpLink: function () {
-        var questionId = $(".question-info").attr('qid');
-        var answerId = app.answerIdFromQuestionId(questionId);
-        var links = answersDataBase[answerId].link;
+        var qid = $(".question-info").attr('qid');
+        var index = app.questionIndexFromId(qid);
+        var answer = questionsDataBase[index].answer;
+        var links = answer.link;
         if (links.length > 0) {
             var html = '<ul class="individual">';
             for (var i = 0, j = links.length; i < j; i++) {
@@ -404,6 +414,74 @@ var app = {
         else {
             html = '';
         }
+        return html;
+    },
+
+    buildQuestion: function(qNum) {
+        var index = app.questionIndexFromNumber(qNum);
+        var id = app.questionIdFromIndex(index);
+        var aChoose = (typeof questionsDataBase[index].answer.correct[0] == "string") ?
+            '' :
+            '<div id="question-'+id+'-answer-note" class="question-answer-note">Choose '+questionsDataBase[index].answer.correct.length+'</div>';
+        return '<div id="question-{$count}">' +
+                '<div id="question-'+id+'-info" class="question-info" qnum="'+qNum+'" qid="'+id+'" style="display:none;"></div>' +
+                '<div id="question-'+id+'-number" class="question-number">'+qNum+'</div>' +
+                '<div id="question-'+id+'-text" class="question-text">' +
+                    questionsDataBase[index].text +
+                '</div>' +
+                '<div id="question-'+id+'-answer" class="question-answer">' +
+                    '<form id="question-'+id+'-form" onsubmit="return false;">' +
+                        '<ul>' +
+                            app.buildAnswers(qNum) +
+                        '</ul>' +
+                    '</form>' +
+                '</div>' +
+                aChoose +
+            '</div>';
+    },
+
+    buildAnswers: function(qNum) {
+        var index = app.questionIndexFromNumber(qNum);
+        var answer = questionsDataBase[index].answer;
+        var id = app.questionIdFromIndex(index);
+        var type = questionsDataBase[index]["type"];
+        var html = ''; var pos = 1; var i;
+
+        switch (type) {
+            case 1:
+                for (i = 0; i < answer.options.length; i++) {
+                    pos = i+1;
+                    // Open question
+                    html += '<li class="question-answer">'+
+                        '<input type="text" name="answer" id="'+id+'_'+pos+'"/>'+
+                        '<label for="'+id+'_'+pos+'" id="free_form_answer_text">&nbsp;<i>Write response</i></label>'+
+                        '</li>';
+                }
+                break;
+            case 2:
+                for (i = 0; i < answer.options.length; i++) {
+                    pos = i+1;
+                    // Single answer
+                    html += '<li class="question-answer">'+
+                            '<input type="radio" name="answer" value="'+pos+'" id="'+id+'_'+pos+'"/>'+
+                            '<label for="'+id+'_'+pos+'">&nbsp;&nbsp;'+answer.options[i]+'</label>'+
+                        '</li>';
+                }
+                break;
+            case 3:
+                for (i = 0; i < answer.options.length; i++) {
+                    pos = i+1;
+                    // Multiple answer
+                    html += '<li class="question-answer">'+
+                            '<input name="answer[]" type="checkbox" value="'+pos+'" id="'+id+'_'+pos+'"/>'+
+                            '<label for="'+id+'_'+pos+'">&nbsp;&nbsp;'+answer.options[i]+'</label>'+
+                        '</li>';
+                }
+                break;
+            default:
+                break;
+        }
+
         return html;
     }
 
