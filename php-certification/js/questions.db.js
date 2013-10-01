@@ -1475,28 +1475,31 @@ var questionsDataBase = {
         id: 122,
         text: 'When embedding PHP into XML documents, what must you ensure is true in order for things to function properly?',
         type: 2,
+        category: 4,
         answer: {
             options: ['Disabling of the short_tags PHP.ini directive', 'Enabling the asp_tags PHP.ini directive', 'That you have XPath support enabled in PHP 5', 'That your XML documents are well-formed', 'None of the above, PHP can be embedded in XML in all cases.'],
             correct: [4],
-            link: ["http://www.daaq.net/old/php/index.php?page=embedding+php&amp;parent=php+basics"],
-            explanation: []
+            link: ["http://www.daaq.net/old/php/index.php?page=embedding+php&parent=php+basics"],
+            explanation: ["There's important to mention that php short tags (short_open_tags, close to the first option) are greatly discouraged. \nIf you want to code to XML standards, short tags are a problem, since they will cause the PHP processor to try to treat all XML processing directives as PHP statements, whether they are or not. And, as such, you will have to code XML as follows: &lt;?xml ... ?&gt;"]
         }
     },
     q123: {
         id: 123,
         text: 'What XML technology is used when you mix two different document types in a single XML document?',
         type: 2,
+        category: 4,
         answer: {
             options: ['Validators', 'DTD', 'Transformations', 'Namespaces'],
             correct: [4],
-            link: ["http://www.webdeveloper.com/forum/showthread.php?t=230532"],
-            explanation: []
+            link: ["http://www.w3schools.com/xml/xml_namespaces.asp"],
+            explanation: ["Use namespaces to avoid possible conflicts between two elements from different sources with the same name (but, possibly, different data)."]
         }
     },
     q124: {
         id: 124,
         text: 'Consider the following example XML document: <pre class=\'brush: php; html-script: true\'>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; Moved to &lt;&lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;.&gt; &lt;br&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;</pre> What is wrong with this document, and how can it be corrected?',
         type: 3,
+        category: 4,
         answer: {
             options: ['The document is completely valid', 'All special XML characters must be represented as entities within the content of a node', 'All tags must be closed', 'You cannot specify a namespace for the &lt;html&gt; attribute', 'The DOCTYPE declaration is malformed'],
             correct: [2, 3],
@@ -1508,6 +1511,7 @@ var questionsDataBase = {
         id: 125,
         text: 'Event-based XML parsing is an example of which parsing model?',
         type: 2,
+        category: 4,
         answer: {
             options: ['SAX', 'DOM', 'XML Object Mapping', 'XPath', 'XQuery'],
             correct: [1],
@@ -1519,6 +1523,7 @@ var questionsDataBase = {
         id: 126,
         text: 'Consider the following code segment: <pre class=\'brush: php; html-script: true\'>&lt;?php$xmldata = &lt;&lt;&lt; XML&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; Moved to &amp;lt;&lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;.&amp;gt; &lt;br/&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;XML;$xml = xml_parser_create("UTF-8");/* ??????? */xml_parse($xml, $xmldata);function xml_start_handler($xml, $tag, $attributes) {print "Tag: $tag&lt;br/&gt;";}function xml_end_handler($xml, $tag) {}?&gt;</pre> What should be placed in place of <code>??????</code> above to have the above script display the name of each tag within the XML document?',
         type: 2,
+        category: 4,
         answer: {
             options: ['xml_set_callback("xml_start_handler");', 'xml_set_element_handler($xml, "xml_start_handler", "xml_end_handler");', 'xml_node_set_handler("xml_start_handler", "xml_end_handler");', 'xml_node_set_handler("xml_start_handler");'],
             correct: [2],
@@ -1530,17 +1535,19 @@ var questionsDataBase = {
         id: 127,
         text: 'What is the primary benefit of a SAX-based XML parser compared to DOM?',
         type: 2,
+        category: 4,
         answer: {
             options: ['All of the above', 'Faster then DOM methods', 'Requires less memory then DOM', 'Easier to develop parsers'],
             correct: [1],
             link: ["http://en.wikipedia.org/wiki/Simple_API_for_XML#Benefits"],
-            explanation: []
+            explanation: ["SAX is lighter than DOm because it doesn't need to keep the entire XML allocated in memory as an object, it's faster because it uses a tree model search and it's easier (perhaps arguably) to develop parsers using SAX because it can bind functions to every open/closing tag. \nKeep in mind that the question specifies XML parser, it does not tale into account node creation or XML manipulation."]
         }
     },
     q128: {
         id: 128,
         text: 'What does the following PHP script accomplish? <pre class=\'brush: php; html-script: true\'>&lt;?php $dom = new DomDocument(); $dom-&gt;load(\'test.xml\'); $body = $dom-&gt;documentElement-&gt;getElementsByTagName(\'body\')-&gt;item(0); echo $body-&gt;getAttributeNode(\'background\')-&gt;value. "";?&gt;</pre>',
         type: 2,
+        category: 4,
         answer: {
             options: ['Displays the content of every &lt;body&gt; node', 'Displays the "background" attribute for the first node in the XML document named "body"', 'Displays the content of every node that has a "background" node', 'Displays the "background" attribute of every node named "body"'],
             correct: [2],
@@ -1552,31 +1559,34 @@ var questionsDataBase = {
         id: 129,
         text: 'Creating new nodes in XML documents using PHP can be done using which XML/PHP 5 technologies?',
         type: 3,
+        category: 4,
         answer: {
             options: ['XQuery', 'XPath', 'SimpleXML', 'DOM', 'SAX'],
             correct: [3, 4],
             link: ["http://php.net/manual/en/class.simplexmlelement.php", "http://php.net/manual/en/domdocument.createelement.php"],
-            explanation: []
+            explanation: ["SimpleXML can be used to create new nodes, as can DOM/DOMDocument. However, in both cases, it's important to note that you're editing an in-memory copy of the XML file; to save the data, you have to call the appropriate save() method \ne.g. SimpleXML::asXML()"]
         }
     },
     q130: {
         id: 130,
         text: 'Consider the following simple PHP script: <pre class=\'brush: php; html-script: true\'>&lt;?php$dom = new DomDocument();$dom-&gt;load(\'test.xml\');$xpath = new DomXPath($dom);$nodes = $xpath-&gt;query(???????, $dom-&gt;documentElement);echo $nodes-&gt;item(0)-&gt;getAttributeNode(\'bgcolor\')-&gt;value . "";?&gt;</pre> What XPath query should go in the <code>?????? above</code> to display the "bgcolor" attribute of the first "body" node in the XML document?',
         type: 2,
+        category: 4,
         answer: {
             options: ['"*[local-name()=\'body\']"', '"/body[0]/text"', '"/body/body[0]"', '"name=\'body\'"', '"*[lname()=\'body\']"'],
             correct: [1],
-            link: ["http://www.w3.org/TR/xpath/#function-local-name"],
+            link: ["http://www.w3schools.com/xpath/xpath_functions.asp", "http://www.w3.org/TR/xpath/#function-local-name"],
             explanation: []
         }
     },
     q131: {
         id: 131,
-        text: 'Consider the following PHP script fragment: <pre class=\'brush: php; html-script: true\'>&lt;?php$title = $dom-&gt;createElement(\'title\');$node = ????????$title-&gt;appendChild($node);$head-&gt;appendChild($title);?&gt;</pre> What should <code>???????</code> be replaced with to add a <code>&lt;title&gt;</code> node with the value of <code>Hello, World!</code>',
+        text: 'Consider the following PHP script fragment: <pre class=\'brush: php; html-script: true\'>&lt;?php$title = $dom-&gt;createElement(\'title\');$node = ????????$title-&gt;appendChild($node);$head-&gt;appendChild($title);?&gt;</pre> What should <code>???????</code> be replaced with to add a <code>&lt;title&gt;</code> node with the value of <code>Hello, World</code>',
         type: 2,
+        category: 4,
         answer: {
             options: ['$dom-&gt;createTextNode("Hello, World");', '$dom-&gt;appendElement($title, "text", "Hello, world!");', '$dom-&gt;appendTextNode($title, "Hello, World!");', '$dom-&gt;createElement(\'text\', "Hello, World");', 'None of the above'],
-            correct: [5],
+            correct: [1],
             link: ["http://php.net/manual/en/domdocument.createtextnode.php", "http://php.net/manual/en/domdocument.createelement.php"],
             explanation: []
         }
@@ -1585,17 +1595,19 @@ var questionsDataBase = {
         id: 132,
         text: 'When working with <code>SimpleXML</code> in PHP 5, the four basic rules on how the XML document is accessed are which of the following?',
         type: 3,
+        category: 4,
         answer: {
             options: ['Element namespaces are denoted by the \'namespace\' attribute', 'converting an element to a string denotes text data', 'Non-numeric indexes are element attributes', 'Numeric indexes are elements', 'Properties denote element iterators'],
             correct: [2, 3, 4, 5],
-            link: ["http://docs.php.net/manual/en/simplexmlelement.getnamespaces.php"],
-            explanation: []
+            link: ["http://docs.php.net/manual/en/simplexmlelement.getnamespaces.php", "http://www.php.net/manual/en/simplexml.examples-basic.php"],
+            explanation: ["namespaces are denoted by xmlns:_____"]
         }
     },
     q133: {
         id: 133,
         text: 'SimpleXML objects can be created from what types of data sources?',
         type: 3,
+        category: 4,
         answer: {
             options: ['A String', 'An array', 'A DomDocument object', 'A URI', 'A Database resource'],
             correct: [1, 3, 4],
@@ -1607,41 +1619,45 @@ var questionsDataBase = {
         id: 134,
         text: 'Given the following XML document in a SimpleXML object: <pre class=\'brush: php; html-script: true\'>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; Moved to &amp;lt;&lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;.&amp;gt; &lt;br/&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;</pre> Select the proper statement below which will display the HREF attribute of the anchor tag.',
         type: 2,
+        category: 4,
         answer: {
             options: ['$sxe-&gt;body-&gt;p[0]-&gt;a[1][\'href\']', '$sxe-&gt;body-&gt;p-&gt;a-&gt;href', '$sxe-&gt;body-&gt;p-&gt;a[\'href\']', '$sxe[\'body\'][\'p\'][0][\'a\'][\'href\']', '$sxe-&gt;body-&gt;p[1]-&gt;a[\'href\']'],
             correct: [3],
             link: ["http://www.php.net/manual/en/simplexml.examples-basic.php"],
-            explanation: []
+            explanation: ["If no index is specified for a node element, [0] is taken as default."]
         }
     },
     q135: {
         id: 135,
         text: 'Given the following PHP script: <pre class=\'brush: php; html-script: true\'>&lt;?php $xmldata = &lt;&lt;&lt; XML&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; &lt;b&gt;Hello, World!&lt;/b&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;XML;$sxe = simplexml_load_string($xmldata);$p = $sxe-&gt;body-&gt;p;$string = ????????print $string;?&gt;</pre> What should go in place of <code>?????</code> above to print the string <code>Hello, World!</code> (with no leading/trailing whitespace or markup)?',
         type: 2,
+        category: 4,
         answer: {
             options: ['trim(($p[1]));', 'trim(strip_tags(($p-&gt;asText())));', 'trim(strip_tags(($p-&gt;asXML())));', 'trim(($p-&gt;asXML()));', 'strip_tags(($p-&gt;asXML()));'],
             correct: [3],
             link: ["http://php.net/manual/en/simplexmlelement.asxml.php"],
-            explanation: []
+            explanation: ["The function asText() does not exist in SimpleXMLElement."]
         }
     },
     q136: {
         id: 136,
         text: 'The following is a common XML structure used in service oriented architectures, what does it represent? <pre class=\'brush: php; html-script: true\'>&lt;?xml version="1.0"?&gt;&lt;methodCall&gt; &lt;methodName&gt;myMethod&lt;/methodName&gt; &lt;params&gt; &lt;param&gt; &lt;value&gt;&lt;string&gt;HI!&lt;/string&gt;&lt;/value&gt; &lt;/param&gt; &lt;/params&gt;&lt;/methodCall&gt;</pre>',
         type: 2,
-        answer: {
+        category: 4,
+            answer: {
             options: ['None of the above', 'A fragment of a complete SOAP request', 'XML-RPC', 'REST', 'SOAP'],
             correct: [3],
             link: ["http://en.wikipedia.org/wiki/XML-RPC"],
-            explanation: []
+            explanation: ["Used to specify a method to call and it's params."]
         }
     },
     q137: {
         id: 137,
         text: 'Which of the following functions are part of PHP\'s internal <code>Iterator</code> interface?',
         type: 3,
+        category: 8,
         answer: {
-            options: ['rewind()', 'valid()', 'next()', 'key()', 'current()'],
+            options: ['rewind()', 'valid()', 'next()', 'key()', 'current()', 'forward()', 'unset()', 'prev()', 'value()'],
             correct: [1, 2, 3, 4, 5],
             link: ["http://php.net/manual/en/class.iterator.php"],
             explanation: []
@@ -1651,17 +1667,19 @@ var questionsDataBase = {
         id: 138,
         text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?php$dom = new DOMDOcument();$dom-&gt;load("myxmlfile.xml");foreach($dom-&gt;documentElement-&gt;childNodes as $child){ if(($child-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp; $child-&gt;nodeName == "item") { foreach($child-&gt;childNodes as $item) { if(($item-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp; ($item-&gt;nodeName == "title")) { print "$item-&gt;firstChild-&gt;data"; } } }}?&gt;</pre> Assumingthe referenced XML document exists and matches the parsing logic, whatshould be displayed when this script is executed?',
         type: 2,
+        category: 4,
         answer: {
             options: ['None of the above', 'The XML of each \'title\' node', 'The XML of each \'item\' node', '"Title" for every title node in the document', 'The contents of every \'title\' node which exists under an \'item\' node'],
-            correct: [5],
+            correct: [1],
             link: ["http://php.net/manual/en/function.domnode-node-type.php"],
-            explanation: []
+            explanation: ["Another tricky question, the print should have the variable inside curly braces."]
         }
     },
     q139: {
         id: 139,
         text: 'Which of the following methods are used to fetch data from a PDO Statement?',
         type: 3,
+        category: 7,
         answer: {
             options: ['fetchColumn()', 'fetchObject()', 'fetch()', 'fetchClass()', 'fetchRow()'],
             correct: [1, 2, 3],
@@ -1673,28 +1691,31 @@ var questionsDataBase = {
         id: 140,
         text: 'In a general sense, which is more important: performance or maintainability of an application?',
         type: 2,
+        category: 2,
         answer: {
             options: ['performance first, maintainability second', 'Maintainability first, performance second', 'Maintainability', 'Performance'],
             correct: [2],
             link: [],
-            explanation: []
+            explanation: ["Keep in mind that we are asked 'in a general sense'."]
         }
     },
     q141: {
         id: 141,
         text: 'When writing portable database code using PDO, what is the <code>PDO::ATTR_CASE</code> attribute useful for?',
         type: 2,
+        category: 7,
         answer: {
             options: ['None of the above', 'Ensuring that all columns are of a particular case when fetched', 'Adjusting the case of a query before it is processed for compatibility reasons', 'Controls the switch logic of how queries are processed', 'Allows you to adjust the memory cache (or "case") for increased performance'],
-            correct: [3],
+            correct: [2],
             link: ["http://php.net/manual/en/pdo.setattribute.php"],
-            explanation: []
+            explanation: ["According to the manual, PDO::ATTR_CASE forces column names to a specific case."]
         }
     },
     q142: {
         id: 142,
         text: 'Consider the following PHP code segment, which attempts to execute a PDO query: <pre class=\'brush: php; html-script: true\'>&lt;?phptry { $dbh-&gt;exec($sql);} catch (PDOException $e) { // display warning message $info = $e-&gt;errorInfo;}?&gt;</pre> In the event of a PDOException, <code>$info</code> is set with the contents of the <code>$errorInfo</code> property of the exception. Which of the following are accurate descriptions of the contents?',
         type: 3,
+        category: 7,
         answer: {
             options: ['$info[1] is the database-specific error code', '$info[2] is the database-specific error message', '$info[1] is the unified error code', '$info[0] is the unified error code', '$info[0] Is the Database-specific error message'],
             correct: [1, 2, 4],
@@ -1706,21 +1727,23 @@ var questionsDataBase = {
         id: 143,
         text: 'Which of the following functions allow you to introspect the call stack during execution of a PHP script?',
         type: 3,
+        category: 0,
         answer: {
             options: ['get_backtrace()', 'get_function_stack()', 'debug_backtrace()', 'debug_print_backtrace()', 'print_backtrace()'],
             correct: [3, 4],
-            link: ["http://php.net/manual-lookup.php?pattern=backtrace=en"],
+            link: ["http://php.net/manual/en/function.debug-backtrace.php", "http://www.php.net/manual/en/function.debug-print-backtrace.php"],
             explanation: []
         }
     },
     q144: {
         id: 144,
-        text: 'Whenworking with a database, which of the following can be used to mitigatethe possibility of exposing your database credientials to a malicioususer?',
+        text: 'When working with a database, which of the following can be used to mitigate the possibility of exposing your database credentials to a malicious user?',
         type: 3,
+        category: 3,
         answer: {
-            options: ['Moving all database credentials into a single file', 'Moving all database credentials outside of the document root', 'Restricting access to files not designed to be executed independently', 'Setting creditial information as system environment variables', 'Using PHP constants instead of variables to store credentials'],
+            options: ['Moving all database credentials into a single file', 'Moving all database credentials outside of the document root', 'Restricting access to files not designed to be executed independently', 'Setting credential information as system environment variables', 'Using PHP constants instead of variables to store credentials'],
             correct: [2, 3, 4],
-            link: ["http://forums.zend.com/viewtopic.php?f=63&amp;t=7124"],
+            link: [],
             explanation: []
         }
     },
@@ -1728,6 +1751,7 @@ var questionsDataBase = {
         id: 145,
         text: 'When running PHP in a shared host environment, what is the major security concern when it comes to session data?',
         type: 2,
+        category: 1,
         answer: {
             options: ['Sessions on shared hosts are easily hijacked by outside malicious users', 'All of the above', 'You cannot use a custom data store in shared hosts', 'Session data stored in the file system can be read by other scripts on the same shared host', 'Users outside the shared host can access any site which created a session for them'],
             correct: [4],
@@ -1739,50 +1763,55 @@ var questionsDataBase = {
         id: 146,
         text: 'Which of the following are examples of the new engine executor models available in PHP 5?',
         type: 3,
+        category: 9,
         answer: {
             options: ['Switch', 'Conditional', 'Goto', 'Call', 'Dynamic'],
             correct: [1, 3, 4],
             link: ["http://sebastian-bergmann.de/archives/504-PHP-5.1-Performance.html"],
-            explanation: []
+            explanation: ["This question does not affect the PHP 5.3 certification exam, as difference between PHP4 and PHP5 are no longer part of the test."]
         }
     },
     q147: {
         id: 147,
         text: 'Which of the following are not true about streams?',
         type: 3,
+        category: 5,
         answer: {
             options: ['They are always seekable', 'When used properly they significantly reduce memory consumption', 'They can be applied to any data source', 'They are always bi-directional', 'They can be filtered'],
             correct: [1, 4],
             link: ["http://www.php.net/manual/en/streamwrapper.stream-seek.php", "http://www.php.net/manual/en/function.stream-get-meta-data.php", "http://php.net/manual/en/function.popen.php"],
-            explanation: []
+            explanation: ["Beware of answers with 'always' or 'never'."]
         }
     },
     q148: {
         id: 148,
         text: 'Using <code>flock()</code> to lock a stream is only assured to work under what circumstances?',
         type: 2,
+        category: 5,
         answer: {
             options: ['When running in a Linux environment local filesystem', 'When accessing the stream of the local filesystem', 'When running in a Windows environment and accessing a share', 'When accessing a bi-directional stream', 'When accessing a read-only stream'],
             correct: [2],
             link: ["http://php.net/manual/en/function.flock.php"],
-            explanation: []
+            explanation: ["PHP supports locking on 'virtually every platform, including Windows'."]
         }
     },
     q149: {
         id: 149,
         text: 'What is wrong with the following code snippet? Assume default configuration values apply. <pre class=\'brush: php; html-script: true\'>&lt;?php$fp = fsockopen(\'www.php.net\', 80);fwrite($fp, "GET / HTTP/1.0\rHost: www.php.net\r");$data = fread($fp, 8192);?&gt;</pre>',
         type: 2,
+        category: 5,
         answer: {
             options: ['The request is blocking and may cause fread() to hang', 'The HTTP request is malformed', 'This script should be re-written using fgets() instead of fread()', 'The request is non-blocking and fread() may miss the response', 'You cannot use fwrite() with fsockopen()'],
             correct: [2],
             link: ["http://php.net/manual/en/function.fsockopen.php"],
-            explanation: []
+            explanation: ["HTTP request must be ended with '\\n\\n' or '\\r\\n\\r\\n'."]
         }
     },
     q150: {
         id: 150,
         text: '_______can be used to add additional functionality to a stream, such asimplementation of a specific protocol on top of a normal PHP streamimplementation.',
         type: 2,
+        category: 5,
         answer: {
             options: ['Buffered', 'Buckets', 'Wrappers', 'Filters'],
             correct: [3],
@@ -1794,17 +1823,19 @@ var questionsDataBase = {
         id: 151,
         text: 'Which of the following is not a valid <code>fopen()</code> access mode:',
         type: 2,
+        category: 5,
         answer: {
             options: ['b', 'x', 'a', 'w', 'r+'],
             correct: [1],
             link: ["http://php.net/manual/en/function.fopen.php"],
-            explanation: []
+            explanation: ["The first option 'b' is an additional flag and not an access mode."]
         }
     },
     q152: {
         id: 152,
         text: 'The _______ constant in a CLI script is an automatically provided file resource representing standard input of the terminal.',
         type: 2,
+        category: 5,
         answer: {
             options: ['STDIN', '__STDIN__', 'STDIO', 'PHP::STDIO', 'STD_IN'],
             correct: [1],
@@ -1816,28 +1847,31 @@ var questionsDataBase = {
         id: 153,
         text: 'What should go in the ??????? assignment below to create a Zlib-compressed file <code>foo.gz</code> with a compression level of <code>9</code>? <pre class=\'brush: php; html-script: true\'>&lt;?php$file = \'????????\';$fr = fopen($file, \'wb9\');fwrite($fr, $data);fclose($fr);?&gt;</pre>',
         type: 2,
+        category: 5,
         answer: {
             options: ['gzip://foo.gz?level=9', 'compress.zip://foo.gz?level=9', 'compress.zlib://foo.gz', 'compress.gzip://foo.gz?level=9', 'zlib://foo.gz'],
             correct: [3],
             link: ["http://php.net/manual/en/wrappers.compression.php"],
-            explanation: []
+            explanation: ["Compression level already specified in fopen statement 'wb9'."]
         }
     },
     q154: {
         id: 154,
         text: 'Which of the following is not a valid default stream wrapper for PHP 5, assuming OpenSSL is enabled?',
         type: 2,
+        category: 5,
         answer: {
             options: ['ftps://', 'ftp://', 'sftp://', 'https://', 'http://'],
             correct: [3],
             link: ["http://www.php.net/manual/en/wrappers.php"],
-            explanation: []
+            explanation: ["PHP supports FTP and FTPS, but does not support SFTP which uses ssh public/private keys."]
         }
     },
     q155: {
         id: 155,
-        text: 'Whenopening a file in writing mode using the FTP handler, what must be doneso that the file will still be written to the server in the event itpreviously exists?',
+        text: 'When opening a file in writing mode using the FTP handler, what must be done so that the file will still be written to the server in the event it previously exists?',
         type: 2,
+        category: 5,
         answer: {
             options: ['Provide a context for fopen() using stream_context_create()', 'You must delete the file first before uploading a new file', 'Configure this behavior in the php.ini file using the ftp.overwrite directive', 'Open the file using the \'w+\' mode'],
             correct: [1],
@@ -1849,6 +1883,7 @@ var questionsDataBase = {
         id: 156,
         text: 'Which of the following functions is used to determine if a given stream is blocking or not?',
         type: 2,
+        category: 5,
         answer: {
             options: ['stream_get_blocking', 'stream_get_meta_data', 'stream_is_blocking', 'stream_get_blocking_mode'],
             correct: [2],
@@ -1860,6 +1895,7 @@ var questionsDataBase = {
         id: 157,
         text: 'What is the difference between the <code>include</code> and <code>require</code> language constructs?',
         type: 2,
+        category: 0,
         answer: {
             options: ['Require constructs can\'t be used with URL filenames', 'Include constructs cause a fatal error if the file doesn\'t exist', 'There is no difference other than the name', 'Include constructs are processed at run time; require constructs are processed at compile time', 'Require constructs cause a fatal error if the file can\'t be read'],
             correct: [5],
@@ -1869,8 +1905,9 @@ var questionsDataBase = {
     },
     q158: {
         id: 158,
-        text: 'Whenwriting CLI scripts it is often useful to access the standard streamsavailable to the operating system such as standard input/output anderror. How does one access these streams in PHP 5?',
+        text: 'When writing CLI scripts it is often useful to access the standard streams available to the operating system such as standard input/output and error. How does one access these streams in PHP 5?',
         type: 2,
+        category: 5,
         answer: {
             options: ['Use stdin(), stdout() and stderr() functions', 'PHP::STDIN, PHP::STDOUT, PHP::STDERR class constants in PHP 5', 'STDIN, STDOUT, and STDERR constants in PHP 5', 'use the php::stdin(), php::stdout(), and php::stderr() class methods'],
             correct: [3],
@@ -1880,30 +1917,33 @@ var questionsDataBase = {
     },
     q159: {
         id: 159,
-        text: 'Howcan one take advantage of the time waiting for a lock during a streamaccess, to do other tasks using the following locking code as the base: <p class="ceresIndent"><code>$retval = flock($fr, LOCK_EX);</code></p>',
+        text: 'How can one take advantage of the time waiting for a lock during a stream access, to do other tasks using the following locking code as the base: <p class="ceresIndent"><code>$retval = flock($fr, LOCK_EX);</code></p>',
         type: 2,
+        category: 5,
         answer: {
             options: ['Use flock_lazy() instead of flock()', 'Use LOCK_EX|LOCK_NB instead of LOCK_EX', 'Use LOCK_UN instead of LOCK_EX', 'Check the value of $retval to see if the lock was obtained', 'Check to see if $retval == LOCK_WAIT'],
             correct: [2],
             link: ["http://php.net/manual/en/function.flock.php"],
-            explanation: []
+            explanation: ["Setting the LOCK_NB bitmask tells PHP to set a non-blocking lock on the stream. You can then set up a while() loop to keep trying for a lock and/or carry out other tasks."]
         }
     },
     q160: {
         id: 160,
         text: 'What is the output of? <pre class=\'brush: php; html-script: true\'>function apple($apples = 4){ $apples = $apples / 2; return $apples;}$apples = 10;apple($apples);echo $apples;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['2', '4', '5', '10'],
             correct: [4],
             link: ["http://www.php.net/manual/en/functions.returning-values.php"],
-            explanation: []
+            explanation: ["The returning value of the function is ignored."]
         }
     },
     q161: {
         id: 161,
         text: 'Which statement will return the third parameter passed to a function?',
         type: 2,
+        category: 0,
         answer: {
             options: ['$argv[3];', '$argv[2];', 'func_get_args(3);', 'func_get_arg(2);', 'func_get_arg(3);'],
             correct: [4],
@@ -1915,83 +1955,91 @@ var questionsDataBase = {
         id: 162,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>function oranges(&amp;$oranges = 17){$oranges .= 1;}$apples = 5;oranges($apples);echo $apples++;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['16', '51', '15', '6', '5'],
             correct: [2],
             link: ["http://www.php.net/manual/en/functions.arguments.php", "http://php.net/manual/en/language.operators.increment.php"],
-            explanation: []
+            explanation: ["$apples is passed by reference, then converted to string thanks to type-juggling, concatenated, returned and printed BEFORE the increment."]
         }
     },
     q163: {
         id: 163,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>function pears(Array $pears){if (count($pears) &gt; 0){echo array_pop($pears);pears($pears);}}$fruit = array("Anjo", "Bartlet");pears($fruit);</pre>',
         type: 2,
+        category: 8,
         answer: {
             options: ['Bartlet', 'Anjo', 'BartletAnjo', 'AnjoBartlet', 'None / There is an Error'],
             correct: [3],
             link: ["http://php.net/manual/en/function.array-pop.php"],
-            explanation: []
+            explanation: ["Using the array as a LIFO stack."]
         }
     },
     q164: {
         id: 164,
         text: 'In PHP5 objects are passed by reference to a function when (Select the answer that is the most correct):',
         type: 2,
+        category: 2,
         answer: {
             options: ['Always; objects are passed by reference in PHP5', 'When the calling code preceeds the variable name with a &amp;', 'Never; objects are cloned when passed to a function', 'When the function paramater listing preceeds the variable name with a &amp;'],
             correct: [4],
-            link: ["http://php.net/manual/en/language.oop5.references.php"],
-            explanation: []
+            link: ["http://www.php.net/manual/en/language.oop5.references.php#101900", "http://php.net/manual/en/language.oop5.references.php"],
+            explanation: ["VERY interesting question, you can find the answer ina comment on the provided link. \nPHP5 always uses pass by value by default, but in the case of objects, whats 'copied' is a pointer to the memory location of the object. So, it might seem (because the behaviour is practically the same) that it's always passed by reference."]
         }
     },
     q165: {
         id: 165,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction byReference(&amp;$variable = 5){ echo ++$variable;}byReference();?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['No output or error. Variables can not be optional and passed by reference.', '5', '6'],
+            options: ['No output or error. Variables can not be optional and passed by reference.', '5', '6', 'An error will be thrown.'],
             correct: [3],
             link: ["http://php.net/manual/en/language.operators.increment.php"],
-            explanation: []
+            explanation: ["PHP 5 supports giving referenced variables a default value, the increment will be done previous to the print."]
         }
     },
     q166: {
         id: 166,
         text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction x10(&amp;$number) $number *= 10;$count = 5;x10($count);echo $count;?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['Error: Unexpected T_VARIABLE', '10', 'Notice regarding pass by reference', '50', '5'],
             correct: [1],
             link: ["http://www.tizag.com/phpT/phpfunctions.php"],
-            explanation: []
+            explanation: ["The function is missing it's curly braces."]
         }
     },
     q167: {
         id: 167,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction 1dotEach($n){ if ($n &gt; 0) { 1dotEach(--$n); echo "."; }else { return $n; }}1dotEach(4);?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['...0', 'Parse Error: Syntax Error', '.....', '....', '...'],
             correct: [2],
             link: ["http://www.tizag.com/phpT/phpfunctions.php"],
-            explanation: []
+            explanation: ["Function names cannot start with a number."]
         }
     },
     q168: {
         id: 168,
         text: 'When your error reporting level includes <code>E_STRICT</code>, what will the output of the following code be? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction optionalParam($x = 1, $y = 5, $z){ if ((!$z &gt; 0)) { $z = 1; } for($count = $x; $count &lt; $y; $count+= $z) { echo "#"; }}optionalParam(2,4,2);?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['##', 'Notice', 'Warning', 'Syntax Error', '#'],
             correct: [5],
             link: ["http://php.net/manual/en/language.operators.arithmetic.php"],
-            explanation: []
+            explanation: ["PHP will allow a function to have 'invalid' default values (i.e. func a( x=1, y=2, z); an error will only be thrown if a caller of the function leaves a parameter out (i.e. $result = a(1, 2))."]
         }
     },
     q169: {
         id: 169,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction byRef(&amp;$number){ $number *= 10; return ($number - 5);}$number = 10;$number = byRef($number);echo $number;?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['50', '5', '95', '10', '100'],
             correct: [3],
@@ -2003,6 +2051,7 @@ var questionsDataBase = {
         id: 170,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction byRef(&amp;$apples){ $apples++;}$oranges = 5;$apples = 5;byRef($oranges);echo "I have $apples apples and $oranges oranges";?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['I have 6 apples and 6 oranges', 'I have 6 apples and 5 oranges', 'I have 5 apples and 6 oranges', 'I have 5 apples and 5 oranges'],
             correct: [3],
@@ -2014,33 +2063,36 @@ var questionsDataBase = {
         id: 171,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction a($number){ return (b($number) * $number);}function b(&amp;$number){ ++$number;}echo a(5);?&gt;</pre>',
         type: 2,
+        category: 0,
         answer: {
             options: ['0', '36', '6', '30', '5'],
             correct: [1],
             link: ["http://www.php.net/manual/en/functions.returning-values.php"],
-            explanation: []
+            explanation: ["The answer is 0 as function b is taking variable by reference and return nothing or null , which is converted to 0 (type juggling)."]
         }
     },
     q172: {
         id: 172,
         text: 'The ____ pattern is extremely useful for creating objects which watch the state of other objects and respond to those changes.',
         type: 1,
+        category: 2,
         answer: {
             options: [],
-            correct: ["Observer"],
-            link: [],
-            explanation: []
+            correct: ["observer"],
+            link: ["http://www.sitepoint.com/understanding-the-observer-pattern/", "http://labelmedia.co.uk/blog/php-design-patterns-observer-pattern.html"],
+            explanation: ["The observer pattern define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically."]
         }
     },
     q173: {
         id: 173,
-        text: 'In a databased that does not support the AUTO_INCREMENT modifier, you must use a ____ instead to auto-generate a numeric incrementing key',
+        text: 'The _____ pattern ensure that only one instance of a class is created.',
         type: 1,
+        category: 2,
         answer: {
             options: [],
-            correct: ["LAST_INSERT_ID"],
-            link: [],
-            explanation: []
+            correct: ["singleton"],
+            link: ["http://phpadvocate.com/blog/2011/04/php-using-a-singleton-pattern-with-oop/"],
+            explanation: ["the singleton pattern ensure that only one instance of a class is created and Provide a global access point to the object."]
         }
     },
     q174: {
