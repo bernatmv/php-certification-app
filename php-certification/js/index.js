@@ -20,6 +20,7 @@ IOS css: <link rel='stylesheet' type='text/css' href='js/syntax/styles/shThemeDe
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
+var LAST_QUESTION_SEEN = localStorage.getItem("LAST_QUESTION_SEEN") || 1;
 var isTouchSupported = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch;
 var bindAction = isTouchSupported ? 'touchstart' : 'click';
 
@@ -32,7 +33,7 @@ $.jQTouch({
 // app Object
 var app = {
 
-    numQuestions: questionsDataBase.length,
+    numQuestions: Object.keys(questionsDataBase).length,
 
     // Application Constructor
     initialize: function() {
@@ -89,6 +90,11 @@ var app = {
         $("#aboutClose").hammer().on("tap", function (e) {
             jQT.goBack('#home');
         });
+
+        // if we are reloading a question
+        if (window.location.hash) {
+            app.goToQuestion(LAST_QUESTION_SEEN);
+        }
     },
 
     setQuestionTitle: function(title, qId) {
@@ -182,6 +188,11 @@ var app = {
 
         el.remove();
         $('#question .toolbar').append('<div id="page-bookmark"></div>');
+    },
+
+    setLastQuestionSeen: function (qnum) {
+        LAST_QUESTION_SEEN = qnum;
+        localStorage.setItem('LAST_QUESTION_SEEN', qnum);
     },
 
     questionNumberFromId: function (id) {
@@ -290,6 +301,8 @@ var app = {
     },
 
     goToQuestion: function (questionNumber) {
+        // set question as last seen
+        app.setLastQuestionSeen(questionNumber);
         // start loading and show
         app.setQuestionTitle('Loading...');
         $('#question-content').hide();
@@ -330,6 +343,7 @@ var app = {
     },
 
     buildQuestionButtons: function(qindex, qNum) {
+        qNum = parseInt(qNum);
         var explanation = questionsDataBase[qindex].answer.explanation;
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
@@ -354,19 +368,20 @@ var app = {
         // show comments
         $('#show-comments').hammer().on("tap", function (e) {
             var qid = $(".question-info").attr('qid');
-
             app.buildComments(qid);
             $(this).remove();
         });
 
         // button to previous question
         $('#prev-question').hammer().on("tap", function (e) {
-            app.goToQuestion(qNum - 1);
+            var q = parseInt(qNum) -1;
+            app.goToQuestion(q);
         });
 
         // button to next question
         $('#next-question').hammer().on("tap", function (e) {
-            app.goToQuestion(qNum + 1);
+            var q = parseInt(qNum) +1;
+            app.goToQuestion(q);
         });
     },
 
@@ -449,14 +464,11 @@ var app = {
 
         switch (type) {
             case 1:
-                for (i = 0; i < answer.options.length; i++) {
-                    pos = i+1;
-                    // Open question
-                    html += '<li class="question-answer">'+
-                        '<input type="text" name="answer" id="'+id+'_'+pos+'"/>'+
-                        '<label for="'+id+'_'+pos+'" id="free_form_answer_text">&nbsp;<i>Write response</i></label>'+
-                        '</li>';
-                }
+                // Open question
+                html += '<li class="question-answer">'+
+                    '<input type="text" name="answer" id="'+id+'_1"/>'+
+                    '<label for="'+id+'_1" id="free_form_answer_text">&nbsp;<i>Write response</i></label>'+
+                    '</li>';
                 break;
             case 2:
                 for (i = 0; i < answer.options.length; i++) {

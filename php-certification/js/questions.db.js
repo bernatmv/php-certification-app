@@ -2097,46 +2097,50 @@ var questionsDataBase = {
     },
     q174: {
         id: 174,
-        text: 'What is the output of the following: <pre class="brush: php"> &lt;?php $m = 3; $n = 0; function l() { $m = 0; $m++; global $n; return array($n,$m); } echo implode((L(l())),\',\'); ?&gt; </pre>',
+        text: 'What will be printed?\n\n<pre class="brush: php">\n&lt;?php\n$a = 100;\n\nfunction a($b = 1) {\n\t$a = 0;\n\tglobal $a;\n\treturn $a / 10 * $b;\n}\n\necho a(A());\n?&gt;\n</pre>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['0, 5', '0, 4', 'An error', '0,1', '4,1'],
-            correct: [4],
+            options: ['10', '0', '100', '1000', 'Will throw an error', 'None of the above'],
+            correct: [3],
             link: [],
-            explanation: ["Look out for PHP function names; they are not case sensitive, so both l() and L() will call the same method.  The function doesn't have any declared parameters so the inside version of the function gets ignored."]
+            explanation: ["What's important to notice in this question is that $a = 0 prior to it's 'globalization' doesn't have any effect on the global variable (declared global by virtue of being outside any function). \nAlso, function names in PHP are case insensitive."]
         }
     },
     q175: {
         id: 175,
-        text: 'What would be output when the following code is run? <pre class="brush: php"> &lt;?php class M { function m() { echo "M"; } function construct() { echo "mmm"; } } $m = new M(); $m->m(); ?&gt; </pre>',
-        type: 1,
+        text: 'What will be printed when this script is executed?\n\n<pre class="brush: php">\n&lt;?php\nclass Test {\n\tprotected $count = 0;\n\n\tfunction construct() {\n\t\techo $this->count;\n\t}\n\n\tfunction test() {\n\t\t$this->count++;\n\t}\n\n\tfunction show() {\n\t\techo $this->count;\n\t}\n}\n\n$testObj = new Test();\n$testObj->test();\n$testObj->show();\n?&gt;\n</pre>',
+        type: 2,
+        category: 2,
         answer: {
-            options: [],
-            correct: ["MM"],
+            options: ['01', '00', '0', '1', '2', '11', 'An error will be thrown'],
+            correct: [5],
             link: [],
-            explanation: ["A trap!  The function construct() isn't a constructor, that would need to be __construct() instead, so the function M::m() gets called twice. ZCE-style question set.  Prepared by Lorna Mitchell ©Lornajane Ltd v1.1"]
+            explanation: ["This is another tricky question. The constructor function is not a real constructor: __constructor(), and as such, the test() function will be called twice: one as the constructor and another for the $testObj->test()."]
         }
     },
     q176: {
         id: 176,
-        text: 'Which of the following could be used to add a book to an existing SimpleXMLElement object stored in $library representing a collection of books?',
+        text: 'If we want to add an actor "You" to the movie, what would be the correct instruction?\n\n<pre class="brush: php">\n&lt;?php\n$xmlStr = &lt;&lt;&lt;XML\n&lt;?xml version=\'1.0\'?&gt;\n&lt;movie&gt;\n\t&lt;title&gt;PHP Exam: The Saga&lt;/title&gt;\n\t&lt;actor&gt;Me&lt;/actor&gt;\n&lt;/movie&gt;\nXML;\n\n$xmlObj = simplexml_load_string($xmlStr);\n\n??????????????\n\necho $xmlObj->asXML();\n?&gt\n</pre>',
         type: 2,
+        category: 4,
         answer: {
-            options: ['$library->addChild(new SimpleXMLElement("title", "Best book ever"))', '$library->children()->add("title", "Best book ever")', '$library->xpath(new SimpleXMLElement("title", "Best book ever"))', '$library->addChild("title", "Best book ever")', '$library->addBook("title", "Best book ever")'],
-            correct: [4],
-            link: [],
+            options: ['$xmlObj->movie->addChild("actor", "You");', '$xmlObj->addChild(new SimpleXMLElement("actor", "You"))', '$xmlObj->movie[0]->addChild("actor", "You")', '$xmlObj->xpath(new SimpleXMLElement("actor", "You"))', '$xmlObj->addChild("actor", "You")', '$xmlObj->movie[0]->addChild(new SimpleXMLElement("actor", "You"))'],
+            correct: [5],
+            link: ["http://php.net/manual/en/simplexmlelement.addchild.php"],
             explanation: []
         }
     },
     q177: {
         id: 177,
-        text: 'What is the output of the following line of code: <pre class="brush: php"> &lt;?php $a = 4 << 2 + 1; echo $a; ?&gt; </pre>',
-        type: 2,
+        text: 'What will print the following script?\n\n<pre class="brush: php">\n&lt;?php\n$a = 2;\n$b = 10;\n$c = 1;\n\nfunction test(&$a, $c = 0) {\n\tglobal $c;\n\t$a = $a &lt;&lt; 2 + $c;\n}\n\ntest($b);\necho $a.$b;\n?&gt;\n</pre>',
+        type: 1,
+        category: 0,
         answer: {
-            options: ['9', '16', '17', '1', '32'],
-            correct: [5],
+            options: [],
+            correct: ["280"],
             link: ["http://www.php.net/manual/en/language.operators.precedence.php"],
-            explanation: []
+            explanation: ["There are two things to keep in mind with this question: first the operators precedence (addition will be done before bitwise), second to keep your eyes open (even if the function varible is called $a, we are passing $b by reference)."]
         }
     },
     q178: {
