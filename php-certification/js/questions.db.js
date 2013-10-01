@@ -2145,145 +2145,167 @@ var questionsDataBase = {
     },
     q178: {
         id: 178,
-        text: 'Which of the following is a valid way to pass the $callback parameter expected by array_walk()?',
+        text: 'Which ones are accepted callbacks?',
         type: 3,
+        category: 0,
         answer: {
-            options: ['An anonymous function', 'An array containing the name of the function as the first element, and an array of arguments as the second element', 'An instantiated object followed by the object operator and the method to call', 'An array containing an instantiated object as the first element, and the method name as the second element', 'A string containing the function name', 'An array containing the function name as the first element'],
-            correct: [1, 4, 5],
+            options: ['call_user_func(my_callback_function())',
+                'call_user_func("my_callback_function")',
+                'call_user_func("my_callback_function", $arguments)',
+                'call_user_func(array("MyClass", "myCallbackMethod"))',
+                'call_user_func(array("my_callback_function", $arguments))',
+                'call_user_func(array("MyClass", "my_callback_function", $arguments))',
+                'call_user_func("MyClass::myCallbackMethod")',
+                'call_user_func(function() { ... })',
+                'A closure'
+            ],
+            correct: [2, 4, 7, 8, 9],
             link: ["http://php.net/manual/en/language.types.callable.php"],
             explanation: []
         }
     },
     q179: {
         id: 179,
-        text: 'How would you parse a web page at http://example.com/page.php as XML?',
-        type: 2,
+        text: 'How would we parse an HTML file using an XML parser?',
+        type: 3,
+        category: 4,
         answer: {
-            options: ['You can\'t; it must be well-formed XML.', 'DOMDocument::loadFile(\'http://example.com/page.php\');', 'simple_xml_load_html(\'http://example.com/page.php\');', 'new SimpleXMLElement(file_get_contents(\'http://example.com/page.php\'));', 'DOMDocument::loadHTML(file_get_contents(\'http://example.com/page.php\'));'],
-            correct: [5],
+            options: ['We can\'t parse an HTML using an XML parser, because the document might be not well-formed.', 'DOMDocument::loadHTMLFile(\'filename.html\')', 'DOMDocument::loadFromHTML(htmlentities(file_get_contents(\'filename.html\')))', 'simple_xml_load_html(\'filename.html\')', 'DOMDocument::loadHTML(file_get_contents(\'filename.html\'))', 'new SimpleXMLElement(file_get_contents(\'filename.html\'))', 'We can\'t parse an HTML using an XML parser, because of the DTD.'],
+            correct: [2, 5],
             link: ["http://php.net/manual/en/domdocument.loadhtml.php"],
             explanation: []
         }
     },
     q180: {
         id: 180,
-        text: 'How many parameters does array_merge() accept?',
+        text: 'What would be the output of the following code?\n\n<pre class="brush: php">\n&lt;?php\n$a = array("animal" => "dog", "flower" => "edelweiss", "color" => "purple", "house");\n$b = array("animal" => "dog", "rose", "rain");\n\n$result = array_diff_assoc($a, $b);\n\nforeach ($result as $r) {\n\techo $r;\n}\n?&gt;\n</pre>',
         type: 2,
+        category: 8,
         answer: {
-            options: ['As many as you want', '3', '2', '1', '0'],
+            options: ['edelweisspurplehouse', 'edelweisspurplehouserain', 'edelweisspurple', 'dog', 'edelweisspurplehouseroserain', 'Nothing', 'Will show an error'],
             correct: [1],
-            link: [],
-            explanation: ["From php.net, the function prototype is: array array_merge ( array $array1 [, array $... ] )"]
+            link: ["http://www.php.net/manual/en/function.array-diff-assoc.php"],
+            explanation: []
         }
     },
     q181: {
         id: 181,
-        text: 'What would you expect to get from PDOStatement::fetch() in its default mode?',
-        type: 2,
+        text: 'Which of the following affirmations about array_splice() are NOT correct?',
+        type: 3,
+        category: 8,
         answer: {
-            options: ['Both an object and an array', 'An array containing both associative and enumerated keys', 'An associative array', 'An enumerated array', 'An error, you must pass in the fetch mode'],
-            correct: [2],
-            link: ["http://php.net/manual/en/pdostatement.fetch.php"],
-            explanation: ["The other answers are all things you could obtain using different fetch modes in PHP, but the default is PDO_FETCH_BOTH. You can pass the fetch mode, but it isn't required."]
+            options: ['The first parameter is the input array and is taken by reference', 'The $offset can\'t be negative', 'Returns false if there was an error or true otherwise', 'If $length is omitted, it will take the length of the replacements array', 'It does return the sliced elements', 'If the replacements are provided as a non-array, the parameter will be typecast to one', 'Numeric key  for the $input are not preserved'],
+            correct: [2, 3, 4],
+            link: ["http://www.php.net/manual/en/function.array-splice.php"],
+            explanation: []
         }
     },
     q182: {
         id: 182,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $pattern = \'/[a-z]{4} /\'; $string = \'Mary had a little lamb\'; $matches = preg_match($pattern, $string); print_r($matches); ?&gt; </pre>',
+        text: 'What is the output of the following code?\n\n<pre class="brush: php">\n&lt;?php\n$pattern = \'/[a-z0-9]{4}/i\';\n$string = \'PHP5 Rocks!\';\n$matches = preg_match($pattern, $string);\n\nprint_r($matches);\n?&gt;\n</pre>',
         type: 1,
+        category: 6,
         answer: {
             options: [],
-            correct: [1],
+            correct: ["1"],
             link: ["http://www.php.net/preg_match"],
-            explanation: ["Tricky question, because preg_match() returns an integer – 1 if there were matches and 0 otherwise.  To capture the matches, you pass a third parameter for them to be placed into.  The pattern requires four lower case letters followed by a space, but doesn't anchor on to anthing so 'ttle ' does match."]
+            explanation: ["This question is a trap. The function preg_match() returns '1' if it found any matches and '0' otherwise."]
         }
     },
     q183: {
         id: 183,
-        text: 'What is PDO::query() equivalent to?',
+        text: 'Which of the following are NOT valid PDOStatement::fetch flags?',
         type: 2,
+        category: 7,
         answer: {
-            options: ['execute(), fetch()', 'prepare(), fetch(), execute()', 'prepare(), fetch()', 'exec(), fetch()', 'prepare(), execute()'],
-            correct: [5],
-            link: [],
-            explanation: ["We usually use this when we don't have any parameters to pass in, for example fetching the contents of a lookup table."]
+            options: ['PDO::FETCH_ASSOC', 'PDO::FETCH_ROW', 'PDO::FETCH_OBJ', 'PDO::FETCH_EXT', 'PDO::FETCH_BOTH', 'PDO::FETCH_CLASS'],
+            correct: [2, 4],
+            link: ["http://www.php.net/manual/en/pdostatement.fetch.php"],
+            explanation: [  ]
         }
     },
     q184: {
         id: 184,
-        text: 'Which HTTP status code asks a user to provide credentials?',
+        text: 'Which HTTP status code informs of a redirection?',
         type: 2,
+        category: 1,
         answer: {
-            options: ['404', '204', '401', '200', '302'],
-            correct: [3],
-            link: [],
+            options: ['201', '404', '401', '100', '500', '302'],
+            correct: [6],
+            link: ["http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"],
             explanation: ["The 401 status code means 'Not Authorised', so the user will be asked to identify themselves."]
         }
     },
     q185: {
         id: 185,
-        text: 'What would be in $matches[0] after running the following code? <pre class="brush: php"> &lt;?php $pattern = \'# \w*?[aeiou]{2}\w*? #\'; $string = "There\'s a moose loose about this house"; $matches = array(); preg_match_all($pattern, $string, $matches); ?&gt; </pre>',
+        text: 'What is the output of the following code?\n\n<pre class="brush: php">\n&lt;?php\n$pattern = "# \\w*(?![0-9]{1}) (\\w+)#";\n$string = "PHP5 released PHP6 not released";\n\npreg_match_all($pattern, $string, $matches);\n    \nprint_r($matches[1]);\n?&gt;\n</pre>',
         type: 2,
+        category: 6,
         answer: {
-            options: ['"There\'s a moose loose about this house"', 'An array containing " moose " and " about "', '"moose "', 'An array containing " moose ", " loose ", " about " and " house "', 'An array containing " moose " and " loose "'],
-            correct: [2],
-            link: [],
-            explanation: ["There are a few things to spot here – first of all, don't be alarmed by all the punctuation in the regex, we'll get to that.  First the delimiters are # characters (you may know this as a pound or a hash, depending where your English is from).  These are valid delimiters, the only requirement is that whatever you pick to put at the start must be matched at the end. \nThe delimiters have spaces inside them, so there must be spaces at the start and end of any matches.  Then we must have any number of word characters – the ? after the * means that the match isn't greedy (this happens again towards the end of the pattern) – followed by any two vowels, then any more word characters.\nThe first match is \" moose \" but this uses up the space before \"loose\", so that can't match, but \" about \" does, but \"house\" which looks like it should match is missing the trailing space.\nStill with me?  preg_match_all returns results in a nested array – the first element contains an array of all matches."]
+            options: ['An array containing: PHP5', 'An array containing: PHP6', 'An array containing: PHP5 and PHP6', 'An array containing: PHP6 and released', 'An array containing: released, not and released', 'An array containing: released, PHP6, not and released'],
+            correct: [4],
+            link: ["http://php.net/manual/en/function.preg-match.php"],
+            explanation: ["The regex contains a negative look-ahead, also be careful with the first white space, as it is part of the match."]
         }
     },
     q186: {
         id: 186,
-        text: 'What would be the output of this script? <pre class="brush: php"> &lt;?php ob_start(); echo "dreaming"; $ob = ob_get_contents(); echo strlen($ob); ob_flush(); ?&gt; </pre>',
+        text: 'What is the output of the following code?\n\n<pre class="brush: php">\n&lt;?php\nob_start();\n\necho "PHP";\n\n$ob1 = ob_get_contents();\n\necho 5;    \n    \n$ob2 = ob_get_clean();\n    \nob_flush();\n\necho strrev($ob1.$ob2);\n?&gt;\n</pre>',
         type: 1,
+        category: 0,
         answer: {
             options: [],
-            correct: ["dreaming8"],
-            link: [],
+            correct: ["5PHPPHP"],
+            link: ["http://www.php.net/manual/en/function.ob-flush.php", "http://www.php.net/manual/en/function.ob-start.php", "http://www.php.net/manual/en/function.ob-get-clean.php"],
             explanation: ["We turn on output buffering, put 'dreaming' into it, then grab the contents of the output buffer – but we haven't destroyed it.  So when we echo strlen('dreaming'), an 8 goes into the output buffer as well, and then we flush it."]
         }
     },
     q187: {
         id: 187,
-        text: 'What does status code 403 indicate?',
-        type: 2,
+        text: 'What is the output of the following code?\n\n<pre class="brush: php">\n&lt;?php\n$pattern = \'#[a-z]{4,5}#i\';\n$string = \'Do you Ever thought PHP5 rocks?\';\npreg_match($pattern, $string, $matches);\n\nforeach ($matches as $m) {\n\techo $m;\n};\n?&gt;\n</pre>',
+        type: 1,
+        category: 6,
         answer: {
-            options: ['Forbidden', 'Resource not found', 'Not modified', '403 is not a valid status code', 'Moved permanently'],
-            correct: [1],
-            link: [],
-            explanation: ["Status code 403 means 'Forbidden' – the user has provided credentials but still is not allowed to have acecss to this resource."]
+            options: [],
+            correct: ["Ever"],
+            link: ["http://www.php.net/manual/en/function.preg-match.php"],
+            explanation: ["The 'i' atthe end of the pattern makes the search case-insensitive."]
         }
     },
     q188: {
         id: 188,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $a = "a, b,c, d, e f, g"; $b = array_merge(explode(\', \', $a), array("a", "b")); echo count($b); ?&gt; </pre>',
+        text: 'What does status 401 and status 403 indicate',
         type: 2,
+        category: 1,
         answer: {
-            options: ['9', '7', '5', '3', 'An error, because $a is not an array'],
-            correct: [2],
-            link: [],
-            explanation: ["The explode function splits a string into an array, but the split is ', ' (note the space after the comma).  $a therefore has ', ' in it four times, making five pieces ('b,c' and 'ef' are two of the pieces.  Then we add two more elements on the end (array_merge doesn't mind duplicate entries) , making 7 in total."]
+            options: ['Not Found & Bad Request', 'Not Found & Forbidden', 'Unauthorized & Bar Request', 'Request Timeout & Internal Server Error', 'Unauthorized & Forbidden', 'Bad Request & Service Unavailable'],
+            correct: [5],
+            link: ["http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"],
+            explanation: []
         }
     },
     q189: {
         id: 189,
-        text: 'What is the output of this line of code? <pre class="brush: php"> &lt;?php echo 8 + 0x8 + 80 + 0x80; ?&gt; </pre>',
+        text: 'What will be printed? <pre class="brush: php"> &lt;?php echo (013 + 7 + 0x70) - bindec(\'010000000\'); ?&gt; </pre>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['156', '88', '224', '72', '96'],
-            correct: [3],
+            options: ['-2', '-1', '0', '1', '2', '129', '130', 'An error will be printed'],
+            correct: [5],
             link: [],
-            explanation: ["Hopefully you spotted that 0x8 is hexadecimal 8 ... which is the same as decimal 8. 0x80 is 8x16 (we use base 16 rather than base 10) which is 128.  So 8+8+80+128 = 224"]
+            explanation: ["013 is octal for 11, 0x70 is hexadecimal for 112, bindec() translates a binary to decimal and 010000000 is binary for 128."]
         }
     },
     q190: {
         id: 190,
-        text: 'Which of the following functions would be a valid way to create an array containing items from three existing arrays?',
+        text: 'What would we use to create an array with the value of three other arrays?',
         type: 2,
+        category: 8,
         answer: {
-            options: ['array_merge()', 'array_combine()', 'array_splice()', 'array_keys()', 'array_intersect()'],
-            correct: [1],
-            link: [],
-            explanation: ["The others are all valid array functions but don't do what we need"]
+            options: ['shuffle()', 'array_intersect()', 'array_merge()', 'list()', 'implode()', 'array_combine()', 'array_splice()'],
+            correct: [3],
+            link: ["http://php.net/manual/en/function.array-merge.php"],
+            explanation: []
         }
     },
     q191: {

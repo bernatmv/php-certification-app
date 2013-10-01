@@ -347,11 +347,12 @@ var app = {
         var explanation = questionsDataBase[qindex].answer.explanation;
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
+                '<div id="question-comments" style="display:none;"></div>' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
-                ((explanation.length) ? '' : '<a href="#" class="whiteButton" id="show-comments">Show explanation</a>') +
+                ((explanation.length) ? '<a href="#" class="whiteButton" id="show-comments">Show explanation</a>' : '') +
                 ((qNum == 1) ? '' : '<a href="#" class="whiteButton" id="prev-question">Previous</a>') +
                 ((qNum == app.numQuestions) ? '' : '<a href="#" class="whiteButton" id="next-question">Next</a>') +
-                '</div><div id="question-comments" style="display:none;"></div>');
+                '</div>');
             $('#question-content').append(app.buildHelpLink());
         }
 
@@ -382,6 +383,11 @@ var app = {
         $('#next-question').hammer().on("tap", function (e) {
             var q = parseInt(qNum) +1;
             app.goToQuestion(q);
+        });
+
+        // button to hint number of answers
+        $('.question-answer-note').hammer().on("tap", function (e) {
+            app.showHint();
         });
     },
 
@@ -435,23 +441,23 @@ var app = {
     buildQuestion: function(qNum) {
         var index = app.questionIndexFromNumber(qNum);
         var id = app.questionIdFromIndex(index);
-        var aChoose = (typeof questionsDataBase[index].answer.correct[0] == "string") ?
+        var aChoose = (questionsDataBase[index].type != 3) ?
             '' :
-            '<div id="question-'+id+'-answer-note" class="question-answer-note">Choose '+questionsDataBase[index].answer.correct.length+'</div>';
+            '<div id="question-'+id+'-answer-note" class="question-answer-note question-hint button"><span id="hintTitle">How many answers?</span><span id="hintText" class="none">Choose '+questionsDataBase[index].answer.correct.length+'</span></div>';
         return '<div id="question-{$count}">' +
                 '<div id="question-'+id+'-info" class="question-info" qnum="'+qNum+'" qid="'+id+'" style="display:none;"></div>' +
                 '<div id="question-'+id+'-number" class="question-number">'+qNum+'</div>' +
                 '<div id="question-'+id+'-text" class="question-text">' +
                     questionsDataBase[index].text +
-                '</div>' +
+            '</div>' +
                 '<div id="question-'+id+'-answer" class="question-answer">' +
+                    aChoose +
                     '<form id="question-'+id+'-form" onsubmit="return false;">' +
                         '<ul>' +
                             app.buildAnswers(qNum) +
                         '</ul>' +
                     '</form>' +
                 '</div>' +
-                aChoose +
             '</div>';
     },
 
@@ -495,6 +501,15 @@ var app = {
         }
 
         return html;
+    },
+
+    showHint: function() {
+        var el = $(".question-answer-note");
+        if (el.hasClass("button")) {
+            el.removeClass("button");
+            el.find("span#hintTitle").addClass("none");
+            el.find("span#hintText").removeClass("none");
+        }
     }
 
 };
