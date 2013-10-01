@@ -2298,7 +2298,7 @@ var questionsDataBase = {
     },
     q190: {
         id: 190,
-        text: 'What would we use to create an array with the value of three other arrays?',
+        text: 'What would we use to create an array with the values of three other arrays?',
         type: 2,
         category: 8,
         answer: {
@@ -2310,79 +2310,86 @@ var questionsDataBase = {
     },
     q191: {
         id: 191,
-        text: 'What is the output of the following line of code? <pre class="brush: php"> &lt;?php echo "4" + 05 + 011 + ord(\'a\'); ?&gt; </pre>',
+        text: 'Which of the following instructions would read the following file correctly?\n\n<pre class="brush: php"> \njavier\targonaut\tpe\nhiroshi\tsculptor\tjp\nrobert\tslacker\tus\nluigi\tflorist\tit\n</pre>',
         type: 2,
+        category: 5,
         answer: {
-            options: ['An error', '18', '117', '115', '14'],
-            correct: [4],
-            link: [],
-            explanation: ["There are octal numbers in here, look for the leading zero on 05 and 011.  octal 5 is the same as decimal 5, our string '4' will convert to a number when we try to add it to any other number, and 011 in octabl is (8 + 1) = 9.  Hopefuly you knew that ord('a') was 97 and got 115 (or ('A') is 65, in case you're interested)"]
+            options: ['$userinfo = fscanf($handle, ":name :profession :lang")', '$userinfo = fscanf($handle, "%s\\t%s\\t%s\\n")', '$userinfo = fscanf($handle, "^%s[ ]+%s[ ]+%s\$")', '$userinfo = sscanf($handle, "%s %s %s")', '$userinfo = fscanf($handle, "%s %s %s")', 'None of the above'],
+            correct: [2],
+            link: ["http://www.php.net/manual/en/function.fscanf.php"],
+            explanation: []
         }
     },
     q192: {
         id: 192,
-        text: 'What is the output of the following? <pre class="brush: php"> &lt;?php $a = 7; $b = 4; function b($a, $b) { global $a, $b; $a += 7; $a++; $b += $a; return true; } echo $b, $a; ?&gt; </pre>',
+        text: 'If we are in the namespace \'approot\' and want to use the function test() that is in the namespace \'approot\\core\\test\', what should we use?',
         type: 2,
+        category: 0,
         answer: {
-            options: ['1419', '74', '1519', '1915', '47'],
-            correct: [5],
-            link: [],
-            explanation: ["The function is never called."]
+            options: ['We can access the function without any further change because we have access to all namespaces below "approot"', 'use test', 'use core\\test', 'use approot\\core\\test', 'use core::test::test()', 'We can change the namespace once we have specified one'],
+            correct: [4],
+            link: ["http://php.net/manual/en/language.namespaces.php"],
+            explanation: []
         }
     },
     q193: {
         id: 193,
         text: 'Which of the following are configuration settings for PHP?',
         type: 3,
+        category: 0,
         answer: {
-            options: ['url_fopen_allow', 'url_include_allow', 'allow_open_url', 'allow_url_include', 'include_fopen_dir', 'open_url_dir', 'open_basedir'],
-            correct: [4, 7],
+            options: ['mysqli.allow_persistent', 'session.permanent_cache', 'error_reporting_enabled', 'allow_open_url', 'allow_url_include', 'set_base_dir', 'max_file_downloads', 'extension'],
+            correct: [1, 5, 8],
             link: ["http://www.php.net/manual/en/ini.list.php"],
-            explanation: ["None of the others are valid configuration directives for PHP"]
+            explanation: []
         }
     },
     q194: {
         id: 194,
-        text: 'Is the following valid PHP code? <pre class="brush: php"> &lt;php&gt; echo \'There\'s a worm in my apple\'; &lt;/php&gt; </pre>',
+        text: 'What will the following code print?\n\n<pre class="brush: php">\n&lt;php&gt;\nfunction fibo($a, $b, $step) {\n\tif ($step > 0) {\n\t--$step;\n\treturn fibo($b, $a + $b, $step);\n\t}\n\telse {\n\treturn $b;\n\t}\n}\n\necho fibo(0, 1, 5);\n&lt;/php&gt;\n</pre>\n',
         type: 2,
+        category: 0,
         answer: {
-            options: ['Yes', 'No'],
-            correct: [2],
-            link: [],
-            explanation: ["Those <php> style tags aren't valid for PHP."]
+            options: ['0', '1', '3', '5', '8', 'It will print an error', 'None of the above'],
+            correct: [7],
+            link: ["http://php.net/manual/en/language.basic-syntax.phptags.php"],
+            explanation: ["The &lt;php&gt; are not accepted PHP opening tags."]
         }
     },
     q195: {
         id: 195,
-        text: 'What is the output of: <pre class="brush: php"> &lt;?php $a = "0"; echo strlen($a); echo empty($a) ? $a : 5; echo $a ?: 5; ?&gt; </pre>',
+        text: 'What do we use the XSL extension for?',
         type: 2,
+        category: 4,
         answer: {
-            options: ['105', '100', '050', '005', '150'],
-            correct: [1],
-            link: [],
-            explanation: ["Strlen($a) is 1, then empty($a) is true, so we hit the first leg of the ternary and echo $a, which is zero.  The third digit comes from the final line, $a is evaluated as false so we echo 5."]
+            options: ['To validate XML using WCAG rules', 'For XML transformations', 'To generate XML from a CSV file', 'To apply CSS to an XML in order to generate an XHTML page'],
+            correct: [2],
+            link: ["http://php.net/manual/en/book.xsl.php"],
+            explanation: []
         }
     },
     q196: {
         id: 196,
-        text: 'What would happen when the following code was run? <pre class="brush: php"> &lt;?php define(\'Tree\', \'oak\'); echo \'This tree is: \' . tree; ?&gt; </pre>',
+        text: 'What would the output of the following code be the first time it is executed?\n\n<pre class="brush: php">\n&lt;?php\ndefine(\'MaxTries\', 5); \nsession_start();\n\t\nif (!empty($_SESSION["num_tries"])) {\n\tif ($_SESSION["num_tries"] > maxTries) {\n\t\techo "Sorry, just reached your limit!";\n\t\tdie();\n\t}\n	$_SESSION["num_tries"]++;\n}\nelse {\n\t$_SESSION["num_tries"] = 1;\n}\necho "You tried: {$_SESSION["num_tries"]} time/s"; \n?&gt;\n</pre>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['A notice', 'This tree is: oak (and a notice)', 'An error', 'This tree is: tree (and a notice)', 'This tree is: (and a notice)'],
-            correct: [4],
-            link: [],
-            explanation: ["We define a constant but they are case-sensitive in PHP, so tree is an undefined constant.  This is assumed to be a string in PHP (for historical reasons) but causes a notice to be emitted."]
+            options: ['Sorry, just reached your limit!', 'You tried: 0 time/s', 'You tried: 1 time/s', 'An error', 'A notice followed by: You tried: 0 time/s', 'A notice followed by: Sorry, just reached your limit!'],
+            correct: [6],
+            link: ["http://php.net/manual/en/language.constants.php"],
+            explanation: ["Constants are case-sensitive in PHP, when it doesn't find 'maxTries', PHP throws a notices and assumes maxTries to be a constant  with value 'maxTries'"]
         }
     },
     q197: {
         id: 197,
-        text: 'Which of the following are valid constant names?',
+        text: 'Which are valid variable names?',
         type: 3,
+        category: 0,
         answer: {
-            options: ['R7yu', '9tur8UH4', '8rutil', 'AEN', '111', 'ablwesc_99', 'YU-8'],
-            correct: [1, 4, 6],
-            link: [],
-            explanation: ["Valid constant names in PHP can be uppercase or lowercase, and contain numbers or underscores, but can't start with a number."]
+            options: ['$Castor', '$_polluX', '$_3cygnus', '$dorado-8', '$_c_e_n_t_a_u_r_i', '$vega_99_', '$x88', '$088'],
+            correct: [1, 2, 5, 6, 7],
+            link: ["http://php.net/manual/en/language.variables.basics.php"],
+            explanation: []
         }
     },
     q198: {
