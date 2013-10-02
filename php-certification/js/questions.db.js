@@ -2418,112 +2418,122 @@ var questionsDataBase = {
     },
     q200: {
         id: 200,
-        text: 'What is the output of: <pre class="brush: php"> &lt;?php $a = 10; echo strlen($a) . count($a); do { echo $a . "elephpant "; $a++; } while($a <= 1); ?&gt; </pre>',
-        type: 2,
+        text: 'Which function tests for end-of-file on a file pointer? (write the name without parenthesis nor parameters)',
+        type: 1,
+        category: 5,
         answer: {
-            options: ['2110elephpant', '12', '1210elephpant', '21', '10elephpant'],
-            correct: [1],
-            link: [],
-            explanation: ["The other answers are only partial.  We start with 2 and 1 from the strlen and count of $a.  Then we hit the do/while loop.  This executes, but $a is NOT <=1 so the loop ends immediately."]
+            options: [],
+            correct: ['feof'],
+            link: ["http://php.net/manual/en/function.feof.php"],
+            explanation: []
         }
     },
     q201: {
         id: 201,
-        text: 'What is the output of this code: <pre class="brush: php"> &lt;?php function c($a, $b = 1, $c) { return array($c, $a, $b); } list($a, $b, $c) = c(0,0,0); echo $b; ?&gt; </pre>',
+        text: 'What would be the value of $a when printing it? (leave the answer empty if you think $a will never be printed)\n\n<pre class="brush: php">\n&lt;?php\n$a = array();\n\nfunction flip($a) {\n\treturn array_flip( array(1, 0, 1.5, 010) );\n}\n\n$a = implode( @flip($a), \'\' );\n\necho $a;\n?&gt;\n</pre>',
         type: 1,
+        category: 8,
         answer: {
             options: [],
-            correct: ["0"],
-            link: [],
-            explanation: ["First we call c() with three zero arguments, then we return those in a strange order (but they are all still zero).  These get assigned into variables $a, $b and $c by the list() function and $b is zero."]
+            correct: ["013"],
+            link: ["http://php.net/manual/en/function.array-flip.php", "http://php.net/manual/en/function.implode.php"],
+            explanation: ["array_flip switches keys and values of the array, but those values than can't be converted to keys (only string and integers can) are excluded."]
         }
     },
     q202: {
         id: 202,
-        text: 'What is the output of the following code: <pre class="brush: php"> &lt;?php function a($a) { echo $a . "&"; } function b($a) { echo "-" . $a; } $a = "!"; $b = &$a; echo a(b($b)); ?&gt; </pre>',
+        text: 'What would happen if we used fwrite() on a read-only file?',
         type: 2,
+        category: 5,
         answer: {
-            options: ['-!!&', '!&-&', '-&!', '!&-!', '-!&'],
+            options: ['A warning', 'A notice', 'A fatal error', 'We can\'t write the file and 0 is returned', 'We can\'t write the file and FALSE is returned', 'We overwrite the file and the offset is returned', 'We append to the file and the number of bytes written is returned'],
             correct: [5],
-            link: [],
-            explanation: ["This is a sharp question! We have $a as a string (containing symbols to make things more fun) and $b as a pointer to $a.  We call b($b) which outputs "-!" and then we pass the result of that into a() ... but b() doesn't return anything so null gets passed into a() and only the & is echoed."]
+            link: ["http://php.net/manual/en/function.fwrite.php"],
+            explanation: []
         }
     },
     q203: {
         id: 203,
-        text: 'Which of the following are superglobals in PHP?',
+        text: 'Which of the following wrappers are NOT supported by PHP?',
         type: 3,
+        category: 5,
         answer: {
-            options: ['$_FORMS', '$_COOKIE', '$_COOKIES', '$_REQUEST', '$_DATA', '$_ENVIRONMENT', '$_SERVER', '$_GLOBAL'],
-            correct: [2, 4, 7],
-            link: ["http://www.php.net/manual/en/language.variables.predefined.php"],
-            explanation: ["Familiarity with PHP will help you on this one."]
+            options: ['php://fd', 'php://system', 'php://input', 'php://memory', 'php://error', 'php://tty', 'php://log', 'php://stdin'],
+            correct: [2, 6, 7],
+            link: ["http://www.php.net/manual/en/wrappers.php.php"],
+            explanation: []
         }
     },
     q204: {
         id: 204,
-        text: 'Which of the following statements are true when applied to a Registry pattern?',
+        text: 'The registry pattern characteristics are:',
         type: 3,
+        category: 2,
         answer: {
-            options: ['Only one instance of the class can exist', 'It implements ArrayAccess', 'It is designed to store values of various types', 'It uses static methods', 'It takes responsibility for instantiating objects'],
-            correct: [1, 3],
-            link: [],
-            explanation: ["Applications will use a registry (or one of each of a number of related registry classes) to store values to be used multiple times in an application."]
+            options: ['It always makes use of .ini files', 'It implements the singleton pattern', 'Can provide access to different sort of objects', 'It does manage your database pooling', 'Almost always it\'s stored in the session'],
+            correct: [2, 3],
+            link: ["http://avedo.net/101/the-registry-pattern-and-php/"],
+            explanation: []
         }
     },
     q205: {
         id: 205,
-        text: 'Is this statement true or false? "Methods declared as static must be called statically"',
+        text: 'Will the following code print an error?\n\n<pre class="brush: php">\n&lt;?php\nclass A {\n\tpublic static function test() {\n\t\techo "ok!";\n\t}\n}\n\n(new A())->test();\n?&gt;\n</pre>',
         type: 2,
+        category: 2,
         answer: {
-            options: ['True', 'False'],
+            options: ['Yes, you have to call a static method using ::', 'Yes, you method access on instantiation is not available in PHP 5.3', 'No, it will throw an exception instead', 'No, this code works flawlessly'],
             correct: [2],
-            link: [],
-            explanation: ["It's safe to call static methods dynamically, and you can do so – but the opposite is nottrue so you can only call non-static methods non-statically."]
+            link: ["http://php.net/manual/en/language.oop5.static.php"],
+            explanation: ["Static method can be called both using :: and -> (if the class have been instantiated). \nMethod access on instantiation is available since PHP 5.4, so it's not included in PHP 5.3 certification exam."]
         }
     },
     q206: {
         id: 206,
-        text: 'What is the output of this code? <pre class="brush: php"> &lt;?php $wish_list = array(1 => "Romeo and Juliet", 4 => "Bad Science", 2 => "To Kill A Mockingbird"); print_r(sort($wish_list)); ?&gt; </pre>',
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\nfunction desc($a, $b) {\n\treturn ($b-$a);\n}\n\n$array = array(1,2,3,5);\n$a = usort($array, \'desc\');\n\nprint_r($a);\n?&gt;\n</pre>',
         type: 2,
+        category: 8,
         answer: {
-            options: ['Array ( [1] => Romeo and Juliet [4] => Bad Science [2] => To Kill A Mockingbird )', 'Array ( [1] => Romeo and Juliet [2] => To Kill A Mockingbird [4] => Bad Science )', '1', 'Array ( [0] => Bad Science [1] => Romeo and Juliet [2] => To Kill A Mockingbird )', '3'],
-            correct: [3],
-            link: ["http://www.php.net/sort"],
-            explanation: ["Look out for sort(), it (and its sister functions) return true!"]
+            options: ['1', '0', 'Array ( [0] => 5 [1] => 3 [2] => 2 [3] => 1 )', 'Array ( [3] => 5 [2] => 3 [1] => 2 [0] => 1 )', 'Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 5 )', 'Array ( [5] => 0 [3] => 1 [2] => 2 [1] => 3 )', 'None of the above'],
+            correct: [1],
+            link: ["http://www.php.net/usort"],
+            explanation: ["usort() returns TRUE on success or FALSE on failure"]
         }
     },
     q207: {
         id: 207,
-        text: 'ArrayAccess is an example of a:',
-        type: 2,
+        text: 'What are the uses of the keyword "final"?',
+        type: 3,
+        category: 2,
         answer: {
-            options: ['design pattern', 'interface', 'object', 'class'],
-            correct: [2],
-            link: ["http://www.php.net/arrayaccess"],
-            explanation: ["The ArrayAccess interface is part of the SPL."]
+            options: ['Prevent class inheritance', 'Prevent method overriding or redefinition of method in subclass', 'Declare class constants', 'All the above'],
+            correct: [1, 2],
+            link: ["http://www.php.net/manual/en/language.oop5.final.php"],
+            explanation: ["Contrary to what happens in Java, the keyword final does not define constants in classes."]
         }
     },
     q208: {
         id: 208,
-        text: 'Using the notation self::$property refers to:',
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\nclass A {\n\tfinal function a() {\n\t\techo 1;\n\t}\n}\n\nclass B extends A {\n\tpublic function a() {\n\t\techo 2;\n\t}\n}\n\n$a = new B();\necho $a->a();\n?&gt;\n</pre>',
         type: 2,
+        category: 2,
         answer: {
-            options: ['A property of the current object', 'The $property of the current object', 'The class constant $property in this class', 'The class property $property in this class', 'A variable called $property in this class or any parent class.'],
+            options: ['2', '12', '22', 'Fatal error', 'None of the above'],
             correct: [4],
-            link: [],
-            explanation: ["The scope resolution operator (the two colons ::) indicates this is a class property, and self means it's the property of the current class."]
+            link: ["http://php.net/manual/en/language.oop5.final.php"],
+            explanation: ["The final keyword in the parent method prevents any overwriting by it's child."]
         }
     },
     q209: {
         id: 209,
-        text: 'Which of the following is a valid namespace operator in PHP?',
+        text: 'What is the default expiration of a cookie? (PHP)',
         type: 2,
+        category: 1,
         answer: {
-            options: ['\ ', '::', '@', '/', '->'],
-            correct: [1],
-            link: ["http://www.php.net/namespaces"],
-            explanation: ["We use the backslash as the namespace operator in PHP."]
+            options: ['It will not expired until destroyed', '10 min', 'Until the browser is closed', '1 day', 'Until the page is edited', '1 year'],
+            correct: [3],
+            link: ["http://php.net/manual/en/function.setcookie.php"],
+            explanation: []
         }
     },
     q210: {
