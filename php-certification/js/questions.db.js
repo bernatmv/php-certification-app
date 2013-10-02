@@ -2394,24 +2394,26 @@ var questionsDataBase = {
     },
     q198: {
         id: 198,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $a = 42 & 05 + 17; echo $a; ?&gt; </pre>',
+        text: 'What will be printed when we execute this script?\n\n<pre class="brush: php">\n&lt;?php\n$var = 10;    \n$format = "%.2f === %o";    \n\n$s = printf($format, $var, $var);\necho $s;\n?&gt;\n</pre>',
         type: 2,
+        category: 6,
         answer: {
-            options: ['17', '0', '2', '64', '10'],
+            options: ['true', 'false', '10.00 === 1212', '10.00 === 12', '10.0 === 10', 'An error'],
             correct: [3],
-            link: [],
-            explanation: ["Did you spot the octal 5? It's irrelevant, because five is the same in base eight or base ten.  The operator precedence means we do 17 + 5 = 22 first, then we do 42 & 22 ... & is a binary operation, so we need those numbers in binary first.\n22 in binary: 10110.\n42 in binary: 101010. \nThe only column where both numbers have a 1, is in the 2 place."]
+            link: ["http://php.net/manual/en/function.printf.php", "http://php.net/manual/en/function.sprintf.php", "http://en.wikipedia.org/wiki/Printf_format_string"],
+            explanation: ["Besides string formatting, there is a small trap hidden in this code. \nThe function printf() automatically printf the string and returns an integer with the length of the printed string."]
         }
     },
     q199: {
         id: 199,
-        text: 'What will the output of the following code be? <pre class="brush: php"> &lt;?php $a = range(3,9); foreach ($a as $b) { switch($b) { case 3: $b = 7; case 7: $b = 3; default:// do nothing } } echo implode(\'-\',$a); ?&gt; </pre>',
-        type: 2,
+        text: 'What will the output of the following code be? (type the error level if you think it will show one)\n\n<pre class="brush: php">\n&lt;?php\n$a = array(\n\t5 => 6,\n\t5,\n\t"5" => 7,\n\t"6" => 6);\n\nforeach ($a as $val) {\n\techo $val;\n}\n?&gt;\n</pre>',
+        type: 1,
+        category: 8,
         answer: {
-            options: ['7-4-5-6-7-8-9', '3-4-5-6-7-8-9-10-11', '3-4-5-6-7-8-9', '7-4-5-6-3-8-9', '7-4-5-6-3-8-9-10-11'],
-            correct: [3],
-            link: [],
-            explanation: ["The range(3,9) gives us an array containing all integers from 3 to 9.  When we foreach over them, we can't change the values in the array, so the contents of $a remain unchanged (you need to use the array and the key to update a value during foreach)"]
+            options: [],
+            correct: ["76"],
+            link: ["http://php.net/manual/en/language.types.array.php"],
+            explanation: ["The two first elements of the array are overwritten by the second pair."]
         }
     },
     q200: {
