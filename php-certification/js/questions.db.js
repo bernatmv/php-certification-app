@@ -2538,46 +2538,50 @@ var questionsDataBase = {
     },
     q210: {
         id: 210,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $x = 1; function print_conditional() { static $x; if($x++ == 1) echo "many"; echo "good"; echo "things"; return $x; } print_conditional(); $x++; print_conditional(); ?&gt; </pre>',
+        text: 'If the "action" property of a FORM is empty, where would that FORM lead to?',
         type: 2,
+        category: 1,
         answer: {
-            options: ['manygoodthingsmanygoodthings', 'manygoodthings', 'goodthingsgoodthings', 'goodthingsmanygoodthings', 'there is no output'],
-            correct: [4],
-            link: [],
-            explanation: ["The $x outside the function has no link with $x inside the function.  $x inside the function is a static variable so it retains its value between function calls. \nThe first time we call print_conditional(), $x is static but undefined.  The $x++ post increment operator returns the old value, then increments the variable, so on the first pass, the if() returns false and then $x is 1.  Look very closely at that if! \nThere are no {} brackets so only the 'many' line is conditional, the 'good' and 'things' lines will run regardless (this is why indentation should follow program flow).  On the second call, $x is 1 so the if() evaluates to true and we get the 'many' line as well."]
+            options: ['Nowhere, it will not submit', 'index.php', 'To same URI from where the FORM is submitted', 'The established default page of the current URI level', 'The established default page of server root level'],
+            correct: [3],
+            link: ["http://www.thefutureoftheweb.com/blog/use-empty-form-action-submit-to-current"],
+            explanation: []
         }
     },
     q211: {
         id: 211,
-        text: 'What does the html_errors configuration directive do?',
+        text: 'Which of the following instructions format the PHP errors as HTML?',
         type: 2,
+        category: 1,
         answer: {
-            options: ['Enable reporting of invalid HTML output', 'Show PHP errors on webpages', 'html_errors is not a valid configuration directive', 'Apply HTML formatting to PHP errors', 'Suppress browser errors'],
-            correct: [4],
-            link: [],
-            explanation: ["The html_errors setting enables hyperlinks and formatting in any error output; other libraries (for example Xdebug) may also observe this setting."]
+            options: ['html_errors = 1', 'php_html_errors = 1', 'error_format_html = 1', 'error_format = "html"', 'error.format_html'],
+            correct: [1],
+            link: ["http://php.net/manual/en/errorfunc.configuration.php"],
+            explanation: []
         }
     },
     q212: {
         id: 212,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $a = 1; function calculate() { global $a; $a += 7; $a = $a * 043; return --$a; } echo $a; ?&gt; </pre>',
-        type: 2,
+        text: 'What will this script print when executed?\n\n<pre class="brush: php">\n&lt;?php\n$a = \'PHP\';\n\nfunction a($a) {\n\t$b = 4;\n\t$a .= $a." ".(++$b).\'.3\';\n}\n\necho $a;\n&gt;\n</pre>',
+        type: 1,
+        category: 0,
         answer: {
-            options: ['342', '279', '0', '343', '1'],
-            correct: [5],
+            options: [],
+            correct: ["PHP"],
             link: [],
-            explanation: ["The function is never called."]
+            explanation: ["This question is a trap, we never call the function a()"]
         }
     },
     q213: {
         id: 213,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php function format(&$item) { $item = strtoupper($item) . \'.\'; return $item; } $shopping = array("fish", "bread", "eggs", "jelly", "apples"); array_walk($shopping, "format"); $shopping = sort($shopping); echo $shopping[1]; ?&gt; </pre>',
+        text: 'In HTTP Basic Authentication, what algorithm is applied to the password to protect it?',
         type: 2,
+        category: 1,
         answer: {
-            options: ['"APPLES."', '"apples"', '"BREAD."', 'nothing (no output)', '"fish"'],
+            options: ['md5', 'sha1', 'RSA', 'none', 'NSA'],
             correct: [4],
-            link: [],
-            explanation: ["This is the sort() function returning true, which makes no sense with array notation so PHP doesn't return us anything at all."]
+            link: ["http://en.wikipedia.org/wiki/Basic_access_authentication"],
+            explanation: []
         }
     },
     q214: {
