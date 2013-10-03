@@ -2676,7 +2676,7 @@ var questionsDataBase = {
         answer: {
             options: ['PDOStatement::*', 'addslashes', 'is_*', 'preg_match', 'ctype_*', 'filter_*'],
             correct: [4, 5, 6],
-            link: ["http://php.net/manual/es/book.ctype.php", "http://php.net/manual/es/book.filter.php", "http://www.php.net/manual/en/function.preg-match.php"],
+            link: ["http://php.net/manual/en/book.ctype.php", "http://php.net/manual/en/book.filter.php", "http://www.php.net/manual/en/function.preg-match.php"],
             explanation: []
         }
     },
@@ -2766,123 +2766,134 @@ var questionsDataBase = {
     },
     q229: {
         id: 229,
-        text: 'The Active Record design pattern is used for which of the following?',
+        text: 'How would we retrieve the input value in php?\n\n<pre class="brush: php">\n&lt;?php\n&lt;FORM method="POST"&gt;\n\t&lt;input type="hidden" name="user.id" value="123"&gt;\n&lt;/FORM&gt;\n?&gt;\n</pre>',
         type: 2,
+        category: 1,
         answer: {
-            options: ['Creating audit trails of all file changes', 'Easily storing and retrieving objects in the database', 'Integrating PHP and Ruby on Rails projects', 'Separating business and presentation logic within a system', 'Managing output handlers'],
-            correct: [2],
-            link: [],
-            explanation: ["Made famous by ruby on rails, the active record pattern is common in model layers to handle the translation between the objects we use in applications and the way we store them."]
+            options: ['$_GET["user.id"]', '$_POST["user.id"]', '$_SERVER["user.id"]', '$_REQUEST["user_id"]'],
+            correct: [4],
+            link: ["http://php.net/manual/en/reserved.variables.request.php"],
+            explanation: ["Dots and spaces in the name of form fields are translated as underscores."]
         }
     },
     q230: {
         id: 230,
-        text: 'With a single existing cookie set for this domain with the key "theme" and the value "green", what does the following code output? <pre class="brush: php"> &lt;?php print_r($_COOKIE); setcookie(\'theme\', NULL, time() - 3600); print_r($_COOKIE); unset($_COOKIE); print_r($_COOKIE); ?&gt; </pre>',
-        type: 2,
+        text: 'What will be printed?\r\r<pre class="brush: php">\r&lt;?php\r// supose that $_COOKIE["quantity"] is set\r// and it\'s value is 1 at the start of the script\r\r$q = $_COOKIE["quantity"];\r$q = ++$q << 2;\rsetcookie("quantity", $q);\r\rprint_r($_COOKIE["quantity"]);\r?&gt;\r</pre>',
+        type: 1,
+        category: 1,
         answer: {
-            options: ['an error', 'Array ( [theme] => green )', 'Array ( [theme] => green ) Array ( [theme] => green )', 'Array ( [theme] => green ) Array ( [theme] => green ) Array ( [theme] => green )', 'nothing'],
-            correct: [3],
-            link: [],
-            explanation: ["Here we see the contents of the $_COOKIE array, but setting another cookie will not make any difference until the next request.  The contents of $_COOKIE are output again, then we unset the array.  We haven't destroyed any of the cookies being exchanged, but we have removed them from that variable in our script. So we don't see the output (but there would be a notice if they were enabled)."]
+            options: [],
+            correct: ["1"],
+            link: ["http://php.net/manual/en/reserved.variables.cookies.php", "http://php.net/manual/en/function.setcookie.php"],
+            explanation: ["We set a new value for the cookie, but $_COOKIE will not have this value until the next request."]
         }
     },
     q231: {
         id: 231,
-        text: 'What does the following code output? <pre class="brush: php"> &lt;?php $i = function ($j) { $i = $j + 4; $i++; return $i; }; $j = 6; echo $i($j); ?&gt; </pre>',
-        type: 2,
+        text: 'Which of the following will NOT be a key of <code>$_FILES[$filename]</code> when we upload a file?',
+        type: 3,
+        category: 1,
         answer: {
-            options: ['10', 'syntax error', 'nothing', '11', '6'],
-            correct: [4],
-            link: [],
-            explanation: ["In this script, we have an anonymous function.  We declare it and assign it to $i. Then we call it, and pass in $j which is set to 6. \nThe $i inside the scope of the function has no link with anything outside, so it's fine (although confusing!) to use the variable name there. \n6 +4 is 10, then we increment $i and make 11, then return it."]
+            options: ['name', 'extension', 'type', 'size', 'error', 'tmp_name', 'path_to_file'],
+            correct: [2, 7],
+            link: ["http://php.net/manual/en/reserved.variables.files.php", "http://www.w3schools.com/php/php_file_upload.asp"],
+            explanation: []
         }
     },
     q232: {
         id: 232,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php function swings(&$park) { $park++; $park = roundabout($park); } function roundabout($park) { $park *= 2; } $park = 17; echo swings($park); ?&gt; </pre>',
-        type: 2,
+        text: 'Which of the following are valid "magic" constants?',
+        type: 3,
+        category: 0,
         answer: {
-            options: ['19', '37', '36', '74', 'nothing'],
-            correct: [5],
-            link: [],
-            explanation: ["Nothing is returned by swings() so there's no output echoed."]
+            options: ['__NAMESPACE__', '__LINE__', '__DIR__', '__CHAR__', '__CLASS__', '__ARGS__', '__METHOD__', '__VAR__'],
+            correct: [1, 2, 3, 5, 7],
+            link: ["http://php.net/manual/en/language.constants.predefined.php"],
+            explanation: []
         }
     },
     q233: {
         id: 233,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $x = 1; function print_conditional($x) { if($x++ == 1) echo "none"; echo "one"; echo "none"; return $x; } print_conditional($x); $x++; print_conditional($x); ?&gt; </pre>',
-        type: 2,
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\n$arr = array(\n\tarray(\n\t\t"name" => "John",\n\t\t"surname" => "Smith" \n\t),\n\tarray(\n\t\t"name" => "James",\n\t\t"surname" => "Smith"\n\t),\n\tarray(\n\t\t"name" => "Jonathan",\n\t\t"surname" => "Smith"\n\t)\n);\n\nfunction printUser($id) {\n\tglobal $arr;\n\tforeach ($arr as $key => $user) {\n\t\tif ($id == $key)\n\t\t\techo $user["name"];\n\t\t\techo $user["surname"];\n\t}\n}\n\nprintUser(00);\n?&gt;\n</pre>',
+        type: 1,
+        category: 0,
         answer: {
-            options: ['onenone', 'noneonenoneonenone', 'nonenoneonenone', 'onenoneonenoneonenone', 'noneonenone'],
-            correct: [2],
+            options: [],
+            correct: ['JohnSmithSmithSmith'],
             link: [],
-            explanation: ["This is really similar to an earlier question but don't be fooled; there are some differences. \n$x is 1 and we call print_conditional, passing in $x. \nThe post increment means the if is evaluated to true and all three echo lines will be executed. \nThe function returns $x but it isn't assigned so $x is still 1. \nIn the last two lines we increment $x and pass it into the function again, but this time the if does not evaluate to true. \nThe absence of curly braces however means that we do still get the 'one' and second 'none' line."]
+            explanation: ["Tricky question, the 'if' doesn't have curly braces, so the surname of all the users will be printed."]
         }
     },
     q234: {
         id: 234,
-        text: 'Which object method is automatically called when an object is cloned?',
+        text: 'What should go in place of ???????????? for the escript to output "start"?\n\n<pre class="brush: php">\n&lt;?php\nnamespace My\\Space\\Test;\n\nclass A {\n\tstatic function me() {\n\t\techo "start";\n\t}\n}\n\nnamespace Now;\n\nclass A {\n\tstatic function me() {\n\t\techo "end";\n\t}\n}\n\n????????????\n\nOrigin\\A::me();\n?&gt;\n</pre>',
         type: 2,
+        category: 2,
         answer: {
-            options: ['__copy()', '__wakeup()', '__drone()', '__clone()', '__call()'],
-            correct: [4],
-            link: ["http://www.php.net/manual/en/language.oop5.magic.php"],
-            explanation: ["This question is about magic methods; these are a key element of OOP theory in PHP."]
+            options: ['use \\My\\space\\Test as Origin;', 'namespace \\My\\space\\Test as Origin;', 'use ..\\Origin;', 'use Origin;', 'use \\My\\space\\Test = Origin;', 'end namespace;'],
+            correct: [1],
+            link: ["http://php.net/manual/en/language.namespaces.php"],
+            explanation: []
         }
     },
     q235: {
         id: 235,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $g = range(5,8); $h = array("a", "b", "c", "e"); for($i = 0; $i < count($g); $i++) { foreach ($h as $j) { echo $i.$j; break; } } ?&gt; </pre>',
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\nclass MyException extends Exception {}\n\ntry {\n\tthrow new MyException("Error");\n} catch (Exception $e) {\n\techo "Exception";\n} catch (MyException $e) {\n\techo "MyException";\n}\n?&gt;\n</pre>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['0a1a2a3a', '5a6a7a8a', '0a0b0c0e', '0a0b0c0e1a1b1c1e2a2b2c2e3a3b3c3e', '5a5b5c5e6a6b6c6e7a7b7c7e8a8b8c8e'],
-            correct: [1],
+            options: ['Error', 'Exception', 'MyException', 'None of the above'],
+            correct: [2],
             link: [],
-            explanation: ["We start off with the range statement which produces an array containing the values: 5,6,7,8, used only for count() purposes, and another array with letters in. \nThe for loop has a foreach inside it, but with a break statement, so the for loop operates as normal but the foreach loop only gets run once before we break out of it, on each turn around the for loop."]
+            explanation: ["MyException extends from exception and, as such the first catch will match."]
         }
     },
     q236: {
         id: 236,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $s = "This sentence contains many words"; $r = explode(\' \', ucfirst($s)); sort($r); echo implode(\',\', $r); ?&gt; </pre>',
+        text: 'What does PHP stand for',
         type: 2,
+        category: 0,
         answer: {
-            options: ['This Sentence Contains Many Words', 'This,contains,many,sentence,words', 'This,Sentence,Contains,Many,Words', 'This contains many sentence words', 'This Contains Many Sentence Words'],
-            correct: [2],
-            link: [],
-            explanation: ["Applying ucfirst to $s makes no difference, but exploding on a space splits the sentence into an array with one word in each element.  We sort the words but look out because sort is case-sensitive and will sort the capital letter first, then the rest alphabetically."]
+            options: ['Personal Hypertext Preprocessor', 'Plain Hypertext Page', 'Hypertext Page Preprocessor', 'PHP: Hypertext Preprocessor', 'Primary Html Preprocessor'],
+            correct: [4],
+            link: ["http://php.net/manual/en/faq.general.php"],
+            explanation: []
         }
     },
     q237: {
         id: 237,
-        text: 'Given a class called SoapFunctions and a working WSDL for the methods in that class, what needs to be added to the code below to serve those methods over SOAP? <pre class="brush: php"> &lt;?php require("SoapFunctions.php"); $s = new SoapServer($wsdl); $s->handle(); ?&gt; </pre>',
-        type: 2,
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\necho true ? \'what\' : true ? \'will\' : \'print?\';\n?&gt;\n</pre>',
+        type: 1,
+        category: 0,
         answer: {
-            options: ['$s->setHandler("SoapFunctions");', 'set_soap_class($s, "SoapFunctions");', 'set_soap_handler($s, "SoapFunctions");', '$s->setClass("SoapFunctions");', 'nothing to add, the code above would work'],
-            correct: [4],
-            link: ["http://www.php.net/manual/en/soapserver.setclass.php"],
-            explanation: ["None of the other options exist or are valid; the missing line needs the setClass() call."]
+            options: [],
+            correct: ["will"],
+            link: ["http://php.net/manual/en/language.operators.comparison.php"],
+            explanation: ["Ternary operators are evaluated from left to right."]
         }
     },
     q238: {
         id: 238,
-        text: 'Which of the following is a magic method in PHP 5.3?',
-        type: 3,
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\necho \'PHP 5\\\\\\.3 is fun\\n\';\n?&gt;\n</pre>',
+        type: 2,
+        category: 6,
         answer: {
-            options: ['__walk()', '__sleep()', '__return()', '__call()', '__function()', '__add()', '__set()'],
-            correct: [2, 4, 7],
-            link: ["http://www.php.net/manual/en/language.oop5.magic.php"],
-            explanation: []
+            options: ['PHP 5\\.3 is fun(new line)', 'PHP 5.3 is fun(new line)', 'PHP 5\\\\.3 is fun\\n', 'None of the above'],
+            correct: [3],
+            link: ["http://php.net/manual/en/language.types.string.php"],
+            explanation: ["Single quote does not transform \\. nor \\ n, but it does \\\\"]
         }
     },
     q239: {
         id: 239,
-        text: 'Which function would transform the string "excellent PHP functions" into the string "Excellent PHP Functions"?',
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\necho "0" ? false : true;\n?&gt;\n</pre>',
         type: 1,
+        category: 0,
         answer: {
             options: [],
-            correct: ["X"],
+            correct: ["1"],
             link: [],
-            explanation: ["This method will make the first letter of every word into an upper case letter, regardless of its previous case."]
+            explanation: ["Even if it is a string, '0' is converted to false by type-juggling."]
         }
     },
     q240: {
