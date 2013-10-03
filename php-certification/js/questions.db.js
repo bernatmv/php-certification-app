@@ -2670,90 +2670,98 @@ var questionsDataBase = {
     },
     q221: {
         id: 221,
-        text: 'Which of the following would you use to validate incoming data from a web form?',
+        text: 'Which sets of functions would we use to validate data from a FORM?',
         type: 3,
+        category: 1,
         answer: {
-            options: ['filter_* functions', 'stripslashes()', 'htmlspecialchars()', 'database escape functions', 'ctype_* functions', 'strip_tags()', 'preg_* functions', 'url_decode()'],
-            correct: [1, 5, 7],
-            link: ["http://www.php.net/manual/en/book.filter.php", "http://www.php.net/manual/en/book.ctype.php", "http://www.php.net/manual/en/ref.pcre.php"],
-            explanation: ["The key word in the question is 'validate' – some of the options to choose from are great ways to sanitize data, but not to validate it."]
+            options: ['PDOStatement::*', 'addslashes', 'is_*', 'preg_match', 'ctype_*', 'filter_*'],
+            correct: [4, 5, 6],
+            link: ["http://php.net/manual/es/book.ctype.php", "http://php.net/manual/es/book.filter.php", "http://www.php.net/manual/en/function.preg-match.php"],
+            explanation: []
         }
     },
     q222: {
         id: 222,
-        text: 'Which of the following php configuration directives were deprecated in PHP 5.3 ?',
-        type: 3,
+        text: 'What will be the output?\n\n<pre class="brush: php">\n&lt;?php\n$str = "PHP 5.3 &ccedil;&acirc;";\necho strlen(utf8_encode($str));\n?&gt;\n</pre>',
+        type: 2,
+        category: 6,
         answer: {
-            options: ['y2k_compliance', 'safe_mode', 'disable_functions', 'register_globals', 'gpc_order', 'max_file_uploads', 'register_syslog', 'register_long_arrays'],
-            correct: [2, 4, 8],
-            link: [],
-            explanation: ["Some of these other options were removed in PHP 5.4 but since this is PHP 5.3 certification, imagine that 5.4 never happened!"]
+            options: ['0', '8', '10', '16', '40', 'None of the above'],
+            correct: [4],
+            link: ["http://php.net/manual/en/function.utf8-encode.php", "http://php.net/manual/en/function.strlen.php"],
+            explanation: ["Each non-ascii (utf8) character counts as 4 bytes (&ccedil; and &acirc; are both non-ascii). Obviously, white space also count as valid characters."]
         }
     },
     q223: {
         id: 223,
-        text: 'What is the output of the following? <pre class="brush: php"> &lt;?php $a = 0xf2 + 0x09; $b = $a >> 3; echo $b; ?&gt; </pre>',
+        text: 'What kind of copy does "clone" create?',
         type: 2,
+        category: 2,
         answer: {
-            options: ['31', '0', '27', '7', '16'],
+            options: ['Shallow', 'Deep'],
             correct: [1],
-            link: [],
-            explanation: ["There are three steps here.  First, take the hexadecimal numbers and convert them to decimal, which gives you (242 + 9) = 251.  Next, write 251 in binary (it's 255 less 4 if you like shortcuts) which is 11111011. \nNow shift that number to the right three steps, ignoring the digits which get shifted away to the right of the 1 column.  This should give you 11111 – which is 31 when you turn it back into decimal."]
+            link: ["http://php.net/manual/en/language.oop5.cloning.php"],
+            explanation: ["By default clone makes a shallow copy, making all references in the new object point to the same place as the original one."]
         }
     },
     q224: {
         id: 224,
-        text: 'Which of the following would allow you to send a POST request to a remote resource via file_get_contents()?',
+        text: 'We want to get the content of a web page protected with HTTP Basic Authorization, what\'s wrong with the following code?\n\n<pre class="brush: php">\n&lt;?php\n// Assume $url, $username and $password are defined and valid\n$params = array(\n\t\'http\' => array(\n\t\t\'method\' => \'GET\',\n\t\t\'header\' => \'Authorization: Basic \'.base64_encode($username).\':\'.base64_encode($password)\n\t) \n);\n$stream = stream_context_create($params);\n\n$str = file_get_contents($url, false, $stream);\n?&gt;\n</pre>',
         type: 2,
+        category: 5,
         answer: {
-            options: ['You can\'t, use the curl extension or an equivalent', 'stream_context(array("method" => "POST"));', 'array("method"=>"post");', 'stream_context_create("http_method" => "POST"));', 'stream_context_create(array("http" => array("method" => "POST")));'],
-            correct: [5],
-            link: [],
-            explanation: ["It is possible to make all kinds of requests and set any headers you like by setting the context on a stream.  Here, we're setting the method option inside the http element of the context."]
+            options: ['You can\'t use a context with file_get_contents', 'You can\'t use a stream for basic authentication, you should use curl', 'The second parameter (false) in file_get_contents will invalidate the call', 'There is nothing wrong with this code'],
+            correct: [4],
+            link: ["http://php.net/manual/en/function.stream-context-create.php", "http://php.net/manual/en/function.file-get-contents.php"],
+            explanation: []
         }
     },
     q225: {
         id: 225,
-        text: 'Which function would you use to re-order an array by its keys?',
-        type: 1,
+        text: 'What are the recommended settings for production environments?',
+        type: 3,
+        category: 3,
         answer: {
-            options: [],
-            correct: ["X"],
-            link: ["http://www.php.net/ksort"],
-            explanation: ["There are lots of ways of sorting arrays, by key or by value, keeping keys intact or not – this time you need ksort."]
+            options: ['display_errors = off', 'log_errors = on', 'allow_url_include = on', 'error_reporting = E_ALL | E_NOTICE | E_STRICT | E_DEPRECATED', 'error_reporting = E_ALL | E_STRICT'],
+            correct: [1, 2, 5],
+            link: ["http://www.php.net/manual/en/ini.list.php"],
+            explanation: []
         }
     },
     q226: {
         id: 226,
-        text: 'What does the chr() function do?',
+        text: 'What can you do to prevent session fixation?',
         type: 2,
+        category: 3,
         answer: {
-            options: ['Returns the ascii code of the given character', 'Returns the ascii codes for all characters in the string as an array', 'Returns the character at a given offset', 'Returns the character for a given ascii code', 'Returns the number of characters in the string'],
-            correct: [4],
-            link: ["http://www.php.net/chr"],
-            explanation: ["The chr() is the opposite of the ord() function."]
+            options: ['set session.use_only_cookies to on', 'forbid the use of cookies', 'set html_errors to off', 'set exit_on_timeout to on', 'set session.use_trans_sid to on'],
+            correct: [1],
+            link: ["http://stackoverflow.com/questions/5081025/php-session-fixation-hijacking", "http://php.net/manual/en/session.security.php"],
+            explanation: []
         }
     },
     q227: {
         id: 227,
-        text: 'Given this code sample: <pre class="brush: php"> &lt;?php interface A {} class C {} class B extends C {} class E extends C implements A {} class D extends E{} $b = new B(); $e = new E(); $c = new C(); $a = new B(); $d = new D(); Which of the following statements are true? ?&gt; </pre>',
-        type: 3,
+        text: 'What would be the output of the following script?\n\n<pre class="brush: php">\n&lt;?php\ninterface i1 {}\ninterface i2 extends i1 {}\ninterface i3 {}\nclass c1 {}\nclass c2 extends c1 {}\nclass c3 extends c2 implements i2, i3 {}\n\n$c3 = new C3();\n\necho $c3 instanceof c1;\necho $c3 instanceof c2;\necho $c3 instanceof c3;\necho $c3 instanceof i1;\necho $c3 instanceof i2;\necho $c3 instanceof i3;\n?&gt;\n</pre>',
+        type: 1,
+        category: 2,
         answer: {
-            options: ['$c instanceof B', '$d instanceof A', '$d instanceof C', '$e instanceof B', '$e instanceof A', '$c instanceof C', '$a instanceof E'],
-            correct: [2, 3, 5, 6],
-            link: [],
-            explanation: ["This question is really about polymorphism.  Objects will claim to be instances of the classes they are actually instances of, but will also identify themselves as any of their ancestors or as any interface that their class, or any ancestor class, implements."]
+            options: [],
+            correct: ["111111"],
+            link: ["http://php.net/manual/en/language.oop5.php", "http://php.net/manual/en/language.oop5.interfaces.php"],
+            explanation: []
         }
     },
     q228: {
         id: 228,
-        text: 'Which of the following session save handlers are available by default in PHP?',
+        text: 'Which of the following are good measures against SQL injection?',
         type: 3,
+        category: 3,
         answer: {
-            options: ['redis', 'postgresql', 'files', 'memcache', 'AWS', 'foxpro', 'sqlite'],
-            correct: [3, 4, 7],
-            link: [],
-            explanation: ["PHP defaults to files, and many other options are available but providing you have memcache or sqlite, either of these can be use for session storage."]
+            options: ['Use a black list', 'Relay on addslashes', 'Use mysqli_real_escape_string', 'Always code SQL carefully', 'When possible use prepared statements'],
+            correct: [3, 5],
+            link: ["http://php.net/manual/en/security.database.sql-injection.php", "http://www.php.net/manual/en/mysqli.real-escape-string.php", "http://www.php.net/manual/en/mysqli.quickstart.prepared-statements.php"],
+            explanation: []
         }
     },
     q229: {
