@@ -2586,79 +2586,86 @@ var questionsDataBase = {
     },
     q214: {
         id: 214,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php class Content{ public function publish() { $this->published = true; $this->article(); return true; } protected function article() { echo "<i>Article:</i>"; } } class Article extends Content{ public function article() { echo "<i>Post:</i>"; } } $post = new Article(); echo $post->publish(); ?&gt; </pre>',
+        text: 'Which function can we use to see if a SOAP call have failed?',
         type: 2,
+        category: 5,
         answer: {
-            options: ['<i>Post:</i>', 'an Error', '<i>Post:</i><i>Post:</i>1', '<i>Article:</i>', '<i>Post:</i><i>Article:</i>1'],
-            correct: [3],
-            link: [],
-            explanation: ["We have a class Content and another class Article which extends Content.  When we instantiate a new Article() the function article() becomes our constructor because the method name meets the class name (this is from PHP 4 days but is still true) so we echo '<i>Post:</i>'.  Then we call publish() on our object, which calls Article::article() again (NOT Content::article()), and returns true.  We echoed the output of our call and the boolean becomes a 1 when we echo it."]
+            options: ['soap_last_error', 'is_soap_fault', 'get_soap_last_error', 'SoapFault::getError', 'None of the above'],
+            correct: [2],
+            link: ["http://php.net/manual/en/function.is-soap-fault.php"],
+            explanation: []
         }
     },
     q215: {
         id: 215,
-        text: 'Given the following code: <pre class="brush: php"> &lt;?php Interface Verifiable{ public function verify(); } Class Cheque{ public function verify() {// interesting stuff happens return true; } } Class CurrencyCheque extends Cheque implements Verifiable { } ?&gt; </pre> What happens when we instantiate a CurrencyCheque object?',
-        type: 2,
+        text: 'What will be the output of this script?\n\n<pre class="brush: php">\n&lt;?php\n$id = "id123";\n\t\nfunction printName($id) {\n\t$key = 0;\n\t$names = array(0 => "Anna", 123 => "John", "id" => "Sammy");\n\t\n\tif (strcasecmp($id, "ID123")) {\n\t\t$key = (int) $id; \n\t}\n\telseif (strcmp($id, "ID123")) {\n\t\t$key = "id";\n\t}\n\t\n\tprint $names[$key];\n}\n\nprintName($id);\n?&gt;\n</pre>',
+        type: 1,
+        category: 6,
         answer: {
-            options: ['An warning because the interface isn\'t implemented', 'A new CurrencyCheque object is created', 'The method must be redefined in CurrencyCheque', 'An error that the interface must be defined in the parent object', 'A fatal error'],
-            correct: [2],
-            link: [],
-            explanation: ["Look closely at that parent object – it already defines the method we need to satisfy the interface.  Therefore we can implement it in the child class without needing to redeclare the method – everything will work fine."]
+            options: [],
+            correct: ["Sammy"],
+            link: ["http://www.php.net/manual/en/function.strcmp.php", "http://www.php.net/manual/en/function.strcasecmp.php"],
+            explanation: ["The function strcmp and strcasecmp does not return true or false on comparison. If both strings are equal, strcasecmp returns 0 which by type-juggling translates to false."]
         }
     },
     q216: {
         id: 216,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php if(strcmp("hi", "HI")) echo "hello"; elseif(strcasecmp("hi","HI")) echo "world"; else throw new Exception("HI"); ?&gt; </pre>',
+        text: 'Using which function is the simplest way to retrieve the information of this user?\n\n<pre class="brush: php">\n&lt;?php\n$data = \'O:8:"stdClass":2:{s:2:"id";i:123;s:4:"info";a:2:{s:4:"name";s:5:"James";s:7:"surname";s:5:"Smith";}}\';\n?&gt;\n</pre>\n',
         type: 2,
+        category: 0,
         answer: {
-            options: ['"world"', 'an Exception', 'nothing (no output)', '"hello"', 'an error'],
-            correct: [4],
-            link: ["http://www.php.net/strcmp"],
-            explanation: ["The key here is knowing that strcmp is case-sensitive but that it returns zero if things match.  For anything that isn't zero, the 'if' will evaluate to true."]
+            options: ['json_decode', 'strtok', 'json_encode', 'sscanf', 'unserialize'],
+            correct: [5],
+            link: ["http://php.net/manual/en/function.unserialize.php"],
+            explanation: []
         }
     },
     q217: {
         id: 217,
-        text: 'How can you recover the original information from this string? <pre class="brush: php"> &lt;?php a:4:{i:2;s:3:"foo";i:3;s:4:"spot";i:4;s:6:"stripe";s:3:"bar";i:64;} ?&gt; </pre>',
-        type: 2,
+        text: 'What\'s the name of the error level constant that identifies fatal run-time errors?',
+        type: 1,
+        category: 0,
         answer: {
-            options: ['using json_decode()', 'using the mcrypt extension', 'using unserialize()', 'using a database library', 'you can\'t – this is a custom format'],
-            correct: [3],
-            link: [],
-            explanation: ["This data is PHP's serialized format so you wamt to unserialize it – it does look a bit like JSON, but the clue is that the example here includes information about the data type, which JSON does not."]
+            options: [],
+            correct: ["E_ERROR"],
+            link: ["http://php.net/manual/en/errorfunc.constants.php"],
+            explanation: []
         }
     },
     q218: {
         id: 218,
-        text: 'Which of the following are true (choose three)?',
+        text: 'Which of the following affirmations about REST design standard are TRUE?',
         type: 3,
+        category: 5,
         answer: {
-            options: ['Anonymous functions can accept variables passed into them at call time', 'Anonymous functions cannot be called recursively', 'Closures are a kind of anonymous function', 'Anonymous functions can have function names', 'It is possible to return multiple values from an anonymous function', 'Closures can have variable values "baked" in at declare time', 'Anonymous functions are always created in the global scope'],
-            correct: [1, 3, 6],
-            link: ["http://www.php.net/manual/en/functions.anonymous.php"],
-            explanation: ["Anonymous functions were new in PHP 5.3, however hopefully either experience or study means you were able to pick your way through this question."]
+            options: ['Only returns JSON', 'Uses only HTTP', 'Stateless', 'Exposes URIs', 'Accepted headers varies from v1.1 to v1.2', 'Only accepts GET, POST and DELETE'],
+            correct: [2, 3, 4],
+            link: [],
+            explanation: []
         }
     },
     q219: {
         id: 219,
-        text: 'What is the output of the following? <pre class="brush: php"> &lt;?php echo chr((ord(\'a\') + ord(\'A\'))/2); ?&gt; </pre>',
-        type: 1,
+        text: 'Which of the following are valid DateTime constants?',
+        type: 3,
+        category: 4,
         answer: {
-            options: [],
-            correct: ["Q"],
-            link: [],
-            explanation: ["Take the time to work this one out – it looks tiny but it still needs some attention. \nFirst we take ord('a') = 97 and ord('A') = 65, add them together (162) and then divide by 2 to make 81. Now count forwards from 65 (B is 66, C is 67, and so on) until you reach 81.  The chr() function is the opposite of ord() and makes numbers back into letters."]
+            options: ['ATOM', 'ISO8601', 'LOCALE', 'COOKIE', 'ISO8859-1', 'UTF8'],
+            correct: [1, 2, 4],
+            link: ["http://php.net/manual/en/class.datetime.php"],
+            explanation: []
         }
     },
     q220: {
         id: 220,
-        text: 'How would you efficiently extract data from a csv file which is several gigabytes in size?',
-        type: 3,
+        text: 'What will be printed when this script is executed?\n\n<pre class="brush: php">\n&lt;?php\n$s1 = "PHP is quite difficult";\n$s2 = "PHP is also quite fun";\n\nif (str_word_count($s2) > similar_text($s1, $s2)) {\n\techo levenshtein(ucfirst($s1), ucfirst($s2));\n}\nelse {\n\techo count(array_intersect(explode(" ", $s1), explode(" ", $s2)));\n}\n?&gt;\n</pre>',
+        type: 1,
+        category: 6,
         answer: {
-            options: ['Use a custom stream wrapper', 'file_get_contents() and explode()', 'fopen() and fgetcsv()', 'file() and explode()', 'fopen(), fgets() and explode()'],
-            correct: [3, 5],
-            link: [],
-            explanation: ["Either of these solutions would work pretty well – for a very large file, loading it into memory  with file_get_contents or something similar would make PHP run out of memory (or at least use up a lot of it!) so it's better to use a file-pointer-based approach and do it a line at a time."]
+            options: [],
+            correct: ["3"],
+            link: ["http://php.net/manual/en/function.similar-text.php", "http://www.php.net/manual/en/function.levenshtein.php", "http://php.net/manual/en/function.str-word-count.php", "http://php.net/manual/en/function.array-intersect.php"],
+            explanation: []
         }
     },
     q221: {
