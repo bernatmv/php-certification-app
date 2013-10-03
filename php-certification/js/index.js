@@ -401,6 +401,9 @@ var app = {
 
         // show question
         if (OFFLINE_MODE) {
+            if (questionsDataBase[index].answer.link[0] && $("#help-links-container").hasClass("none")) {
+                $("#help-links-container").removeClass("none");
+            }
             if (questionsDataBase[index].answer.explanation[0]) {
                 layer.html(questionsDataBase[index].answer.explanation[0].replace('\\n', '<br />'));
             }
@@ -426,7 +429,7 @@ var app = {
         var answer = questionsDataBase[index].answer;
         var links = answer.link;
         if (links.length > 0) {
-            var html = '<ul class="individual">';
+            var html = '<ul id="help-links-container" class="individual none">';
             for (var i = 0, j = links.length; i < j; i++) {
                 html += '<li><a href="#" onclick="var ref = window.open(\''+links[i]+'\', \'_system\'); return false;" class="question-help">'+links[i]+'</a></li>';
             }
@@ -446,7 +449,7 @@ var app = {
             '<div id="question-'+id+'-answer-note" class="question-answer-note question-hint button"><span id="hintTitle">How many answers?</span><span id="hintText" class="none">Choose '+questionsDataBase[index].answer.correct.length+'</span></div>';
         return '<div id="question-{$count}">' +
                 '<div id="question-'+id+'-info" class="question-info" qnum="'+qNum+'" qid="'+id+'" style="display:none;"></div>' +
-                '<div id="question-'+id+'-number" class="question-number">'+qNum+'</div>' +
+                '<div id="question-'+id+'-number" class="question-number"></div>' +
                 '<div id="question-'+id+'-text" class="question-text">' +
                     questionsDataBase[index].text +
             '</div>' +

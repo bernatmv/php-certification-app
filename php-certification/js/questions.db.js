@@ -16,7 +16,7 @@
     8 = Arrays
     9 = PHP4 vs PHP5 (deprecated for PHP 5.3 certification, DO NOT USE FOR TESTS)
 */
-var index = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243];
+var index = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244];
 
 var questionsDataBase = {
     q1: {
@@ -57,7 +57,7 @@ var questionsDataBase = {
     },
     q4: {
         id: 4,
-        text: 'What is the output of the following PHP code? <pre class=\'brush: php; html-script: true\'>&lt;?phpdefine(\'FOO\', 10);$array = array(10 =&gt; FOO, "FOO" =&gt; 20);print $array[$array[FOO]] * $array["FOO"];?&gt;</pre>',
+        text: 'What is the output of the following PHP code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\ndefine(\'FOO\', 10);\n$array = array(10 =&gt; FOO, "FOO" =&gt; 20);\nprint $array[$array[FOO]] * $array["FOO"];\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -69,7 +69,7 @@ var questionsDataBase = {
     },
     q5: {
         id: 5,
-        text: 'What is the output of the following PHP script? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 1;$b = 2.5;$c = 0xFF;$d = $b + $c;$e = $d * $b;$f = ($d + $e) % $a;print ($f + $e);?&gt;</pre>',
+        text: 'What is the output of the following PHP script?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = 1;\n$b = 2.5;\n$c = 0xFF;\n$d = $b + $c;\n$e = $d * $b;\n$f = ($d + $e) % $a;\nprint ($f + $e);\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -81,7 +81,7 @@ var questionsDataBase = {
     },
     q6: {
         id: 6,
-        text: 'What combination of boolean values for <code>$a</code>, <code>$b</code>, <code>$c</code>, and <code>$d</code> will result in the variable <code>$number</code> being equal to <code>3</code>? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = null;$b = null;$c = null;$d = null;if($a &amp;&amp; !$b) { if(!!$c &amp;&amp; !$d) { if($d &amp;&amp; ($a || $c)) { if(!$d &amp;&amp; $b) { $number = 1; } else { $number = 2; } } else { $number = 3; } } else { $number = 4; }} else { $number = 5;}?&gt;</pre>',
+        text: 'What combination of boolean values for <code>$a</code>, <code>$b</code>, <code>$c</code>, and <code>$d</code> will result in the variable <code>$number</code> being equal to <code>3</code>?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = null;\n$b = null;\n$c = null;\n$d = null;\nif($a &amp;&amp; !$b) { \n\tif(!!$c &amp;&amp; !$d) { \n\t\tif($d &amp;&amp; ($a || $c)) { \n\t\t\tif(!$d &amp;&amp; $b) { \n\t\t\t\t$number = 1; \n\t\t\t} \n\t\t\telse { \n\t\t\t\t$number = 2; \n\t\t\t} \n\t\t} \n\t\telse { \n\t\t\t$number = 3; \n\t\t} \n\t} \n\telse { \n\t\t$number = 4; \n\t} \n} \nelse { \n\t$number = 5;\n}\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -93,7 +93,7 @@ var questionsDataBase = {
     },
     q7: {
         id: 7,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?php$string = "111221";for($i = 0; $i &lt; strlen($string); $i++) {$current = $string[$i];$count = 1;while(isset($string[$i + $count]) &amp;&amp; ($string[$i + $count] == $current)) $count++;$newstring .= "$count{$current}";$i += $count-1;}print $newstring;?&gt;</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$string = "111221";\n\nfor($i = 0; $i &lt; strlen($string); $i++) {\n\t$current = $string[$i];\n\t$count = 1;\n\twhile(isset($string[$i + $count]) &amp;&amp; ($string[$i + $count] == $current)) \n\t\t$count++;$newstring .= "$count{$current}";\n\t$i += $count-1;\n}\n\nprint $newstring;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -117,7 +117,7 @@ var questionsDataBase = {
     },
     q9: {
         id: 9,
-        text: 'What does the following function do, when passed two integer values for <code>$p</code> and <code>$q</code>? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction magic($p, $q) { return ($q == 0) ? $p : magic($q, $p % $q);}?&gt;</pre>',
+        text: 'What does the following function do, when passed two integer values for <code>$p</code> and <code>$q</code>?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction magic($p, $q) { \n\treturn ($q == 0) ? $p : magic($q, $p % $q);\n}\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -141,7 +141,7 @@ var questionsDataBase = {
     },
     q11: {
         id: 11,
-        text: 'What would go in place of <code>??????</code> below to make this script execute without a fatal error? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 1;$b = 0;??????$c = $a / $b;?&gt;</pre>',
+        text: 'What would go in place of <code>??????</code> below to make this script execute without a fatal error?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = 1;\n$b = 0;\n\n??????\n\n$c = $a / $b;\n?&gt;\n</pre>',
         type: 3,
         category: 0,
         answer: {
@@ -153,7 +153,7 @@ var questionsDataBase = {
     },
     q12: {
         id: 12,
-        text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 010;$b = 0xA;$c = 2;print $a + $b + $c;?&gt;</pre>',
+        text: 'What is the output of the following?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = 010;\n$b = 0xA;\n$c = 2;\nprint $a + $b + $c;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -163,6 +163,7 @@ var questionsDataBase = {
             explanation: ["$a is a number with octal notation, so $a = 010 = 8; \n$b is a number with hexadecimal notation, so $b = 0xA = 10; \nCheck the PHP manual for different notations."]
         }
     },
+    //------------------------------------------------------------------------------------------------------------------
     q13: {
         id: 13,
         text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 20;function myfunction($b) {$a = 30;global $a, $c;return $c = ($b + $a);}print myfunction(40) + $c;?&gt;</pre>',
@@ -2898,40 +2899,43 @@ var questionsDataBase = {
     },
     q240: {
         id: 240,
-        text: 'Which of the following would offer protection against an SQL injection attack?',
-        type: 3,
+        text: 'What will be printed?\n\n<pre class="brush: php">\n&lt;?php\nclass Vehicle {\n\tconst topSpeed = 100;\n\n\tfunction getTopSpeed() {\n\t\treturn self::topSpeed;\n\t}\n	\n\tfunction maxSpeed() {\n\t\treturn 100;\n\t}\n}\n\nclass Motorcycle extends Vehicle {\n\tconst topSpeed = 150;\n	\n\tfunction maxSpeed() {\n\t\treturn $this->getTopSpeed();\n\t}\n}\n\n$aspira = new Motorcycle();\n\necho $aspira->getTopSpeed(); \n?&gt;\n</pre>',
+        type: 1,
+        category: 2,
         answer: {
-            options: ['mysql_real_escape_string()', 'mysql_true_escape_string()', 'addslashes()', 'using PDO and prepared statements', 'htmlspecialchars()', 'strip_tags()'],
-            correct: [1, 4],
-            link: [],
-            explanation: ["One of the answers here isn't a real PHP function (option B, mysql_true_escape_string) and the others aren't effective against SQL attacks (although they're great in other security-related uses)"]
+            options: [],
+            correct: ["100"],
+            link: ["http://php.net/manual/en/language.oop5.late-static-bindings.php"],
+            explanation: ["By virtue of late state binding, when we call the parent function Vehicle::getTopSpeed and inside this function we are referring to the constant with self:: in front of it, we will access the constant set in the Vehicle class."]
         }
     },
     q241: {
         id: 241,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php class M { public function identify() { echo self::myName(); } public function myName() { return "Mike"; } } class N extends M { public function myName() { return "November"; } } function m(N $n) { $n->identify(); } $m = new N(); m($m); ?&gt; </pre>',
+        text: 'What is <code>T_PAAMAYIM_NEKUDOTAYIM</code>',
         type: 2,
+        category: 0,
         answer: {
-            options: ['Fatal error', 'Catchable fatal error', 'Mike', 'November', 'Syntax error'],
-            correct: [3],
-            link: ["http://php.net/manual/en/language.oop5.late-static-bindings.php"],
-            explanation: ["What happens is that we instantiate an N (confusingly stored in $m, and then call m() on it which, after passing the typehint successfully, calls the identify() method in the N class. \nThis is inherited from M, but PHP will use M where we put self instead of using N. \nLate static binding means we could use static instead of self and get November as the output."]
+            options: ['It is an error level', 'It\'s a constant to identify a SOAP protocol', 'It\'s a system constant with the pid of the PHP script running', 'A predefined pattern to format strings in hebrew', 'It is the scope resolution operator'],
+            correct: [5],
+            link: ["http://php.net/manual/en/keyword.paamayim-nekudotayim.php", "http://en.wikipedia.org/wiki/Scope_resolution_operator#PHP"],
+            explanation: ["Look at the second link for a more detailed explanation."]
         }
     },
     q242: {
         id: 242,
-        text: 'What is the output of the following code? <pre class="brush: php"> &lt;?php $a = "Apple"; echo <<<\'A\'pass me that $aA;?&gt;</pre>',
-        type: 2,
+        text: 'What will be printed?\n\n<pre class="brush: php">\n&lt;?php\n$test = "test!";\n    \n$str = <<<\'TEST\'\nThis is a {$test}\nTEST;\n\n$str = explode($str, \'!\');\n\necho $str[0];\n?&gt;\n</pre>',
+        type: 1,
+        category: 6,
         answer: {
-            options: ['syntax error', '"pass me that Apple"', '"pass me that apple"', 'fatal error', 'pass me that $a'],
-            correct: [5],
+            options: [],
+            correct: ["!"],
             link: ["http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.nowdoc"],
-            explanation: ["This question shows a NOWDOC rather than a HEREDOC, so the variables won't be interpreted."]
+            explanation: ["This questions it's a trap. NOWDOC does not interpolate variables, but it's irrelevant: the explode function takes the delimiter as the first parameter and the string to explode as the second. As such, the output will be just '!'."]
         }
     },
     q243: {
         id: 243,
-        text: 'How would you transform a SimpleXMLElement object into a DOMElement object?',
+        text: 'What function would you use to create a DOMElement object from a SimpleXMLElement object?',
         type: 2,
         category: 4,
         answer: {
@@ -2939,6 +2943,18 @@ var questionsDataBase = {
             correct: [4],
             link: ["http://www.php.net/manual/en/function.dom-import-simplexml.php"],
             explanation: ["The only functions that exists and generate a DOMElement are DOMElement and dom_import_simplexml, but DOMElement does not accept a SimpleXMLElement as a parameter."]
+        }
+    },
+    q244: {
+        id: 244,
+        text: 'What will be printed?\n\n<pre class="brush: php">\n&lt;?php\n$a = false;\n\nif($a=0)\n\techo "true";\nelse\n\techo "false";\n?&gt;\n</pre>',
+        type: 1,
+        category: 0,
+        answer: {
+            options: [],
+            correct: ["false"],
+            link: [],
+            explanation: ["There is a trap in this question. Inside the 'if' we found $a=0 instead of $a==0, so it will always equal to false."]
         }
     }
 };

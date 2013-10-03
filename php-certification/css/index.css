@@ -170,3 +170,16 @@ span.no-bookmark {
     margin-bottom: -25px;
     position: relative;
 }
+
+#jqt .question-text {
+    font-size: 1.3em;
+}
+
+#jqt .question-number {
+    width: 15px;
+    height: 15px;
+}
+
+#jqt .syntaxhighlighter .toolbar {
+    display: none !important;
+}
