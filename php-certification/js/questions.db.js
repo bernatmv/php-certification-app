@@ -163,10 +163,9 @@ var questionsDataBase = {
             explanation: ["$a is a number with octal notation, so $a = 010 = 8; \n$b is a number with hexadecimal notation, so $b = 0xA = 10; \nCheck the PHP manual for different notations."]
         }
     },
-    //------------------------------------------------------------------------------------------------------------------
     q13: {
         id: 13,
-        text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = 20;function myfunction($b) {$a = 30;global $a, $c;return $c = ($b + $a);}print myfunction(40) + $c;?&gt;</pre>',
+        text: 'What is the output of the following?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = 20;\n\nfunction myfunction($b) {\n\t$a = 30;\n\tglobal $a, $c;\n\treturn $c = ($b + $a);\n}\n\nprint myfunction(40) + $c;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -178,7 +177,7 @@ var questionsDataBase = {
     },
     q14: {
         id: 14,
-        text: 'What would you replace <code>???????</code> with, below, to make the string <code>Hello, World!</code> be displayed? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction myfunction() { ???????print $string;}myfunction("Hello, World!");?&gt;</pre>',
+        text: 'What would you replace <code>???????</code> with, below, to make the string <code>Hello, World!</code> be displayed?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction myfunction() { \n\t???????\n\tprint $string;\n}\n\nmyfunction("Hello, World!");\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -190,7 +189,7 @@ var questionsDataBase = {
     },
     q15: {
         id: 15,
-        text: 'What is the output of the following function? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction &amp;find_variable(&amp;$one, &amp;$two, &amp;$three) {if($one &gt; 10 &amp;&amp; $one &lt; 20) return $one;if($two &gt; 10 &amp;&amp; $two &lt; 20) return $two;if($three &gt; 10 &amp;&amp; $three &lt; 20) return $three;}$one = 2;$two = 20;$three = 15;$var = &amp;find_variable($one, $two, $three);$var++;print "1: $one, 2: $two, 3: $three";?&gt;</pre>',
+        text: 'What is the output of the following function?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction &amp;find_variable(&amp;$one, &amp;$two, &amp;$three) {\n\tif($one &gt; 10 &amp;&amp; $one &lt; 20) return $one;\n\tif($two &gt; 10 &amp;&amp; $two &lt; 20) return $two;\n\tif($three &gt; 10 &amp;&amp; $three &lt; 20) return $three;\n}\n\n$one = 2;\n$two = 20;\n$three = 15;\n$var = &amp;find_variable($one, $two, $three);\n$var++;\nprint "1: $one, 2: $two, 3: $three";\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -214,7 +213,7 @@ var questionsDataBase = {
     },
     q17: {
         id: 17,
-        text: 'What are the values of <code>$a</code> in <code>$obj_one</code> and <code>$obj_two</code> when this script is executed? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass myClass { private $a; public function __construct() { $this-&gt;a = 10; } public function printValue() { print "The Value is: {$this-&gt;a}"; } public function changeValue($val, $obj = null) { if(is_null($obj)) { $this-&gt;a = $val; } else { $obj-&gt;a = $val; } } public function getValue() { return $this-&gt;a; }}$obj_one = new myClass();$obj_two = new myClass();$obj_one-&gt;changeValue(20, $obj_two);$obj_two-&gt;changeValue($obj_two-&gt;getValue(), $obj_one);$obj_two-&gt;printValue();$obj_one-&gt;printValue();?&gt;</pre>',
+        text: 'What are the values of <code>$a</code> in <code>$obj_one</code> and <code>$obj_two</code> when this script is executed?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nclass myClass { \n\tprivate $a; \n\n\tpublic function __construct() { \n\t\t$this-&gt;a = 10; \n\t} \n\n\tpublic function printValue() { \n\t\tprint "The Value is: {$this-&gt;a}"; \n\t} \n\n\tpublic function changeValue($val, $obj = null) { \n\t\tif(is_null($obj)) { \n\t\t\t$this-&gt;a = $val; \n\t\t} \n\t\telse { \n\t\t\t$obj-&gt;a = $val; \n\t\t} \n\t} \n\n\tpublic function getValue() { \n\t\treturn $this-&gt;a; \n\t}\n}\n\n$obj_one = new myClass();\n$obj_two = new myClass();\n$obj_one-&gt;changeValue(20, $obj_two);\n$obj_two-&gt;changeValue($obj_two-&gt;getValue(), $obj_one);\n$obj_two-&gt;printValue();\n$obj_one-&gt;printValue();\n?&gt;\n</pre>',
         type: 2,
         category: 2,
         answer: {
@@ -262,7 +261,7 @@ var questionsDataBase = {
     },
     q21: {
         id: 21,
-        text: 'Does the following code accomplish it\'s purpose? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction duplicate($obj) {$newObj = $obj;return $newObj;}$a = new MyClass();$a_copy = duplicate($a);$a-&gt;setValue(10);$a_copy-&gt;setValue(20);?&gt;</pre>',
+        text: 'Does the following code accomplish it\'s purpose?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction duplicate($obj) {\n\t$newObj = $obj;\n\treturn $newObj;\n}\n\n$a = new MyClass();\n$a_copy = duplicate($a);\n$a-&gt;setValue(10);\n$a_copy-&gt;setValue(20);\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -298,7 +297,7 @@ var questionsDataBase = {
     },
     q24: {
         id: 24,
-        text: 'What is the output of the following script? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass ClassOne { protected $a = 10; public function changeValue($b) { $this-&gt;a = $b; }}class ClassTwo extends ClassOne { protected $b = 10; public function changeValue($b) { $this-&gt;b = 10; parent::changeValue($this-&gt;a + $this-&gt;b); } public function displayValues() { print "a: {$this-&gt;a}, b: {$this-&gt;b}"; }}$obj = new ClassTwo();$obj-&gt;changeValue(20);$obj-&gt;changeValue(10);$obj-&gt;displayValues();?&gt;</pre>',
+        text: 'What is the output of the following script?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nclass ClassOne { \n\tprotected $a = 10; \n\n\tpublic function changeValue($b) { \n\t\t$this-&gt;a = $b; \n\t}\n}\n\nclass ClassTwo extends ClassOne { \n\tprotected $b = 10; \n\n\tpublic function changeValue($b) { \n\t\t$this-&gt;b = 10; \n\t\tparent::changeValue($this-&gt;a + $this-&gt;b); \n\t} \n\n\tpublic function displayValues() { \n\t\tprint "a: {$this-&gt;a}, b: {$this-&gt;b}"; \n\t}\n}\n\n$obj = new ClassTwo();\n$obj-&gt;changeValue(20);\n$obj-&gt;changeValue(10);\n$obj-&gt;displayValues();\n?&gt;\n</pre>',
         type: 2,
         category: 2,
         answer: {
@@ -394,7 +393,7 @@ var questionsDataBase = {
     },
     q32: {
         id: 32,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass MyException extends Exception {}class AnotherException extends MyException {}class Foo { public function something() { throw new AnotherException(); } public function somethingElse() { throw new MyException(); }}$a = new Foo();try { try { $a-&gt;something(); } catch(AnotherException $e) { $a-&gt;somethingElse(); } catch(MyException $e) { print "Caught Exception"; }} catch(Exception $e) { print "Didn\'t catch the Exception!";}?&gt;</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nclass MyException extends Exception {}\nclass AnotherException extends MyException {}\nclass Foo { \n\tpublic function something() { \n\t\tthrow new AnotherException(); \n\t} \n\n\tpublic function somethingElse() { \n\t\tthrow new MyException(); \n\t}\n}\n\n$a = new Foo();\ntry { \n\ttry { \n\t\t$a-&gt;something(); \n\t} catch(AnotherException $e) { \n\t\t$a-&gt;somethingElse(); \n\t} catch(MyException $e) { \n\t\tprint "Caught Exception"; \n\t}\n} catch(Exception $e) { \n\tprint "Didn\'t catch the Exception!";\n}\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -478,7 +477,7 @@ var questionsDataBase = {
     },
     q39: {
         id: 39,
-        text: 'Consider the following code: <pre class=\'brush: php; html-script: true\'>&lt;?phpsession_start();if(!empty($_REQUEST[\'id\']) &amp;&amp; !empty($_REQUEST[\'quantity\'])) { $id = scrub_id($_REQUEST[\'id\']); $quantity = scrub_quantity($_REQUEST[\'quantity\']) $_SESSION[\'cart\'][] = array(\'id\' =&gt; $id, \'quantity\' =&gt; $quantity)}/* .... */?&gt;</pre> What potential security hole would this code snippet produce?',
+        text: 'Consider the following code:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nsession_start();\n\nif(!empty($_REQUEST[\'id\']) &amp;&amp; !empty($_REQUEST[\'quantity\'])) { \n\t$id = scrub_id($_REQUEST[\'id\']); \n\t$quantity = scrub_quantity($_REQUEST[\'quantity\']); \n\t$_SESSION[\'cart\'][] = array(\'id\' =&gt; $id, \'quantity\' =&gt; $quantity);\n}\n\n/* .... */\n?&gt;\n</pre>\n\nWhat potential security hole would this code snippet produce?',
         type: 2,
         category: 3,
         answer: {
@@ -502,7 +501,7 @@ var questionsDataBase = {
     },
     q41: {
         id: 41,
-        text: 'Consider the following code: <pre class=\'brush: php; html-script: true\'>&lt;?phpheader("Location: {$_GET[\'url\']}");?&gt;</pre> Which of the following values of $_GET[\'url\'] would cause session fixation?',
+        text: 'Consider the following code:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nheader("Location: {$_GET[\'url\']}");\n?&gt;\n</pre>\n\nWhich of the following values of $_GET[\'url\'] would cause session fixation?',
         type: 2,
         category: 3,
         answer: {
@@ -550,7 +549,7 @@ var questionsDataBase = {
     },
     q45: {
         id: 45,
-        text: 'What is the output of the following code block? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = "The quick brown fox jumped over the lazy dog.";$b = array_map("strtoupper", explode(" ", $a));foreach($b as $value) {print "$value ";}?&gt;</pre>',
+        text: 'What is the output of the following code block?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = "The quick brown fox jumped over the lazy dog.";\n$b = array_map("strtoupper", explode(" ", $a));\n\nforeach($b as $value) {\n\tprint "$value ";\n}\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -574,7 +573,7 @@ var questionsDataBase = {
     },
     q47: {
         id: 47,
-        text: 'What is the output of this code snippet? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = array(0.001 =&gt; \'b\', .1 =&gt; \'c\');print_r($a);?&gt;</pre>',
+        text: 'What is the output of this code snippet?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = array(0.001 =&gt; \'b\', .1 =&gt; \'c\');\nprint_r($a);\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -610,7 +609,7 @@ var questionsDataBase = {
     },
     q50: {
         id: 50,
-        text: 'What is the output of the following code block? <pre class=\'brush: php; html-script: true\'>&lt;?php$array = array(1 =&gt; 0, 2, 3, 4);array_splice($array, 3, count($array), array_merge(array(\'x\'), array_slice($array, 3))); print_r($array);?&gt;</pre>',
+        text: 'What is the output of the following code block?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$array = array(1 =&gt; 0, 2, 3, 4);\narray_splice($array, 3, count($array), array_merge(array(\'x\'), array_slice($array, 3))); \nprint_r($array);\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -634,7 +633,7 @@ var questionsDataBase = {
     },
     q52: {
         id: 52,
-        text: 'Which key will not be displayed from the following code block?  <pre class=\'brush: php; html-script: true\'>&lt;?php$array = array(\'a\' =&gt; \'John\', \'b\' =&gt; \'Coggeshall\', \'c\' =&gt; array(\'d\' =&gt; \'John\', \'e\' =&gt; \'Smith\')); function display($item, $key) {print "$key =&gt; $item";}array_walk_recursive($array, "display");?&gt;</pre>',
+        text: 'Which key will not be displayed from the following code block?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$array = array(\n\t\'a\' =&gt; \'John\', \n\t\'b\' =&gt; \'Coggeshall\', \n\t\'c\' =&gt; array(\n\t\t\'d\' =&gt; \'John\', \n\t\t\'e\' =&gt; \'Smith\'\n\t)\n); \n\nfunction display($item, $key) {\n\tprint "$key =&gt; $item";\n}\n\narray_walk_recursive($array, "display");\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -646,7 +645,7 @@ var questionsDataBase = {
     },
     q53: {
         id: 53,
-        text: 'What is the result of the following code snippet? <pre class=\'brush: php; html-script: true\'>&lt;?php$array = array(\'a\' =&gt; \'John\', \'b\' =&gt; \'Coggeshall\', \'c\' =&gt; array(\'d\' =&gt; \'John\', \'e\' =&gt; \'Smith\')); function something($array) {extract($array);return $c[\'e\'];}print something($array);?&gt;</pre>',
+        text: 'What is the result of the following code snippet?\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$array = array(\n\t\'a\' =&gt; \'John\', \n\t\'b\' =&gt; \'Coggeshall\', \n\t\'c\' =&gt; array(\n\t\t\'d\' =&gt; \'John\', \n\t\t\'e\' =&gt; \'Smith\'\n\t)\n); \n\nfunction something($array) {\n\textract($array);\n\treturn $c[\'e\'];\n}\n\nprint something($array);\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -658,7 +657,7 @@ var questionsDataBase = {
     },
     q54: {
         id: 54,
-        text: 'What should go in the missing line <code>?????</code> below to produce the output shown? <pre class=\'brush: php; html-script: true\'>Array( [5] =&gt; A [4] =&gt; B [3] =&gt; C [2] =&gt; D [1] =&gt; E)</pre>',
+        text: 'What should go in the missing line <code>?????</code> below to produce the output shown?\n\n<pre class="brush: php">\n&lt;?php\n$array_one = array(1,2,3,4,5);\n$array_two = array(\'A\', \'B\', \'C\', \'D\', \'E\');\n\n???????\n\nprint_r($array_three);\n?&gt;\n</pre>\n\nResult\n\n<pre class=\'brush: php; html-script: true\'>\nArray( \n\t[5] =&gt; A \n\t[4] =&gt; B \n\t[3] =&gt; C \n\t[2] =&gt; D \n\t[1] =&gt; E\n)\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -682,7 +681,7 @@ var questionsDataBase = {
     },
     q56: {
         id: 56,
-        text: 'Given the following array: <p class="ceresIndent"><code>$array = array(1,1,2,3,4,4,5,6,6,6,6,3,2,2,2);</code></p> <p class="ceresIndent">The fastest way to determine the total number a particular value appears in the array is to use which function?</p>',
+        text: 'Given the following array:\n\n<pre class="brush: php">\n&lt;?php\n$array = array(1,1,2,3,4,4,5,6,6,6,6,3,2,2,2);\n?&gt;\n</pre>\n\nThe fastest way to determine the total number a particular value appears in the array is to use which function?',
         type: 2,
         category: 8,
         answer: {
@@ -706,7 +705,7 @@ var questionsDataBase = {
     },
     q58: {
         id: 58,
-        text: 'The following code snippet displays what for the resultant array?  <pre class=\'brush: php; html-script: true\'>&lt;?php$a = array(1 =&gt; 0, 3 =&gt; 2, 4 =&gt; 6);$b = array(3 =&gt; 1, 4 =&gt; 3, 6 =&gt; 4);print_r(array_intersect($a, $b));?&gt;</pre>',
+        text: 'The following code snippet displays what for the resultant array?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = array(1 =&gt; 0, 3 =&gt; 2, 4 =&gt; 6);\n$b = array(3 =&gt; 1, 4 =&gt; 3, 6 =&gt; 4);\nprint_r(array_intersect($a, $b));\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -730,7 +729,7 @@ var questionsDataBase = {
     },
     q60: {
         id: 60,
-        text: 'What would go in the spots indcated by <code>?????</code> in the code segment below for the script to work? <pre class=\'brush: php; html-script: true\'>&lt;?php$msg = "The Quick Brown Foxed Jumped Over the Lazy Dog";$state = true;$retval = "";for($i = 0; (isset(??????)); $i++) {if($state) {$retval .= strtolower(?????);} else {$retval .= strtoupper(?????);}$state = !$state;}print $retval;?&gt;</pre>',
+        text: 'What would go in the spots indcated by <code>?????</code> in the code segment below for the script to work?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$msg = "The Quick Brown Foxed Jumped Over the Lazy Dog";\n$state = true;\n$retval = "";\n\nfor($i = 0; (isset(??????)); $i++) {\n\tif($state) {\n\t\t$retval .= strtolower(?????);\n\t} \n\telse {\n\t\t$retval .= strtoupper(?????);\n\t}\n\n\t$state = !$state;\n}\n\nprint $retval;\n?&gt;\n</pre>',
         type: 2,
         category: 6,
         answer: {
@@ -742,7 +741,7 @@ var questionsDataBase = {
     },
     q61: {
         id: 61,
-        text: 'Given the two values below, which of the following possiblities will print <code>10 foos20 bars</code>? <pre class=\'brush: php; html-script: true\'>&lt;?php$var1 = "10 foos";$var2 = "20 bars";print ???????;?&gt;</pre>',
+        text: 'Given the two values below, which of the following possiblities will print <code>10 foos20 bars</code>?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$var1 = "10 foos";\n$var2 = "20 bars";\nprint ???????;\n?&gt;\n</pre>',
         type: 3,
         category: 6,
         answer: {
@@ -802,7 +801,7 @@ var questionsDataBase = {
     },
     q66: {
         id: 66,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?php $string = "14302"; $string[$string[2]] = "4"; print $string; ?&gt;</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$string = "14302"; \n$string[$string[2]] = "4"; \nprint $string; \n?&gt;\n</pre>',
         type: 2,
         category: 6,
         answer: {
@@ -850,7 +849,7 @@ var questionsDataBase = {
     },
     q70: {
         id: 70,
-        text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?php$oranges = 10;$apples = 5;$string = "I have %d apples and %d oranges";????????&gt;</pre> What could be placed in place of <code>??????</code> to output the string: <p class="ceresIndent"><code>I have 5 apples and 10 oranges</code></p>',
+        text: 'Consider the following script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$oranges = 10;\n$apples = 5;\n\n$string = "I have %d apples and %d oranges";\n\n????????\n&gt;\n</pre>\n\nWhat could be placed in place of <code>??????</code> to output the string: <code>I have 5 apples and 10 oranges</code>',
         type: 3,
         category: 6,
         answer: {
@@ -862,7 +861,7 @@ var questionsDataBase = {
     },
     q71: {
         id: 71,
-        text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?php$string = "&lt;b&gt;I like \'PHP\' &amp; I think it is \"cool\"&lt;/b&gt;";var_dump(htmlentities($string, ENT_QUOTES));var_dump(print htmlspecialchars($string));?&gt;</pre> In this script, do the two <code>var_dump()</code> calls produce the same string? Why or Why Not?',
+        text: 'Consider the following script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$string = "&lt;b&gt;I like \'PHP\' &amp; I think it is \"cool\"&lt;/b&gt;";\n\nvar_dump(htmlentities($string, ENT_QUOTES));\nvar_dump(print htmlspecialchars($string));\n?&gt;\n</pre>\n\nIn this script, do the two <code>var_dump()</code> calls produce the same string? Why or Why Not?',
         type: 2,
         category: 6,
         answer: {
@@ -874,7 +873,7 @@ var questionsDataBase = {
     },
     q72: {
         id: 72,
-        text: 'Consider the following String: <p class="ceresIndent"><code>$string = "John\tMarkTed\tLarry";</code></p> <p class="ceresIndent">Which of the following functions would best parse the string above by the tab (\t) and newline () characters?</p>',
+        text: 'Consider the following String:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$string = "John\tMarkTed\tLarry";\n?&gt;\n</pre>Which of the following functions would best parse the string above by the tab (\t) and newline () characters?',
         type: 2,
         category: 6,
         answer: {
@@ -886,7 +885,7 @@ var questionsDataBase = {
     },
     q73: {
         id: 73,
-        text: 'Which functions would be needed to translate the following string:  <p class="ceresIndent"><code>I love PHP 5</code></p> <p class="ceresIndent">to the following?</p> <p class="ceresIndent"><code>5 PHP EVOL I</code></p>',
+        text: 'Which functions would be needed to translate the following string:\n\n<pre class=\'brush: php; html-script: true\'>\nI love PHP 5\n</pre>\nto the following?\n<pre class=\'brush: php; html-script: true\'>\n5 PHP EVOL I\n</pre>\n',
         type: 3,
         category: 6,
         answer: {
@@ -898,7 +897,7 @@ var questionsDataBase = {
     },
     q74: {
         id: 74,
-        text: 'What is the best approach for converting this string: <p class="ceresIndent"><code>$string = "a=10&amp;b[]=20&amp;c=30&amp;d=40+50";</code></p> <p class="ceresIndent">Into this array?</p> <pre class=\'brush: php; html-script: true\'>array(4) { ["a"]=&gt; string(2) "10" ["b"]=&gt; array(1) { [0]=&gt; string(2) "20" } ["c"]=&gt; string(2) "30" ["d"]=&gt; string(5) "40 50"}</pre>',
+        text: 'What is the best approach for converting this string:\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$string = "a=10&amp;b[]=20&amp;c=30&amp;d=40+50";\n?&gt;\n</pre>\nInto this array?\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\narray(4) { \n\t["a"]=&gt; string(2) "10" \n\t["b"]=&gt; array(1) { \n\t\t[0]=&gt; string(2) "20" \n\t} \n\t["c"]=&gt; string(2) "30" \n\t["d"]=&gt; string(5) "40 50"\n}\n?&gt;\n</pre>',
         type: 2,
         category: 6,
         answer: {
@@ -910,7 +909,7 @@ var questionsDataBase = {
     },
     q75: {
         id: 75,
-        text: 'Which string does the following PCRE regular expression match?  <p class="ceresIndent"><code>$regex = "/^([a-z]{5})[1-5]+([a-z]+)/";</code></p>',
+        text: 'Which string does the following PCRE regular expression match?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$regex = "/^([a-z]{5})[1-5]+([a-z]+)/";\n?&gt;\n</pre>',
         type: 3,
         category: 6,
         answer: {
@@ -994,7 +993,7 @@ var questionsDataBase = {
     },
     q82: {
         id: 82,
-        text: 'Consider the following HTML fragement: <pre class=\'brush: php; html-script: true\'>&lt;select name="?????" multiple&gt;&lt;option value="1"&gt;Item #1&lt;/option&gt;&lt;!-- ... more options ... --&gt;&lt;/select&gt;</pre> Which of the following <code>name</code> attributes should be used to capture all of the data from the user in PHP?',
+        text: 'Consider the following HTML fragement:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;select name="?????" multiple&gt;\n\t&lt;option value="1"&gt;Item #1&lt;/option&gt;\n\t&lt;!-- ... more options ... --&gt;\n&lt;/select&gt;\n</pre>\n\nWhich of the following <code>name</code> attributes should be used to capture all of the data from the user in PHP?',
         type: 2,
         category: 1,
         answer: {
@@ -1078,7 +1077,7 @@ var questionsDataBase = {
     },
     q89: {
         id: 89,
-        text: 'Consider the following function: <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction redirect($url) { // Check to make sure we haven\'t already sent // the header: if(???????) { header("Location: $url"); }}?&gt;</pre> What conditional should replace the <code>?????</code> above?',
+        text: 'Consider the following function:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction redirect($url) { \n\t// Check to make sure we haven\'t already sent \n\t// the header: \n\tif(???????) { \n\t\theader("Location: $url"); \n\t}\n}\n?&gt;\n</pre> What conditional should replace the <code>?????</code> above?',
         type: 2,
         category: 1,
         answer: {
@@ -1138,7 +1137,7 @@ var questionsDataBase = {
     },
     q94: {
         id: 94,
-        text: 'Consider the following PHP string representing an SQL statement:  <p class="ceresIndent"><code>$query = "UPDATE users SET password=\'$password\' WHERE username=\'$username\'";</code></p> <p class="ceresIndent">Which of the following values for <code>$username</code> or <code>$password</code> would change the behavior of this query when executed?</p>',
+        text: 'Consider the following PHP string representing an SQL statement:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$query = "UPDATE users SET password=\'$password\' WHERE username=\'$username\'";\n?&gt;\n</pre>\nWhich of the following values for <code>$username</code> or <code>$password</code> would change the behavior of this query when executed?</p>',
         type: 2,
         category: 3,
         answer: {
@@ -1270,7 +1269,7 @@ var questionsDataBase = {
     },
     q105: {
         id: 105,
-        text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction func(&amp;$arraykey) { return $arraykey; // function returns by value!}$array = array(\'a\', \'b\', \'c\');foreach (array_keys($array) as $key) { $y = &amp;func($array[$key]); $z[] =&amp; $y;}var_dump($z);?&gt;</pre> Thiscode has changed behavior in PHP 5. Identify the output of this scriptas it would have been in PHP 4, as well as the new behavior in PHP 5.',
+        text: 'Consider the following script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction func(&amp;$arraykey) { \n\treturn $arraykey; \n\t// function returns by value!\n}\n\n$array = array(\'a\', \'b\', \'c\');\nforeach (array_keys($array) as $key) { \n\t$y = &amp;func($array[$key]); \n\t$z[] =&amp; $y;\n}\n\nvar_dump($z);\n?&gt;\n</pre>\n\nThiscode has changed behavior in PHP 5. Identify the output of this scriptas it would have been in PHP 4, as well as the new behavior in PHP 5.',
         type: 3,
         category: 9,
         answer: {
@@ -1282,7 +1281,7 @@ var questionsDataBase = {
     },
     q106: {
         id: 106,
-        text: 'Consider the following code block: <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction &amp;myFunction() { $string = "MyString"; var_dump($string); return ($undefined);}for($i = 0; $i &lt; 10; $i++) { $retval = myFunction();}?&gt;</pre> This code block\'s behavior has changed between PHP 4 and PHP 5. Why?',
+        text: 'Consider the following code block:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction &amp;myFunction() { \n\t$string = "MyString"; \n\tvar_dump($string); \n\treturn ($undefined);\n}\n\nfor($i = 0; $i &lt; 10; $i++) { \n\t$retval = myFunction();\n}\n?&gt;\n</pre>\n\nThis code block\'s behavior has changed between PHP 4 and PHP 5. Why?',
         type: 2,
         category: 9,
         answer: {
@@ -1294,7 +1293,7 @@ var questionsDataBase = {
     },
     q107: {
         id: 107,
-        text: 'When migrating the following code from PHP 4 to PHP 5, what should be changed? <pre class=\'brush: php; html-script: true\'>&lt;?phpclass MyClass {function MyClass($param) {/* Do something with $param */$this-&gt;_doSomething($param);}// Private method to MyClassfunction _doSomething($param) {/* Do something with $param */}}class AnotherClass extends MyClass {var $param = "foo";function AnotherClass() {parent::MyClass($this-&gt;param);}}?&gt;</pre>',
+        text: 'When migrating the following code from PHP 4 to PHP 5, what should be changed?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nclass MyClass {\n\tfunction MyClass($param) {\n\t\t/* Do something with $param */\n\t\t$this-&gt;_doSomething($param);\n\t}\n\n\t// Private method to MyClass\n\tfunction _doSomething($param) {\n\t\t/* Do something with $param */\n\t}\n}\n\nclass AnotherClass extends MyClass {\n\tvar $param = "foo";\n\n\tfunction AnotherClass() {\n\t\tparent::MyClass($this-&gt;param);\n\t}\n}\n?&gt;\n</pre>',
         type: 3,
         category: 9,
         answer: {
@@ -1306,7 +1305,7 @@ var questionsDataBase = {
     },
     q108: {
         id: 108,
-        text: 'Assuming every method call below returns an instance of an object, how can the following be re-written in PHP 5? <pre class=\'brush: php; html-script: true\'>&lt;?php$a = new MyClass();$b = $a-&gt;getInstance();$c = $b-&gt;doSomething();?&gt;</pre>',
+        text: 'Assuming every method call below returns an instance of an object, how can the following be re-written in PHP 5?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$a = new MyClass();\n$b = $a-&gt;getInstance();\n$c = $b-&gt;doSomething();\n?&gt;\n</pre>',
         type: 2,
         category: 9,
         answer: {
@@ -1318,7 +1317,7 @@ var questionsDataBase = {
     },
     q109: {
         id: 109,
-        text: 'How can the following code be re-written from PHP 4 to PHP 5?  <pre class=\'brush: php; html-script: true\'>&lt;?phpif(get_class($myObj) == "MyClass") {// Do something}?&gt;</pre>',
+        text: 'How can the following code be re-written from PHP 4 to PHP 5?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nif(get_class($myObj) == "MyClass") {\n\t// Do something\n}\n?&gt;\n</pre>',
         type: 2,
         category: 9,
         answer: {
@@ -1330,7 +1329,7 @@ var questionsDataBase = {
     },
     q110: {
         id: 110,
-        text: 'Is this code valid only in PHP 4, in PHP 5, or both? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction myfunction(&amp;$myvalue = null) { /* ... */}?&gt;</pre>',
+        text: 'Is this code valid only in PHP 4, in PHP 5, or both?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction myfunction(&amp;$myvalue = null) { \n\t/* ... */\n}\n?&gt;\n</pre>',
         type: 2,
         category: 9,
         answer: {
@@ -1366,7 +1365,7 @@ var questionsDataBase = {
     },
     q113: {
         id: 113,
-        text: 'Consider the following code snippet: <pre class=\'brush: php; html-script: true\'>&lt;?php$link = mysqli_connect("hostname", "username", "password");if(!$link){ $error = ?????? die("Could not connect to the database: $error");}?&gt;</pre> What would go in place of the ???? above for this script to function properly?',
+        text: 'Consider the following code snippet:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$link = mysqli_connect("hostname", "username", "password");\n\nif(!$link){ \n\t$error = ?????? \n\tdie("Could not connect to the database: $error");\n}\n?&gt;\n</pre>\n\nWhat would go in place of the ???? above for this script to function properly?',
         type: 2,
         category: 7,
             answer: {
@@ -1378,7 +1377,7 @@ var questionsDataBase = {
     },
     q114: {
         id: 114,
-        text: 'Consider the following code snippet: <pre class=\'brush: php; html-script: true\'>&lt;?php$query = "INSERT INTO mytable (myinteger, mydouble, myblob, myvarchar) VALUES (?, ?, ?, ?)";$statement = mysqli_prepare($link, $query);if(!$statement){ die(mysqli_error($link));}/* The variables being bound to by MySQLi don\'t need to exist prior to binding */mysqli_bind_param($statement, "idbs", $myinteger, $mydouble, $myblob, $myvarchar);/* ???????????? */ /* execute the query, using the variables as defined. */if(!mysqli_execute($statement)){ die(mysqli_error($link));}?&gt;</pre> Assuming this snippet is a smaller part of a correctly written script, what actions must occur in place of the <code>?????</code> in the above code snippet to insert a row with the following values: <code>10</code>, <code>20.2</code>, <code>foo</code>, <code>string</code> ?',
+        text: 'Consider the following code snippet:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$query = "INSERT INTO mytable (myinteger, mydouble, myblob, myvarchar) VALUES (?, ?, ?, ?)";\n$statement = mysqli_prepare($link, $query);\n\nif(!$statement){ \n\tdie(mysqli_error($link));\n}\n\n/* The variables being bound to by MySQLi don\'t need to exist prior to binding */\nmysqli_bind_param($statement, "idbs", $myinteger, $mydouble, $myblob, $myvarchar);\n\n/* ???????????? */ \n\n/* execute the query, using the variables as defined. */\nif(!mysqli_execute($statement)){ \n\tdie(mysqli_error($link));\n}\n?&gt;\n</pre>\n\nAssuming this snippet is a smaller part of a correctly written script, what actions must occur in place of the <code>?????</code> in the above code snippet to insert a row with the following values: <code>10</code>, <code>20.2</code>, <code>foo</code>, <code>string</code> ?',
         type: 2,
         category: 7,
         answer: {
@@ -1390,7 +1389,7 @@ var questionsDataBase = {
     },
     q115: {
         id: 115,
-        text: 'Consider the following code snippet: <pre class=\'brush: php; html-script: true\'>&lt;?php$query = "SELECT first, last, phone FROM contacts WHERE first LIKE \'John%\'";$statement = mysqli_prepare($link, $query);mysqli_execute($statement);/* ???? */while(($result = mysqli_stmt_fetch($statement))){ print "Name: $first $last"; print "Phone: $phone";}?&gt;</pre> Assuming this code snippet is part of a larger correct application, what must be done in place of the <code>????</code> above for the correct output to be displayed?',
+        text: 'Consider the following code snippet:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$query = "SELECT first, last, phone FROM contacts WHERE first LIKE \'John%\'";\n$statement = mysqli_prepare($link, $query);\nmysqli_execute($statement);\n\n/* ???? */\n\nwhile(($result = mysqli_stmt_fetch($statement))) { \n\tprint "Name: $first $last"; \n\tprint "Phone: $phone";\n}\n?&gt;\n</pre>\n\nAssuming this code snippet is part of a larger correct application, what must be done in place of the <code>????</code> above for the correct output to be displayed?',
         type: 2,
         category: 7,
         answer: {
@@ -1448,9 +1447,10 @@ var questionsDataBase = {
             explanation: ["Without using a try/catch the DSN will be printed through the output."]
         }
     },
+    //------------------------------------------------------------------------------------------------------------------
     q120: {
         id: 120,
-        text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?phptry { $dbh = new PDO("sqlite::memory:");} catch(PDOException $e) { print $e-&gt;getMessage();}$dbh-&gt;query("CREATE TABLE foo(id INT)");$stmt = $dbh-&gt;prepare("INSERT INTO foo VALUES(:value)");$value = null;$data = array(1,2,3,4,5);$stmt-&gt;bindParam(":value", $value);/* ?????? */try { foreach($data as $value) { /* ????? */ }} catch(PDOException $e) { /* ??????? */}/* ?????? */?&gt;</pre> Whatlines of code need to go into the missing places above in order forthis script to function properly and insert the data into the databasesafely?',
+        text: 'Consider the following script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\ntry { \n\t$dbh = new PDO("sqlite::memory:");\n} catch(PDOException $e) { \n\tprint $e-&gt;getMessage();\n}\n\n$dbh-&gt;query("CREATE TABLE foo(id INT)");\n$stmt = $dbh-&gt;prepare("INSERT INTO foo VALUES(:value)");\n$value = null;\n$data = array(1,2,3,4,5);\n$stmt-&gt;bindParam(":value", $value);\n\n/* ?????? */\n\ntry { \n\tforeach($data as $value) { \n\t\t/* ????? */ \n\t}\n} catch(PDOException $e) { \n\t/* ??????? */\n}\n\n/* ?????? */\n?&gt;\n</pre>\n\nWhatlines of code need to go into the missing places above in order forthis script to function properly and insert the data into the databasesafely?',
         type: 3,
         category: 7,
         answer: {
@@ -1498,7 +1498,7 @@ var questionsDataBase = {
     },
     q124: {
         id: 124,
-        text: 'Consider the following example XML document: <pre class=\'brush: php; html-script: true\'>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; Moved to &lt;&lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;.&gt; &lt;br&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;</pre> What is wrong with this document, and how can it be corrected?',
+        text: 'Consider the following example XML document:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;\n&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;\n&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;\n\t&lt;head&gt;\n\t\t&lt;title&gt;XML Example&lt;/title&gt;\n\t\t&lt;/head&gt;\n\t&lt;body&gt;\n\t\t&lt;p&gt;\n\t\t\tMoved to &lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;\n\t\t\t&lt;br&gt;\n\t\t&lt;/p&gt;\n\t&lt;/body&gt;\n&lt;/html&gt;\n</pre>\n\nWhat is wrong with this document, and how can it be corrected?',
         type: 3,
         category: 4,
         answer: {
@@ -1522,7 +1522,7 @@ var questionsDataBase = {
     },
     q126: {
         id: 126,
-        text: 'Consider the following code segment: <pre class=\'brush: php; html-script: true\'>&lt;?php$xmldata = &lt;&lt;&lt; XML&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; Moved to &amp;lt;&lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;.&amp;gt; &lt;br/&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;XML;$xml = xml_parser_create("UTF-8");/* ??????? */xml_parse($xml, $xmldata);function xml_start_handler($xml, $tag, $attributes) {print "Tag: $tag&lt;br/&gt;";}function xml_end_handler($xml, $tag) {}?&gt;</pre> What should be placed in place of <code>??????</code> above to have the above script display the name of each tag within the XML document?',
+        text: 'Consider the following code segment:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$xmldata = &lt;&lt;&lt; XML\n&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;\n&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;\n&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; \n\t&lt;head&gt; \n\t\t&lt;title&gt;XML Example&lt;/title&gt; \n\t&lt;/head&gt; \n\t&lt;body&gt; \n\t\t&lt;p&gt; \n\t\t\tMoved to &lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;\n\t\t\t&lt;br/&gt;\n\t\t&lt;/p&gt;\n\t&lt;/body&gt;\n&lt;/html&gt;\nXML;\n\n$xml = xml_parser_create("UTF-8");\n\n/* ??????? */\n\nxml_parse($xml, $xmldata);\n\nfunction xml_start_handler($xml, $tag, $attributes) {\n\tprint "Tag: $tag&lt;br/&gt;";\n}\n\nfunction xml_end_handler($xml, $tag) {}\n?&gt;\n</pre>\n\nWhat should be placed in place of <code>??????</code> above to have the above script display the name of each tag within the XML document?',
         type: 2,
         category: 4,
         answer: {
@@ -1546,7 +1546,7 @@ var questionsDataBase = {
     },
     q128: {
         id: 128,
-        text: 'What does the following PHP script accomplish? <pre class=\'brush: php; html-script: true\'>&lt;?php $dom = new DomDocument(); $dom-&gt;load(\'test.xml\'); $body = $dom-&gt;documentElement-&gt;getElementsByTagName(\'body\')-&gt;item(0); echo $body-&gt;getAttributeNode(\'background\')-&gt;value. "";?&gt;</pre>',
+        text: 'What does the following PHP script accomplish?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php \n$dom = new DomDocument(); \n$dom-&gt;load(\'test.xml\'); \n$body = $dom-&gt;documentElement-&gt;getElementsByTagName(\'body\')-&gt;item(0); \n\necho $body-&gt;getAttributeNode(\'background\')-&gt;value."";\n?&gt;\n</pre>',
         type: 2,
         category: 4,
         answer: {
@@ -1570,7 +1570,7 @@ var questionsDataBase = {
     },
     q130: {
         id: 130,
-        text: 'Consider the following simple PHP script: <pre class=\'brush: php; html-script: true\'>&lt;?php$dom = new DomDocument();$dom-&gt;load(\'test.xml\');$xpath = new DomXPath($dom);$nodes = $xpath-&gt;query(???????, $dom-&gt;documentElement);echo $nodes-&gt;item(0)-&gt;getAttributeNode(\'bgcolor\')-&gt;value . "";?&gt;</pre> What XPath query should go in the <code>?????? above</code> to display the "bgcolor" attribute of the first "body" node in the XML document?',
+        text: 'Consider the following simple PHP script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$dom = new DomDocument();\n$dom-&gt;load(\'test.xml\');\n$xpath = new DomXPath($dom);\n\n$nodes = $xpath-&gt;query(???????, $dom-&gt;documentElement);\n\necho $nodes-&gt;item(0)-&gt;getAttributeNode(\'bgcolor\')-&gt;value . "";\n?&gt;\n</pre>\n\nWhat XPath query should go in the <code>?????? above</code> to display the "bgcolor" attribute of the first "body" node in the XML document?',
         type: 2,
         category: 4,
         answer: {
@@ -1582,7 +1582,7 @@ var questionsDataBase = {
     },
     q131: {
         id: 131,
-        text: 'Consider the following PHP script fragment: <pre class=\'brush: php; html-script: true\'>&lt;?php$title = $dom-&gt;createElement(\'title\');$node = ????????$title-&gt;appendChild($node);$head-&gt;appendChild($title);?&gt;</pre> What should <code>???????</code> be replaced with to add a <code>&lt;title&gt;</code> node with the value of <code>Hello, World</code>',
+        text: 'Consider the following PHP script fragment:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$title = $dom-&gt;createElement(\'title\');\n\n$node = ????????\n\n$title-&gt;appendChild($node);\n$head-&gt;appendChild($title);\n?&gt;\n</pre>\n\nWhat should <code>???????</code> be replaced with to add a <code>&lt;title&gt;</code> node with the value of <code>Hello, World</code>',
         type: 2,
         category: 4,
         answer: {
@@ -1618,7 +1618,7 @@ var questionsDataBase = {
     },
     q134: {
         id: 134,
-        text: 'Given the following XML document in a SimpleXML object: <pre class=\'brush: php; html-script: true\'>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; Moved to &amp;lt;&lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;.&amp;gt; &lt;br/&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;</pre> Select the proper statement below which will display the HREF attribute of the anchor tag.',
+        text: 'Given the following XML document in a SimpleXML object:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;\n&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;\n&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;\n\t&lt;head&gt;\n\t\t&lt;title&gt;XML Example&lt;/title&gt;\n\t&lt;/head&gt;\n\t&lt;body&gt;\n\t\t&lt;p&gt;\n\t\t\tMoved to &lt;a href="http://example.org/"&gt;http://www.example.org/&lt;/a&gt;\n\t\t\t&lt;br/&gt;\n\t\t&lt;/p&gt;\n\t&lt;/body&gt;\n&lt;/html&gt;\n</pre>\n\nSelect the proper statement below which will display the HREF attribute of the anchor tag.',
         type: 2,
         category: 4,
         answer: {
@@ -1630,7 +1630,7 @@ var questionsDataBase = {
     },
     q135: {
         id: 135,
-        text: 'Given the following PHP script: <pre class=\'brush: php; html-script: true\'>&lt;?php $xmldata = &lt;&lt;&lt; XML&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; &lt;head&gt; &lt;title&gt;XML Example&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt; &lt;b&gt;Hello, World!&lt;/b&gt; &lt;/p&gt; &lt;/body&gt;&lt;/html&gt;XML;$sxe = simplexml_load_string($xmldata);$p = $sxe-&gt;body-&gt;p;$string = ????????print $string;?&gt;</pre> What should go in place of <code>?????</code> above to print the string <code>Hello, World!</code> (with no leading/trailing whitespace or markup)?',
+        text: 'Given the following PHP script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$xmldata = &lt;&lt;&lt; XML\n&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;\n&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;\n&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;\n\t&lt;head&gt;\n\t&lt;title&gt;XML Example&lt;/title&gt;\n\t&lt;/head&gt;\n\t&lt;body&gt;\n\t\t&lt;p&gt;\n\t\t\t&lt;b&gt;Hello, World!&lt;/b&gt;\n\t\t&lt;/p&gt;\n\t&lt;/body&gt;\n&lt;/html&gt;\nXML;\n\n$sxe = simplexml_load_string($xmldata);\n$p = $sxe-&gt;body-&gt;p;\n\n$string = ????????\n\nprint $string;\n?&gt;\n</pre>\n\nWhat should go in place of <code>?????</code> above to print the string <code>Hello, World!</code> (with no leading/trailing whitespace or markup)?',
         type: 2,
         category: 4,
         answer: {
@@ -1642,7 +1642,7 @@ var questionsDataBase = {
     },
     q136: {
         id: 136,
-        text: 'The following is a common XML structure used in service oriented architectures, what does it represent? <pre class=\'brush: php; html-script: true\'>&lt;?xml version="1.0"?&gt;&lt;methodCall&gt; &lt;methodName&gt;myMethod&lt;/methodName&gt; &lt;params&gt; &lt;param&gt; &lt;value&gt;&lt;string&gt;HI!&lt;/string&gt;&lt;/value&gt; &lt;/param&gt; &lt;/params&gt;&lt;/methodCall&gt;</pre>',
+        text: 'The following is a common XML structure used in service oriented architectures, what does it represent?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?xml version="1.0"?&gt;\n&lt;methodCall&gt;\n\t&lt;methodName&gt;myMethod&lt;/methodName&gt;\n\t&lt;params&gt;\n\t\t&lt;param&gt;\n\t\t\t&lt;value&gt;\n\t\t\t\t&lt;string&gt;HI!&lt;/string&gt;\n\t\t\t&lt;/value&gt;\n\t\t&lt;/param&gt;\n\t&lt;/params&gt;\n&lt;/methodCall&gt;\n</pre>',
         type: 2,
         category: 4,
             answer: {
@@ -1666,7 +1666,7 @@ var questionsDataBase = {
     },
     q138: {
         id: 138,
-        text: 'Consider the following script: <pre class=\'brush: php; html-script: true\'>&lt;?php$dom = new DOMDOcument();$dom-&gt;load("myxmlfile.xml");foreach($dom-&gt;documentElement-&gt;childNodes as $child){ if(($child-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp; $child-&gt;nodeName == "item") { foreach($child-&gt;childNodes as $item) { if(($item-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp; ($item-&gt;nodeName == "title")) { print "$item-&gt;firstChild-&gt;data"; } } }}?&gt;</pre> Assumingthe referenced XML document exists and matches the parsing logic, whatshould be displayed when this script is executed?',
+        text: 'Consider the following script:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$dom = new DOMDOcument();\n$dom-&gt;load("myxmlfile.xml");\nforeach($dom-&gt;documentElement-&gt;childNodes as $child) { \n\tif(($child-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp; $child-&gt;nodeName == "item") { \n\t\tforeach($child-&gt;childNodes as $item) { \n\t\t\tif(($item-&gt;nodeType == XML_ELEMENT_NODE) &amp;&amp; ($item-&gt;nodeName == "title")) { \n\t\t\t\tprint "$item-&gt;firstChild-&gt;data"; \n\t\t\t} \n\t\t} \n\t} \n}\n?&gt;\n</pre>\n\nAssumingthe referenced XML document exists and matches the parsing logic, whatshould be displayed when this script is executed?',
         type: 2,
         category: 4,
         answer: {
@@ -1714,7 +1714,7 @@ var questionsDataBase = {
     },
     q142: {
         id: 142,
-        text: 'Consider the following PHP code segment, which attempts to execute a PDO query: <pre class=\'brush: php; html-script: true\'>&lt;?phptry { $dbh-&gt;exec($sql);} catch (PDOException $e) { // display warning message $info = $e-&gt;errorInfo;}?&gt;</pre> In the event of a PDOException, <code>$info</code> is set with the contents of the <code>$errorInfo</code> property of the exception. Which of the following are accurate descriptions of the contents?',
+        text: 'Consider the following PHP code segment, which attempts to execute a PDO query:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\ntry { \n\t$dbh-&gt;exec($sql);\n} catch (PDOException $e) { \n\t// display warning message \n\t$info = $e-&gt;errorInfo;\n}\n?&gt;\n</pre>\n\nIn the event of a PDOException, <code>$info</code> is set with the contents of the <code>$errorInfo</code> property of the exception. Which of the following are accurate descriptions of the contents?',
         type: 3,
         category: 7,
         answer: {
@@ -1798,7 +1798,7 @@ var questionsDataBase = {
     },
     q149: {
         id: 149,
-        text: 'What is wrong with the following code snippet? Assume default configuration values apply. <pre class=\'brush: php; html-script: true\'>&lt;?php$fp = fsockopen(\'www.php.net\', 80);fwrite($fp, "GET / HTTP/1.0\rHost: www.php.net\r");$data = fread($fp, 8192);?&gt;</pre>',
+        text: 'What is wrong with the following code snippet? \n(assume default configuration values apply)\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$fp = fsockopen(\'www.php.net\', 80);\nfwrite($fp, "GET / HTTP/1.0\\rHost: www.php.net\\r\\n");\n\n$data = fread($fp, 8192);?&gt;</pre>',
         type: 2,
         category: 5,
         answer: {
@@ -1846,7 +1846,7 @@ var questionsDataBase = {
     },
     q153: {
         id: 153,
-        text: 'What should go in the ??????? assignment below to create a Zlib-compressed file <code>foo.gz</code> with a compression level of <code>9</code>? <pre class=\'brush: php; html-script: true\'>&lt;?php$file = \'????????\';$fr = fopen($file, \'wb9\');fwrite($fr, $data);fclose($fr);?&gt;</pre>',
+        text: 'What should go in the ??????? assignment below to create a Zlib-compressed file <code>foo.gz</code> with a compression level of <code>9</code>?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n\n$file = \'????????\';\n\n$fr = fopen($file, \'wb9\');\nfwrite($fr, $data);\nfclose($fr);\n?&gt;\n</pre>',
         type: 2,
         category: 5,
         answer: {
@@ -1918,7 +1918,7 @@ var questionsDataBase = {
     },
     q159: {
         id: 159,
-        text: 'How can one take advantage of the time waiting for a lock during a stream access, to do other tasks using the following locking code as the base: <p class="ceresIndent"><code>$retval = flock($fr, LOCK_EX);</code></p>',
+        text: 'How can one take advantage of the time waiting for a lock during a stream access, to do other tasks using the following locking code as the base:\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\n$retval = flock($fr, LOCK_EX);\n?&gt;\n</pre>',
         type: 2,
         category: 5,
         answer: {
@@ -1930,7 +1930,7 @@ var questionsDataBase = {
     },
     q160: {
         id: 160,
-        text: 'What is the output of? <pre class=\'brush: php; html-script: true\'>function apple($apples = 4){ $apples = $apples / 2; return $apples;}$apples = 10;apple($apples);echo $apples;</pre>',
+        text: 'What is the output of?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction apple($apples = 4) { \n\t$apples = $apples / 2; \n\treturn $apples;\n}\n\n$apples = 10;\napple($apples);\necho $apples;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -1954,7 +1954,7 @@ var questionsDataBase = {
     },
     q162: {
         id: 162,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>function oranges(&amp;$oranges = 17){$oranges .= 1;}$apples = 5;oranges($apples);echo $apples++;</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction oranges(&amp;$oranges = 17) {\n\t$oranges .= 1;\n}\n\n$apples = 5;\noranges($apples);\necho $apples++;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -1966,7 +1966,7 @@ var questionsDataBase = {
     },
     q163: {
         id: 163,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>function pears(Array $pears){if (count($pears) &gt; 0){echo array_pop($pears);pears($pears);}}$fruit = array("Anjo", "Bartlet");pears($fruit);</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction pears(Array $pears) {\n\tif (count($pears) &gt; 0) {\n\t\techo array_pop($pears);\n\t\tpears($pears);\n\t}\n}\n\n$fruit = array("Anjo", "Bartlet");\npears($fruit);\n?&gt;\n</pre>',
         type: 2,
         category: 8,
         answer: {
@@ -1990,7 +1990,7 @@ var questionsDataBase = {
     },
     q165: {
         id: 165,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction byReference(&amp;$variable = 5){ echo ++$variable;}byReference();?&gt;</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction byReference(&amp;$variable = 5) { \n\techo ++$variable;\n}\n\nbyReference();\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -2002,7 +2002,7 @@ var questionsDataBase = {
     },
     q166: {
         id: 166,
-        text: 'What is the output of the following code? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction x10(&amp;$number) $number *= 10;$count = 5;x10($count);echo $count;?&gt;</pre>',
+        text: 'What is the output of the following code?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction x10(&amp;$number) \n\t$number *= 10;\n$count = 5;\nx10($count);\necho $count;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -2014,7 +2014,7 @@ var questionsDataBase = {
     },
     q167: {
         id: 167,
-        text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction 1dotEach($n){ if ($n &gt; 0) { 1dotEach(--$n); echo "."; }else { return $n; }}1dotEach(4);?&gt;</pre>',
+        text: 'What is the output of the following?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction 1dotEach($n) { \n\tif ($n &gt; 0) { \n\t\t1dotEach(--$n); \n\t\techo "."; \n\t}\n\telse { \n\t\treturn $n; \n\t}\n}\n\n1dotEach(4);\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -2026,7 +2026,7 @@ var questionsDataBase = {
     },
     q168: {
         id: 168,
-        text: 'When your error reporting level includes <code>E_STRICT</code>, what will the output of the following code be? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction optionalParam($x = 1, $y = 5, $z){ if ((!$z &gt; 0)) { $z = 1; } for($count = $x; $count &lt; $y; $count+= $z) { echo "#"; }}optionalParam(2,4,2);?&gt;</pre>',
+        text: 'When your error reporting level includes <code>E_STRICT</code>, what will the output of the following code be?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction optionalParam($x = 1, $y = 5, $z) { \n\tif ((!$z &gt; 0)) { \n\t\t$z = 1; \n\t} \n\n\tfor($count = $x; $count &lt; $y; $count+= $z) { \n\t\techo "#"; \n\t}\n}\n\noptionalParam(2,4,2);\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -2038,7 +2038,7 @@ var questionsDataBase = {
     },
     q169: {
         id: 169,
-        text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction byRef(&amp;$number){ $number *= 10; return ($number - 5);}$number = 10;$number = byRef($number);echo $number;?&gt;</pre>',
+        text: 'What is the output of the following?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction byRef(&amp;$number) { \n\t$number *= 10; \n\treturn ($number - 5);\n}\n\n$number = 10;\n$number = byRef($number);\necho $number;\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -2050,7 +2050,7 @@ var questionsDataBase = {
     },
     q170: {
         id: 170,
-        text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction byRef(&amp;$apples){ $apples++;}$oranges = 5;$apples = 5;byRef($oranges);echo "I have $apples apples and $oranges oranges";?&gt;</pre>',
+        text: 'What is the output of the following?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction byRef(&amp;$apples) { \n\t$apples++;\n}\n\n$oranges = 5;\n$apples = 5;\nbyRef($oranges);\necho "I have $apples apples and $oranges oranges";\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
@@ -2062,7 +2062,7 @@ var questionsDataBase = {
     },
     q171: {
         id: 171,
-        text: 'What is the output of the following? <pre class=\'brush: php; html-script: true\'>&lt;?phpfunction a($number){ return (b($number) * $number);}function b(&amp;$number){ ++$number;}echo a(5);?&gt;</pre>',
+        text: 'What is the output of the following?\n\n<pre class=\'brush: php; html-script: true\'>\n&lt;?php\nfunction a($number) { \n\treturn (b($number) * $number);\n}\n\nfunction b(&amp;$number) { \n\t++$number;\n}\n\necho a(5);\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {

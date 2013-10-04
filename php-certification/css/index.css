@@ -172,7 +172,8 @@ span.no-bookmark {
 }
 
 #jqt .question-text {
-    font-size: 1.3em;
+    font-size: 1.2em;
+    line-height: 1.3em;
 }
 
 #jqt .question-number {
