@@ -1,21 +1,3 @@
-/*
-// If offline, add in index.html:
-<script type="text/javascript" src="js/questions.db.js"></script>
-<script type="text/javascript" src="js/comments.db.js"></script>
-// and
-window.location = 'index.html';
-// set OFFLINE_MODE to true
- var OFFLINE_MODE = true;
-// web references
-http://zend-php.appspot.com/questions_list
-http://wmdn.ru/php/zend-php5-certification-mock-exam-sample-questions-1/
-// Change CSS
-iphone.css <> android.css
-// SyntaxHighlighter
-Android css: <link type="text/css" rel="Stylesheet" href="js/syntax/styles/shThemeRDark.css"/>
-IOS css: <link rel='stylesheet' type='text/css' href='js/syntax/styles/shThemeDefault.css'>
-*/
-
 // config data
 var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
@@ -36,6 +18,11 @@ var CAT_DB = 7;
 var CAT_ARRAYS = 8;
 var CAT_PHP4 = 9;
 
+// modes
+var MODE_ALL_MINUS_PHP4 = 0; // default, all except PHP4;
+var MODE_ALL = 1; // all;
+var MODE_CATEGORY = 2; // showing one category
+
 // jqTouch
 $.jQTouch({
     statusBar: 'black-translucent',
@@ -45,8 +32,8 @@ $.jQTouch({
 // app Object
 var app = {
 
-//    numQuestions: Object.keys(questionsDataBase).length,
-    numQuestions: index.length,
+    numQuestions: index.length,     // all questions = Object.keys(questionsDataBase).length
+    mode: MODE_ALL_MINUS_PHP4,      // by default all the questions except those of PHP4
 
     // Application Constructor
     initialize: function() {
@@ -68,6 +55,12 @@ var app = {
             if (OFFLINE_MODE) window.location = 'index_online.html';
             else window.location = 'index.html';
         });
+        // control inclusion of PHP4 questions
+        $('input#php4-questions').on('change', function (e) {
+            if ($(this).is(':checked')) app.changeMode(indexNormalizedPHP4, MODE_ALL);
+            else app.changeMode(indexNormalized, MODE_ALL_MINUS_PHP4)
+        });
+
 
         // build questions links
         app.buildQuestions(BOOKMARK);
@@ -109,7 +102,11 @@ var app = {
             app.goToQuestion(LAST_QUESTION_SEEN);
         }
 
-        //app.sortQuestions(true);
+        // random question
+        $("#random-question-link").hammer().on("tap", function (e) {
+            var questionNumber = randomFromInterval(1, (index.length -1));
+            app.goToQuestion(questionNumber);
+        });
     },
 
     setQuestionTitle: function(title, qId) {
@@ -117,7 +114,7 @@ var app = {
         $("#bookmark-button").remove();
         $('#question .toolbar h1').html(title);
 
-        if ( qId ) {
+        if ( qId && (app.mode == MODE_ALL_MINUS_PHP4 || app.mode == MODE_ALL) ) {
             if ( qId == BOOKMARK ) {
                 $('#question .toolbar').append('<div id="page-bookmark"></div>');
             }
@@ -148,7 +145,7 @@ var app = {
                 html = '<li class="arrow">' +
                     '<a href="#question" data-question-number="'+i+'" class="slide question-token">' +
                     'Question '+i+
-                    (qid == BOOKMARK ? '<div class="bookmark"></div>' : '') +
+                    ((qid == BOOKMARK && (app.mode == MODE_ALL_MINUS_PHP4 || app.mode == MODE_ALL)) ? '<div class="bookmark"></div>' : '') +
                     (localStorage.getItem("PHPEXAM_QUESTION_"+qid) ? '<small class="counter">DONE</small>' : '') +
                     '</a></li>';
                 $("#questions-list").append(html);
@@ -335,25 +332,7 @@ var app = {
             app.buildQuestionButtons(qindex, questionNumber);
         }
         else {
-            /*
-            $.ajax({
-                url: BASE_URL + 'questions/question_' + questionNumber + '.html',
-                dataType: "html",
-                timeout: 6000,
-                success: function (data, status, xhr) {
-                    app.setQuestionTitle(title, qindex);
-                    app.setQuestionContent(data);
-                    SyntaxHighlighter.highlight();
-                    $('#question-content').show();
-                    app.buildQuestionButtons(qindex, questionNumber);
-                },
-                error: function (xhr, errorType, error) {
-                    app.setQuestionTitle(title, qindex);
-                    app.setQuestionContent('ERROR RETRIEVING THE QUESTION');
-                    $('#question-content').show();
-                }
-            });
-            */
+            // online mode removed at this time (servers are expensive!)
         }
     },
 
@@ -530,61 +509,14 @@ var app = {
         }
     },
 
-    sortQuestions: function(randomize) {
-        randomize = randomize || false;
+    changeMode: function(questions, mode) {
+        index = questions;
+        app.numQuestions = index.length;
+        app.mode = mode;
+        app.buildQuestions(1);
 
-        var questions = [[],[],[],[],[],[],[],[],[],[]];
-
-        // Add questions to corresponding the category array
-        for (var i in questionsDataBase) {
-            var q = questionsDataBase[i];
-            questions[q.category].push(q.id);
-        }
-
-        if (randomize) {
-            // Randomize arrays
-            for (var j in questions) {
-                questions[j].sort(function() { return Math.round(Math.random())-0.5; });
-            }
-        }
-
-        // create category index array
-        /*
-        var html = 'var category = [';
-        for (var j in questions) {
-            html += '[';
-            var cat = questions[j];
-            for (var c = 0; c < cat.length; c++) {
-                if (c > 0) html += ',';
-                html += cat[c];
-            }
-            html += ']';
-            if (j < 9) html += ',';
-        }
-        html += '];';
-        // create normalized index array with PHP4 questions
-        var html = 'var indexNormalizedPHP4 = [0,';
-        for (var j in category) {
-            var cat = category[j];
-            for (var c = 0; c < cat.length; c++) {
-                if (cat[c] > 0) html += cat[c] + ',';
-            }
-        }
-        html += '];';
-        // create normalized index array without PHP4 questions
-        var html = 'var indexNormalized = [0,';
-        for (var j in category) {
-            if (j != CAT_PHP4) {
-                var cat = category[j];
-                for (var c = 0; c < cat.length; c++) {
-                    if (cat[c] > 0) html += cat[c] + ',';
-                }
-            }
-        }
-        html += '];';
-
-        $("body").html(html);
-         */
+        if (mode == MODE_ALL) $("#bookmark-question").show();
+        if (mode == MODE_ALL_MINUS_PHP4) $("#bookmark-question").show();
+        if (mode == MODE_CATEGORY) $("#bookmark-question").hide();
     }
-
 };
