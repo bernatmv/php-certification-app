@@ -40,27 +40,36 @@ var app = {
         this.bindEvents();
     },
 
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
+    // Bind any events that are required on startup. Common events are: 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('DOMContentLoaded', this.onDeviceReady, false);
     },
 
     onDeviceReady: function() {
-        //if (OFFLINE_MODE) $('input#offline-mode').attr('checked', 'checked');
 
         // control offline mode
         $('input#offline-mode').on('change', function (e) {
             if (OFFLINE_MODE) window.location = 'index_online.html';
             else window.location = 'index.html';
         });
+
         // control inclusion of PHP4 questions
         $('input#php4-questions').on('change', function (e) {
             if ($(this).is(':checked')) app.changeMode(indexNormalizedPHP4, MODE_ALL);
             else app.changeMode(indexNormalized, MODE_ALL_MINUS_PHP4)
         });
 
+        // control filtering of questions
+        $('select#choose-category-select').on('change', function (e) {
+            var filter = $(this).val();
+            if (filter == 0) app.changeMode(indexNormalized, MODE_ALL_MINUS_PHP4);
+            if (filter == 1) app.changeMode(indexNormalizedPHP4, MODE_ALL);
+            if (filter >= 20) {
+                var indexCat = filter-20;
+                app.changeMode(category[indexCat], MODE_CATEGORY);
+            }
+        });
 
         // build questions links
         app.buildQuestions(BOOKMARK);
@@ -84,7 +93,6 @@ var app = {
         // pagination
         $("#questions-pagination .pagination").hammer().on("tap", function (e) {
             var page = this.getAttribute('data-page');
-
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
 
@@ -514,9 +522,23 @@ var app = {
         app.numQuestions = index.length;
         app.mode = mode;
         app.buildQuestions(1);
+        app.buildQuestionsPagination();
 
-        if (mode == MODE_ALL) $("#bookmark-question").show();
-        if (mode == MODE_ALL_MINUS_PHP4) $("#bookmark-question").show();
-        if (mode == MODE_CATEGORY) $("#bookmark-question").hide();
+        if (mode == MODE_ALL) {
+            $("#bookmark-question").show();
+            $("#include-php4-option").show();
+        }
+        if (mode == MODE_ALL_MINUS_PHP4) {
+            $("#bookmark-question").show();
+            $("#include-php4-option").show();
+        }
+        if (mode == MODE_CATEGORY) {
+            $("#bookmark-question").hide();
+            $("#include-php4-option").hide();
+        }
+    },
+
+    showCategory: function(categoryId) {
+        app.changeMode(category[categoryId], MODE_CATEGORY);
     }
 };

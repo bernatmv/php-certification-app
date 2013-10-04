@@ -33,8 +33,30 @@
                 <div class="scroll">
                     <ul class="rounded">
                         <li class="arrow" id="submit-question">Submit new question</li>
-                        <li class="">Questions from all categories</li>
-                        <li class="">Include PHP4 questions <span class="toggle"><input id="php4-questions" type="checkbox"></span></li>
+                        <li class="">
+                            <a href="#choose-category" style="-webkit-user-drag: none;">
+                                <label class="tight">Showing</label>
+                                <select id="choose-category-select">
+                                    <optgroup label="All questions">
+                                        <option value="0">all questions except PHP4</option>
+                                        <option value="1">all questions</option>
+                                    </optgroup>
+                                    <optgroup label="Categories">
+                                        <option value="20">PHP basic questions</option>
+                                        <option value="21">web questions</option>
+                                        <option value="22">OOP questions</option>
+                                        <option value="23">security questions</option>
+                                        <option value="24">data types questions</option>
+                                        <option value="25">IO questions</option>
+                                        <option value="26">string questions</option>
+                                        <option value="27">database questions</option>
+                                        <option value="28">array questions</option>
+                                        <option value="29">PHP4 questions</option>
+                                    </optgroup>
+                                </select>
+                            </a>
+                        </li>
+                        <li class="" id="include-php4-option">Include PHP4 questions <span class="toggle"><input id="php4-questions" type="checkbox"></span></li>
                         <li class="none">Offline mode <span class="toggle"><input id="offline-mode" type="checkbox"></span></li>
                     </ul>
                     <ul class="rounded">
