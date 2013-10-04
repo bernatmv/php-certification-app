@@ -24,6 +24,18 @@ var LAST_QUESTION_SEEN = localStorage.getItem("LAST_QUESTION_SEEN") || 1;
 var isTouchSupported = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch;
 var bindAction = isTouchSupported ? 'touchstart' : 'click';
 
+// categories
+var CAT_BASIC = 0;
+var CAT_WEB = 1;
+var CAT_OOP = 2;
+var CAT_SECURITY = 3;
+var CAT_DATA = 4;
+var CAT_IO = 5;
+var CAT_STRINGS = 6;
+var CAT_DB = 7;
+var CAT_ARRAYS = 8;
+var CAT_PHP4 = 9;
+
 // jqTouch
 $.jQTouch({
     statusBar: 'black-translucent',
@@ -33,7 +45,8 @@ $.jQTouch({
 // app Object
 var app = {
 
-    numQuestions: Object.keys(questionsDataBase).length,
+//    numQuestions: Object.keys(questionsDataBase).length,
+    numQuestions: index.length,
 
     // Application Constructor
     initialize: function() {
@@ -95,6 +108,8 @@ var app = {
         if (window.location.hash) {
             app.goToQuestion(LAST_QUESTION_SEEN);
         }
+
+        //app.sortQuestions(true);
     },
 
     setQuestionTitle: function(title, qId) {
@@ -513,6 +528,63 @@ var app = {
             el.find("span#hintTitle").addClass("none");
             el.find("span#hintText").removeClass("none");
         }
+    },
+
+    sortQuestions: function(randomize) {
+        randomize = randomize || false;
+
+        var questions = [[],[],[],[],[],[],[],[],[],[]];
+
+        // Add questions to corresponding the category array
+        for (var i in questionsDataBase) {
+            var q = questionsDataBase[i];
+            questions[q.category].push(q.id);
+        }
+
+        if (randomize) {
+            // Randomize arrays
+            for (var j in questions) {
+                questions[j].sort(function() { return Math.round(Math.random())-0.5; });
+            }
+        }
+
+        // create category index array
+        /*
+        var html = 'var category = [';
+        for (var j in questions) {
+            html += '[';
+            var cat = questions[j];
+            for (var c = 0; c < cat.length; c++) {
+                if (c > 0) html += ',';
+                html += cat[c];
+            }
+            html += ']';
+            if (j < 9) html += ',';
+        }
+        html += '];';
+        // create normalized index array with PHP4 questions
+        var html = 'var indexNormalizedPHP4 = [0,';
+        for (var j in category) {
+            var cat = category[j];
+            for (var c = 0; c < cat.length; c++) {
+                if (cat[c] > 0) html += cat[c] + ',';
+            }
+        }
+        html += '];';
+        // create normalized index array without PHP4 questions
+        var html = 'var indexNormalized = [0,';
+        for (var j in category) {
+            if (j != CAT_PHP4) {
+                var cat = category[j];
+                for (var c = 0; c < cat.length; c++) {
+                    if (cat[c] > 0) html += cat[c] + ',';
+                }
+            }
+        }
+        html += '];';
+
+        $("body").html(html);
+         */
     }
 
 };
