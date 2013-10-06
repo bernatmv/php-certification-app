@@ -90,12 +90,6 @@ var app = {
             app.buildBookmarkQuestion();
         });
 
-        // pagination
-        $("#questions-pagination .pagination").hammer().on("tap", function (e) {
-            var page = this.getAttribute('data-page');
-            app.buildQuestions( (page*10)+1, 0, 9 );
-        });
-
         // about button
         $("#infoButton").hammer().on("tap", function (e) {
             jQT.goTo($('#about'), 'slideup');
@@ -123,7 +117,7 @@ var app = {
         $('#question .toolbar h1').html(title);
 
         if ( qId && (app.mode == MODE_ALL_MINUS_PHP4 || app.mode == MODE_ALL) ) {
-            if ( qId == BOOKMARK ) {
+            if ( qId == BOOKMARK_ID ) {
                 $('#question .toolbar').append('<div id="page-bookmark"></div>');
             }
             else {
@@ -153,7 +147,7 @@ var app = {
                 html = '<li class="arrow">' +
                     '<a href="#question" data-question-number="'+i+'" class="slide question-token">' +
                     'Question '+i+
-                    ((qid == BOOKMARK && (app.mode == MODE_ALL_MINUS_PHP4 || app.mode == MODE_ALL)) ? '<div class="bookmark"></div>' : '') +
+                    ((qid == BOOKMARK_ID && (app.mode == MODE_ALL_MINUS_PHP4 || app.mode == MODE_ALL)) ? '<div class="bookmark"></div>' : '') +
                     (localStorage.getItem("PHPEXAM_QUESTION_"+qid) ? '<small class="counter">DONE</small>' : '') +
                     '</a></li>';
                 $("#questions-list").append(html);
@@ -180,6 +174,12 @@ var app = {
             html = '<li class="pagination" data-page="'+i+'">'+(i+1)+'</li>';
             $("#questions-pagination").append(html);
         }
+
+        // pagination tap bind
+        $("#questions-pagination .pagination").hammer().on("tap", function (e) {
+            var page = this.getAttribute('data-page');
+            app.buildQuestions( (page*10)+1, 0, 9 );
+        });
     },
 
     buildBookmarkQuestion: function() {
@@ -518,24 +518,28 @@ var app = {
     },
 
     changeMode: function(questions, mode) {
+        var position = 1;
         index = questions;
         app.numQuestions = index.length;
         app.mode = mode;
-        app.buildQuestions(1);
-        app.buildQuestionsPagination();
 
         if (mode == MODE_ALL) {
             $("#bookmark-question").show();
             $("#include-php4-option").show();
+            position = BOOKMARK;
         }
         if (mode == MODE_ALL_MINUS_PHP4) {
             $("#bookmark-question").show();
             $("#include-php4-option").show();
+            position = BOOKMARK;
         }
         if (mode == MODE_CATEGORY) {
             $("#bookmark-question").hide();
             $("#include-php4-option").hide();
         }
+
+        app.buildQuestions(position);
+        app.buildQuestionsPagination();
     },
 
     showCategory: function(categoryId) {

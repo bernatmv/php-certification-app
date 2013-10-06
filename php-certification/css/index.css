@@ -184,3 +184,11 @@ span.no-bookmark {
 #jqt .syntaxhighlighter .toolbar {
     display: none !important;
 }
+
+#jqt #about {
+    background: white;
+}
+
+#jqt #about li {
+    width: 100%;
+}

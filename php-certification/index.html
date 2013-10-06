@@ -27,12 +27,13 @@
         <div id="jqt" class="portrait" style="min-height: 682px;">
             <div id="home" class="current" style="top: 0px;">
                 <div class="toolbar">
-                    <h1>PHP Study App</h1>
+                    <!-- <h1>PHP 5.3 ZCE</h1> -->
+                    <h1>PHP Study Quiz</h1>
                     <a class="button slideup" id="infoButton" href="#about" style="">About</a>
                 </div>
                 <div class="scroll">
                     <ul class="rounded">
-                        <li class="arrow" id="submit-question">Submit new question</li>
+                        <li class="arrow" id="submit-question"><a href="mailto:bernatmv@evensoftware.com">Submit new question</a></li>
                         <li class="">
                             <a href="#choose-category" style="-webkit-user-drag: none;">
                                 <label class="tight">Showing</label>
@@ -60,7 +61,7 @@
                         <li class="none">Offline mode <span class="toggle"><input id="offline-mode" type="checkbox"></span></li>
                     </ul>
                     <ul class="rounded">
-                        <li class="arrow" id="start-exam">Start an exam simulacrum</li>
+                        <!-- <li class="arrow" id="start-exam">Start an exam simulacrum</li> -->
                         <li class="arrow" id="random-question"><a id="random-question-link" class="slide" href="#question">Random question</a></li>
                         <li class="arrow" id="bookmark-question"></li>
                     </ul>
@@ -71,33 +72,52 @@
                     <ul class="individual" id="questions-pagination">
                     </ul>
                     <div class="info">
-                        <p>www.frescsoft.com</p>
-                        <p>Bernat Martinez - bernatmv@gmail.com</p>
+                        <p>www.evensoftware.com</p>
+                        <p>Bernat Martinez - bernatmv@evensoftware.com</p>
                     </div>
                 </div>
             </div>
 
             <div id="about" class="selectable" style="top: 0px;">
                 <div class="about-content">
-                    <p><img src="img/fs/frescsoft_57x57.png"></p>
+                    <p><img src="img/evensoftware/logo_rc2_150x150.png"></p>
                     <p>
-                        <strong>PHP Certification Study App</strong>
-                        <br>Version 0.9<br>
-                        <a href="mailto:bernatmv@gmail.com" style="">By Bernat Martinez</a>
-                    </p>
-                    <p>
-                        <em>Get ready for your Zend PHP Certification Exam!</em>
+                        <br />
+                        <br />
+                        <!-- <strong>PHP 5.3 Zend Certification Exam Study Guide</strong> -->
+                        <strong>PHP 5 Study Quiz</strong>
+                        <br />
+                        <p>
+                            <!-- <em>Get ready for your Zend PHP Certification Exam!</em> -->
+                            <em>Discover how many things you ignore about PHP!</em>
+                        </p>
+                        <br />
+                        <br />
+                        <br />
+                        <span style="font-size: .8em;">
+                            Version 0.9
+                            <br />
+                            <b>by Bernat Martinez</b>
+                            <br />
+                            <a href="mailto:bernatmv@evensoftware.com">bernatmv@evensoftware.com</a>
+                            <br />
+                            <a href="#" onclick="var ref = window.open('www.evensoftware.com', '_system'); return false;">www.evensoftware.com</a>
+                        </span>
+                        <br />
                     </p>
                     <p class="app-credits">
                         <br />
-                        <em>Questions obtained from (but not limited to):</em>
+                        <br />
+                        <em>Some questions obtained from:</em>
                         <br />
                         http://zend-php.appspot.com/questions_list
                     </p>
                 </div>
                 <p>
-                    <br><br>
-                    <a href="#" class="grayButton goback" id="aboutClose">Close</a>
+                    <br />
+                    <ul id="help-links-container" class="individual">
+                        <li><a href="#" class="whiteButton goback" id="aboutClose">Close</a></li>
+                    </ul>
                 </p>
             </div>
 
