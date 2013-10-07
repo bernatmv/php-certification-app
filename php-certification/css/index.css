@@ -210,6 +210,5 @@ span.no-bookmark {
 
 #jqt input[type="radio"],
 #jqt input[type="checkbox"] {
-    width: 12px;
-    height: 12px;
+    -webkit-transform: scale(0.75,0.75);
 }

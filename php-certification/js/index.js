@@ -1,10 +1,7 @@
 // config data
-var BASE_URL = 'https://my.sandbox.zyncro.com/zyncroapps/ext/zyncroapps/bmartinez/test/';
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
 var LAST_QUESTION_SEEN = localStorage.getItem("LAST_QUESTION_SEEN") || 1;
-var isTouchSupported = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch;
-var bindAction = isTouchSupported ? 'touchstart' : 'click';
 
 // categories
 var CAT_BASIC = 0;
@@ -47,12 +44,6 @@ var app = {
     },
 
     onDeviceReady: function() {
-
-        // control offline mode
-        $('input#offline-mode').on('change', function (e) {
-            if (OFFLINE_MODE) window.location = 'index_online.html';
-            else window.location = 'index.html';
-        });
 
         // control inclusion of PHP4 questions
         $('input#php4-questions').on('change', function (e) {
@@ -130,6 +121,18 @@ var app = {
 
     setQuestionContent: function(content) {
         $('#question-content').html(content);
+        // Syntax highlighter
+        SyntaxHighlighter.highlight();
+        // show content
+        $('#question-content').show();
+        // format checkbox and radio buttons
+        $('li.question-answer input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            //increaseArea: '20%',
+            labelHover: false,
+            cursor: true
+        });
     },
 
     buildQuestions: function(from, stepBack, stepForward) {
@@ -331,27 +334,22 @@ var app = {
         var qindex = app.questionIndexFromNumber(questionNumber);
 
         // show question
-        if (OFFLINE_MODE) {
-            var questionContent = app.buildQuestion(questionNumber);
-            app.setQuestionTitle(title, qid);
-            app.setQuestionContent(questionContent);
-            SyntaxHighlighter.highlight();
-            $('#question-content').show();
-            app.buildQuestionButtons(qindex, questionNumber);
-        }
-        else {
-            // online mode removed at this time (servers are expensive!)
-        }
+        var questionContent = app.buildQuestion(questionNumber);
+        app.setQuestionTitle(title, qid);
+        app.setQuestionContent(questionContent);
+        app.buildQuestionButtons(qindex, questionNumber);
     },
 
     buildQuestionButtons: function(qindex, qNum) {
         qNum = parseInt(qNum);
         var explanation = questionsDataBase[qindex].answer.explanation;
+        var links = questionsDataBase[qindex].answer.link;
         if ( !$('#question-content #question-buttons').length ) {
             $('#question-content').append('<div id="question-buttons">' +
                 '<div id="question-comments" style="display:none;"></div>' +
                 '<a href="#" class="whiteButton" id="resolve-question">Resolve</a>' +
                 ((explanation.length) ? '<a href="#" class="whiteButton" id="show-comments">Show explanation</a>' : '') +
+                ((!explanation.length && links.length) ? '<a href="#" class="whiteButton" id="show-comments">Show links</a>' : '') +
                 ((qNum == 1) ? '' : '<a href="#" class="whiteButton" id="prev-question">Previous</a>') +
                 ((qNum == app.numQuestions) ? '' : '<a href="#" class="whiteButton" id="next-question">Next</a>') +
                 '</div>');
@@ -399,29 +397,14 @@ var app = {
 
         // start loading and show
         layer.html('Loading...');
-        layer.show();
 
         // show question
-        if (OFFLINE_MODE) {
-            if (questionsDataBase[index].answer.link[0] && $("#help-links-container").hasClass("none")) {
-                $("#help-links-container").removeClass("none");
-            }
-            if (questionsDataBase[index].answer.explanation[0]) {
-                layer.html(questionsDataBase[index].answer.explanation[0].replace('\\n', '<br />'));
-            }
+        if (questionsDataBase[index].answer.link[0] && $("#help-links-container").hasClass("none")) {
+            $("#help-links-container").removeClass("none");
         }
-        else {
-            $.ajax({
-                url: BASE_URL + 'comments/comments_question_' + qid + '.html',
-                dataType: "html",
-                timeout: 6000,
-                success: function (data, status, xhr) {
-                    layer.html(data);
-                },
-                error: function (xhr, errorType, error) {
-                    layer.html('ERROR RETRIEVING THE COMMENTS');
-                }
-            });
+        if (questionsDataBase[index].answer.explanation[0]) {
+            layer.show();
+            layer.html(questionsDataBase[index].answer.explanation[0].replace('\\n', '<br />'));
         }
     },
 
@@ -430,6 +413,7 @@ var app = {
         var index = app.questionIndexFromId(qid);
         var answer = questionsDataBase[index].answer;
         var links = answer.link;
+
         if (links.length > 0) {
             var html = '<ul id="help-links-container" class="individual none">';
             for (var i = 0, j = links.length; i < j; i++) {
