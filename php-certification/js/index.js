@@ -186,7 +186,7 @@ var app = {
         var html = '<span class="no-bookmark">Without bookmark</span>';
 
         if (BOOKMARK) {
-            html = '<a href="#question" data-question-number="'+BOOKMARK+'" class="slide question-token">Last bookmark: <span id="bookmark-question">Question '+BOOKMARK+'</span></a>';
+            html = '<a href="#question" data-question-number="'+BOOKMARK+'" class="slide question-token">Bookmark: <span id="bookmark-question">Question '+BOOKMARK+'</span></a>';
         }
         $("#bookmark-question").html(html);
 

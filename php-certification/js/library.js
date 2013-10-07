@@ -94,20 +94,10 @@ function sortQuestions(randomize) {
      */
 }
 
-
 /*
- // If offline, add in index.html:
- <script type="text/javascript" src="js/questions.db.js"></script>
- <script type="text/javascript" src="js/comments.db.js"></script>
- // and
- window.location = 'index.html';
- // set OFFLINE_MODE to true
- var OFFLINE_MODE = true;
- // web references
- http://zend-php.appspot.com/questions_list
  // Change CSS
  iphone.css <> android.css
  // SyntaxHighlighter
  Android css: <link type="text/css" rel="Stylesheet" href="js/syntax/styles/shThemeRDark.css"/>
  IOS css: <link rel='stylesheet' type='text/css' href='js/syntax/styles/shThemeDefault.css'>
- */
+*/
