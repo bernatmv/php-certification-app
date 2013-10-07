@@ -133,6 +133,11 @@ var app = {
             labelHover: false,
             cursor: true
         });
+        // bind LI for the click
+        $(".question-answer").hammer().on("tap", function (e) {
+            var aid = $(this).attr('aid');
+            $(this).find('input[id="'+aid+'"]').iCheck('toggle');
+        });
     },
 
     buildQuestions: function(from, stepBack, stepForward) {
@@ -264,7 +269,7 @@ var app = {
         var answer = questionsDataBase[qindex].answer;
 
         $.each($('.question-answer input'), function () {
-            var parent = $(this).parent();
+            var parent = $(this).parent().parent();
             // check if the answer is a "TEXT" one
             if (answer.correct[0] && (typeof answer.correct[0] == "string")) {
                 $(this).addClass('noborder');
@@ -460,7 +465,7 @@ var app = {
         switch (type) {
             case 1:
                 // Open question
-                html += '<li class="question-answer">'+
+                html += '<li class="question-answer" aid="'+id+'_1">'+
                     '<input type="text" name="answer" id="'+id+'_1"/>'+
                     '<label for="'+id+'_1" id="free_form_answer_text">&nbsp;<i>Write response</i></label>'+
                     '</li>';
@@ -469,9 +474,9 @@ var app = {
                 for (i = 0; i < answer.options.length; i++) {
                     pos = i+1;
                     // Single answer
-                    html += '<li class="question-answer">'+
+                    html += '<li class="question-answer" aid="'+id+'_'+pos+'">'+
                             '<input type="radio" name="answer" value="'+pos+'" id="'+id+'_'+pos+'"/>'+
-                            '<label for="'+id+'_'+pos+'">&nbsp;&nbsp;'+answer.options[i]+'</label>'+
+                            '<label for="'+id+'_'+pos+'">'+answer.options[i]+'</label>'+
                         '</li>';
                 }
                 break;
@@ -479,9 +484,9 @@ var app = {
                 for (i = 0; i < answer.options.length; i++) {
                     pos = i+1;
                     // Multiple answer
-                    html += '<li class="question-answer">'+
+                    html += '<li class="question-answer" aid="'+id+'_'+pos+'">'+
                             '<input name="answer[]" type="checkbox" value="'+pos+'" id="'+id+'_'+pos+'"/>'+
-                            '<label for="'+id+'_'+pos+'">&nbsp;&nbsp;'+answer.options[i]+'</label>'+
+                            '<label for="'+id+'_'+pos+'">'+answer.options[i]+'</label>'+
                         '</li>';
                 }
                 break;

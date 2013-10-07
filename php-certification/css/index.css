@@ -86,7 +86,7 @@ span.no-bookmark {
     clear:both;
     float: none;
     background: white;
-    margin: 40px auto;
+    margin: 25px auto 40px auto;
     padding: 10px 10px 10px 20px;
     border: 1px solid #f2f2f2;
     text-align: left;
@@ -211,4 +211,13 @@ span.no-bookmark {
 #jqt input[type="radio"],
 #jqt input[type="checkbox"] {
     -webkit-transform: scale(0.75,0.75);
+}
+
+#jqt .question-answer > div {
+    float: left;
+    margin-right: 12px;
+}
+
+#jqt .question-answer > label {
+    line-height: 22px;
 }
