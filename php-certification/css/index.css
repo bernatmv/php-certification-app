@@ -207,9 +207,3 @@ span.no-bookmark {
 #jqt #question-buttons a {
     font-size: 1.4em;
 }
-
-#jqt input[type="radio"],
-#jqt input[type="checkbox"] {
-    width: 12px;
-    height: 12px;
-}

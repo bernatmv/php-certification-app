@@ -14,3 +14,9 @@
     background: -webkit-linear-gradient(top, rgb(123, 124, 127), rgb(105, 106, 109) 30%, rgb(85, 86, 88) 65%, rgb(70, 71, 72));
 */
 }
+
+#jqt input[type="radio"],
+#jqt input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+}
