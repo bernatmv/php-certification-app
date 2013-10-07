@@ -159,20 +159,6 @@ span.no-bookmark {
 
 }
 
-#jqt .question-hint {
-    width: 120px;
-    height: 30px;
-    line-height: 30px;
-    vertical-align: middle;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: -25px;
-    position: relative;
-    right: 0;
-    top: 0;
-}
-
 #jqt .question-hint #hintText {
     font-size: 1.6em;
     color: #55c;
@@ -221,3 +207,17 @@ span.no-bookmark {
 #jqt .question-answer > label {
     line-height: 22px;
 }
+
+#jqt .question-answer > .question-hint {
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    float: none;
+    margin: 10px auto -20px auto;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+

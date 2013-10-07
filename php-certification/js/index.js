@@ -136,6 +136,7 @@ var app = {
         // bind LI for the click
         $(".question-answer").hammer().on("tap", function (e) {
             var aid = $(this).attr('aid');
+            console.debug($(this).find('input[id="'+aid+'"]').val());
             $(this).find('input[id="'+aid+'"]').iCheck('toggle');
         });
     },
@@ -270,6 +271,7 @@ var app = {
 
         $.each($('.question-answer input'), function () {
             var parent = $(this).parent().parent();
+            var wrap = $(this).parent();
             // check if the answer is a "TEXT" one
             if (answer.correct[0] && (typeof answer.correct[0] == "string")) {
                 $(this).addClass('noborder');
@@ -291,7 +293,7 @@ var app = {
             }
             // answer is radio or checkbox
             else {
-                if ( $(this).is(':checked')) {
+                if ( wrap.hasClass('checked') ) {
                     if ( app.isInArray($(this).val(), answer.correct ) ) {
                         if (parent.hasClass('answer-incorrect')) {
                             parent.removeClass('answer-incorrect');
@@ -311,7 +313,7 @@ var app = {
                         if (parent.hasClass('answer-correct')) {
                             parent.removeClass('answer-correct');
                         }
-                        parent.addClass('answer-correct');
+                        parent.addClass('answer-incorrect');
                         error = true;
                     }
                     else {

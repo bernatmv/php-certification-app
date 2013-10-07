@@ -2291,7 +2291,7 @@ var questionsDataBase = {
     },
     q189: {
         id: 189,
-        text: 'What will be printed? <pre class="brush: php"> &lt;?php echo (013 + 7 + 0x70) - bindec(\'010000000\'); ?&gt; </pre>',
+        text: 'What will be printed?\n\n<pre class="brush: php">\n&lt;?php\necho (013 + 7 + 0x70) - bindec(\'010000000\');\n?&gt;\n</pre>',
         type: 2,
         category: 0,
         answer: {
