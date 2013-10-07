@@ -194,11 +194,6 @@ span.no-bookmark {
     font-size: 1.4em;
 }
 
-#jqt input[type="radio"],
-#jqt input[type="checkbox"] {
-    -webkit-transform: scale(0.75,0.75);
-}
-
 #jqt .question-answer > div {
     float: left;
     margin-right: 12px;
