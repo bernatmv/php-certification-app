@@ -51,7 +51,6 @@ span.no-bookmark {
 .question-answer {
     text-align: left;
     padding-top: 5px;
-    font-size: 11pt;
 }
 
 #question-buttons {
@@ -165,10 +164,18 @@ span.no-bookmark {
     height: 30px;
     line-height: 30px;
     vertical-align: middle;
+    text-align: center;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: -25px;
     position: relative;
+    right: 0;
+    top: 0;
+}
+
+#jqt .question-hint #hintText {
+    font-size: 1.6em;
+    color: #55c;
 }
 
 #jqt .question-text {
@@ -191,4 +198,18 @@ span.no-bookmark {
 
 #jqt #about li {
     width: 100%;
+}
+
+#jqt .question-answer {
+    font-size: .7em;
+}
+
+#jqt #question-buttons a {
+    font-size: 1.4em;
+}
+
+#jqt input[type="radio"],
+#jqt input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
 }

@@ -122,7 +122,7 @@ var app = {
             }
             else {
                 if ( !$('#question .toolbar #bookmark-button').length ) {
-                    $('#question .toolbar').append('<a class="button" id="bookmark-button" href="#"><img src="img/bookmark_v5.png" /><div>Bookmark</div></a>');
+                    $('#question .toolbar').append('<a class="button" id="bookmark-button" href="#"><img src="img/bookmark_v5.png" /><div>flag</div></a>');
                 }
             }
         }
