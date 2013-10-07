@@ -6,8 +6,3 @@
 .answer-incorrect {
     background-color: #FFCCDD !important;
 }
-
-#jqt input[type="radio"],
-#jqt input[type="checkbox"] {
-    -webkit-transform: scale(0.8,0.8);
-}
