@@ -246,10 +246,12 @@ span.no-bookmark {
 
 #jqt #pro-version-ad-content-title {
     width: 100%;
-    padding: 55px 0 30px 0;
+    padding: 55px 0 2px 0;
     font-weight: bold;
     color: #CA0000;
     font-size: 1.6em;
+    border-bottom: 1px solid #CA0000;
+    margin-bottom: 25px;
 }
 
 #jqt #pro-version-ad-content-text div {
@@ -261,8 +263,8 @@ span.no-bookmark {
 }
 
 #jqt .ad-list {
-    background: url(../img/evensoftware/icon_pro_version.png) no-repeat 0 0;
-    padding: 10px 0 0 80px;
+    background: url(../img/star_yellow_25x25.png) no-repeat 0 5px;
+    padding: 10px 0 0 33px;
 }
 
 #jqt #pro-version-ad-content-text div#pro-version-ad-icon {
