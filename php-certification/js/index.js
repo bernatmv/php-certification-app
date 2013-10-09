@@ -26,6 +26,9 @@ $.jQTouch({
     preloadImages: []
 });
 
+// version
+var VERSION = "PRO";
+
 // app Object
 var app = {
 
