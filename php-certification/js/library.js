@@ -56,19 +56,23 @@ function sortQuestions(randomize) {
     }
 
     // create category index array
-    /*
+/*
      var html = 'var category = [';
      for (var j in questions) {
-     html += '[';
-     var cat = questions[j];
-     for (var c = 0; c < cat.length; c++) {
-     if (c > 0) html += ',';
-     html += cat[c];
-     }
-     html += ']';
-     if (j < 9) html += ',';
+         html += '[';
+         var cat = questions[j];
+         for (var c = 0; c < cat.length; c++) {
+             if (cat[c]) {
+                 if (c > 0) html += ',';
+                 html += cat[c];
+             }
+         }
+         html += ']';
+         if (j < 9) html += ',';
      }
      html += '];';
+*/
+    /*
      // create normalized index array with PHP4 questions
      var html = 'var indexNormalizedPHP4 = [0,';
      for (var j in category) {
@@ -78,20 +82,21 @@ function sortQuestions(randomize) {
      }
      }
      html += '];';
+     */
+    /*
      // create normalized index array without PHP4 questions
      var html = 'var indexNormalized = [0,';
      for (var j in category) {
-     if (j != CAT_PHP4) {
-     var cat = category[j];
-     for (var c = 0; c < cat.length; c++) {
-     if (cat[c] > 0) html += cat[c] + ',';
-     }
-     }
+         if (j != CAT_PHP4) {
+             var cat = category[j];
+             for (var c = 0; c < cat.length; c++) {
+                 if (cat[c] > 0) html += cat[c] + ',';
+             }
+         }
      }
      html += '];';
-
+    */
      $("body").html(html);
-     */
 }
 
 /*

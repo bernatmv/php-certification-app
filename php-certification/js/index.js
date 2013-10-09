@@ -26,6 +26,11 @@ $.jQTouch({
     preloadImages: []
 });
 
+// version
+var VERSION = "FREE";
+var AD_COUNTER = 0;
+var adCounter = 0;
+
 // app Object
 var app = {
 
@@ -99,7 +104,12 @@ var app = {
         $("#random-question-link").hammer().on("tap", function (e) {
             var questionNumber = randomFromInterval(1, (index.length -1));
             app.goToQuestion(questionNumber);
-        });
+
+
+        // pro version close button
+        $("#pro-version-ad-close").hammer().on("tap", function (e) {
+            $("#jqt #pro-version-ad").hide();
+        }); });
     },
 
     setQuestionTitle: function(title, qId) {
@@ -345,6 +355,17 @@ var app = {
         app.setQuestionTitle(title, qid);
         app.setQuestionContent(questionContent);
         app.buildQuestionButtons(qindex, questionNumber);
+
+        // pro version ad control
+        if (adCounter >= AD_COUNTER) {
+            // show pro version ad
+            $("#jqt #pro-version-ad").show();
+            // reset counter
+            adCounter = 0;
+        }
+        else {
+            adCounter++;
+        }
     },
 
     buildQuestionButtons: function(qindex, qNum) {
