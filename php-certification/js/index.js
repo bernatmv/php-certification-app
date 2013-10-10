@@ -104,12 +104,12 @@ var app = {
         $("#random-question-link").hammer().on("tap", function (e) {
             var questionNumber = randomFromInterval(1, (index.length -1));
             app.goToQuestion(questionNumber);
-
+        });
 
         // pro version close button
         $("#pro-version-ad-close").hammer().on("tap", function (e) {
-            $("#jqt #pro-version-ad").hide();
-        }); });
+            $("#jqt #pro-version-ad").addClass('none');
+        });
     },
 
     setQuestionTitle: function(title, qId) {
@@ -359,7 +359,7 @@ var app = {
         // pro version ad control
         if (adCounter >= AD_COUNTER) {
             // show pro version ad
-            $("#jqt #pro-version-ad").show();
+            $("#jqt #pro-version-ad").removeClass('none');
             // reset counter
             adCounter = 0;
         }
