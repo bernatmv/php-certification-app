@@ -1,3 +1,4 @@
+
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
         'use strict';
