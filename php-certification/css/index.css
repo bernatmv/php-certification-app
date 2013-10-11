@@ -216,3 +216,6 @@ span.no-bookmark {
     top: 0;
 }
 
+#jqt div.back.question-out {
+    padding-left: 12px;
+}

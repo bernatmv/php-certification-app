@@ -139,7 +139,6 @@ var app = {
         // bind LI for the click
         $(".question-answer").on("click", function (e) {
             var aid = $(this).attr('aid');
-            console.debug($(this).find('input[id="'+aid+'"]').val());
             $(this).find('input[id="'+aid+'"]').iCheck('toggle');
         });
     },
