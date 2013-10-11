@@ -137,7 +137,7 @@ var app = {
             cursor: true
         });
         // bind LI for the click
-        $(".question-answer").hammer().on("tap", function (e) {
+        $(".question-answer").on("click", function (e) {
             var aid = $(this).attr('aid');
             console.debug($(this).find('input[id="'+aid+'"]').val());
             $(this).find('input[id="'+aid+'"]').iCheck('toggle');
