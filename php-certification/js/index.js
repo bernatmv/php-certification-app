@@ -73,7 +73,7 @@ var app = {
         app.buildBookmarkQuestion();
 
         // hide question and re-write loading
-        $('.question-out').hammer().on("touchend", function (e) {
+        $('.question-out').hammer().on("tap", function (e) {
             app.setQuestionTitle('Loading...');
 
             // rebuild questions list
@@ -85,11 +85,11 @@ var app = {
         });
 
         // about button
-        $("#infoButton").hammer().on("touchend", function (e) {
+        $("#infoButton").hammer().on("tap", function (e) {
             jQT.goTo($('#about'), 'slideup');
         });
 
-        $("#aboutClose").hammer().on("touchend", function (e) {
+        $("#aboutClose").hammer().on("tap", function (e) {
             jQT.goBack('#home');
         });
 
@@ -99,7 +99,7 @@ var app = {
         }
 
         // random question
-        $("#random-question-link").hammer().on("touchend", function (e) {
+        $("#random-question-link").hammer().on("tap", function (e) {
             var questionNumber = randomFromInterval(1, (index.length -1));
             app.goToQuestion(questionNumber);
         });
@@ -137,7 +137,7 @@ var app = {
             cursor: true
         });
         // bind LI for the click
-        $(".question-answer").hammer().on("touchend", function (e) {
+        $(".question-answer").hammer().on("tap", function (e) {
             var aid = $(this).attr('aid');
             $(this).find('input[id="'+aid+'"]').iCheck('toggle');
         });
@@ -166,7 +166,7 @@ var app = {
         }
 
         // write loading, show and load question
-        $('.question-token').hammer().on("touchend", function (e) {
+        $('.question-token').hammer().on("tap", function (e) {
             var questionNumber = this.getAttribute('data-question-number');
 
             app.goToQuestion(questionNumber);
@@ -187,7 +187,7 @@ var app = {
         }
 
         // pagination tap bind
-        $("#questions-pagination .pagination").hammer().on("touchend", function (e) {
+        $("#questions-pagination .pagination").hammer().on("tap", function (e) {
             var page = this.getAttribute('data-page');
             app.buildQuestions( (page*10)+1, 0, 9 );
         });
@@ -202,7 +202,7 @@ var app = {
         $("#bookmark-question").html(html);
 
         // go to bookmark
-        $("#bookmark-question a").hammer().on("touchend", function (e) {
+        $("#bookmark-question a").hammer().on("tap", function (e) {
             var questionNumber = this.getAttribute('data-question-number');
             app.goToQuestion(questionNumber);
         });
@@ -366,36 +366,36 @@ var app = {
         }
 
         // button to resolve question
-        $('#resolve-question').hammer().on("touchend", function (e) {
+        $('#resolve-question').hammer().on("tap", function (e) {
             app.resolveQuestion();
         });
 
         // bind bookmark button
-        $('#bookmark-button').hammer().on("touchend", function (e) {
+        $('#bookmark-button').hammer().on("tap", function (e) {
             app.setBookmark($(this));
         });
 
         // show comments
-        $('#show-comments').hammer().on("touchend", function (e) {
+        $('#show-comments').hammer().on("tap", function (e) {
             var qid = $(".question-info").attr('qid');
             app.buildComments(qid);
             $(this).remove();
         });
 
         // button to previous question
-        $('#prev-question').hammer().on("touchend", function (e) {
+        $('#prev-question').hammer().on("tap", function (e) {
             var q = parseInt(qNum) -1;
             app.goToQuestion(q);
         });
 
         // button to next question
-        $('#next-question').hammer().on("touchend", function (e) {
+        $('#next-question').hammer().on("tap", function (e) {
             var q = parseInt(qNum) +1;
             app.goToQuestion(q);
         });
 
         // button to hint number of answers
-        $('.question-answer-note').hammer().on("touchend", function (e) {
+        $('.question-answer-note').hammer().on("tap", function (e) {
             app.showHint();
         });
     },
