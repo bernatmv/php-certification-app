@@ -1,10 +1,3 @@
-// fastclick plugin for jQuery (Zepto)
-Zepto.fn.fastClick = function(handler) {
-    this.click(function(ev) { ev.preventDefault(); });
-    Hammer(this[0]).on("tap doubletap", handler);
-    return this;
-};
-
 // config data
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
@@ -54,10 +47,6 @@ var app = {
     },
 
     onDeviceReady: function() {
-        // instantiate fastclick
-        var infoButton = document.getElementById('infoButton');
-        FastClick.attach(infoButton);
-
         // control inclusion of PHP4 questions
         $('input#php4-questions').on('change', function (e) {
             if ($(this).is(':checked')) app.changeMode(indexNormalizedPHP4, MODE_ALL);
@@ -94,9 +83,8 @@ var app = {
             app.buildBookmarkQuestion();
         });
 
-        // about button
-        //$("#infoButton").hammer().on("tap", function (e) {
-        $("#infoButton").fastClick(function (e) {
+        // about button        
+        $("#infoButton").hammer().on("tap", function (e) {      
             jQT.goTo($('#about'), 'slideup');
         });
 
