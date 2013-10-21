@@ -47,6 +47,8 @@ var app = {
     },
 
     onDeviceReady: function() {
+        // instantiate fastclick
+        FastClick.attach(document.body);
 
         // control inclusion of PHP4 questions
         $('input#php4-questions').on('change', function (e) {
@@ -73,7 +75,7 @@ var app = {
         app.buildBookmarkQuestion();
 
         // hide question and re-write loading
-        $('.question-out').hammer().on("tap", function (e) {
+        $('.question-out').hammer().on("click", function (e) {
             app.setQuestionTitle('Loading...');
 
             // rebuild questions list
@@ -99,10 +101,17 @@ var app = {
         }
 
         // random question
-        $("#random-question-link").hammer().on("tap", function (e) {
+        $("#random-question-link").on("click", function (e) {
             var questionNumber = randomFromInterval(1, (index.length -1));
             app.goToQuestion(questionNumber);
         });
+        /*
+        document.getElementById('random-question-link').addEventListener('click', function(event) {
+            cTime = Date.now();
+            document.getElementById('c-time').value = cTime;
+            testB.style.backgroundColor = testB.style.backgroundColor ? '' : 'YellowGreen';
+        }, false);
+        */
     },
 
     setQuestionTitle: function(title, qId) {
