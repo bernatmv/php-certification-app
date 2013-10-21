@@ -1,3 +1,10 @@
+// fastclick plugin for jQuery (Zepto)
+Zepto.fn.fastClick = function(handler) {
+    this.click(function(ev) { ev.preventDefault(); });
+    Hammer(this[0]).on("tap doubletap", handler);
+    return this;
+};
+
 // config data
 var BOOKMARK = localStorage.getItem("PHPEXAM_BOOKMARK");
 var BOOKMARK_ID = localStorage.getItem("PHPEXAM_BOOKMARK_ID");
@@ -48,7 +55,8 @@ var app = {
 
     onDeviceReady: function() {
         // instantiate fastclick
-        FastClick.attach(document.body);
+        var infoButton = document.getElementById('infoButton');
+        FastClick.attach(infoButton);
 
         // control inclusion of PHP4 questions
         $('input#php4-questions').on('change', function (e) {
@@ -75,7 +83,7 @@ var app = {
         app.buildBookmarkQuestion();
 
         // hide question and re-write loading
-        $('.question-out').hammer().on("click", function (e) {
+        $('.question-out').hammer().on("tap", function (e) {
             app.setQuestionTitle('Loading...');
 
             // rebuild questions list
@@ -87,7 +95,8 @@ var app = {
         });
 
         // about button
-        $("#infoButton").hammer().on("tap", function (e) {
+        //$("#infoButton").hammer().on("tap", function (e) {
+        $("#infoButton").fastClick(function (e) {
             jQT.goTo($('#about'), 'slideup');
         });
 
@@ -101,17 +110,10 @@ var app = {
         }
 
         // random question
-        $("#random-question-link").on("click", function (e) {
+        $("#random-question-link").hammer().on("tap", function (e) {
             var questionNumber = randomFromInterval(1, (index.length -1));
             app.goToQuestion(questionNumber);
         });
-        /*
-        document.getElementById('random-question-link').addEventListener('click', function(event) {
-            cTime = Date.now();
-            document.getElementById('c-time').value = cTime;
-            testB.style.backgroundColor = testB.style.backgroundColor ? '' : 'YellowGreen';
-        }, false);
-        */
     },
 
     setQuestionTitle: function(title, qId) {
