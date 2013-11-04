@@ -2220,13 +2220,13 @@ var questionsDataBase = {
     q183: {
         id: 183,
         text: 'Which of the following are NOT valid PDOStatement::fetch flags?',
-        type: 2,
+        type: 3,
         category: 7,
         answer: {
             options: ['PDO::FETCH_ASSOC', 'PDO::FETCH_ROW', 'PDO::FETCH_OBJ', 'PDO::FETCH_EXT', 'PDO::FETCH_BOTH', 'PDO::FETCH_CLASS'],
             correct: [2, 4],
             link: ["http://www.php.net/manual/en/pdostatement.fetch.php"],
-            explanation: [  ]
+            explanation: []
         }
     },
     q184: {
